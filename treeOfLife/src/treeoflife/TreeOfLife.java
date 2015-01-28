@@ -5,6 +5,7 @@
  */
 package treeoflife;
 
+import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Players;
 
 /**
@@ -24,6 +25,13 @@ public class TreeOfLife {
         String playerInfo = playerOne.toString();
         
         System.out.println(playerInfo);
+        
+        Game game1 = new Game();
+        
+        game1.setId(1);
+        
+        String gameID = game1.toString();
+        System.out.println(gameID);
     }
     
 }
