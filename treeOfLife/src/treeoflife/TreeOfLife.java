@@ -7,6 +7,7 @@ package treeoflife;
 
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Players;
+import byui.cit260.treeOfLife.model.ProgressMeter;
 
 /**
  *
@@ -32,6 +33,14 @@ public class TreeOfLife {
         
         String gameID = game1.toString();
         System.out.println(gameID);
+        
+        ProgressMeter playerTwo = new ProgressMeter();
+        
+        playerTwo.setFaithStat(3);
+      
+        
+        String faithStat = playerTwo.toString();
+        System.out.println(faithStat);
     }
     
 }
