@@ -7,6 +7,7 @@ package treeoflife;
 
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.GameInventoryItems;
+import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Players;
 import byui.cit260.treeOfLife.model.ProgressMeter;
 
@@ -54,6 +55,18 @@ public class TreeOfLife {
         
         String helmetInfo = helmet.toString();
         System.out.println(helmetInfo);
+        
+        //test for Location class
+        Location armorShop = new Location();
+        
+        armorShop.setxCoordinate(1);
+        armorShop.setyCoordinate(1);
+        armorShop.setBlocked(false);
+        armorShop.setVisited(false);
+        
+        String armorShopLocation = armorShop.toString();
+        System.out.println(armorShopLocation);
+        
     }
     
 }
