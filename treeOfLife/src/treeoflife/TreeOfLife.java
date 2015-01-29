@@ -6,6 +6,7 @@
 package treeoflife;
 
 import byui.cit260.treeOfLife.model.Game;
+import byui.cit260.treeOfLife.model.GameInventoryItems;
 import byui.cit260.treeOfLife.model.Players;
 import byui.cit260.treeOfLife.model.ProgressMeter;
 
@@ -27,6 +28,7 @@ public class TreeOfLife {
         
         System.out.println(playerInfo);
         
+        //test for Game class
         Game game1 = new Game();
         
         game1.setId(1);
@@ -34,6 +36,7 @@ public class TreeOfLife {
         String gameID = game1.toString();
         System.out.println(gameID);
         
+        //test for ProgressMeter class 
         ProgressMeter playerTwo = new ProgressMeter();
         
         playerTwo.setFaithStat(3);
@@ -41,6 +44,16 @@ public class TreeOfLife {
         
         String faithStat = playerTwo.toString();
         System.out.println(faithStat);
+        
+        //test for GameInventoryItems class
+        GameInventoryItems helmet = new GameInventoryItems();
+        
+        helmet.setItemDescription("Helmet of Salvation");
+        helmet.setArmorPiece("Helmet");
+        helmet.setArmorPieceFaithPoints(3);
+        
+        String helmetInfo = helmet.toString();
+        System.out.println(helmetInfo);
     }
     
 }
