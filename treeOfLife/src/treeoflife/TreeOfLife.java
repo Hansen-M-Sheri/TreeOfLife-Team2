@@ -5,13 +5,16 @@
  */
 package treeoflife;
 
+import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.Players;
+
 
 /**
  *
  * @author Chuck
  */
 public class TreeOfLife {
+    private static Object quesitonOne;
 
     /**
      * @param args the command line arguments
@@ -24,6 +27,17 @@ public class TreeOfLife {
         String playerInfo = playerOne.toString();
         
         System.out.println(playerInfo);
+        
+        Map mapOne = new Map();
+        
+        mapOne.setRowCount("One");
+        mapOne.setColumnCount("Two");
+        
+        String mapInfo = mapOne.toString();
+        
+        System.out.println(mapInfo);
+        
     }
+    
     
 }
