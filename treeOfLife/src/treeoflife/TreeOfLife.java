@@ -8,6 +8,7 @@ package treeoflife;
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.GameInventoryItems;
 import byui.cit260.treeOfLife.model.Location;
+import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.Players;
 
 
@@ -16,7 +17,7 @@ import byui.cit260.treeOfLife.model.Players;
  * @author Chuck
  */
 public class TreeOfLife {
-    private static Object quesitonOne;
+    private static Object questionOne;
 
     /**
      * @param args the command line arguments
@@ -40,5 +41,6 @@ public class TreeOfLife {
         System.out.println(mapInfo);
         
     }
+}
     
     
