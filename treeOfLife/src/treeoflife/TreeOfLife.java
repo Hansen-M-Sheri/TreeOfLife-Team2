@@ -10,6 +10,7 @@ import byui.cit260.treeOfLife.model.GameInventoryItems;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.Players;
+import byui.cit260.treeOfLife.model.Questions;
 
 
 /**
@@ -31,6 +32,7 @@ public class TreeOfLife {
         
         System.out.println(playerInfo);
         
+        //Map Class
         Map mapOne = new Map();
         
         mapOne.setRowCount("One");
@@ -39,6 +41,18 @@ public class TreeOfLife {
         String mapInfo = mapOne.toString();
         
         System.out.println(mapInfo);
+        
+        //Questions Class
+        Questions questionOne = new Questions();
+        
+        questionOne.setQuestionType("Faith");
+        questionOne.setQuestionNumber("1");
+        questionOne.setQuestionAnswered("Yes");
+        questionOne.setQuestionPoints("10");
+        
+        String questionInfo = questionOne.toString();
+        
+        System.out.println(questionInfo);
         
     }
 }
