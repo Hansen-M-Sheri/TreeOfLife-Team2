@@ -11,6 +11,8 @@ import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.Players;
 import byui.cit260.treeOfLife.model.Questions;
+import byui.cit260.treeOfLife.model.Scene;
+import byui.cit260.treeOfLife.model.Character;
 
 
 /**
@@ -53,6 +55,30 @@ public class TreeOfLife {
         String questionInfo = questionOne.toString();
         
         System.out.println(questionInfo);
+        
+        //Scene Class
+        Scene sceneOne = new Scene();
+        
+        sceneOne.setDescriptions("Snow Capped Mountains");
+        sceneOne.setUserQuestions("Do you want to move forward?");
+        
+        String sceneInfo = sceneOne.toString();
+        
+        System.out.println(sceneInfo);
+        
+        
+        //Character Class
+        Character characterOne = new Character();
+        
+        characterOne.setName("Nephi");
+        characterOne.setDescription("Strong in Faith");
+        characterOne.setOrigStatLevels("Faith 10, Obedience 10, Knowledge 0");
+        
+        String characterInfo = characterOne.toString();
+        
+        System.out.println(characterInfo);
+        
+        
         
     }
 }
