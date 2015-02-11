@@ -7,8 +7,8 @@ package byui.cit260.treeOfLife.control;
 
 /**
  *
- * @author sherihansen
+ * @author Chuck
  */
-public class GameControl {
+public class MapControl {
     
 }
