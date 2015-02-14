@@ -14,6 +14,9 @@ public class QuestionControl {
     private int bonus;
     private int pointValuePerQuestion;
     private int questionPoints;
+    private int actionPoints;
+    private int qualityPoints;
+    private int templeQuestionPoints;
     
     /**
      * This function calculates the points earned within a  level
@@ -47,4 +50,59 @@ public class QuestionControl {
         questionPoints = answeredCorrect * pointValuePerQuestion + bonus; 
         return questionPoints;
     }
+    
+    /**
+     * This function calculates how many points earned in temple
+     * @param actionRange
+     * @param qualityRange
+     * @return templeQuestionPoints (integer)
+     * At each visit to temple, user will be asked two questions. 
+     * 1st based on action performed this week
+     * 2nd based on quality of action (ie: good, better, best)
+     * Their answer will fall into a range for action and quality
+     * For each range a point value is assigned
+     * Bonus points are available for any combo where highest range is hit
+     *  if highest range in both categories is achieved , larger bonus occurs
+     * Range options are 1,2,3 with 3 being highest
+     */
+   public int calTemplePoints(int actionRange, int qualityRange) {
+        
+       //determine actionRange and set actionPoints
+       if(actionRange == 1) {
+            actionPoints = 0;
+        }
+        else if(actionRange == 2) {
+            actionPoints = 1;
+        }       
+           
+        else if(actionRange == 3) {
+            actionPoints = 2;
+        }
+        else {
+            return -1;
+        }
+        //verify qualityRange is valid & set qualityPoints
+        if(qualityRange <1 || qualityRange >3) {
+            return -1;
+        }
+        else {
+        //points will be 1, 2, or 3 ; same integer as qualityRange
+            qualityPoints = qualityRange;
+
+        }
+        
+        //determine bonus points
+        if(actionRange == 3 && qualityRange == 3) {
+            bonus = 3;
+        }
+        else if (actionRange ==3 || qualityRange ==3 ) {
+            bonus = 2;
+        }
+        else {
+            bonus = 1;
+        }
+        templeQuestionPoints = (actionPoints + qualityPoints) * bonus;
+        return templeQuestionPoints;
+}
+
 }
