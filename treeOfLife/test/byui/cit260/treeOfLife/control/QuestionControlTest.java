@@ -293,4 +293,116 @@ public class QuestionControlTest {
         assertEquals(expResult, result);
     }
     
+    /**
+     * Test of calTemplePoints method, of class QuestionControl.
+     */
+    @Test
+    public void testCalMantlePoints() {
+        System.out.println("calMantlePoints");
+        
+        /*******************************
+         * Test Case #1
+         *******************************/
+        System.out.println("\tTest case #1");
+        //input values 
+        int answeredCorrect = 1;
+        int totalQuestionAsked = 1;
+        QuestionControl instance = new QuestionControl();
+        int expResult = 5; //expected output returned
+        int result = instance.calMantlePoints(answeredCorrect, totalQuestionAsked);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+        
+        /*******************************
+         * Test Case #2
+         *******************************/
+        System.out.println("\tTest case #2");
+        //input values 
+        answeredCorrect = 4;
+        totalQuestionAsked = 1;
+        expResult = 6; //expected output returned
+        result = instance.calMantlePoints(answeredCorrect, totalQuestionAsked);
+        assertEquals(expResult, result);
+        
+        /*******************************
+         * Test Case #3
+         *******************************/
+        System.out.println("\tTest case #3");
+        //input values 
+        answeredCorrect = 6;
+        totalQuestionAsked = 1;
+        expResult = 8; //expected output returned
+        result = instance.calMantlePoints(answeredCorrect, totalQuestionAsked);
+        assertEquals(expResult, result);
+        
+        /*******************************
+         * Test Case #4
+         *******************************/
+        System.out.println("\tTest case #4");
+        //input values 
+        answeredCorrect = 7;
+        totalQuestionAsked = 1;
+        expResult = 10; //expected output returned
+        result = instance.calMantlePoints(answeredCorrect, totalQuestionAsked);
+        assertEquals(expResult, result);
+        
+        /*******************************
+         * Test Case #5
+         *******************************/
+        System.out.println("\tTest case #5");
+        //input values 
+        answeredCorrect = 0;
+        totalQuestionAsked = 0;
+        expResult = -1; //expected output returned
+        result = instance.calMantlePoints(answeredCorrect, totalQuestionAsked);
+        assertEquals(expResult, result);
+        
+         /*******************************
+         * Test Case #6
+         *******************************/
+        System.out.println("\tTest case #6");
+        //input values 
+        answeredCorrect = 0;
+        totalQuestionAsked = 1;
+        expResult = 5; //expected output returned
+        result = instance.calMantlePoints(answeredCorrect, totalQuestionAsked);
+        assertEquals(expResult, result);
+        
+        /*******************************
+         * Test Case #7
+         *******************************/
+        System.out.println("\tTest case #7");
+        //input values 
+        answeredCorrect = 7;
+        totalQuestionAsked = 3;
+        expResult = 20; //expected output returned
+        result = instance.calMantlePoints(answeredCorrect, totalQuestionAsked);
+        assertEquals(expResult, result);
+        
+        /*******************************
+         * Test Case #8
+         *******************************/
+        System.out.println("\tTest case #8");
+        //input values 
+        answeredCorrect = -5;
+        totalQuestionAsked = 3;
+        expResult = -1; //expected output returned
+        result = instance.calMantlePoints(answeredCorrect, totalQuestionAsked);
+        assertEquals(expResult, result);
+      
+        /*******************************
+         * Test Case #9
+         *******************************/
+        System.out.println("\tTest case #9");
+        //input values 
+        answeredCorrect = 9;
+        totalQuestionAsked = 3;
+        expResult = -1; //expected output returned
+        result = instance.calMantlePoints(answeredCorrect, totalQuestionAsked);
+        assertEquals(expResult, result);
+    }
+    
+   
+    
 }
