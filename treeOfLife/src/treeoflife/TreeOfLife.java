@@ -13,6 +13,7 @@ import byui.cit260.treeOfLife.model.Players;
 import byui.cit260.treeOfLife.model.Questions;
 import byui.cit260.treeOfLife.model.Scene;
 import byui.cit260.treeOfLife.model.Character;
+import byui.cit260.treeOfLife.view.StartProgramView;
 
 
 /**
@@ -26,58 +27,8 @@ public class TreeOfLife {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Players playerOne = new Players();
-        
-        playerOne.setName("Fred Flinstone");
-        
-        String playerInfo = playerOne.toString();
-        
-        System.out.println(playerInfo);
-        
-        //Map Class
-        Map mapOne = new Map();
-        
-        mapOne.setRowCount("One");
-        mapOne.setColumnCount("Two");
-        
-        String mapInfo = mapOne.toString();
-        
-        System.out.println(mapInfo);
-        
-        //Questions Class
-        Questions questionOne = new Questions();
-        
-        questionOne.setQuestionType("Faith");
-        questionOne.setQuestionNumber("1");
-        questionOne.setQuestionAnswered("Yes");
-        questionOne.setQuestionPoints("10");
-        
-        String questionInfo = questionOne.toString();
-        
-        System.out.println(questionInfo);
-        
-        //Scene Class
-        Scene sceneOne = new Scene();
-        
-        sceneOne.setDescriptions("Snow Capped Mountains");
-        sceneOne.setUserQuestions("Do you want to move forward?");
-        
-        String sceneInfo = sceneOne.toString();
-        
-        System.out.println(sceneInfo);
-        
-        
-        //Character Class
-        Character characterOne = new Character();
-        
-        characterOne.setName("Nephi");
-        characterOne.setDescription("Strong in Faith");
-        characterOne.setOrigStatLevels("Faith 10, Obedience 10, Knowledge 0");
-        
-        String characterInfo = characterOne.toString();
-        
-        System.out.println(characterInfo);
-        
+       StartProgramView startProgramView = new StartProgramView();
+       startProgramView.startProgram();
         
         
     }
