@@ -6,6 +6,7 @@
 package byui.cit260.treeOfLife.control;
 
 import byui.cit260.treeOfLife.model.Players;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -13,9 +14,19 @@ import byui.cit260.treeOfLife.model.Players;
  */
 public class ProgramControl {
 
-    public static Players createPlayer(String playersName) {
+    public static Players createPlayer(String name) {
        System.out.println("\n**** createPlayer function called ****");
-       return null;
+       
+       if (name == null){
+           return null;
+       }
+       
+       Players player = new Players();
+       player.setName(name);
+       
+       TreeOfLife.setPlayers(player);
+       
+       return player;
     }
     
 }

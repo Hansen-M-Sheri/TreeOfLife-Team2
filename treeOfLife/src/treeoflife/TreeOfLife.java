@@ -23,6 +23,26 @@ import byui.cit260.treeOfLife.view.StartProgramView;
 public class TreeOfLife {
     private static Object questionOne;
 
+    private static Game currentGame = null;
+    private static Players player = null;
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        TreeOfLife.currentGame = currentGame;
+    }
+
+    public static Players getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Players player) {
+        TreeOfLife.player = player;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -31,6 +51,10 @@ public class TreeOfLife {
        startProgramView.startProgram();
         
         
+    }
+
+    public static void setPlayers(Players player) {
+       TreeOfLife.player = player;
     }
 }
     
