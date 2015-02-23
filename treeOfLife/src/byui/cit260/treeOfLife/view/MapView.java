@@ -5,46 +5,46 @@
  */
 package byui.cit260.treeOfLife.view;
 
-import byui.cit260.treeOfLife.control.GameControl;
 import java.util.Scanner;
-import treeoflife.TreeOfLife;
 
 /**
  *
  * @author Chuck
  */
-public class MainMenuView {
+public class MapView {
     
-    private final String MENU = "\n"
+     private final String MENU = "\n"
             +"\n========================================"
-            +"\n| Main Menu                            |"
+            +"\n| Map Menu                             |"
             +"\n========================================"
-            +"\nN - Start new game"
-            +"\nG - Get and start saved game"
-            +"\nH - Get help on how to play the game"
-            +"\nS - Save game"
-            +"\nE - Exit"
+            +"\nT - Temple"
+            +"\nM - Mantle"
+            +"\nA - Armor Shop"
+            +"\nC - Current Level" 
+            +"\nH - Help Menu"
+            +"\nG - Game Menu"
+            +"\nQ - Return to Main Menu" 
             +"\n========================================";
-
-public void displayMenu() {
+     
+public void displayMapMenu() {
       
     char selection = ' ';
     do {
         
         System.out.println(MENU);//display the main menu
         
-        String input = this.getInput();  //get the user selection
+        String input = this.getMapInput();  //get the user selection
         selection = input.charAt(0);  //perform the action associated with the selection
         
-        this.doAction(selection);
+        this.doActionMap(selection);
         
     } while (selection != 'E'); //while the letter e has not been selected
 
     
     
-    }
-
-    public String getInput() {
+    }     
+     
+    public String getMapInput() {
          boolean valid =false; //indicates if the name has been recieved
         String userInput = null;
         Scanner keyboard = new Scanner(System.in); //keyboard input stream
@@ -69,67 +69,67 @@ public void displayMenu() {
         
         return userInput; // return the name
     
-    }
+    } 
 
-    public void doAction(char choice) {
+    private void doActionMap(char choice) {
         switch (choice){
-            case 'N':// create and start a new game
-                this.startNewGame();
+            case 'T':// create and start a new game
+                this.goToTempleMenu();
                 break;
-            case 'G': // get and start an existing game
-                this.startExistingGame();
+            case 'M': // get and start an existing game
+                this.goToMantleMenu();
                 break;
-            case 'H': // display the help menu
+            case 'A': // to to Armor Shop Menu
+                this.goToArmorShopMenu();
+                break;
+            case 'C': // go to level view
+                this.goToLevelMenu(); 
+                break;
+            case 'H': // go to the Main Menu
                 this.displayHelpMenu();
                 break;
-            case 'S': //save the current game
-                this.saveGame(); // save the current game
+            case 'G':  // Go To the Game Menu
+                this.displayGameMenu(); 
                 break;
-            case 'E': // Exit the program
-                return;
+            case 'Q': // Quit the Map Menu and return to the Main Menu
+                this.returnToMainMenu();
+                break;
             default:
-            System.out.println("n*** Invalid selection *** Try again");
+            System.out.println("n*** Invalid map menu selection *** Try again");
                 break;
-}
+}}
 
+    private void goToTempleMenu() {
+        System.out.println("*** goToTempleMenu function called ***");
     
     }
 
-    private void startNewGame() {
-        System.out.println("*** startNewGame function called ***");
-    
-        //Create a new Game
-        GameControl.createNewGame(TreeOfLife.getPlayer());
-        
-        //Display the Game Menu
+    private void goToMantleMenu() {
+        System.out.println("*** goToMantleMenu function called ***");
+    }
+
+    private void goToArmorShopMenu() {
+        System.out.println("*** goToArmorShopMenu function called ***");
+    }
+
+    private void displayHelpMenu() {
+        HelpMenuView helpMenu = new HelpMenuView();
+        helpMenu.displayHelpMenu();
+    }
+
+    private void goToLevelMenu() {
+        System.out.println("*** goToLevelMenu function called ***");
+    }
+
+    private void displayGameMenu() {
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.displayGameMenu();
     }
 
-    private void startExistingGame() {
-        System.out.println("*** startExistingGame function called ***");
-    
+    private void returnToMainMenu() {
+        MainMenuView mainMenu = new MainMenuView();
+        mainMenu.displayMenu();
     }
-
-    private void displayHelpMenu() {
-        //Display the Game Menu
-        HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayHelpMenu();
-    
-    }
-
-    private void saveGame() {
-         System.out.println("*** saveGame function called ***");
-        
-    }
+     
+     
 }
-
-   
-        
-       
-    
-    
-    
-    
-
-   

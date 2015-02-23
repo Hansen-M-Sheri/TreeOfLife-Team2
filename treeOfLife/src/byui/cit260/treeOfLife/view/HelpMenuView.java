@@ -16,7 +16,8 @@ public class HelpMenuView {
             +"\n========================================"
             +"\n| Help Menu                            |"
             +"\n========================================"
-            +"\nG - What is the goal of the game?"
+            +"\nG - Go to Game Main Menu"
+            +"\nI - Info - What is the goal of the game?"
             +"\nM - How to move"
             +"\nT - What is the Temple"
             +"\nP - What is the Praying Mantle"
@@ -31,7 +32,7 @@ public void displayHelpMenu() {
     char selection = ' ';
     do {
         
-        System.out.println(MENU);//display the main menu
+        System.out.prinGamtln(MENU);//display the main menu
         
         String input = this.getHelpInput();  //get the user selection
         selection = input.charAt(0);  //perform the action associated with the selection
@@ -73,7 +74,10 @@ public String getHelpInput() {
 
  public void doActionHelp(char choice) {
         switch (choice){
-            case 'G':// What is the goal of the game
+            case 'G':// Go to Game Menu
+                this.displayGameMenu();
+                break;
+            case 'I':// What is the goal of the game
                 this.helpGoalOfGame();
                 break;
             case 'M': // How to move
@@ -83,12 +87,12 @@ public String getHelpInput() {
                 this.helpTemple();
                 break;
             case 'P': // What is the Praying Mantle
-                this.helpMantle(); // save the current game
+                this.helpMantle(); 
                 break;
             case 'A': //What is the Armor Shop
-                this.helpArmor(); // save the current game
+                this.helpArmor();
                 break;
-            case 'Q': // Quit
+            case 'Q': // Quit Help Menu and return to Main Menu
                 this.returnToMainMenu();
                 break;
             default:
@@ -97,6 +101,11 @@ public String getHelpInput() {
 }
 
     
+}
+ 
+    private void displayGameMenu() {
+    GameMenuView gameMenu = new GameMenuView();
+    gameMenu.displayGameMenu();    
     }
 
     private void helpGoalOfGame() {
@@ -124,6 +133,8 @@ public String getHelpInput() {
         mainMenu.displayMenu();
     
     }
+
+
 
 
 
