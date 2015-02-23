@@ -35,7 +35,7 @@ public void displayGameMenu() {
         
         this.doActionGameMenu(selection);
         
-    } while (selection != 'E'); //while the letter e has not been selected
+    } while (selection != 'Q'); //while the letter e has not been selected
 
     
     

@@ -32,14 +32,14 @@ public void displayHelpMenu() {
     char selection = ' ';
     do {
         
-        System.out.prinGamtln(MENU);//display the main menu
+        System.out.println(MENU);//display the main menu
         
         String input = this.getHelpInput();  //get the user selection
         selection = input.charAt(0);  //perform the action associated with the selection
         
         this.doActionHelp(selection);
         
-    } while (selection != 'E'); //while the letter e has not been selected
+    } while (selection != 'Q'); //while the letter e has not been selected
 
     
     

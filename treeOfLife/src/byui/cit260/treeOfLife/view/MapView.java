@@ -38,7 +38,7 @@ public void displayMapMenu() {
         
         this.doActionMap(selection);
         
-    } while (selection != 'E'); //while the letter e has not been selected
+    } while (selection != 'Q'); //while the letter e has not been selected
 
     
     
