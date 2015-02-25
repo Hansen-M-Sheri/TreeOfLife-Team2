@@ -109,7 +109,8 @@ public void displayMapMenu() {
     }
 
     private void goToArmorShopMenu() {
-        System.out.println("*** goToArmorShopMenu function called ***");
+        ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+        armorMenu.displayArmorShopMenu();
     }
 
     private void displayHelpMenu() {
