@@ -106,7 +106,8 @@ public void displayMapMenu() {
     }
 
     private void goToMantleMenu() {
-        System.out.println("*** goToMantleMenu function called ***");
+        MantleMenuView mantleMenu = new MantleMenuView();
+        mantleMenu.displayMantleMenu();
     }
 
     private void goToArmorShopMenu() {
