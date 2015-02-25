@@ -5,6 +5,9 @@
  */
 package byui.cit260.treeOfLife.control;
 
+import java.util.Random;
+import java.util.Scanner;
+
 /**
  *
  * @author Chuck
@@ -177,10 +180,51 @@ public int calMantlePoints(int answeredCorrect, int totalQuestionsAsked) {
     
 }
 
+public void getTempleQuestions(){
+
+    
+    
+    
+    
+    //check isBlocked - determine how we determine block and not blocked to answer questions
+    
+    //display random question
+    Random rand = new Random();
+        int range = 10 - 1 + 1;
+        int randomNum = rand.nextInt(range) + 1;
+        this.displayQuestion(randomNum);
+    
+    //System.out.println(templeQuestions); 
+    
+    //get answer from user
+    
+    //validate answer and provide response if invalid answer
+    
+    //ask follow up question for bonus
+    
+    //validate answer and provide response if invalid answer
+    
+    //generate response by calling calTemplePoints function
+    
+    //display string "You achieved XXX number of days with XXX effort and are rewarded with Call calTemplePoints"
+    
+    //display prompt "Enter Q to retun to Temple Menu"
+    
+    
 }
 
+    private void displayQuestion(int randomNum) {
         
-    
-    
+        if (randomNum == 1){
+            System.out.println("How many days out of the last seven days did you read the book of Mormon?");
+        }
+        else if (randomNum ==2){
+            System.out.println("How many days out of the last seven days did you have your personal prayers?");
+        }
+    }
+}
 
 
+
+
+    

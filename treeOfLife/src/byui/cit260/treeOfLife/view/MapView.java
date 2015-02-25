@@ -97,11 +97,12 @@ public void displayMapMenu() {
             default:
             System.out.println("n*** Invalid map menu selection *** Try again");
                 break;
-}}
+}
+}
 
     private void goToTempleMenu() {
-        System.out.println("*** goToTempleMenu function called ***");
-    
+        TempleMenuView templeMenu = new TempleMenuView();
+        templeMenu.displayTempleMenu();
     }
 
     private void goToMantleMenu() {
