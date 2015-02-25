@@ -5,6 +5,7 @@
  */
 package byui.cit260.treeOfLife.view;
 
+import byui.cit260.treeOfLife.control.QuestionControl;
 import java.util.Scanner;
 
 /**
@@ -98,8 +99,8 @@ public void displayTempleMenu() {
     //}
 
     private void answerTempleQuestions() {
-      
-    
+    QuestionControl templeQuestion = new QuestionControl();
+    templeQuestion.getTempleQuestions();  
     }
 
     private void displayMapView() {

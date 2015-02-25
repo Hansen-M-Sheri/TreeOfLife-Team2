@@ -22,7 +22,8 @@ public class QuestionControl {
     private int templeQuestionPoints;
     private int answeredCorrect;
     private int mantleQuestionPoints;
-    
+    private int actionRange;
+    private int qualityRange;
     
     /**
      * This function calculates the points earned within a  level
@@ -190,28 +191,63 @@ public void getTempleQuestions(){
     
     //display random question
     Random rand = new Random();
-        int range = 10 - 1 + 1;
+        int range = 2 - 1 + 1;
         int randomNum = rand.nextInt(range) + 1;
         this.displayQuestion(randomNum);
-    
-    //System.out.println(templeQuestions); 
-    
     //get answer from user
+        String templeAnswer = this.getTempleInput();
     
     //validate answer and provide response if invalid answer
-    
+        this.doActionTempleQuestions(templeAnswer);
+        
     //ask follow up question for bonus
-    
+        System.out.println("Do you feel your effort was (p) poor, (g) good or (o) outstanding? \n");
+        
     //validate answer and provide response if invalid answer
-    
+        String bonusAnswer = this.validTempleInput();
+        this.doActionTempleBonus(bonusAnswer);
+        
     //generate response by calling calTemplePoints function
-    
+        int templePoints = this.calTemplePoints(actionRange, qualityRange);
+        
     //display string "You achieved XXX number of days with XXX effort and are rewarded with Call calTemplePoints"
-    
+        System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
+        
     //display prompt "Enter Q to retun to Temple Menu"
+        System.out.println("Enter Q to return to the Temple Menu");
+    
+    //validate response for returning to Temple Menu
+        //String returnTempleMenu = this.displayTempleMenu();
+        
     
     
 }
+public String getTempleInput() {
+        boolean valid =false; //indicates if the name has been recieved
+        String userInput = null;
+        Scanner keyboard = new Scanner(System.in); //keyboard input stream
+        
+        while(!valid) { //while a valid name has not been retrieved
+            
+            //prompt for the player's name
+            System.out.println("Enter a value between 1 through 7 for the number of days you completed the activity.");
+            
+            //get the name from the keyboard and trim off the blanks
+            userInput = keyboard.nextLine();
+            userInput = userInput.trim();
+            userInput = userInput.toUpperCase();
+            
+            //if the name is invalid(less than two character in length)
+            if (userInput.length() < 1 || userInput.length() > 1) {
+                System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
+                continue; // and repeat again
+            }
+            break; //out of the (exit) the repitition
+        }
+        
+        return userInput; // return the name
+    
+    } 
 
     private void displayQuestion(int randomNum) {
         
@@ -222,6 +258,81 @@ public void getTempleQuestions(){
             System.out.println("How many days out of the last seven days did you have your personal prayers?");
         }
     }
+    
+    
+    private void doActionTempleQuestions(String templeAnswer) {
+        int answerInt = Integer.parseInt("templeAnswer");
+        if (answerInt < 0 || answerInt >7){
+        System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
+        }
+        else{
+           System.out.println("Thanks for your answer. Let's move on to the bonus question");
+        }
+               
+
+    }
+    
+    public int setActionRange(int answerInt){
+        
+            if(answerInt <=3){
+                    actionRange = 1;
+                }
+                else if(answerInt == 4 || answerInt <=6){
+                    actionRange = 2;
+                }
+                else if(answerInt == 7){
+                    actionRange =3;
+                }
+                return actionRange;
+        }
+
+    private String validTempleInput() {
+        boolean valid =false; //indicates if the name has been recieved
+        String userInput = null;
+        Scanner keyboard = new Scanner(System.in); //keyboard input stream
+        
+        while(!valid) { //while a valid name has not been retrieved
+            
+            //prompt for the player's response p g or o
+            System.out.println("Enter one of the following choices: p, g or o.");
+            
+            //get the name from the keyboard and trim off the blanks
+            userInput = keyboard.nextLine();
+            userInput = userInput.trim();
+            userInput = userInput.toUpperCase();
+            
+            //if the name is invalid(less than two character in length)
+            if (userInput.length() < 1 || userInput.length() > 1) {
+                System.out.println("Invalid selection - Must enter just one letter. Examlpe: p, g or o");
+                continue; // and repeat again
+            }
+            break; //out of the (exit) the repitition
+        }
+        
+        return userInput; // return the name
+    
+    }
+
+    private int doActionTempleBonus(String bonusAnswer) {
+          
+        switch (bonusAnswer) {
+            case "P":
+                qualityRange = 1;
+                break;
+            case "G":
+                qualityRange = 2;
+                break;
+            case "O":
+                qualityRange =3;
+                break;
+        }
+                return qualityRange;
+    
+    }
+
+     
+    
+    
 }
 
 
