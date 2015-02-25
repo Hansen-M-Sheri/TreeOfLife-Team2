@@ -183,10 +183,6 @@ public int calMantlePoints(int answeredCorrect, int totalQuestionsAsked) {
 
 public void getTempleQuestions(){
 
-    
-    
-    
-    
     //check isBlocked - determine how we determine block and not blocked to answer questions
     
     //display random question
@@ -194,6 +190,7 @@ public void getTempleQuestions(){
         int range = 2 - 1 + 1;
         int randomNum = rand.nextInt(range) + 1;
         this.displayQuestion(randomNum);
+        
     //get answer from user
         String templeAnswer = this.getTempleInput();
     
@@ -201,7 +198,7 @@ public void getTempleQuestions(){
         this.doActionTempleQuestions(templeAnswer);
         
     //ask follow up question for bonus
-        System.out.println("Do you feel your effort was (p) poor, (g) good or (o) outstanding? \n");
+        System.out.println("Do you feel your effort was (p) poor, (g) good or (o) outstanding?");
         
     //validate answer and provide response if invalid answer
         String bonusAnswer = this.validTempleInput();
@@ -214,7 +211,7 @@ public void getTempleQuestions(){
         System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
         
     //display prompt "Enter Q to retun to Temple Menu"
-        System.out.println("Enter Q to return to the Temple Menu");
+       // System.out.println("Enter Q to return to the Temple Menu");
     
     //validate response for returning to Temple Menu
         //String returnTempleMenu = this.displayTempleMenu();
@@ -260,15 +257,26 @@ public String getTempleInput() {
     }
     
     
-    private void doActionTempleQuestions(String templeAnswer) {
-        int answerInt = Integer.parseInt("templeAnswer");
+    private String doActionTempleQuestions(String templeAnswer) {
+        boolean valid =false; //indicates if the name has been recieved
+        String userInput = null;
+        Scanner keyboard = new Scanner(System.in); //keyboard input stream
+        
+        while(!valid) { //while a valid name has not been retrieved
+        int answerInt = Integer.parseInt(templeAnswer);
             if (answerInt < 0 || answerInt >7){
                 System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
-        }
+                continue;// and repeat again
+            }
+                
             else{
                 System.out.println("Thanks for your answer. Let's move on to the bonus question");
         }
+        break;//out of the (exit) the repitition
     }
+        return userInput;
+    }
+
     
     public int setActionRange(int answerInt){
         
@@ -310,9 +318,49 @@ public String getTempleInput() {
         return userInput; // return the name
     
     }
-
-    private int doActionTempleBonus(String bonusAnswer) {
-          
+    
+    
+private void doActionTempleBonus(char quality) {
+        switch (quality){
+            case 'P':// Performed the task poorly.
+                this.poorTempleBonus(); 
+                break;
+            case 'G':// Performed a good job.
+                this.goodTempleBonus();
+                break;
+            case 'O':// Did an Outtanding job!
+                this.outstandingTempleBonus();
+                break;
+            default:
+            System.out.println("*** Invalid entry. Please enter p, g or o. *** Try again");
+                break;
+    
+        }
+}
+    
+    private String doActionTempleBonus(String bonusAnswer) {
+        boolean valid =false; //indicates if the name has been recieved
+        String userInput = null;
+        Scanner keyboard = new Scanner(System.in); //keyboard input stream
+        
+        while(!valid) { //while a valid name has not been retrieved
+        int answerInt = Integer.parseInt(bonusAnswer);
+            if (answerInt < 0 || answerInt >7){
+                System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
+                continue;// and repeat again
+            }
+                
+            else{
+                System.out.println("Thanks for your answer. Let's move on to the bonus question");
+        }
+        break;//out of the (exit) the repitition
+    }
+        return userInput;
+    }
+        
+        
+    
+    public int setQualityRange(String bonusAnswer){     
         switch (bonusAnswer) {
             case "P":
                 qualityRange = 1;
@@ -321,11 +369,24 @@ public String getTempleInput() {
                 qualityRange = 2;
                 break;
             case "O":
-                qualityRange =3;
+                qualityRange = 3;
                 break;
         }
                 return qualityRange;
     
+    }
+
+    private void poorTempleBonus() {
+        System.out.println("Thanks for your answer. Let's move on to the bonus question"); 
+    }
+
+    private void goodTempleBonus() {
+        System.out.println("Nice Job this week. Thanks for your answer. Let's move on to the bonus question");
+               }
+
+    private void outstandingTempleBonus() {
+        System.out.println("Outstanding? GREAT JOB! Thanks for your answer. Let's move on to the bonus question");
+              
     }
 
      
