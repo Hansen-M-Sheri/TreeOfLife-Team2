@@ -230,7 +230,7 @@ public String getTempleInput() {
         while(!valid) { //while a valid name has not been retrieved
             
             //prompt for the player's name
-            System.out.println("Enter a value between 1 through 7 for the number of days you completed the activity.");
+            System.out.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
             
             //get the name from the keyboard and trim off the blanks
             userInput = keyboard.nextLine();
@@ -262,14 +262,12 @@ public String getTempleInput() {
     
     private void doActionTempleQuestions(String templeAnswer) {
         int answerInt = Integer.parseInt("templeAnswer");
-        if (answerInt < 0 || answerInt >7){
-        System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
+            if (answerInt < 0 || answerInt >7){
+                System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
         }
-        else{
-           System.out.println("Thanks for your answer. Let's move on to the bonus question");
+            else{
+                System.out.println("Thanks for your answer. Let's move on to the bonus question");
         }
-               
-
     }
     
     public int setActionRange(int answerInt){
