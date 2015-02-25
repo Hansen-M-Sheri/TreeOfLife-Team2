@@ -5,6 +5,8 @@
  */
 package byui.cit260.treeOfLife.control;
 
+import byui.cit260.treeOfLife.model.Location;
+import byui.cit260.treeOfLife.model.Questions;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -24,7 +26,7 @@ public class QuestionControl {
     private int mantleQuestionPoints;
     private int actionRange;
     private int qualityRange;
-    
+    private int combinedMantleAnswer;
     /**
      * This function calculates the points earned within a  level
      * @param answeredCorrect
@@ -110,7 +112,7 @@ public class QuestionControl {
         }
         templeQuestionPoints = (actionPoints + qualityPoints) * bonus;
         return templeQuestionPoints;
-}
+    }
    
    /**
      * This function calculates how many points earned in mantle
@@ -128,9 +130,9 @@ public class QuestionControl {
      * The mantle will be used to regain faith points lost during the game.
      */
    
-public int calMantlePoints(int answeredCorrect, int totalQuestionsAsked) {
+    public int calMantlePoints(int answerAverage, int mantleQuestionsAsked) {
         //if too few questions or too many are asked, return error
-        if(totalQuestionsAsked <= 0 || totalQuestionsAsked> 3){
+        if(mantleQuestionsAsked <= 0 || mantleQuestionsAsked> 3){
             return -1;
             
         
@@ -142,87 +144,87 @@ public int calMantlePoints(int answeredCorrect, int totalQuestionsAsked) {
 
         }else{
         //If you answer less than zero, return error
-            if(answeredCorrect <0){
+            if(answerAverage <0){
                 return -1;
         }
         // bonus structure for the correct expexted response from user if answered between 0 and 2 is zero bonus point
-            else if(answeredCorrect < 3){
+            else if(answerAverage < 3){
             bonus = 0;
         
         }
         // bonus structure for the correct expexted response from user if answered between 3 and 4 is one bonus point
-            else if(answeredCorrect >= 3 && answeredCorrect < 5) {
+            else if(answerAverage >= 3 && answerAverage < 5) {
             bonus = 1;
             
         }
         // bonus structure for the correct expexted response from user if answered between 5 and 6 is three bonus points
-            else if(answeredCorrect >= 5 && answeredCorrect < 7) {
+            else if(answerAverage >= 5 && answerAverage < 7) {
             bonus = 3;
         }
         // bonus structure for the correct expexted response from user if answered 7 is 5 bonus points 
-            else if(answeredCorrect == 7) {
+            else if(answerAverage == 7) {
             bonus = 5;
             
         }
         // return error if the user answers more than 7.
-            else if(answeredCorrect > 7){
+            else if(answerAverage > 7){
                 return -1;
         }
                 
             
         
           
-}       //total points per question asked
+    }       //total points per question asked
         pointValuePerQuestion = 5;	
         
         //calculations to determine the points during your session at the Mantle
-        mantleQuestionPoints = totalQuestionsAsked * pointValuePerQuestion + bonus;
+        mantleQuestionPoints = mantleQuestionsAsked * pointValuePerQuestion + bonus;
         return mantleQuestionPoints;
     
-}
+    }   
 
-public void getTempleQuestions(){
+    public void getTempleQuestions(){
 
     
     
     
     
-    //check isBlocked - determine how we determine block and not blocked to answer questions
+        //check isBlocked - determine how we determine block and not blocked to answer questions
+
+        //display random question
+        Random rand = new Random();
+            int range = 2 - 1 + 1;
+            int randomNum = rand.nextInt(range) + 1;
+            this.displayQuestion(randomNum);
+        //get answer from user
+            String templeAnswer = this.getTempleInput();
+
+        //validate answer and provide response if invalid answer
+            this.doActionTempleQuestions(templeAnswer);
+
+        //ask follow up question for bonus
+            System.out.println("Do you feel your effort was (p) poor, (g) good or (o) outstanding? \n");
+
+        //validate answer and provide response if invalid answer
+            String bonusAnswer = this.validTempleInput();
+            this.doActionTempleBonus(bonusAnswer);
+
+        //generate response by calling calTemplePoints function
+            int templePoints = this.calTemplePoints(actionRange, qualityRange);
+
+        //display string "You achieved XXX number of days with XXX effort and are rewarded with Call calTemplePoints"
+            System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
+
+        //display prompt "Enter Q to retun to Temple Menu"
+            System.out.println("Enter Q to return to the Temple Menu");
+
+        //validate response for returning to Temple Menu
+            //String returnTempleMenu = this.displayTempleMenu();
+
     
-    //display random question
-    Random rand = new Random();
-        int range = 2 - 1 + 1;
-        int randomNum = rand.nextInt(range) + 1;
-        this.displayQuestion(randomNum);
-    //get answer from user
-        String templeAnswer = this.getTempleInput();
     
-    //validate answer and provide response if invalid answer
-        this.doActionTempleQuestions(templeAnswer);
-        
-    //ask follow up question for bonus
-        System.out.println("Do you feel your effort was (p) poor, (g) good or (o) outstanding? \n");
-        
-    //validate answer and provide response if invalid answer
-        String bonusAnswer = this.validTempleInput();
-        this.doActionTempleBonus(bonusAnswer);
-        
-    //generate response by calling calTemplePoints function
-        int templePoints = this.calTemplePoints(actionRange, qualityRange);
-        
-    //display string "You achieved XXX number of days with XXX effort and are rewarded with Call calTemplePoints"
-        System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
-        
-    //display prompt "Enter Q to retun to Temple Menu"
-        System.out.println("Enter Q to return to the Temple Menu");
-    
-    //validate response for returning to Temple Menu
-        //String returnTempleMenu = this.displayTempleMenu();
-        
-    
-    
-}
-public String getTempleInput() {
+    }
+    public String getTempleInput() {
         boolean valid =false; //indicates if the name has been recieved
         String userInput = null;
         Scanner keyboard = new Scanner(System.in); //keyboard input stream
@@ -247,7 +249,7 @@ public String getTempleInput() {
         
         return userInput; // return the name
     
-    } 
+    }
 
     private void displayQuestion(int randomNum) {
         
@@ -330,10 +332,102 @@ public String getTempleInput() {
     
     }
 
-     
+    public void getMantleQuestion() {
+    //check isBlocked - determine how we determine block and not blocked to answer questions
+        Location location = new Location();
+        boolean isBlocked = location.isBlocked();
+      
+        if(isBlocked == true) {
+            System.out.println("Sorry, you need to answer more level questions before you can answer a mantle question.  ");
+        }
+        else {
+            //display random question
+            Random rand = new Random();
+            int range = 33 - 30 + 1;    //mantle questions will range from 30 - 40
+            int randomNum = rand.nextInt(range) + 30;
+            this.displayMantleQuestion(randomNum);
+//            System.out.println("randNumb generated " + randomNum);
+
+            //get answer from user
+            String mantleAnswer = this.getMantleInput();
+            int answer = Integer.parseInt(mantleAnswer); //change result from string to integer
+            combinedMantleAnswer = answer; //this will gather the totals from each question asked, add them and use this to get average
+//  System.out.println("mantleAnswer generated " + mantleAnswer);
+             //validate answer and provide response if invalid answer
+            boolean valid = this.doActionMantleQuestions(answer); //either returns false for error - invalid response  or true if valid
+            
+            //track total questions asked in mantle
+            Questions question = new Questions();
+            question.incrementMantleQuestionsAsked();//not sure if this is adding one each time
+            
+            //if invalid answer is given ask for valid input until response is valid
+           while(valid == false){
+                System.out.println("Please enter a number between 0 and 7");
+                
+            }
+        }
+    }  
+
+    private String getMantleInput() {
+       boolean valid =false; //indicates if the name has been recieved
+        String userInput = null;
+        Scanner keyboard = new Scanner(System.in); //keyboard input stream
+        
+        while(!valid) { //while a valid name has not been retrieved
+            
+            //prompt for the player's name
+            System.out.println("Enter a value between 1 through 7 for the number of days you completed the activity.");
+            
+            //get the name from the keyboard and trim off the blanks
+            userInput = keyboard.nextLine();
+            userInput = userInput.trim();
+            userInput = userInput.toUpperCase();
+            
+            //if the name is invalid(less than two character in length)
+            if (userInput.length() < 1 || userInput.length() > 1) {
+                System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
+                continue; // and repeat again
+            }
+            break; //out of the (exit) the repitition
+        }
+        
+        return userInput; // return the name
     
+    } 
+
+    private void displayMantleQuestion(int randomNum) {
+        if(randomNum == 30){
+           System.out.println("How many days out of the last seven days did you serve a family member?");
+        }           
+        else if (randomNum == 31){
+            System.out.println("How many times in the last seven days did you attend the temple?");
+        }
+        else if (randomNum == 32){
+            System.out.println("How many days out of the last seven days did you participate in family history work?");
+        }
+        else if (randomNum == 33){
+            System.out.println("How many days out of the last seven days did you perform service for a stranger?");
+        }
+    }
+
+    private boolean doActionMantleQuestions(int answer) {
+       
+        if (answer < 0 || answer >7){
+        System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
+            return false;
+        }
+        else{
+            return true;
+//           System.out.println("Thanks for your answer.");
+        }
+    }
+
+    public void getAnotherMantleQuestion() {
+        System.out.println("getAnotherMantleQuestion function called");
+    }
     
-}
+} 
+
 
 
 

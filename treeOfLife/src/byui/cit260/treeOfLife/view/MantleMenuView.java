@@ -6,6 +6,7 @@
 package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.control.QuestionControl;
+import byui.cit260.treeOfLife.model.Questions;
 import java.util.Scanner;
 
 /**
@@ -90,7 +91,20 @@ public class MantleMenuView {
 
     private void answerMantleQuestions() {
        QuestionControl mantleQuestion = new QuestionControl();
-        mantleQuestion.getMantleQuestion();
+        mantleQuestion.getMantleQuestion(); //get first question, validate, etc
+        //maybe need to call calMantlePoints here, include total phrase, you just earned... points.  Would you like to answer....?
+        System.out.println("Would you like to answer another mantle question? (A) or return to the Map Menu?(M) ");
+       String wantContinue = this.getMantleInput();
+       //check if mantleQuestionsAsked > 3 if so 
+//       call calMantlePoints, 
+//       return give message and return to menu, else ask if they would like another ?
+       System.out.println("wantContinue input is: " + wantContinue);
+       this.doActionWantContinue(wantContinue);
+       //get answer to getAnotherMantleQuestion input
+       //incrementMantleQuestionsAsked - do this step in getAnotherMantleQuestion? Not sure
+       //add answer to combinedMantleAnswer (do this for each answer)
+       
+       
     }
 
     private void displayMapView() {
@@ -106,6 +120,24 @@ public class MantleMenuView {
     private void returnToMainMenu() {
         MainMenuView mainMenu = new MainMenuView();
     mainMenu.displayMenu();
+    }
+
+   
+    private void doActionWantContinue(String wantContinue) {
+        switch (wantContinue) {
+            case "A":
+                QuestionControl anotherQuestion = new QuestionControl();
+                anotherQuestion.getAnotherMantleQuestion();
+                break;
+            case "M":
+                Questions question = new Questions();
+                question.resetMantleQuestionsAsked();
+                this.displayGameMenu();
+                break;
+            default:
+                System.out.println("Your entry was invalid.  Please enter an A or an M");
+                break;
+        }
     }
     
     

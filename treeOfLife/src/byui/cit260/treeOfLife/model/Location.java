@@ -44,6 +44,7 @@ public class Location implements Serializable{
 
     public boolean isBlocked() {
         return blocked;
+//        return false; //for testing purposes only
     }
 
     public void setBlocked(boolean blocked) {

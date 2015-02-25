@@ -17,9 +17,9 @@ public class Questions implements Serializable{
     private String questionAnswered;
     private String questionNumber;
     private String questionPoints;
-
-    public Questions() {
-    }
+    private int mantleQuestionsAsked = 0;
+//    public Questions() {
+//    }
     
     
 
@@ -93,6 +93,13 @@ public class Questions implements Serializable{
         }
         return true;
     }
+
+    public void incrementMantleQuestionsAsked() {
+        mantleQuestionsAsked ++;
+//        System.out.println(mantleQuestionsAsked);
+    }
     
-    
+    public void resetMantleQuestionsAsked() {
+        mantleQuestionsAsked = 0;
+    }
 }
