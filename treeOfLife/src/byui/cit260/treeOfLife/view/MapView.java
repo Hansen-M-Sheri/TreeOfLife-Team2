@@ -20,7 +20,7 @@ public class MapView {
             +"\nT - Temple"
             +"\nM - Mantle"
             +"\nA - Armor Shop"
-            +"\nC - Current Level" 
+            +"\nL - Level Menu" 
             +"\nH - Help Menu"
             +"\nG - Game Menu"
             +"\nQ - Return to Main Menu" 
@@ -45,7 +45,7 @@ public void displayMapMenu() {
     }     
      
     public String getMapInput() {
-         boolean valid =false; //indicates if the name has been recieved
+        boolean valid =false; //indicates if the name has been recieved
         String userInput = null;
         Scanner keyboard = new Scanner(System.in); //keyboard input stream
         

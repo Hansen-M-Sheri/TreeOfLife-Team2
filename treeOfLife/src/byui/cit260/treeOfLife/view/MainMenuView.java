@@ -21,7 +21,7 @@ public class MainMenuView {
             +"\n========================================"
             +"\nN - Start new game"
             +"\nG - Get and start saved game"
-            +"\nH - Get help on how to play the game"
+            +"\nH - Help Menu"
             +"\nS - Save game"
             +"\nE - Exit"
             +"\n========================================";
