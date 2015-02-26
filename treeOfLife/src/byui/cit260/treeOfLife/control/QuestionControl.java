@@ -7,7 +7,6 @@ package byui.cit260.treeOfLife.control;
 
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Questions;
-import byui.cit260.treeOfLife.view.GameMenuView;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -363,7 +362,7 @@ public class QuestionControl {
     }
 
     private void askReturnToGameMenu() {
-        System.out.println("Enter 9 to Return to the Game Menu");
+        System.out.println("Enter 9 to Return to the Temple Menu");
     
     }
     
@@ -375,7 +374,7 @@ public class QuestionControl {
             while(!valid) { //while a valid name has not been retrieved
 
                 //prompt for user input for the number 9
-                System.out.println("Enter the value 9 in order to return to the Game Menu");
+                System.out.println("Enter the value 9 in order to return to the Temple Menu");
 
                 //get the name from the keyboard and trim off the blanks
                 //userInput = keyboard.nextLine();
@@ -403,23 +402,20 @@ public class QuestionControl {
     
     private boolean doActionReturnToGame(int returnGameMenu) {
         if (returnGameMenu < 9 || returnGameMenu >9){
-        System.out.println("You have entered an incorrect response. Please enter the number 9 to return to the Game Menu.");
+        System.out.println("You have entered an incorrect response. Please enter the number 9 to return to the Temple Menu.");
             return false;
         }
         else{
             if (returnGameMenu == 9){
-               System.out.println("You will now be returned ot the Game Menue");
-               this.returnGameMenu();
+               System.out.println("You will now be returned ot the Temple Menu");
+              
             }
             
             return true;
         }
     }
     
-    private void returnGameMenu() {
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayGameMenu();
-    }
+    
    
     
     
