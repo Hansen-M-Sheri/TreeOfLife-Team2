@@ -36,23 +36,23 @@ public class MantleMenuView {
         
         this.doActionMantle(selection);
         
-    } while (selection != 'Q'); //while the letter e has not been selected
+    } while (selection != 'Q'); //while the letter q has not been selected
 
     
     
     }  
 
     private String getMantleInput() {
-      boolean valid =false; //indicates if the name has been recieved
+      boolean valid =false; //indicates if the selection has been recieved
         String userInput = null;
         Scanner keyboard = new Scanner(System.in); //keyboard input stream
         
-        while(!valid) { //while a valid name has not been retrieved
+        while(!valid) { //while a valid selection has not been retrieved
             
-            //prompt for the player's name
-            System.out.println("Enter Mantle menu selection");
+            //prompt for the player's selection
+            System.out.println("Enter your selection");
             
-            //get the name from the keyboard and trim off the blanks
+            //get the selection from the keyboard and trim off the blanks
             userInput = keyboard.nextLine();
             userInput = userInput.trim();
             userInput = userInput.toUpperCase();
@@ -93,10 +93,10 @@ public class MantleMenuView {
        QuestionControl mantleQuestion = new QuestionControl();
         mantleQuestion.getMantleQuestion(); //get first question, validate, etc
         //maybe need to call calMantlePoints here, include total phrase, you just earned... points.  Would you like to answer....?
-        System.out.println("Would you like to answer another mantle question? (A) or return to the Map Menu?(M) ");
+        System.out.println("Would you like to answer another mantle question? (A) or return to the Mantle Menu?(M) ");
        String wantContinue = this.getMantleInput();
        //check if mantleQuestionsAsked > 3 if so 
-//       call calMantlePoints, 
+//       call    antlePoints, 
 //       return give message and return to menu, else ask if they would like another ?
        System.out.println("wantContinue input is: " + wantContinue);
        this.doActionWantContinue(wantContinue);
@@ -132,10 +132,11 @@ public class MantleMenuView {
             case "M":
                 Questions question = new Questions();
                 question.resetMantleQuestionsAsked();
-                this.displayGameMenu();
+                this.displayMantleMenu();
                 break;
             default:
                 System.out.println("Your entry was invalid.  Please enter an A or an M");
+                this.getMantleInput();
                 break;
         }
     }

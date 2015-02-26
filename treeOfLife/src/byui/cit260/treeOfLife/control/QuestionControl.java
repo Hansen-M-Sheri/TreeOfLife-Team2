@@ -334,13 +334,13 @@ public class QuestionControl {
 
     public void getMantleQuestion() {
     //check isBlocked - determine how we determine block and not blocked to answer questions
-        Location location = new Location();
-        boolean isBlocked = location.isBlocked();
-      
-        if(isBlocked == true) {
-            System.out.println("Sorry, you need to answer more level questions before you can answer a mantle question.  ");
-        }
-        else {
+//        Location location = new Location();
+//        boolean isBlocked = location.isBlocked();
+//      
+//        if(isBlocked == true) {
+//            System.out.println("Sorry, you need to answer more level questions before you can answer a mantle question.  ");
+//        }
+//        else {
             //display random question
             Random rand = new Random();
             int range = 33 - 30 + 1;    //mantle questions will range from 30 - 40
@@ -349,8 +349,9 @@ public class QuestionControl {
 //            System.out.println("randNumb generated " + randomNum);
 
             //get answer from user
-            String mantleAnswer = this.getMantleInput();
-            int answer = Integer.parseInt(mantleAnswer); //change result from string to integer
+//            String mantleAnswer = this.getMantleInput();
+            int answer = this.getMantleInput();
+//            int answer = Integer.parseInt(mantleAnswer); //change result from string to integer
             combinedMantleAnswer = answer; //this will gather the totals from each question asked, add them and use this to get average
 //  System.out.println("mantleAnswer generated " + mantleAnswer);
              //validate answer and provide response if invalid answer
@@ -365,26 +366,33 @@ public class QuestionControl {
                 System.out.println("Please enter a number between 0 and 7");
                 
             }
-        }
+//        }
     }  
 
-    private String getMantleInput() {
+    private int getMantleInput() {
        boolean valid =false; //indicates if the name has been recieved
-        String userInput = null;
+        int userInput = 0;
         Scanner keyboard = new Scanner(System.in); //keyboard input stream
         
         while(!valid) { //while a valid name has not been retrieved
             
             //prompt for the player's name
-            System.out.println("Enter a value between 1 through 7 for the number of days you completed the activity.");
+            System.out.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
             
             //get the name from the keyboard and trim off the blanks
-            userInput = keyboard.nextLine();
-            userInput = userInput.trim();
-            userInput = userInput.toUpperCase();
-            
+//            userInput = keyboard.nextLine();
+            if(keyboard.hasNextInt()) {
+                userInput = keyboard.nextInt();
+//                userInput = userInput.trim();
+//                userInput = userInput.toUpperCase();
+            }
+            else {
+                System.out.println("Sorry try a number between 0 & 7");
+                this.getMantleInput();
+            }
             //if the name is invalid(less than two character in length)
-            if (userInput.length() < 1 || userInput.length() > 1) {
+//            if (userInput.length() < 1 || userInput.length() > 1) {
+                 if (userInput < 0 || userInput > 7) {
                 System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
                 continue; // and repeat again
             }
@@ -417,8 +425,9 @@ public class QuestionControl {
             return false;
         }
         else{
+            System.out.println("Thanks for your answer.");
             return true;
-//           System.out.println("Thanks for your answer.");
+           
         }
     }
 
