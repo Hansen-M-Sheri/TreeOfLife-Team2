@@ -7,6 +7,7 @@ package byui.cit260.treeOfLife.control;
 
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Questions;
+import byui.cit260.treeOfLife.view.GameMenuView;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -28,7 +29,7 @@ public class QuestionControl {
     private int qualityRange;
     private int combinedMantleAnswer;
     private String bonusAnswer;
-    private String BONUS;
+    //private String BONUS;
     /**
      * This function calculates the points earned within a  level
      * @param answeredCorrect
@@ -187,13 +188,13 @@ public class QuestionControl {
 
     public void getTempleQuestions(){
         //check isBlocked - determine how we determine block and not blocked to answer questions
-        Location location = new Location();
-        boolean isBlocked = location.isBlocked();
+        //Location location = new Location();
+        //boolean isBlocked = location.isBlocked();
       
-        if(isBlocked == true) {
-            System.out.println("Sorry, you need to answer more level questions before you can answer an additional Temple question.");
-        }
-        else {
+        //if(isBlocked == true) {
+        //   System.out.println("Sorry, you need to answer more level questions before you can answer an additional Temple question.");
+        //}
+        //else {
             //display random question
             Random rand = new Random();
                 int range = 2 - 1 + 1;
@@ -201,26 +202,34 @@ public class QuestionControl {
                 this.displayQuestion(randomNum);
                 
                 //get answer from user
-                String templeAnswer = this.getTempleInput();
+                int templeAnswer = this.getTempleInput();
 
-                //validate answer and provide response if invalid answer
-                this.doActionTempleQuestions(templeAnswer);
+                //validate answer and provide response
+                boolean valid = this.doActionTempleQuestions(templeAnswer);
 
                 //ask follow up question for bonus
                 this.displayBonusQuestion();
 
-                //validate answer and provide response if invalid answer
-                bonusAnswer = this.validTempleInput();
-                this.doActionTempleBonus(bonusAnswer);
+                //validate answer and provide response
+                int bonusAnswer = this.getTempleBonusInput();
+                
+        //        this.doActionTempleBonus(bonusAnswer); // working on calling point functions.
+                boolean bonusValid = this.doActionBonusQuestions(bonusAnswer);
+        //        generate response by calling calTemplePoints function
+        //        int templePoints = this.calTemplePoints(actionRange, qualityRange);
+                
+                //return to game menue after finishing up temple questions
+                this.askReturnToGameMenu();
+                
+                int returnGameMenu = this.getReturntoGameMenu();
+                
+                boolean validReturn = this.doActionReturnToGame(returnGameMenu);
+                
+        //        display string "You achieved XXX number of days with XXX effort and are rewarded with Call calTemplePoints"
+        //        System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
 
-                //generate response by calling calTemplePoints function
-                int templePoints = this.calTemplePoints(actionRange, qualityRange);
-
-                //display string "You achieved XXX number of days with XXX effort and are rewarded with Call calTemplePoints"
-                System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
-
-                //display prompt "Enter Q to retun to Temple Menu"
-                System.out.println("Enter Q to return to the Temple Menu");
+        //        display prompt "Enter Q to retun to Temple Menu"
+        //        System.out.println("Enter Q to return to the Temple Menu");
 
                 //validate response for returning to Temple Menu
                 //String returnTempleMenu = this.displayTempleMenu();
@@ -229,11 +238,11 @@ public class QuestionControl {
     
     
         
-        }
+        
     
     }
     
-  private void displayQuestion(int randomNum) {
+    private void displayQuestion(int randomNum) {
         
         if (randomNum == 1){
             System.out.println("How many days out of the last seven days did you read the book of Mormon?");
@@ -242,13 +251,180 @@ public class QuestionControl {
             System.out.println("How many days out of the last seven days did you have your personal prayers?");
         }
     }       
-        
-        
-        
-        
-        
-        
+  
 
+    public int getTempleInput() {
+        boolean valid =false; //indicates if the input has been recieved
+        int userInput = 0;
+        Scanner keyboard = new Scanner(System.in); //keyboard input stream
+        
+        while(!valid) { //while a valid name has not been retrieved
+            
+            //prompt for user input for a value between 0 through 7
+            System.out.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
+            
+            //get the name from the keyboard and trim off the blanks
+            //userInput = keyboard.nextLine();
+            if(keyboard.hasNextInt()) {
+                userInput = keyboard.nextInt();
+                //userInput = userInput.trim();
+                //userInput = userInput.toUpperCase();
+            }
+            else {
+                System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
+                this.getTempleInput();
+            }
+            //if the input is invalid
+            //if (userInput.length() < 1 || userInput.length() > 1) {
+                if (userInput < 0 || userInput > 7) {
+                    System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
+                    continue; // and repeat again
+                }
+                break; //out of the (exit) the repitition
+        }
+        
+            return userInput; // return the name
+    
+    }
+    
+    private boolean doActionTempleQuestions(int templeAnswer) {
+        //int answerInt = Integer.parseInt("templeAnswer");
+        if (templeAnswer < 0 || templeAnswer >7){
+        System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
+            return false;
+        }
+        else{
+           System.out.println("Thanks for your answer. Let's move on to the bonus question");
+           return true;
+        }
+    }
+        
+    public void displayBonusQuestion() {
+      
+            System.out.println("Do you feel your effort was (1) poor, (2) good or (3) outstanding?");
+            
+            
+    }          
+     
+    private int getTempleBonusInput() {
+    
+        boolean valid =false; //indicates if the input has been recieved
+            int userInput = 0;
+            Scanner keyboard = new Scanner(System.in); //keyboard input stream
+
+            while(!valid) { //while a valid name has not been retrieved
+
+                //prompt for user input for a value between 0 through 7
+                System.out.println("Enter the value 1 for poor, 2 for good and 3 for outstanding.");
+
+                //get the name from the keyboard and trim off the blanks
+                //userInput = keyboard.nextLine();
+                if(keyboard.hasNextInt()) {
+                    userInput = keyboard.nextInt();
+                    //userInput = userInput.trim();
+                    //userInput = userInput.toUpperCase();
+                }
+                else {
+                    System.out.println("Invalid selection - Must select either 1, 2 or 3.");
+                    this.getTempleInput();
+                }
+                //if the input is invalid
+                //if (userInput.length() < 1 || userInput.length() > 1) {
+                    if (userInput < 1 || userInput > 3) {
+                        System.out.println("Invalid selection - Must select either 1, 2 or 3.");
+                        continue; // and repeat again
+                    }
+                    break; //out of the (exit) the repitition
+            }
+
+                return userInput; // return the name
+
+
+    }
+    
+    private boolean doActionBonusQuestions(int bonusAnswer) {
+        //int answerInt = Integer.parseInt("templeAnswer");
+        if (bonusAnswer < 0 || bonusAnswer >7){
+        System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
+            return false;
+        }
+        else{
+            if (bonusAnswer == 1){
+               System.out.println("In order to gain extra obedience points, you will need to put forth more effort!");
+            }
+            if (bonusAnswer == 2){
+               System.out.println("Feels good to to put forth a good effort when accomplishing this task.");
+            }
+            if (bonusAnswer == 3){
+               System.out.println("Outstanding effort! For this level of commitment you will be rewarded with many blessings");
+            }
+            return true;
+        }
+    }
+
+    private void askReturnToGameMenu() {
+        System.out.println("Enter 9 to Return to the Game Menu");
+    
+    }
+    
+    private int getReturntoGameMenu() {
+        boolean valid =false; //indicates if the input has been recieved
+            int userInput = 0;
+            Scanner keyboard = new Scanner(System.in); //keyboard input stream
+
+            while(!valid) { //while a valid name has not been retrieved
+
+                //prompt for user input for the number 9
+                System.out.println("Enter the value 9 in order to return to the Game Menu");
+
+                //get the name from the keyboard and trim off the blanks
+                //userInput = keyboard.nextLine();
+                if(keyboard.hasNextInt()) {
+                    userInput = keyboard.nextInt();
+                    //userInput = userInput.trim();
+                    //userInput = userInput.toUpperCase();
+                }
+                else {
+                    System.out.println("Invalid selection - Must select 9 to return to the Game Menu");
+                    this.getTempleInput();
+                }
+                //if the input is invalid
+                //if (userInput.length() < 1 || userInput.length() > 1) {
+                    if (userInput < 9 || userInput > 9) {
+                        System.out.println("Invalid selection - Must select 9 to return to the Game Menu");
+                        continue; // and repeat again
+                    }
+                    break; //out of the (exit) the repitition
+            }
+
+                return userInput; // return the name
+    
+    }
+    
+    private boolean doActionReturnToGame(int returnGameMenu) {
+        if (returnGameMenu < 9 || returnGameMenu >9){
+        System.out.println("You have entered an incorrect response. Please enter the number 9 to return to the Game Menu.");
+            return false;
+        }
+        else{
+            if (returnGameMenu == 9){
+               System.out.println("You will now be returned ot the Game Menue");
+               this.returnGameMenu();
+            }
+            
+            return true;
+        }
+    }
+    
+    private void returnGameMenu() {
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayGameMenu();
+    }
+   
+    
+    
+    
+    
     public void getMantleQuestion() {
     //check isBlocked - determine how we determine block and not blocked to answer questions
 //        Location location = new Location();
@@ -351,6 +527,16 @@ public class QuestionControl {
     public void getAnotherMantleQuestion() {
         System.out.println("getAnotherMantleQuestion function called");
     }
+
+    
+
+    
+
+    
+
+    
+
+    
 
    
 
