@@ -18,7 +18,7 @@ public class Questions implements Serializable{
     private String questionNumber;
     private String questionPoints;
     private int mantleQuestionsAsked = 0;
-//    public Questions() {
+// public Questions() {
 //    }
     
     

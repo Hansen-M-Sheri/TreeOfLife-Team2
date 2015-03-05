@@ -87,7 +87,7 @@ public void displayTempleMenu() {
                 this.returnToMainMenu();
                 break;
             default:
-            System.out.println("n*** Invalid map menu selection *** Try again");
+            System.out.println("n*** Invalid Temple Menu selection *** Try again");
                 break;
 }
         
