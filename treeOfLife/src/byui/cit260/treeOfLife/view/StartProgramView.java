@@ -17,12 +17,12 @@ import java.util.Scanner;
  *
  * @author Chuck
  */
-public class StartProgramView{
+public class StartProgramView {//We did not extend this class because it does not have a getInput and does not have a doAction.
   
     public void startProgram(){
 
     //Display the banner screen
-        this.displayBanner();
+    this.displayBanner();
        
     //Prompt the player to enter their name retrieve the name of the player
     String playersName = this.getPlayersName();
@@ -31,7 +31,7 @@ public class StartProgramView{
     Players player = ProgramControl.createPlayer(playersName);
 
     //DISPLAY a customized welcome message
-        this.displayWelcomeMessage(player);
+    this.displayWelcomeMessage(player);
     
     
     //DISPLAY the main menu
