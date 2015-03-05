@@ -17,8 +17,8 @@ import java.util.Scanner;
  *
  * @author Chuck
  */
-public class StartProgramView {
-    
+public class StartProgramView{
+  
     public void startProgram(){
 
     //Display the banner screen
@@ -36,7 +36,7 @@ public class StartProgramView {
     
     //DISPLAY the main menu
         MainMenuView mainMenu = new MainMenuView();
-        mainMenu.displayMenu();
+        mainMenu.display();
         
     
     
@@ -47,6 +47,7 @@ public class StartProgramView {
     }
 
     public void displayBanner() {
+        
         System.out.println("\n\n****************************** ");
         
         System.out.println("*                                                                                                     *"

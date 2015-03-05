@@ -11,8 +11,9 @@ import java.util.Scanner;
  *
  * @author Chuck
  */
-public class HelpMenuView {
-    private final String MENU = "\n"
+public class HelpMenuView extends View{
+    public HelpMenuView(){
+        super("\n"
             +"\n========================================"
             +"\n| Help Menu                            |"
             +"\n========================================"
@@ -23,59 +24,21 @@ public class HelpMenuView {
             +"\nP - What is the Praying Mantle"
             +"\nA - What is the Armor Shop"
             +"\nQ - Quit - Return to Main Menu"
-            +"\n========================================";
-
-
-
-public void displayHelpMenu() {
-      
-    char selection = ' ';
-    do {
-        
-        System.out.println(MENU);//display the main menu
-        
-        String input = this.getHelpInput();  //get the user selection
-        selection = input.charAt(0);  //perform the action associated with the selection
-        
-        this.doActionHelp(selection);
-        
-    } while (selection != 'Q'); //while the letter e has not been selected
-
-    
-    
+            +"\n========================================");
     }
 
-public String getHelpInput() {
-         boolean valid =false; //indicates if the name has been recieved
-        String userInput = null;
-        Scanner keyboard = new Scanner(System.in); //keyboard input stream
-        
-        while(!valid) { //while a valid name has not been retrieved
-            
-            //prompt for the player's name
-            System.out.println("Enter help menu selection");
-            
-            //get the name from the keyboard and trim off the blanks
-            userInput = keyboard.nextLine();
-            userInput = userInput.trim();
-            userInput = userInput.toUpperCase();
-            
-            //if the name is invalid(less than two character in length)
-            if (userInput.length() < 1 || userInput.length() > 1) {
-                System.out.println("Invalid selection - Must select a help menu letter");
-                continue; // and repeat again
-            }
-            break; //out of the (exit) the repitition
-        }
-        
-        return userInput; // return the name
-    
-    }
 
- public void doActionHelp(char choice) {
+
+
+
+ @Override
+    public boolean doAction(Object obj) {
+        String value = (String) obj;
+        value = value.toUpperCase(); //convert to all upper case
+        char choice = value.charAt(0); //get first character entered
         switch (choice){
             case 'G':// Go to Game Menu
-                this.displayGameMenu();
+                this.display();
                 break;
             case 'I':// What is the goal of the game
                 this.helpGoalOfGame();
@@ -99,13 +62,14 @@ public String getHelpInput() {
             System.out.println("n*** Invalid help menu selection *** Try again");
                 break;
 }
+                return true;
 
     
 }
  
     private void displayGameMenu() {
     GameMenuView gameMenu = new GameMenuView();
-    gameMenu.displayGameMenu();    
+    gameMenu.display();    
     }
 
     private void helpGoalOfGame() {
@@ -130,7 +94,7 @@ public String getHelpInput() {
 
     private void returnToMainMenu() {
         MainMenuView mainMenu = new MainMenuView();
-        mainMenu.displayMenu();
+        mainMenu.display();
     
     }
 

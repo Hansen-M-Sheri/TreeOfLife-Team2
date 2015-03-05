@@ -13,8 +13,9 @@ import java.util.Scanner;
  *
  * @author sherihansen
  */
-public class MantleMenuView {
-    private final String MENU = "\n"
+public class MantleMenuView extends View{
+public MantleMenuView(){
+        super("\n"
             +"\n========================================"
             +"\n| Mantle Menu                             |"
             +"\n========================================"
@@ -22,54 +23,18 @@ public class MantleMenuView {
             +"\nM - Go back to Map"
             +"\nG - Go to Game Menu"
             +"\nQ - Return to Main Menu" 
-            +"\n========================================";
- 
-    public void displayMantleMenu() {
-      
-    char selection = ' ';
-    do {
-        
-        System.out.println(MENU);//display the main menu
-        
-        String input = this.getMantleInput();  //get the user selection
-        selection = input.charAt(0);  //perform the action associated with the selection
-        
-        this.doActionMantle(selection);
-        
-    } while (selection != 'Q'); //while the letter q has not been selected
+            +"\n========================================");
+        }   
+   
 
-    
-    
-    }  
+   
 
-    private String getMantleInput() {
-      boolean valid =false; //indicates if the selection has been recieved
-        String userInput = null;
-        Scanner keyboard = new Scanner(System.in); //keyboard input stream
-        
-        while(!valid) { //while a valid selection has not been retrieved
-            
-            //prompt for the player's selection
-            System.out.println("Enter your selection");
-            
-            //get the selection from the keyboard and trim off the blanks
-            userInput = keyboard.nextLine();
-            userInput = userInput.trim();
-            userInput = userInput.toUpperCase();
-            
-            //if the name is invalid(less than two character in length)
-            if (userInput.length() < 1 || userInput.length() > 1) {
-                System.out.println("Invalid Mantle Menu selection - Must select a menu letter");
-                continue; // and repeat again
-            }
-            break; //out of the (exit) the repitition
-        }
-        
-        return userInput; // return the name
-    }
-
-    private void doActionMantle(char selection) {
-          switch (selection){
+    @Override
+    public boolean doAction(Object obj) {
+        String value = (String) obj;
+        value = value.toUpperCase(); //convert to all upper case
+        char choice = value.charAt(0); //get first character entered
+          switch (choice){
            
             case 'A': // answer Mantle Questions
                 this.answerMantleQuestions();
@@ -87,6 +52,7 @@ public class MantleMenuView {
             System.out.println("n*** Invalid Mantle menu selection *** Try again");
                 break;
 }
+    return true;
     }
 
     private void answerMantleQuestions() {
@@ -94,7 +60,7 @@ public class MantleMenuView {
         mantleQuestion.getMantleQuestion(); //get first question, validate, etc
         //maybe need to call calMantlePoints here, include total phrase, you just earned... points.  Would you like to answer....?
         System.out.println("Would you like to answer another mantle question? (A) or return to the Mantle Menu?(M) ");
-       String wantContinue = this.getMantleInput();
+       String wantContinue = this.getInput();
        //check if mantleQuestionsAsked > 3 if so 
 //       call    antlePoints, 
 //       return give message and return to menu, else ask if they would like another ?
@@ -109,17 +75,17 @@ public class MantleMenuView {
 
     private void displayMapView() {
        MapView mapMenu = new MapView();
-    mapMenu.displayMapMenu(); 
+    mapMenu.display(); 
     }
 
     private void displayGameMenu() {
         GameMenuView gameMenu = new GameMenuView();
-    gameMenu.displayGameMenu();     
+    gameMenu.display();     
     }
 
     private void returnToMainMenu() {
         MainMenuView mainMenu = new MainMenuView();
-    mainMenu.displayMenu();
+    mainMenu.display();
     }
 
    
@@ -132,11 +98,11 @@ public class MantleMenuView {
             case "M":
                 Questions question = new Questions();
                 question.resetMantleQuestionsAsked();
-                this.displayMantleMenu();
+                this.display();
                 break;
             default:
                 System.out.println("Your entry was invalid.  Please enter an A or an M");
-                this.getMantleInput();
+                this.getInput();
                 break;
         }
     }

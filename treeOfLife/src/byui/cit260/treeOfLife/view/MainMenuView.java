@@ -13,9 +13,10 @@ import treeoflife.TreeOfLife;
  *
  * @author Chuck
  */
-public class MainMenuView {
+public class MainMenuView extends View{
     
-    private final String MENU = "\n"
+    public MainMenuView(){
+        super("n"
             +"\n========================================"
             +"\n| Main Menu                            |"
             +"\n========================================"
@@ -23,55 +24,19 @@ public class MainMenuView {
             +"\nG - Get and start saved game"
             +"\nH - Help Menu"
             +"\nS - Save game"
-            +"\nE - Exit"
-            +"\n========================================";
-
-public void displayMenu() {
-      
-    char selection = ' ';
-    do {
-        
-        System.out.println(MENU);//display the main menu
-        
-        String input = this.getInput();  //get the user selection
-        selection = input.charAt(0);  //perform the action associated with the selection
-        
-        this.doAction(selection);
-        
-    } while (selection != 'E'); //while the letter e has not been selected
-
-    
-    
+            +"\nQ - Exit"
+            +"\n========================================");
     }
 
-    public String getInput() {
-         boolean valid =false; //indicates if the name has been recieved
-        String userInput = null;
-        Scanner keyboard = new Scanner(System.in); //keyboard input stream
-        
-        while(!valid) { //while a valid name has not been retrieved
-            
-            //prompt for the player's name
-            System.out.println("Enter menu selection");
-            
-            //get the name from the keyboard and trim off the blanks
-            userInput = keyboard.nextLine();
-            userInput = userInput.trim();
-            userInput = userInput.toUpperCase();
-            
-            //if the name is invalid(less than two character in length)
-            if (userInput.length() < 1 || userInput.length() > 1) {
-                System.out.println("Invalid selection - Must select a menu letter");
-                continue; // and repeat again
-            }
-            break; //out of the (exit) the repitition
-        }
-        
-        return userInput; // return the name
-    
-    }
 
-    public void doAction(char choice) {
+
+    
+    @Override
+    public boolean doAction(Object obj) {
+        String value = (String) obj;
+        value = value.toUpperCase(); //convert to all upper case
+        char choice = value.charAt(0); //get first character entered
+        
         switch (choice){
             case 'N':// create and start a new game
                 this.startNewGame();
@@ -85,12 +50,13 @@ public void displayMenu() {
             case 'S': //save the current game
                 this.saveGame(); // save the current game
                 break;
-            case 'E': // Exit the program
-                return;
+            case 'Q': // Exit the program
+                return true;
             default:
             System.out.println("n*** Invalid selection *** Try again");
                 break;
 }
+        return true;
 
     
     }
@@ -103,7 +69,7 @@ public void displayMenu() {
         
         //Display the Game Menu
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayGameMenu();
+        gameMenu.display();
     }
 
     private void startExistingGame() {
@@ -114,7 +80,7 @@ public void displayMenu() {
     private void displayHelpMenu() {
         //Display the Game Menu
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayHelpMenu();
+        helpMenu.display();
     
     }
 
@@ -122,6 +88,13 @@ public void displayMenu() {
          System.out.println("*** saveGame function called ***");
         
     }
+
+    @Override
+    public String getInput() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }
 
    

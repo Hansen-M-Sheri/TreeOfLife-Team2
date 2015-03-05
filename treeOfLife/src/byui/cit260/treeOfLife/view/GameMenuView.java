@@ -11,9 +11,10 @@ import java.util.Scanner;
  *
  * @author Chuck
  */
-class GameMenuView {
+class GameMenuView extends View {
+    public GameMenuView(){
+        super("\n"
     
-    private final String MENU = "\n"
             +"\n========================================"
             +"\n| Game Menu                             |"
             +"\n========================================"
@@ -21,54 +22,16 @@ class GameMenuView {
             +"\nP - View Progress Meter"
             +"\nH - Help Menu"
             +"\nQ - Return to Main Menu" 
-            +"\n========================================";
-    
-public void displayGameMenu() {
-      
-    char selection = ' ';
-    do {
-        
-        System.out.println(MENU);//display the main menu
-        
-        String input = this.getGameMenuInput();  //get the user selection
-        selection = input.charAt(0);  //perform the action associated with the selection
-        
-        this.doActionGameMenu(selection);
-        
-    } while (selection != 'Q'); //while the letter e has not been selected
+            +"\n========================================");
+    }
+
 
     
-    
-    }    
-
-    private String getGameMenuInput() {
-         boolean valid =false; //indicates if the name has been recieved
-        String userInput = null;
-        Scanner keyboard = new Scanner(System.in); //keyboard input stream
-        
-        while(!valid) { //while a valid name has not been retrieved
-            
-            //prompt for the player's name
-            System.out.println("Enter menu selection");
-            
-            //get the name from the keyboard and trim off the blanks
-            userInput = keyboard.nextLine();
-            userInput = userInput.trim();
-            userInput = userInput.toUpperCase();
-            
-            //if the name is invalid(less than two character in length)
-            if (userInput.length() < 1 || userInput.length() > 1) {
-                System.out.println("Invalid selection - Must select a menu letter");
-                continue; // and repeat again
-            }
-            break; //out of the (exit) the repitition
-        }
-        
-        return userInput; // return the name
-    
-    }   
-    
-    public void doActionGameMenu(char choice) {
+    @Override
+    public boolean doAction(Object obj) {
+        String value = (String) obj;
+        value = value.toUpperCase(); //convert to all upper case
+        char choice = value.charAt(0); //get first character entered
         switch (choice){
             case 'M':// Go to the Map
                 this.displayMapMenu();
@@ -87,13 +50,14 @@ public void displayGameMenu() {
             System.out.println("n*** Invalid game menu selection *** Try again");
                 break;
 }
+        return true;
 
     
     }
 
     private void displayMapMenu() {
         MapView mapMenu = new MapView();
-        mapMenu.displayMapMenu(); 
+        mapMenu.display();
     }
 
     private void viewProgressMeter() {
@@ -102,12 +66,12 @@ public void displayGameMenu() {
 
     private void returnToMainMenu() {
         MainMenuView mainMenu = new MainMenuView();
-        mainMenu.displayMenu(); 
+        mainMenu.display(); 
     }
 
     private void displayHelpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayHelpMenu(); 
+        helpMenu.display(); 
     }
     
     

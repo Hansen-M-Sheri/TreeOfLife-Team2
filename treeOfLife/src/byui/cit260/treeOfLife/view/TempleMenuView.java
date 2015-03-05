@@ -12,9 +12,10 @@ import java.util.Scanner;
  *
  * @author Chuck
  */
-public class TempleMenuView {
-    
-    private final String MENU = "\n"
+public class TempleMenuView extends View{
+    public TempleMenuView(){
+        super("\n"
+  
             +"\n========================================"
             +"\n| Temple Menu                             |"
             +"\n========================================"
@@ -23,53 +24,16 @@ public class TempleMenuView {
             +"\nM - Go back to Map"
             +"\nG - Go to Game Menu"
             +"\nQ - Return to Main Menu" 
-            +"\n========================================";
-public void displayTempleMenu() {
-      
-    char selection = ' ';
-    do {
-        
-        System.out.println(MENU);//display the main menu
-        
-        String input = this.getTempleInput();  //get the user selection
-        selection = input.charAt(0);  //perform the action associated with the selection
-        
-        this.doActionTemple(selection);
-        
-    } while (selection != 'Q'); //while the letter e has not been selected
-
-    
-    
-    }    
-
-    private String getTempleInput() {
-        boolean valid =false; //indicates if the name has been recieved
-        String userInput = null;
-        Scanner keyboard = new Scanner(System.in); //keyboard input stream
-        
-        while(!valid) { //while a valid name has not been retrieved
-            
-            //prompt for the player's name
-            System.out.println("Enter Temple menu selection");
-            
-            //get the name from the keyboard and trim off the blanks
-            userInput = keyboard.nextLine();
-            userInput = userInput.trim();
-            userInput = userInput.toUpperCase();
-            
-            //if the name is invalid(less than two character in length)
-            if (userInput.length() < 1 || userInput.length() > 1) {
-                System.out.println("Invalid Temple Menu selection - Must select a menu letter");
-                continue; // and repeat again
-            }
-            break; //out of the (exit) the repitition
-        }
-        
-        return userInput; // return the name
-    
+            +"\n========================================");
+   
     }
+    
 
-    private void doActionTemple(char choice) {
+    @Override
+    public boolean doAction(Object obj) {
+        String value = (String) obj;
+        value = value.toUpperCase(); //convert to all upper case
+        char choice = value.charAt(0); //get first character entered
              switch (choice){
             //case 'R':// Rest at Temple and restore Faith Meter
             //  this.restAtTemple();
@@ -90,6 +54,7 @@ public void displayTempleMenu() {
             System.out.println("n*** Invalid Temple Menu selection *** Try again");
                 break;
 }
+        return true;
         
 
     }
@@ -107,17 +72,17 @@ public void displayTempleMenu() {
 
     private void displayMapView() {
     MapView mapMenu = new MapView();
-    mapMenu.displayMapMenu(); 
+    mapMenu.display(); 
     }
 
     private void displayGameMenu() {
     GameMenuView gameMenu = new GameMenuView();
-    gameMenu.displayGameMenu();     
+    gameMenu.display();     
     }
 
     private void returnToMainMenu() {
     MainMenuView mainMenu = new MainMenuView();
-    mainMenu.displayMenu();}
+    mainMenu.display();}
  }
 
     

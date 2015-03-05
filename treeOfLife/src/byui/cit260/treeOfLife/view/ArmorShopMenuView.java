@@ -13,8 +13,9 @@ import java.util.Scanner;
  * Armor Shop
  * 
  */
-public class ArmorShopMenuView {
-    private final String MENU = "\n"
+public class ArmorShopMenuView extends View{
+    public ArmorShopMenuView(){
+        super("\n"
             +"\n========================================"
             +"\n| Armor Shop Menu                            |"
             +"\n========================================"
@@ -26,67 +27,25 @@ public class ArmorShopMenuView {
             +"\nB - Breastplate"
             +"\nG - Game Menu"
             +"\nQ - Return to Main Menu"
-            +"\n========================================";
-
-
-/**
- * Displays Armor Shop Menu 
- * until "Q" is selected by user
- */
-public void displayArmorShopMenu() {
-      
-    char selection = ' ';
-    do {
-        
-        System.out.println(MENU);//display the main menu
-        
-        String input = this.getArmorInput();  //get the user selection
-        selection = input.charAt(0);  //perform the action associated with the selection
-        
-        this.doActionArmor(selection);
-        
-    } while (selection != 'Q'); //while the letter e has not been selected
-
-    
-    
-}
-/**
- * Gets user input for Armor Shop Menu and
- * validates it is only single letter
- * @return - returns letter entered by user (if valid)
- */
-    public String getArmorInput() {
-         boolean valid =false; //indicates if the name has been recieved
-        String userInput = null;
-        Scanner keyboard = new Scanner(System.in); //keyboard input stream
-        
-        while(!valid) { //while a valid name has not been retrieved
-            
-            //prompt for the player's selection
-            System.out.println("Enter menu selection");
-            
-            //get the selection from the keyboard and trim off the blanks
-            userInput = keyboard.nextLine();
-            userInput = userInput.trim();
-            userInput = userInput.toUpperCase();
-            
-            //if the selection is invalid(less than two character in length)
-            if (userInput.length() < 1 || userInput.length() > 1) {
-                System.out.println("Invalid selection - Must select a menu letter");
-                continue; // and repeat again
-            }
-            break; //out of the (exit) the repetition
-        }
-        
-        return userInput; // return the name
+            +"\n========================================");
     }
+
+
+
+
+
 /**
  * Validates and calls correct action for Armor Shop Menu
  * @param selection 
  */
-    public void doActionArmor(char selection) {
+   
+    @Override
+    public boolean doAction(Object obj) {
+        String value = (String) obj;
+        value = value.toUpperCase(); //convert to all upper case
+        char choice = value.charAt(0); //get first character entered
        
-        switch (selection){
+        switch (choice){
             case 'H':// get Helmet
                 this.getHelmet();
                 break;
@@ -115,6 +74,7 @@ public void displayArmorShopMenu() {
             System.out.println("n*** Invalid Armor menu selection *** Try again");
                 break;
         }       
+        return true;
     }
 
     private void getHelmet() {
@@ -143,12 +103,12 @@ public void displayArmorShopMenu() {
 
     private void goToGameMenu() {
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayGameMenu(); 
+        gameMenu.display(); 
     }
 
     private void returnToMainMenu() {
        MainMenuView mainMenu = new MainMenuView();
-       mainMenu.displayMenu();
+       mainMenu.display();
     }
     
 
