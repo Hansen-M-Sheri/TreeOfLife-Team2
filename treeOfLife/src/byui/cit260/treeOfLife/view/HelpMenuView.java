@@ -38,7 +38,7 @@ public class HelpMenuView extends View{
         char choice = value.charAt(0); //get first character entered
         switch (choice){
             case 'G':// Go to Game Menu
-                this.display();
+                this.displayGameMenu();
                 break;
             case 'I':// What is the goal of the game
                 this.helpGoalOfGame();

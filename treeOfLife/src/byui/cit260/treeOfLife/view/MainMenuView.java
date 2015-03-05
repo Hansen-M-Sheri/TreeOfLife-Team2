@@ -24,7 +24,7 @@ public class MainMenuView extends View{
             +"\nG - Get and start saved game"
             +"\nH - Help Menu"
             +"\nS - Save game"
-            +"\nQ - Exit"
+            +"\nQ - Quit"
             +"\n========================================");
     }
 
@@ -89,11 +89,7 @@ public class MainMenuView extends View{
         
     }
 
-    @Override
-    public String getInput() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     
 }
 
