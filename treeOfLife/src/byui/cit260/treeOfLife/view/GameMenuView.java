@@ -20,6 +20,7 @@ class GameMenuView extends View {
             +"\n========================================"
             +"\nM - Go to the Map"
             +"\nP - View Progress Meter"
+            +"\nC - Choose Character for Game"              
             +"\nH - Help Menu"
             +"\nQ - Return to Main Menu" 
             +"\n========================================");
@@ -38,6 +39,9 @@ class GameMenuView extends View {
                 break;
             case 'P': // View Progress Meter
                 this.viewProgressMeter();
+                break;
+            case 'C':// Go to the Map
+                this.displayCharacterMenu();
                 break;
             case 'H': // Go to the Help Menu
                 this.displayHelpMenu();
@@ -72,6 +76,11 @@ class GameMenuView extends View {
     private void displayHelpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.display(); 
+    }
+
+    private void displayCharacterMenu() {
+        CharacterMenuView characterMenu = new CharacterMenuView();
+        characterMenu.display();
     }
     
     
