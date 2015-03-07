@@ -35,14 +35,17 @@ public class ProgressMeter implements Serializable {
     
 
     public int getFaithStat() {
+        System.out.println("getFaithStat() called");
         return faithStat;
     }
 
     public void setFaithStat(int faithStat) {
+        
         this.faithStat = faithStat;
     }
 
     public int getKnowledgeStat() {
+        System.out.println("getKnowledgeStat() called");
         return knowledgeStat;
     }
 
@@ -51,6 +54,7 @@ public class ProgressMeter implements Serializable {
     }
 
     public int getObedienceStat() {
+        System.out.println("getObedienceStat() called");
         return obedienceStat;
     }
 
@@ -83,6 +87,7 @@ public class ProgressMeter implements Serializable {
     }
 
     public int getCurrentLevel() {
+        System.out.println("getCurrentLevel() called");
         return currentLevel;
     }
 
@@ -211,6 +216,10 @@ public class ProgressMeter implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public void getItemsEarned() { //use this to gather all items earned from armorshop for player
+       System.out.println("getItemsEarned() funciton has been called");
     }
  
     

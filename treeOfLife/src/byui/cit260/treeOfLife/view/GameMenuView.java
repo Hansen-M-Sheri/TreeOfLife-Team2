@@ -65,7 +65,8 @@ class GameMenuView extends View {
     }
 
     private void viewProgressMeter() {
-        System.out.println("*** viewProgressMeter function called ***");
+      ProgressMeterView progressMeter = new ProgressMeterView();
+      progressMeter.display();
     }
 
     private void returnToMainMenu() {
