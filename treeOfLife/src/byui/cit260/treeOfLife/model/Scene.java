@@ -7,6 +7,7 @@ package byui.cit260.treeOfLife.model;
 
 import java.util.Objects;
 import java.io.Serializable;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Chuck
@@ -15,7 +16,24 @@ public class Scene implements Serializable{
    
     private String descriptions;
     private String userQuestions;
+    private Location location;
+    private Questions questions;
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Questions getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Questions questions) {
+        this.questions = questions;
+    }
     public Scene() {
     }
     
@@ -66,6 +84,22 @@ public class Scene implements Serializable{
             return false;
         }
         return true;
+    }
+
+    void setDescription(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setMapSymbol(String _st_) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setBlocked(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setIcon(ImageIcon startingSceneImage) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

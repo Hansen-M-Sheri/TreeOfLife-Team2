@@ -62,7 +62,7 @@ public class MainMenuView extends View{
     }
 
     private void startNewGame() {
-        System.out.println("*** startNewGame function called ***");
+      
     
         //Create a new Game
         GameControl.createNewGame(TreeOfLife.getPlayer());

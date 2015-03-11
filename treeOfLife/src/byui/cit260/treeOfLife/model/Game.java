@@ -15,6 +15,44 @@ public class Game implements Serializable {
     
     //class instance variables
     private int id;
+    private Players player;
+    private ProgressMeter progressMeter;
+    private Map map;
+    private GameInventoryItems[] armor;
+
+    public Players getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Players player) {
+        this.player = player;
+    }
+
+    public ProgressMeter getProgressMeter() {
+        return progressMeter;
+    }
+
+    public void setProgressMeter(ProgressMeter progressMeter) {
+        this.progressMeter = progressMeter;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public Character[] getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character[] character) {
+        this.character = character;
+    }
+    private Character[] character;
+    
 
     public Game() {
     }
@@ -55,6 +93,10 @@ public class Game implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public void setInventory(GameInventoryItems[] armor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

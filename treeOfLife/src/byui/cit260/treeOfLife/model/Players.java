@@ -8,6 +8,7 @@ package byui.cit260.treeOfLife.model;
 
 import java.util.Objects;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 /**
@@ -16,6 +17,15 @@ import java.io.Serializable;
  */
 public class Players implements Serializable {
     private String name;
+
+    public ArrayList<Game> getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(ArrayList<Game> gameID) {
+        this.gameID = gameID;
+    }
+    ArrayList<Game> gameID = new ArrayList<>();
 
     /*public Players(String name) {
         this.name = name;

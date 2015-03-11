@@ -5,46 +5,55 @@
  */
 package byui.cit260.treeOfLife.model;
 
+import java.awt.Point;
 import java.util.Objects;
 import java.io.Serializable;
 /**
  *
  * @author Chuck
  */
-public class Character implements Serializable{
+public enum Character implements Serializable{
     
-    private String name;
-    private String description;
-    private String origStatLevels;
+    Nephi("Faithful son and later the prophet and leader of the Nephites."),
+    Sariah("She is Lehi's wife and mother of Nephi and Jacob"),
+    Jacob("Nephi's faithful brother, prophet and successor to Nephi.");
+    
+    private final String description;
+    private final Point coordinates;
+    private final String origStatLevels;
+    private Game gameID;
+    private Location location;
 
-    public Character() {
+    public Game getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(Game gameID) {
+        this.gameID = gameID;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
     
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    Character(String description){
+    this.description = description;
+    coordinates = new Point(1,1);
+    origStatLevels = this.getOrigStatLevels();
     }
 
     public String getDescription() {
         return description;
     }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    
     public String getOrigStatLevels() {
-        return origStatLevels;
+       return origStatLevels;
     }
-
-    public void setOrigStatLevels(String origStatLevels) {
-        this.origStatLevels = origStatLevels;
-    }
-
+}
     @Override
     public String toString() {
         return "Character{" + "name=" + name + ", description=" + description + ", origStatLevels=" + origStatLevels + '}';

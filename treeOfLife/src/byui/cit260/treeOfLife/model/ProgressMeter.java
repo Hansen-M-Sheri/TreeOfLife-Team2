@@ -6,6 +6,7 @@
 package byui.cit260.treeOfLife.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,8 +28,16 @@ public class ProgressMeter implements Serializable {
     private boolean footCoveringEarned;
     private boolean swordEarned;
     private boolean breastplateEarned;
-    
+    ArrayList<Game> gameID = new ArrayList<>();
     //constructor
+
+    public ArrayList<Game> getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(ArrayList<Game> gameID) {
+        this.gameID = gameID;
+    }
 
     public ProgressMeter() {
     }

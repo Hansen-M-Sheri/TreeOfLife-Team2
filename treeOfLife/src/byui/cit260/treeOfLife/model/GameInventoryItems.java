@@ -20,7 +20,7 @@ public class GameInventoryItems implements Serializable{
     private int armorPieceFaithPoints;      //faith points associated with armor piece
     private int armorPieceObedPoints;       // obedience points associated with armor piece
     private int armorPieceKnowPoints;       // knowledge points associated with armor piece 
-  
+    private Game game;
     //constructor
     public GameInventoryItems() {
     }
@@ -108,6 +108,18 @@ public class GameInventoryItems implements Serializable{
             return false;
         }
         return true;
+    }
+
+    public void setDescription(String helmet) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setQuantityInStock(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setRequiredAmount(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

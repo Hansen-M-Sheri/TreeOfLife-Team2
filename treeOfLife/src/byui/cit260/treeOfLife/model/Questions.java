@@ -18,8 +18,25 @@ public class Questions implements Serializable{
     private String questionNumber;
     private String questionPoints;
     private int mantleQuestionsAsked = 0;
+    private Scene scene;
 // public Questions() {
 //    }
+
+    public void setMantleQuestionsAsked(int mantleQuestionsAsked) {
+        this.mantleQuestionsAsked = mantleQuestionsAsked;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public int getMantleQuestionsAsked() {
+        return mantleQuestionsAsked;
+    }
+
+    public Scene getScene() {
+        return scene;
+    }
     
     
 

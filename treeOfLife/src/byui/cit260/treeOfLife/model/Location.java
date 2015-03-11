@@ -18,6 +18,26 @@ public class Location implements Serializable{
     private int yCoordinate;
     private boolean blocked;
     private boolean visited;
+    private Scene scene;
+    private Character[] character;
+
+    public Character[] getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character[] character) {
+        this.character = character;
+    }
+    
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
     
     
     //constructor
@@ -96,6 +116,14 @@ public class Location implements Serializable{
             return false;
         }
         return true;
+    }
+
+    void setColumn(int column) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setRow(int row) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
