@@ -75,6 +75,7 @@ public class Map implements Serializable{
         //Create scene N
         //Assign scene N to array
         //return scenes array 
+        return scenes;
     
     }
     
@@ -125,7 +126,7 @@ public class Map implements Serializable{
         
     }
     
-    private static Map createMap(){
+    private static Map createMap() throws MapControlException{
         
         //Create and initialize new map
         Map map = new Map(3, 4);
