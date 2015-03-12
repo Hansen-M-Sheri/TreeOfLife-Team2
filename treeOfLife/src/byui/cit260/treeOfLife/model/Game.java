@@ -6,6 +6,7 @@
 package byui.cit260.treeOfLife.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,7 +19,8 @@ public class Game implements Serializable {
     private Players player;
     private ProgressMeter progressMeter;
     private Map map;
-    private GameInventoryItems[] armor;
+    private ArrayList<GameInventoryItems> forSale = new ArrayList<>();
+    private ArrayList<GameInventoryItems> purchasedItems = new ArrayList<>();
 
     public Players getPlayer() {
         return player;
@@ -52,6 +54,22 @@ public class Game implements Serializable {
         this.character = character;
     }
     private Character[] character;
+
+    public ArrayList<GameInventoryItems> getForSale() {
+        return forSale;
+    }
+
+    public void setForSale(ArrayList<GameInventoryItems> forSale) {
+        this.forSale = forSale;
+    }
+
+    public ArrayList<GameInventoryItems> getPurchasedItems() {
+        return purchasedItems;
+    }
+
+    public void setPurchasedItems(ArrayList<GameInventoryItems> purchasedItems) {
+        this.purchasedItems = purchasedItems;
+    }
     
 
     public Game() {
@@ -95,9 +113,6 @@ public class Game implements Serializable {
         return true;
     }
 
-    public void setInventory(GameInventoryItems[] armor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+   
     
 }

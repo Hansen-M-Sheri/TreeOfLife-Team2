@@ -6,121 +6,73 @@
 package byui.cit260.treeOfLife.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
  * @author sherihansen
  */
-public class GameInventoryItems implements Serializable{
+public enum GameInventoryItems implements Serializable{
+    //define list of items in class
+    helmet("helmet of Faith", 5,3, 10),
+    breastPlate("breastPlate of righteousness", 10, 2, 8), 
+    ;
+    
     
     //class instance variables
     private String itemDescription;
     private String armorPiece;
-    private int armorPieceFaithPoints;      //faith points associated with armor piece
-    private int armorPieceObedPoints;       // obedience points associated with armor piece
-    private int armorPieceKnowPoints;       // knowledge points associated with armor piece 
-    private Game game;
+    private int faithPoints;      //faith points associated with armor piece
+    private int obedPoints;       // obedience points associated with armor piece
+    private int knowPoints;       // knowledge points associated with armor piece 
+    
     //constructor
-    public GameInventoryItems() {
+    GameInventoryItems(String itemDescription, int faithPoints, int obedPoints, int knowPoints) {
+        this.itemDescription = itemDescription;
+        this.faithPoints = faithPoints;
+        this.obedPoints = obedPoints;
+        this.knowPoints = knowPoints;
     }
     
+//enum constructor
     //getter and setters
 
     public String getItemDescription() {
         return itemDescription;
     }
 
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
-    }
-
+   
     public String getArmorPiece() {
         return armorPiece;
     }
 
-    public void setArmorPiece(String armorPiece) {
-        this.armorPiece = armorPiece;
+    
+
+    public int getFaithPoints() {
+        return faithPoints;
     }
 
-    public int getArmorPieceFaithPoints() {
-        return armorPieceFaithPoints;
+    
+
+    public int getObedPoints() {
+        return obedPoints;
     }
 
-    public void setArmorPieceFaithPoints(int armorPieceFaithPoints) {
-        this.armorPieceFaithPoints = armorPieceFaithPoints;
+    
+
+    public int getKnowPoints() {
+        return knowPoints;
     }
 
-    public int getArmorPieceObedPoints() {
-        return armorPieceObedPoints;
-    }
-
-    public void setArmorPieceObedPoints(int armorPieceObedPoints) {
-        this.armorPieceObedPoints = armorPieceObedPoints;
-    }
-
-    public int getArmorPieceKnowPoints() {
-        return armorPieceKnowPoints;
-    }
-
-    public void setArmorPieceKnowPoints(int armorPieceKnowPoints) {
-        this.armorPieceKnowPoints = armorPieceKnowPoints;
-    }
+   
 
     @Override
     public String toString() {
-        return "GameInventoryItems{" + "itemDescription=" + itemDescription + ", armorPiece=" + armorPiece + ", armorPieceFaithPoints=" + armorPieceFaithPoints + ", armorPieceObedPoints=" + armorPieceObedPoints + ", armorPieceKnowPoints=" + armorPieceKnowPoints + '}';
+        return "GameInventoryItems{" + "itemDescription=" + itemDescription + ", armorPiece=" + armorPiece + ", armorPieceFaithPoints=" + faithPoints + ", armorPieceObedPoints=" + obedPoints + ", armorPieceKnowPoints=" + knowPoints + '}';
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.itemDescription);
-        hash = 29 * hash + Objects.hashCode(this.armorPiece);
-        hash = 29 * hash + this.armorPieceFaithPoints;
-        hash = 29 * hash + this.armorPieceObedPoints;
-        hash = 29 * hash + this.armorPieceKnowPoints;
-        return hash;
-    }
+    
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final GameInventoryItems other = (GameInventoryItems) obj;
-        if (!Objects.equals(this.itemDescription, other.itemDescription)) {
-            return false;
-        }
-        if (!Objects.equals(this.armorPiece, other.armorPiece)) {
-            return false;
-        }
-        if (this.armorPieceFaithPoints != other.armorPieceFaithPoints) {
-            return false;
-        }
-        if (this.armorPieceObedPoints != other.armorPieceObedPoints) {
-            return false;
-        }
-        if (this.armorPieceKnowPoints != other.armorPieceKnowPoints) {
-            return false;
-        }
-        return true;
-    }
-
-    public void setDescription(String helmet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setQuantityInStock(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setRequiredAmount(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     
 }

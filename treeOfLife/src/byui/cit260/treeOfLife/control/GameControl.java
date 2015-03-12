@@ -7,10 +7,14 @@ package byui.cit260.treeOfLife.control;
 
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.GameInventoryItems;
+import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
+import byui.cit260.treeOfLife.model.Map.SceneType;
 import byui.cit260.treeOfLife.model.Players;
 import byui.cit260.treeOfLife.model.ProgressMeter;
 import byui.cit260.treeOfLife.model.Scene;
+import java.util.ArrayList;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -21,12 +25,12 @@ public class GameControl {
     public static void createNewGame(Players player) {
         
         Game game = new Game();//create a new game
-        ProgramControl.setCurrentGame(game);//save the game in TreeOfLife
+        TreeOfLife.setCurrentGame(game);//save the game in TreeOfLife
         
         game.setPlayer(player);//save player in game
         
-        GameInventoryItems[] armor = GameControl.createInventoryList();//create ProgressMeter in game
-        game.setInventory(armor);//save ProgressMeter
+        ArrayList<GameInventoryItems> forSale = GameControl.createInventoryList();//create items for sale in game
+//        game.setInventory();//don't think I need to save since inventory is enum
         
 
         Map map = MapControl.createMap();//create the Map
@@ -39,66 +43,39 @@ public class GameControl {
     
     
     }
-
+    //@todo - instructions said to have this private, but it caused issues in Map.createMap()
     public static void assignScenesToLocations(Map map, Scene[] scenes) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Location[][] locations = map.getLocations();
+        
+        
+        locations[0][0].setScene(scenes[SceneType.armorShop.ordinal()]);
+        //start point
+        locations[0][1].setScene(scenes[SceneType.cottage.ordinal()]);
+        locations[0][2].setScene(scenes[SceneType.levelOne.ordinal()]);
+        locations[0][3].setScene(scenes[SceneType.spaciousBuilding.ordinal()]);
+        locations[1][0].setScene(scenes[SceneType.temple.ordinal()]);
+        locations[1][1].setScene(scenes[SceneType.levelTwo.ordinal()]);
+        locations[1][2].setScene(scenes[SceneType.levelThree.ordinal()]);
+        locations[1][3].setScene(scenes[SceneType.treeOfKnowledge.ordinal()]);
+        locations[2][0].setScene(scenes[SceneType.mantle.ordinal()]);
+        locations[2][1].setScene(scenes[SceneType.levelFour.ordinal()]);
+        locations[2][2].setScene(scenes[SceneType.levelFive.ordinal()]);
+        locations[2][3].setScene(scenes[SceneType.treeOfLife.ordinal()]);
     }
 
-    public static void assignScenesToLocations(Map map, Scene[] scenes) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    public enum Item{
-            helmet,
-            shield,
-            belt,
-            footCovering,
-            sword,
-            breastplate;
-        }
+  
+    
 
-    public static GameInventoryItems[] createInventoryList() {
+    public static ArrayList<GameInventoryItems> createInventoryList() {
         
-        GameInventoryItems[] inventory = 
-                new GameInventoryItems[Constants.NUMBER_OF_INVENTORY_ITEMS];
+        Game game = TreeOfLife.getCurrentGame();
+        ArrayList<GameInventoryItems> forSaleList = game.getForSale();
+        forSaleList.add(GameInventoryItems.helmet);
+        forSaleList.add(GameInventoryItems.breastPlate);
         
-        //created array(list) of inventory items
-        GameInventoryItems helmet = new GameInventoryItems();
-        helmet.setDescription("Helmet");
-        helmet.setQuantityInStock(0);
-        helmet.setRequiredAmount(0);
-        inventory[Item.helmet.ordinal()] = helmet;
+//        forSaleList.remove(GameInventoryItems.helmet);
         
-        GameInventoryItems shield = new GameInventoryItems();
-        shield.setDescription("Shield");
-        shield.setQuantityInStock(0);
-        shield.setRequiredAmount(0);
-        inventory[Item.shield.ordinal()] = shield;
-        
-        GameInventoryItems belt = new GameInventoryItems();
-        belt.setDescription("Belt");
-        belt.setQuantityInStock(0);
-        belt.setRequiredAmount(0);
-        inventory[Item.belt.ordinal()] = belt;       
-               
-        GameInventoryItems footCovering = new GameInventoryItems();
-        footCovering.setDescription("Foot Covering");
-        footCovering.setQuantityInStock(0);
-        footCovering.setRequiredAmount(0);
-        inventory[Item.footCovering.ordinal()] = footCovering;
-        
-        GameInventoryItems sword = new GameInventoryItems();
-        sword.setDescription("Sword");
-        sword.setQuantityInStock(0);
-        sword.setRequiredAmount(0);
-        inventory[Item.sword.ordinal()] = sword;
-        
-        GameInventoryItems breastplate = new GameInventoryItems();
-        breastplate.setDescription("Breastplate");
-        breastplate.setQuantityInStock(0);
-        breastplate.setRequiredAmount(0);
-        inventory[Item.breastplate.ordinal()] = breastplate;
-        
-        return inventory;
+        return forSaleList ;
         
     }
 

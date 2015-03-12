@@ -5,7 +5,12 @@
  */
 package byui.cit260.treeOfLife.view;
 
+import byui.cit260.treeOfLife.control.ProgramControl;
+import byui.cit260.treeOfLife.model.Game;
+import byui.cit260.treeOfLife.model.GameInventoryItems;
+import java.util.ArrayList;
 import java.util.Scanner;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -14,24 +19,34 @@ import java.util.Scanner;
  * 
  */
 public class ArmorShopMenuView extends View{
+    //go to the Game, get the forSaleList to see what is still available
     public ArmorShopMenuView(){
+        
         super("\n"
             +"\n========================================"
             +"\n| Armor Shop Menu                            |"
-            +"\n========================================"
-            +"\nH - Helmet of Salvation"
-            +"\nD - Shield of Faith"
-            +"\nT - Belt of Truth"
-            +"\nF - Foot Coverings (Feet Shod with Gospel of Peace)"
-            +"\nS - Sword"
-            +"\nB - Breastplate"
-            +"\nG - Game Menu"
+            +"\n========================================");
+        //get the list of forsale items from the game
+        Game game = TreeOfLife.getCurrentGame();
+        ArrayList<GameInventoryItems> forSale = game.getForSale();
+        //for each item in list
+        for (GameInventoryItems item : forSale) {
+            //get first letter of item name
+            char armorPiece = item.name().charAt(0);
+            //print first letter and description of item
+            String armorDescription = item.getItemDescription();
+            System.out.println("\n" + armorPiece + " - " + armorDescription);
+        }
+            
+        System.out.println(
+            "\nG - Game Menu"
             +"\nQ - Return to Main Menu"
             +"\n========================================");
+            
     }
 
 
-
+//go to game, get for sale list
 
 
 /**

@@ -20,6 +20,7 @@ class GameMenuView extends View {
             +"\n========================================"
             +"\nM - Go to the Map"
             +"\nP - View Progress Meter"
+            +"\nI - View Character Inventory"
             +"\nC - Choose Character for Game"              
             +"\nH - Help Menu"
             +"\nQ - Return to Main Menu" 
@@ -39,6 +40,9 @@ class GameMenuView extends View {
                 break;
             case 'P': // View Progress Meter
                 this.viewProgressMeter();
+                break;
+            case 'I': // View Character Inventory
+                this.viewCharacterInventory();
                 break;
             case 'C':// Go to the Map
                 this.displayCharacterMenu();
@@ -82,6 +86,27 @@ class GameMenuView extends View {
     private void displayCharacterMenu() {
         CharacterMenuView characterMenu = new CharacterMenuView();
         characterMenu.display();
+    }
+
+    private void viewCharacterInventory() {
+       System.out.println("*** viewInventory stub function called ***");
+//       //Get sorted list of inventory items
+//       InventoryItem[] inventory = GameControl.getCharacterInventoryList();
+//       //DISPLAY the column headings
+//       System.out.println("\nList of Armor Pieces Earned"); //adjust this phrase if needed
+//       System.out.println("Description" + "\t" +
+//                            "Faith Stats" + "\t" +
+//                            "Obedience Stats" + "\t" +
+//                            "Knowledge Stats" );
+////For everyitem in the inventory list
+//       for(InventoryItem inventoryItem : inventory) {
+//            //Display i.description, item.quantityInStock
+//           System.out.println(inventoryItem.getDescription() + "\t  "+
+//                              inventoryItem.getFaithStats() + "\t   " +
+//                              inventoryItem.getObedienceStats())
+//       }
+//       
+//       //ENDFOR
     }
     
     

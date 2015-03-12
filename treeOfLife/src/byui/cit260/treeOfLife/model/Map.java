@@ -14,6 +14,7 @@ import java.util.Objects;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -23,6 +24,11 @@ import javax.swing.ImageIcon;
 
 public class Map implements Serializable{
 
+    public Location[][] getLocations() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+  
     public enum SceneType{
     cottage,
     levelOne,
@@ -41,7 +47,7 @@ public class Map implements Serializable{
     private static Scene[] createScenes()throws MapControlException{
         BufferedImage image = null;
         
-        Game game = ProgramControl.getCurrentGame(); 
+        Game game = TreeOfLife.getCurrentGame(); 
 
         //Create the scenes array
         Scene[] scenes = new Scene[SceneType.values().length];
