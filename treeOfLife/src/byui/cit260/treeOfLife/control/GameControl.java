@@ -70,9 +70,13 @@ public class GameControl {
         
         Game game = TreeOfLife.getCurrentGame();
         ArrayList<GameInventoryItems> forSaleList = game.getForSale();
-        forSaleList.add(GameInventoryItems.helmet);
-        forSaleList.add(GameInventoryItems.breastPlate);
-        
+        forSaleList.add(GameInventoryItems.Helmet);
+        forSaleList.add(GameInventoryItems.Shield);
+        forSaleList.add(GameInventoryItems.Belt);
+        forSaleList.add(GameInventoryItems.FootCovering);
+        forSaleList.add(GameInventoryItems.TruthSword);
+        forSaleList.add(GameInventoryItems.BreastPlate);
+        //Below is how we will remove item from list - 
 //        forSaleList.remove(GameInventoryItems.helmet);
         
         return forSaleList ;

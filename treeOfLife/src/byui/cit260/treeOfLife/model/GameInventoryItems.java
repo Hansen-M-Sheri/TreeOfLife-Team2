@@ -13,8 +13,12 @@ import java.io.Serializable;
  */
 public enum GameInventoryItems implements Serializable{
     //define list of items in class
-    helmet("helmet of Faith", 5,3, 10),
-    breastPlate("breastPlate of righteousness", 10, 2, 8), 
+    Helmet("Helmet of Salvation", 5,3, 10),
+    Shield("Shield of Faith", 10, 5, 5),
+    Belt("Belt of Truth", 4, 8, 4),
+    FootCovering("Feet shod with Peace", 3, 3, 6),
+    TruthSword("Sword of Truth", 8, 8, 8),
+    BreastPlate("breastPlate of righteousness", 10, 2, 8), 
     ;
     
     
@@ -33,7 +37,7 @@ public enum GameInventoryItems implements Serializable{
         this.knowPoints = knowPoints;
     }
     
-//enum constructor
+//
     //getter and setters
 
     public String getItemDescription() {
