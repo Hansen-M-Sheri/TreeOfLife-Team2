@@ -16,11 +16,13 @@ import javax.swing.ImageIcon;
 public class MapControl {
 
     static Map createMap() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       System.out.println("*** called createMap() ****");
+       return null;
     }
 
     static void moveCharactersToStartingLocation(Map map) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+              System.out.println("*** called moveCharactersToStartingLocation() ****");
+
     }
 
     public static ImageIcon getImage(Scene startingScene, String citbyuicitC260curiousworkmanshipimagessta) {
