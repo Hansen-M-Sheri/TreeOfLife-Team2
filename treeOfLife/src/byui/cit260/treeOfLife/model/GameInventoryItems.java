@@ -18,7 +18,7 @@ public enum GameInventoryItems implements Serializable{
     Belt("Belt of Truth", 4, 8, 4),
     FootCovering("Feet shod with Peace", 3, 3, 6),
     TruthSword("Sword of Truth", 8, 8, 8),
-    BreastPlate("breastPlate of righteousness", 10, 2, 8), 
+    BreastPlate("BreastPlate of Righteousness", 10, 2, 8), 
     ;
     
     
