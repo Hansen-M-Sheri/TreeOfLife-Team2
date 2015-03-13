@@ -20,6 +20,7 @@ public class Location implements Serializable{
     private boolean visited;
     private Scene scene;
     private Character[] character;
+//    private String mapSymbol;
 
     public Character[] getCharacter() {
         return character;

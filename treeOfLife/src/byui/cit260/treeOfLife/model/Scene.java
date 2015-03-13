@@ -18,26 +18,11 @@ public class Scene implements Serializable{
     private String userQuestions;
     private Location location;
     private Questions questions;
+    private String mapSymbol;
+    private Boolean blocked;
 
-    public Location getLocation() {
-        return location;
+     public Scene() {
     }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public Questions getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(Questions questions) {
-        this.questions = questions;
-    }
-    public Scene() {
-    }
-    
-    
 
     public String getDescriptions() {
         return descriptions;
@@ -55,6 +40,44 @@ public class Scene implements Serializable{
         this.userQuestions = userQuestions;
     }
 
+       
+   public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+     
+    public Questions getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Questions questions) {
+        this.questions = questions;
+    }
+
+    public String getMapSymbol() {
+        return mapSymbol;
+    }
+
+    public void setMapSymbol(String mapSymbol) {
+        this.mapSymbol = mapSymbol;
+    }
+
+    public Boolean getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(Boolean blocked) {
+        this.blocked = blocked;
+    }
+
+   public void setIcon(ImageIcon startingSceneImage) {
+        System.out.println("**** setIcon() function was called ****");
+    }
+    
+    
     @Override
     public String toString() {
         return "Scene{" + "descriptions=" + descriptions + ", userQuestions=" + userQuestions + '}';
@@ -85,22 +108,20 @@ public class Scene implements Serializable{
         }
         return true;
     }
-
-    void setDescription(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void setMapSymbol(String _st_) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void setBlocked(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void setIcon(ImageIcon startingSceneImage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//believe these are duplicates
+//    void setDescription(String string) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    void setMapSymbol(String _st_) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    void setBlocked(boolean b) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+    
     
     
 }

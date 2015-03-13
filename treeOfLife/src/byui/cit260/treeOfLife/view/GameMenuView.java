@@ -8,7 +8,6 @@ package byui.cit260.treeOfLife.view;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.MapSymbol;
-import static byui.cit260.treeOfLife.model.MapSymbol.location;
 import java.util.Scanner;
 import treeoflife.TreeOfLife;
 
@@ -69,8 +68,7 @@ class GameMenuView extends View {
     }
 
     private void displayMapMenu() {
-//        MapView mapMenu = new MapView();
-//        mapMenu.display();
+ 
         //get the map locations from the current game
         Map map = new Map();
        Location[][] locations = map.getLocations();
@@ -78,28 +76,16 @@ class GameMenuView extends View {
         System.out.println("Tree of Life Map");
         //DISPLAY row of column numbers
         System.out.println("\n    0   |   1   |   2   |   3   |");
-        //FOR every row in map
-            for (Location[] row : locations) {
-//                 DISPLAY row divider
-                System.out.println(" ------------------------------"
-                                +"\n 2");
-                 // FOR every column in row
-                for (Location[] column: locations) {
-                     // DISPLAY column divider
+
+        for(int i = 0; i < locations.length; i++){
+            
+            for(int j = 0; j<locations[i].length; j++){
+                Location location = locations[i][j];
+//                 DISPLAY column divider
                     System.out.println("|\t \t \t|\t \t \t|\t \t \t|\t \t \t|");
-                     Location[][] currentLocation = location[row][column];
-//                    GameMenuView[][];
                     // IF location has been visited
-                    Location location = new Location();
-                    if(location.isVisited()) {
-                        MapSymbol symbol = new MapSymbol();
-                        symbol.
-                    }
-                    else {
-                        System.out.println("??");
-                    }
-                }
-        
+                   System.out.println(location);
+            }
           
                 
             
