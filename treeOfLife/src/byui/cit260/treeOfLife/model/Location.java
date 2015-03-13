@@ -14,32 +14,14 @@ import java.io.Serializable;
 public class Location implements Serializable{
     
     //class instance variables
+    private int row;
+    private int column;
     private int xCoordinate;
     private int yCoordinate;
     private boolean blocked;
     private boolean visited;
     private Scene scene;
-    private Character[] character;
-//    private String mapSymbol;
-
-    public Character[] getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(Character[] character) {
-        this.character = character;
-    }
-    
-
-    public Scene getScene() {
-        return scene;
-    }
-
-    public void setScene(Scene scene) {
-        this.scene = scene;
-    }
-
-    
+    private Character[] character; 
     
     //constructor
     public Location() {
@@ -47,6 +29,23 @@ public class Location implements Serializable{
     
     //getters and setters
 
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    
     public int getxCoordinate() {
         return xCoordinate;
     }
@@ -80,6 +79,22 @@ public class Location implements Serializable{
         this.visited = visited;
     }
 
+    public Character[] getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character[] character) {
+        this.character = character;
+    }
+    
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
     @Override
     public String toString() {
         return "Location{" + "xCoordinate=" + xCoordinate + ", yCoordinate=" + yCoordinate + ", blocked=" + blocked + ", visited=" + visited + '}';
@@ -119,14 +134,7 @@ public class Location implements Serializable{
         return true;
     }
 
-    void setColumn(int column) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    void setRow(int row) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     
     
     
