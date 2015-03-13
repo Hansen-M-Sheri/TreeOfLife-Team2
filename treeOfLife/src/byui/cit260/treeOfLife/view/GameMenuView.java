@@ -90,23 +90,8 @@ class GameMenuView extends View {
 
     private void viewCharacterInventory() {
        System.out.println("*** viewInventory stub function called ***");
-//       //Get sorted list of inventory items
-//       InventoryItem[] inventory = GameControl.getCharacterInventoryList();
-//       //DISPLAY the column headings
-//       System.out.println("\nList of Armor Pieces Earned"); //adjust this phrase if needed
-//       System.out.println("Description" + "\t" +
-//                            "Faith Stats" + "\t" +
-//                            "Obedience Stats" + "\t" +
-//                            "Knowledge Stats" );
-////For everyitem in the inventory list
-//       for(InventoryItem inventoryItem : inventory) {
-//            //Display i.description, item.quantityInStock
-//           System.out.println(inventoryItem.getDescription() + "\t  "+
-//                              inventoryItem.getFaithStats() + "\t   " +
-//                              inventoryItem.getObedienceStats())
-//       }
-//       
-//       //ENDFOR
+       //get Character inventory from purchaseList
+
     }
     
     

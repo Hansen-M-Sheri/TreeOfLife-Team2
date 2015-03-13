@@ -94,6 +94,11 @@ public class ArmorShopMenuView extends View{
 
     private void getHelmet() {
         System.out.println("getHelmet function called");
+        //once selected either by purchase/earned 
+        //remove from forSaleList arrayList
+         //Below is how we will remove item from list - 
+//        forSaleList.remove(GameInventoryItems.helmet);
+        //add to characterInventoryList - do we need a function called createCharacterInventory?  Or just addto CharacterInventory? 
     }
 
     private void getShield() {
