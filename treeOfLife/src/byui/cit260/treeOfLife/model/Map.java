@@ -23,12 +23,46 @@ import treeoflife.TreeOfLife;
 
 
 public class Map implements Serializable{
-
-    public Location[][] getLocations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     private int rowCount;
+    private int columnCount;
+    ArrayList<Game> gameID = new ArrayList<>();
+    private Location[][] locations;
+     //map constructor
+    public Map() {
+    }
+    //overloaded Map constructor
+    public Map(int rowCount, int columnCount){
+        
+        if (rowCount < 1 || columnCount <1){
+            System.out.println("The number of rows and columns > zero");
+            return;
+        }
+        
+        this.rowCount = rowCount;
+        this.columnCount = columnCount;
+        
+        // create 2-D array for lcoation objects
+        this.locations = new Location[rowCount][columnCount];
+        
+        for (int row = 0; row < rowCount; row++){
+            for(int column = 0; column < columnCount; column++){
+                //create and initialize New Location object instance
+                Location location = new Location();
+                location.setColumn(column);
+                location.setRow(row);
+                location.setVisited(false);
+                
+                // assign the Location object to the current postion in array
+                locations[row][column] = location;
+                
+            }
+        
+        
+    }
+        
     }
 
-  
+     
     public enum SceneType{
     cottage,
     levelOne,
@@ -85,10 +119,7 @@ public class Map implements Serializable{
     
     }
     
-    private int rowCount;
-    private int columnCount;
-    ArrayList<Game> gameID = new ArrayList<>();
-    private Location[][] locations;
+   
     
     public ArrayList<Game> getGameID() {
         return gameID;
@@ -97,39 +128,8 @@ public class Map implements Serializable{
     public void setGameID(ArrayList<Game> gameID) {
         this.gameID = gameID;
     }
-
-    public Map() {
-    }
-    
-    public Map(int rowCount, int columnCount){
-        
-        if (rowCount < 1 || columnCount <1){
-            System.out.println("The number of rows and columns > zero");
-            return;
-        }
-        
-        this.rowCount = rowCount;
-        this.columnCount = columnCount;
-        
-        // create 2-D array for lcoation objects
-        this.locations = new Location[rowCount][columnCount];
-        
-        for (int row = 0; row < rowCount; row++){
-            for(int column = 0; column < columnCount; column++){
-                //create and initialize New Location object instance
-                Location location = new Location();
-                location.setColumn(column);
-                location.setRow(row);
-                location.setVisited(false);
-                
-                // assign the Location object to the current postion in array
-                locations[row][column] = location;
-                
-            }
-        
-        
-    }
-        
+   public Location[][] getLocations() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     private static Map createMap() throws MapControlException{

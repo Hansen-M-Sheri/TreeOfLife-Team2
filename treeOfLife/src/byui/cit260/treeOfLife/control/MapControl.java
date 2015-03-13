@@ -18,6 +18,10 @@ public class MapControl {
     static Map createMap() {
        System.out.println("*** called createMap() ****");
        return null;
+        //create map
+//        Map map = new Map(3,4);
+//        //create the scenes for the game
+//        Scene[] scenes = createScenes();
     }
 
     static void moveCharactersToStartingLocation(Map map) {
