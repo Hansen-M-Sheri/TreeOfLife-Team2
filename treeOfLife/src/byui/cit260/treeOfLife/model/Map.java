@@ -129,7 +129,7 @@ public class Map implements Serializable{
         this.gameID = gameID;
     }
    public Location[][] getLocations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return locations;
     }
     
     private static Map createMap() throws MapControlException{
