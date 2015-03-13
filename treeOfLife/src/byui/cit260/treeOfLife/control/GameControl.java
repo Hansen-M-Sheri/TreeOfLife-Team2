@@ -67,9 +67,11 @@ public class GameControl {
     
 
     public static ArrayList<GameInventoryItems> createInventoryList() {
-        
+        //get list of forSale items from current game
         Game game = TreeOfLife.getCurrentGame();
+        //create an arrayList forSaleList
         ArrayList<GameInventoryItems> forSaleList = game.getForSale();
+        //add each armor piece to the forSaleList
         forSaleList.add(GameInventoryItems.Helmet);
         forSaleList.add(GameInventoryItems.Shield);
         forSaleList.add(GameInventoryItems.Belt);
