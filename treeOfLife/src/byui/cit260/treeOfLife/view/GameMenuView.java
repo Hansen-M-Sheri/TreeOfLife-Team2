@@ -7,9 +7,7 @@ package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
-import byui.cit260.treeOfLife.model.MapSymbol;
-import java.util.Scanner;
-import treeoflife.TreeOfLife;
+import byui.cit260.treeOfLife.model.Scene;
 
 /**
  *
@@ -77,30 +75,26 @@ class GameMenuView extends View {
         //DISPLAY row of column numbers
         System.out.println("\n    0   |   1   |   2   |   3   |");
 
-        for(int i = 0; i < locations.length; i++){
-            
-            for(int j = 0; j<locations[i].length; j++){
-                Location location = locations[i][j];
-//                 DISPLAY column divider
-                    System.out.println("|\t \t \t|\t \t \t|\t \t \t|\t \t \t|");
-                    // IF location has been visited
-                   System.out.println(location);
+        for (Location[] location1 : locations) {
+            //             DISPLAY row divider
+            System.out.println(" ------------------------------"
+                    +"\n 2");
+            for (Location location : location1) {
+                //                 DISPLAY column divider
+                System.out.println("|\t \t \t|\t \t \t|\t \t \t|\t \t \t|");
+                // IF location has been visited
+                System.out.println(location);
+                if(location.isVisited()) {
+                    Scene scene = new Scene();
+                    scene.getMapSymbol();
+                }
+                else {
+                    System.out.println("??");
+                }
             }
-          
-                
-            
-           
-               
-                
-                
-                // DISPLAY the map symbol for location
-                // ELSE
-                // DISPLAY " ?? "
-                // ENDIF
-                // DISPLAY ending column divider
-            // ENDFOR
-            }
-        // DISPLAY ending row divider      
+        }
+        // DISPLAY ending row divider  
+        System.out.println(" ------------------------------");
     }
 
     private void viewProgressMeter() {

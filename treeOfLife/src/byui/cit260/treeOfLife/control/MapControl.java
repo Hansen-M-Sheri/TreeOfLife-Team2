@@ -17,8 +17,8 @@ import treeoflife.TreeOfLife;
  * @author Chuck
  */
 public class MapControl {
-
- private static Map createMap() {
+   //this was private, but changed to fix error in GameControl.createNewGame()
+ public static Map createMap() {
         
         //Create and initialize new map
         Map map = new Map(3, 4);
@@ -191,7 +191,7 @@ public class MapControl {
         spaciousBuildingScene.setDescriptions(
                 "\n Spacious Building Scene Description"
                 +"Need to add content");
-        spaciousBuildingScene.setMapSymbol("!");
+        spaciousBuildingScene.setMapSymbol("#$&");
         spaciousBuildingScene.setBlocked(false);
         ImageIcon spaciousBuildingSceneImage = MapControl.getImage(spaciousBuildingScene,
                 "/citbyui/citC260/curiousworkmanship/images/spaciousBuildingScene.jpg");
