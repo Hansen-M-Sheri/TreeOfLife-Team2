@@ -7,7 +7,6 @@ package byui.cit260.treeOfLife.control;
 
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Map;
-import byui.cit260.treeOfLife.model.MapControlException;
 import byui.cit260.treeOfLife.model.Scene;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -44,10 +43,10 @@ public class MapControl {
     armorShop,
     treeOfLife,
     treeOfKnowledge,
-    spaciousBuilding, 
-    finish;
+    spaciousBuilding; 
+//    finish; //removing since this will not be on map
     }
-    private static Scene[] createScenes()throws MapControlException{
+    private static Scene[] createScenes(){
         BufferedImage image = null;
         
         Game game = TreeOfLife.getCurrentGame(); 
@@ -96,25 +95,121 @@ public class MapControl {
         levelThreeScene.setDescriptions(
                 "\nLevel Three Scene Description"
                 +"Need to add content");
-        levelThreeScene.setMapSymbol(" LVL 1");
+        levelThreeScene.setMapSymbol(" LVL 3");
         levelThreeScene.setBlocked(false);
         ImageIcon levelThreeSceneImage = MapControl.getImage(levelThreeScene,
                 "/citbyui/citC260/curiousworkmanship/images/levelThreeScene.jpg");
         levelThreeScene.setIcon(levelThreeSceneImage);
         scenes[SceneType.levelThree.ordinal()] = levelThreeScene;
         
+        //create scene for Level Four
+         Scene levelFourScene = new Scene();
+        levelFourScene.setDescriptions(
+                "\nLevel Four Scene Description"
+                +"Need to add content");
+        levelFourScene.setMapSymbol(" LVL 4");
+        levelFourScene.setBlocked(false);
+        ImageIcon levelFourSceneImage = MapControl.getImage(levelFourScene,
+                "/citbyui/citC260/curiousworkmanship/images/levelFourScene.jpg");
+        levelFourScene.setIcon(levelFourSceneImage);
+        scenes[SceneType.levelFour.ordinal()] = levelFourScene;
         
-        Scene finishScene = new Scene();
-        finishScene.setDescriptions(
-                "\nCongratulations! Well done you have made it to the Tree of Life."
-                +"add more content");
-        finishScene.setMapSymbol(" FN");
-        finishScene.setBlocked(false);
-        ImageIcon finishSceneImage = MapControl.getImage(finishScene,
-                "/citbyui/citC260/curiousworkmanship/images/finish.jpg");
-                finishScene.setIcon(finishSceneImage);
-        scenes[SceneType.finish.ordinal()] = finishScene;
-
+        //create scene for Level Five
+         Scene levelFiveScene = new Scene();
+        levelFiveScene.setDescriptions(
+                "\nLevel Five Scene Description"
+                +"Need to add content");
+        levelFiveScene.setMapSymbol(" LVL 5");
+        levelFiveScene.setBlocked(false);
+        ImageIcon levelFiveSceneImage = MapControl.getImage(levelFiveScene,
+                "/citbyui/citC260/curiousworkmanship/images/levelFiveScene.jpg");
+        levelFiveScene.setIcon(levelFiveSceneImage);
+        scenes[SceneType.levelFive.ordinal()] = levelFiveScene;
+        
+        //create scene for mantle
+         Scene mantleScene = new Scene();
+        mantleScene.setDescriptions(
+                "\nMantle Scene Description"
+                +"Need to add content");
+        mantleScene.setMapSymbol("-M-");
+        mantleScene.setBlocked(false);
+        ImageIcon mantleSceneImage = MapControl.getImage(mantleScene,
+                "/citbyui/citC260/curiousworkmanship/images/mantleScene.jpg");
+        mantleScene.setIcon(mantleSceneImage);
+        scenes[SceneType.mantle.ordinal()] = mantleScene;
+        
+        //create scene for temple
+         Scene templeScene = new Scene();
+        templeScene.setDescriptions(
+                "\n Temple Scene Description"
+                +"Need to add content");
+        templeScene.setMapSymbol("-T-");
+        templeScene.setBlocked(false);
+        ImageIcon templeSceneImage = MapControl.getImage(templeScene,
+                "/citbyui/citC260/curiousworkmanship/images/templeScene.jpg");
+        templeScene.setIcon(templeSceneImage);
+        scenes[SceneType.temple.ordinal()] = templeScene;
+        
+        //create scene for armorShop
+         Scene armorShopScene = new Scene();
+        armorShopScene.setDescriptions(
+                "\n Armor Shop Scene Description"
+                +"Need to add content");
+        armorShopScene.setMapSymbol("-A-");
+        armorShopScene.setBlocked(false);
+        ImageIcon armorShopSceneImage = MapControl.getImage(armorShopScene,
+                "/citbyui/citC260/curiousworkmanship/images/armorShopScene.jpg");
+        armorShopScene.setIcon(armorShopSceneImage);
+        scenes[SceneType.armorShop.ordinal()] = armorShopScene;
+        
+         //create scene for treeOfLife
+         Scene treeOfLifeScene = new Scene();
+        treeOfLifeScene.setDescriptions(
+                "\n Tree of Life Scene Description"
+                +"Need to add content");
+        treeOfLifeScene.setMapSymbol("*");
+        treeOfLifeScene.setBlocked(false);
+        ImageIcon treeOfLifeSceneImage = MapControl.getImage(treeOfLifeScene,
+                "/citbyui/citC260/curiousworkmanship/images/treeOfLifeScene.jpg");
+        treeOfLifeScene.setIcon(treeOfLifeSceneImage);
+        scenes[SceneType.treeOfLife.ordinal()] = treeOfLifeScene;  
+        
+         //create scene for treeOfKnowledge
+         Scene treeOfKnowledgeScene = new Scene();
+        treeOfKnowledgeScene.setDescriptions(
+                "\n Tree of Knowledge Scene Description"
+                +"Need to add content");
+        treeOfKnowledgeScene.setMapSymbol("!");
+        treeOfKnowledgeScene.setBlocked(false);
+        ImageIcon treeOfKnowledgeSceneImage = MapControl.getImage(treeOfKnowledgeScene,
+                "/citbyui/citC260/curiousworkmanship/images/treeOfKnowledgeScene.jpg");
+        treeOfKnowledgeScene.setIcon(treeOfKnowledgeSceneImage);
+        scenes[SceneType.treeOfKnowledge.ordinal()] = treeOfKnowledgeScene;  
+        
+         //create scene for spaciousBuilding
+         Scene spaciousBuildingScene = new Scene();
+        spaciousBuildingScene.setDescriptions(
+                "\n Spacious Building Scene Description"
+                +"Need to add content");
+        spaciousBuildingScene.setMapSymbol("!");
+        spaciousBuildingScene.setBlocked(false);
+        ImageIcon spaciousBuildingSceneImage = MapControl.getImage(spaciousBuildingScene,
+                "/citbyui/citC260/curiousworkmanship/images/spaciousBuildingScene.jpg");
+        spaciousBuildingScene.setIcon(spaciousBuildingSceneImage);
+        scenes[SceneType.spaciousBuilding.ordinal()] = spaciousBuildingScene;  
+        
+        
+//        Scene finishScene = new Scene();
+//        finishScene.setDescriptions(
+//                "\nCongratulations! Well done you have made it to the Tree of Life."
+//                +"add more content");
+//        finishScene.setMapSymbol(" FN");
+//        finishScene.setBlocked(false);
+//        ImageIcon finishSceneImage = MapControl.getImage(finishScene,
+//                "/citbyui/citC260/curiousworkmanship/images/finish.jpg");
+//                finishScene.setIcon(finishSceneImage);
+//        scenes[SceneType.finish.ordinal()] = finishScene;
+//
         return scenes;
     
     }
