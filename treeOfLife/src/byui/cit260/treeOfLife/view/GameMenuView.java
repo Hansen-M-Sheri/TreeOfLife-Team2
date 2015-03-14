@@ -41,7 +41,7 @@ class GameMenuView extends View {
         char choice = value.charAt(0); //get first character entered
         switch (choice){
             case 'M':// Go to the Map
-                this.displayMapMenu();
+                this.displayMap();
                 break;
             case 'P': // View Progress Meter
                 this.viewProgressMeter();
@@ -67,21 +67,18 @@ class GameMenuView extends View {
 
     
     }
-  private void displayMapMenu() {
+  public void displayMap() {//changed this to public so can call this to display map from multiple menu's 
  
         //get the map locations from the current game
-//        TreeOfLife treeOfLife = new TreeOfLife();
-//        Map map = new Map();
+
       Game game = TreeOfLife.getCurrentGame();
       Map map = game.getMap();
-      
-      
-//       Location[][] locations = map.getLocations();
+ 
          Location[][] locations = map.getLocations();
         //DISPLAY title
         System.out.println("Tree of Life Map");
         //DISPLAY row of column numbers
-//        System.out.println(Arrays.toString(locations));
+
         System.out.println("\n | --0-- | --1-- | --2-- | --3-- |");
 //        String width = "-";
         int columnWidth = 6;
@@ -90,29 +87,21 @@ class GameMenuView extends View {
         for(int i = 0; i < locations.length; i++){
 //             DISPLAY row divider
                 System.out.println("--------------------------------");
-//                                +"\n " + i);
-            
-            //print out a line of - the width of our columns
-//            while(w <= 24){
-//                 System.out.println("-"); 
-//                w++;
-//            };
-//            System.out.println();               
 
-//            System.out.println( i + "");
             String grid = i + "|";
             for(int j = 0; j<locations[i].length; j++){
                 Location location = locations[i][j];
 //                 
                     // IF location has been visited
-//                   System.out.println(location);
+
                    String symbol;
-                   if(location.isVisited()) {
-                       Scene scene = new Scene();
+                   if(location.isVisited() == false) {
+                       //get current game
+                        
+                       Scene scene = location.getScene();
                        symbol = scene.getMapSymbol();
                     }
                     else {
-//                        System.out.println("??");
                        symbol = "?????";
                     }
 //                   DISPLAY column divider
@@ -121,17 +110,16 @@ class GameMenuView extends View {
             System.out.println(grid);
 //            System.out.println("|");
         }
-//        w = 1;
-//            //print out a line of - the width of our columns
-//            while(w <= 24){
-//                 System.out.println("-"); 
-//                w++;
-//            };
+
         // DISPLAY ending row divider  
         System.out.println("--------------------------------");
+        
+        //print out map menu
+       this.displayMapMenu();
+        
     }
 
-//    private void displayMapMenu() {
+//    private void displayMap() {
 // 
 //        //get the map locations from the current game
 //        Map map = new Map();
@@ -162,7 +150,7 @@ class GameMenuView extends View {
 //        // DISPLAY ending row divider  
 //        System.out.println(" ------------------------------");
 //    }
-
+    
     private void viewProgressMeter() {
       ProgressMeterView progressMeter = new ProgressMeterView();
       progressMeter.display();
@@ -187,6 +175,11 @@ class GameMenuView extends View {
        System.out.println("*** viewInventory stub function called ***");
        //get Character inventory from purchaseList
 
+    }
+
+    private void displayMapMenu() {
+        MapView mapMenu = new MapView();
+        mapMenu.display();
     }
     
     

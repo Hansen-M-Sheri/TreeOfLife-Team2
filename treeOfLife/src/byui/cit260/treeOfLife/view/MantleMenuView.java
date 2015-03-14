@@ -74,8 +74,10 @@ public MantleMenuView(){
     }
 
     private void displayMapView() {
-       MapView mapMenu = new MapView();
-    mapMenu.display(); 
+//       MapView mapMenu = new MapView();
+//    mapMenu.display(); 
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayMap();
     }
 
     private void displayGameMenu() {

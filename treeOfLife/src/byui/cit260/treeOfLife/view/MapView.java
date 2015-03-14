@@ -5,7 +5,11 @@
  */
 package byui.cit260.treeOfLife.view;
 
+import byui.cit260.treeOfLife.model.Game;
+import byui.cit260.treeOfLife.model.Location;
+import byui.cit260.treeOfLife.model.Map;
 import java.util.Scanner;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -64,6 +68,11 @@ public class MapView extends View{
 }
 
     private void goToTempleMenu() {
+        //set in game that this has been visited
+//        Game game = TreeOfLife.getCurrentGame(); 
+//         Map map = game.getMap();
+        Location  location = new Location();
+         location.setVisited(true);
         TempleMenuView templeMenu = new TempleMenuView();
         templeMenu.display();
     }

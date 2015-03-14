@@ -71,8 +71,10 @@ public class TempleMenuView extends View{
     }
 
     private void displayMapView() {
-    MapView mapMenu = new MapView();
-    mapMenu.display(); 
+//    MapView mapMenu = new MapView();
+//    mapMenu.displayMap(); 
+      GameMenuView gameMenu = new GameMenuView();
+      gameMenu.displayMap();
     }
 
     private void displayGameMenu() {
