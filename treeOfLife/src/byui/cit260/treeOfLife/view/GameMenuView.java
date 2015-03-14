@@ -82,15 +82,25 @@ class GameMenuView extends View {
         System.out.println("Tree of Life Map");
         //DISPLAY row of column numbers
 //        System.out.println(Arrays.toString(locations));
-//        System.out.println("\n    0   |   1   |   2   |   3   |");
-            System.out.println("\n \t" +  0  +"|\t" + 1 +"|\t" + 2  + "|\t" +  3 + " |");
+        System.out.println("\n | --0-- | --1-- | --2-- | --3-- |");
+//        String width = "-";
+        int columnWidth = 6;
+        int w = 0;
+//            System.out.println("\n \t" +  0  +"|\t" + 1 +"|\t" + 2  + "|\t" +  3 + " |");
         for(int i = 0; i < locations.length; i++){
 //             DISPLAY row divider
-//                System.out.println(" ------------------------------"
+                System.out.println("--------------------------------");
 //                                +"\n " + i);
-            System.out.println(" ------------------------------");
+            
+            //print out a line of - the width of our columns
+//            while(w <= 24){
+//                 System.out.println("-"); 
+//                w++;
+//            };
+//            System.out.println();               
+
 //            System.out.println( i + "");
-            String grid = i + "| ";
+            String grid = i + "|";
             for(int j = 0; j<locations[i].length; j++){
                 Location location = locations[i][j];
 //                 
@@ -103,16 +113,22 @@ class GameMenuView extends View {
                     }
                     else {
 //                        System.out.println("??");
-                       symbol = "??";
+                       symbol = "?????";
                     }
 //                   DISPLAY column divider
-                     grid += ( "\t"+ symbol + " | ");
+                     grid += ( " "+ symbol + " |");
             }
             System.out.println(grid);
 //            System.out.println("|");
         }
+//        w = 1;
+//            //print out a line of - the width of our columns
+//            while(w <= 24){
+//                 System.out.println("-"); 
+//                w++;
+//            };
         // DISPLAY ending row divider  
-        System.out.println(" ------------------------------");
+        System.out.println("--------------------------------");
     }
 
 //    private void displayMapMenu() {
