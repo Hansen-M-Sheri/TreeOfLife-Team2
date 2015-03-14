@@ -13,12 +13,14 @@ import java.io.Serializable;
  */
 public class Questions implements Serializable{
     
-    private String questionType;
+    private int questionType;
     private String questionAnswered;
-    private String questionNumber;
+    private int questionNumber;
     private String questionPoints;
     private int mantleQuestionsAsked = 0;
     private Scene scene;
+    private String question;
+   
 // public Questions() {
 //    }
 
@@ -40,11 +42,11 @@ public class Questions implements Serializable{
     
     
 
-    public String getQuestionType() {
+    public int getQuestionType() {
         return questionType;
     }
 
-    public void setQuestionType(String questionType) {
+    public void setQuestionType(int questionType) {
         this.questionType = questionType;
     }
 
@@ -56,11 +58,11 @@ public class Questions implements Serializable{
         this.questionAnswered = questionAnswered;
     }
 
-    public String getQuestionNumber() {
+    public int getQuestionNumber() {
         return questionNumber;
     }
 
-    public void setQuestionNumber(String questionNumber) {
+    public void setQuestionNumber(int questionNumber) {
         this.questionNumber = questionNumber;
     }
 
@@ -72,10 +74,23 @@ public class Questions implements Serializable{
         this.questionPoints = questionPoints;
     }
 
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     @Override
     public String toString() {
-        return "Questions{" + "questionType=" + questionType + ", questionAnswered=" + questionAnswered + ", questionNumber=" + questionNumber + ", questionPoints=" + questionPoints + '}';
+        return "Questions{" + "questionType=" + questionType + ", questionAnswered=" + questionAnswered + ", questionNumber=" + questionNumber + ", questionPoints=" + questionPoints + ", mantleQuestionsAsked=" + mantleQuestionsAsked + ", scene=" + scene + ", question=" + question + '}';
     }
+
+//    @Override
+//    public String toString() {
+//        return "Questions{" + "questionType=" + questionType + ", questionAnswered=" + questionAnswered + ", questionNumber=" + questionNumber + ", questionPoints=" + questionPoints + '}';
+//    }
 
     @Override
     public int hashCode() {

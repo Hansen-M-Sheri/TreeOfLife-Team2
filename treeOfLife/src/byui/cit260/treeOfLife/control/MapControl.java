@@ -7,6 +7,7 @@ package byui.cit260.treeOfLife.control;
 
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Map;
+import byui.cit260.treeOfLife.model.Questions;
 import byui.cit260.treeOfLife.model.Scene;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -26,6 +27,10 @@ public class MapControl {
         Scene[] scenes = createScenes();
         //Assign each scene to a location in the map 
         GameControl.assignScenesToLocations(map, scenes);
+        String quest = "null";
+        //Create questions for all the scenes in the map
+        Questions[][] questions = GameControl.createQuestionArray();
+
         
         return map;
         

@@ -17,7 +17,7 @@ public class Scene implements Serializable{
     private String descriptions;
     private String userQuestions;
     private Location location;
-    private Questions questions;
+    private Questions[][] questions;
     private String mapSymbol;
     private Boolean blocked;
 
@@ -48,15 +48,15 @@ public class Scene implements Serializable{
     public void setLocation(Location location) {
         this.location = location;
     }
-     
-    public Questions getQuestions() {
+
+    public Questions[][] getQuestions() {
         return questions;
     }
 
-    public void setQuestions(Questions questions) {
+    public void setQuestions(Questions[][] questions) {
         this.questions = questions;
     }
-
+    
     public String getMapSymbol() {
         return mapSymbol;
     }
