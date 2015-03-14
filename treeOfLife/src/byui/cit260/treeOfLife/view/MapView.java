@@ -69,7 +69,7 @@ public class MapView extends View{
 
     private void goToTempleMenu() {
         //set in game that this has been visited
-//        Game game = TreeOfLife.getCurrentGame(); 
+//        Game game = TreeOfLife.getCurrentGame().; 
 //         Map map = game.getMap();
         Location  location = new Location();
          location.setVisited(true);

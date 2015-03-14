@@ -70,11 +70,11 @@ class GameMenuView extends View {
   public void displayMap() {//changed this to public so can call this to display map from multiple menu's 
  
         //get the map locations from the current game
-
-      Game game = TreeOfLife.getCurrentGame();
-      Map map = game.getMap();
- 
-         Location[][] locations = map.getLocations();
+      Location[][]locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+//      Game game = TreeOfLife.getCurrentGame();
+//      Map map = game.getMap();
+// 
+//         Location[][] locations = map.getLocations();
         //DISPLAY title
         System.out.println("Tree of Life Map");
         //DISPLAY row of column numbers
