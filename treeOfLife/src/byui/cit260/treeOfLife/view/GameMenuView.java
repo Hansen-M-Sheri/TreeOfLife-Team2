@@ -95,7 +95,7 @@ class GameMenuView extends View {
                     // IF location has been visited
 
                    String symbol;
-                   if(location.isVisited() == false) {
+                   if(location.isVisited() == false) { //change to true for game, this is false to test isVisited
                        //get current game
                         
                        Scene scene = location.getScene();
