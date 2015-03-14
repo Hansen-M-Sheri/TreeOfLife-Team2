@@ -81,28 +81,31 @@ class GameMenuView extends View {
         //DISPLAY title
         System.out.println("Tree of Life Map");
         //DISPLAY row of column numbers
-        System.out.println(Arrays.toString(locations));
+//        System.out.println(Arrays.toString(locations));
         System.out.println("\n    0   |   1   |   2   |   3   |");
 
         for(int i = 0; i < locations.length; i++){
 //             DISPLAY row divider
                 System.out.println(" ------------------------------"
-                                +"\n 2");
+                                +"\n " + i);
             for(int j = 0; j<locations[i].length; j++){
                 Location location = locations[i][j];
-//                 DISPLAY column divider
-                    System.out.println("|\t \t |\t \t |\t \t |\t \t |");
+//                 
                     // IF location has been visited
 //                   System.out.println(location);
+                   String symbol;
                    if(location.isVisited()) {
                        Scene scene = new Scene();
-                       scene.getMapSymbol();
+                       symbol = scene.getMapSymbol();
                     }
                     else {
-                        System.out.println("??");
+//                        System.out.println("??");
+                       symbol = "??";
                     }
+//                   DISPLAY column divider
+                    System.out.println("| " + symbol + " ");
             }
-      
+            System.out.println("|");
         }
         // DISPLAY ending row divider  
         System.out.println(" ------------------------------");
