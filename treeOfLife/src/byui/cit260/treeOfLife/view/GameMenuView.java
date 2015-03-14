@@ -5,9 +5,12 @@
  */
 package byui.cit260.treeOfLife.view;
 
+import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.Scene;
+import java.util.Arrays;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -64,38 +67,78 @@ class GameMenuView extends View {
 
     
     }
-
-    private void displayMapMenu() {
+  private void displayMapMenu() {
  
         //get the map locations from the current game
-        Map map = new Map();
-       Location[][] locations = map.getLocations();
+//        TreeOfLife treeOfLife = new TreeOfLife();
+//        Map map = new Map();
+      Game game = TreeOfLife.getCurrentGame();
+      Map map = game.getMap();
+      
+      
+//       Location[][] locations = map.getLocations();
+         Location[][] locations = map.getLocations();
         //DISPLAY title
         System.out.println("Tree of Life Map");
         //DISPLAY row of column numbers
+        System.out.println(Arrays.toString(locations));
         System.out.println("\n    0   |   1   |   2   |   3   |");
 
-        for (Location[] location1 : locations) {
-            //             DISPLAY row divider
-            System.out.println(" ------------------------------"
-                    +"\n 2");
-            for (Location location : location1) {
-                //                 DISPLAY column divider
-                System.out.println("|\t \t \t|\t \t \t|\t \t \t|\t \t \t|");
-                // IF location has been visited
-                System.out.println(location);
-                if(location.isVisited()) {
-                    Scene scene = new Scene();
-                    scene.getMapSymbol();
-                }
-                else {
-                    System.out.println("??");
-                }
+        for(int i = 0; i < locations.length; i++){
+//             DISPLAY row divider
+                System.out.println(" ------------------------------"
+                                +"\n 2");
+            for(int j = 0; j<locations[i].length; j++){
+                Location location = locations[i][j];
+//                 DISPLAY column divider
+                    System.out.println("|\t \t |\t \t |\t \t |\t \t |");
+                    // IF location has been visited
+//                   System.out.println(location);
+                   if(location.isVisited()) {
+                       Scene scene = new Scene();
+                       scene.getMapSymbol();
+                    }
+                    else {
+                        System.out.println("??");
+                    }
             }
+      
         }
         // DISPLAY ending row divider  
         System.out.println(" ------------------------------");
     }
+
+//    private void displayMapMenu() {
+// 
+//        //get the map locations from the current game
+//        Map map = new Map();
+//       Location[][] locations = map.getLocations();
+//        //DISPLAY title
+//        System.out.println("Tree of Life Map");
+//        //DISPLAY row of column numbers
+//        System.out.println("\n    0   |   1   |   2   |   3   |");
+//
+//        for (Location[] location1 : locations) {
+//            //             DISPLAY row divider
+//            System.out.println(" ------------------------------"
+//                    +"\n 2");
+//            for (Location location : location1) {
+//                //                 DISPLAY column divider
+//                System.out.println("|\t \t \t|\t \t \t|\t \t \t|\t \t \t|");
+//                // IF location has been visited
+//                System.out.println(location);
+//                if(location.isVisited()) {
+//                    Scene scene = new Scene();
+//                    scene.getMapSymbol();
+//                }
+//                else {
+//                    System.out.println("??");
+//                }
+//            }
+//        }
+//        // DISPLAY ending row divider  
+//        System.out.println(" ------------------------------");
+//    }
 
     private void viewProgressMeter() {
       ProgressMeterView progressMeter = new ProgressMeterView();

@@ -215,12 +215,13 @@ public class MapControl {
     }
 
     static void moveCharactersToStartingLocation(Map map) {
-              System.out.println("*** called moveCharactersToStartingLocation() ****");
+        System.out.println("*** called moveCharactersToStartingLocation() ****");
 
     }
 
     public static ImageIcon getImage(Scene startingScene, String citbyuicitC260curiousworkmanshipimagessta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         System.out.println("*** called getImage() function ****");
+         return null;
     }
     
 }
