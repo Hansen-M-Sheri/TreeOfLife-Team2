@@ -13,11 +13,18 @@ import java.io.Serializable;
  */
 public enum GameInventoryItems implements Serializable{
     //define list of items in class
+//define list of items in class
+//define list of items in class
+//define list of items in class
+//define list of items in class
+//define list of items in class
+//define list of items in class
+//define list of items in class
     Helmet("Helmet of Salvation", 5,3, 10),
-    Shield("Shield of Faith", 10, 5, 5),
-    Belt("Belt of Truth", 4, 8, 4),
+    ProtectiveShield("Protective Shield of Faith", 10, 5, 5),
+    TruthBelt("Belt of Truth", 4, 8, 4),
     FootCovering("Feet shod with Peace", 3, 3, 6),
-    TruthSword("Sword of Truth", 8, 8, 8),
+    Sword("Sword of Truth", 8, 8, 8),
     BreastPlate("BreastPlate of Righteousness", 10, 2, 8), 
     ;
     

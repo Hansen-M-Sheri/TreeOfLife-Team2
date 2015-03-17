@@ -11,8 +11,6 @@ import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.control.MapControl.SceneType;
 import byui.cit260.treeOfLife.model.Players;
-import byui.cit260.treeOfLife.model.ProgressMeter;
-import byui.cit260.treeOfLife.model.Questions;
 import byui.cit260.treeOfLife.model.Scene;
 import java.util.ArrayList;
 import treeoflife.TreeOfLife;
@@ -72,10 +70,10 @@ public class GameControl {
         ArrayList<GameInventoryItems> forSaleList = game.getForSale();
         //add each armor piece to the forSaleList
         forSaleList.add(GameInventoryItems.Helmet);
-        forSaleList.add(GameInventoryItems.Shield);
-        forSaleList.add(GameInventoryItems.Belt);
+        forSaleList.add(GameInventoryItems.ProtectiveShield);
+        forSaleList.add(GameInventoryItems.TruthBelt);
         forSaleList.add(GameInventoryItems.FootCovering);
-        forSaleList.add(GameInventoryItems.TruthSword);
+        forSaleList.add(GameInventoryItems.Sword);
         forSaleList.add(GameInventoryItems.BreastPlate);
         //Below is how we will remove item from list - 
 //        forSaleList.remove(GameInventoryItems.helmet);
@@ -83,91 +81,61 @@ public class GameControl {
         return forSaleList ;
         
     }
-public enum QuestionType {
-    temple,
-    mantle,
-    levelQuestions;
+    
+    public static   ArrayList<GameInventoryItems> getSortedPurchasedItems(){
+       
+        ArrayList<GameInventoryItems> originalPurchasedItemsList = new ArrayList<>();
+        
+        //get list of items purchased for current game
+         originalPurchasedItemsList = TreeOfLife.getCurrentGame().getPurchasedItems();
+        if(originalPurchasedItemsList.size() <= 1 ) { //if only 1 item in list return list
+            return originalPurchasedItemsList;
+        }
+        else { //if more than one item in arrayList, sort alphabetically
+         ArrayList<GameInventoryItems> purchasedItemsList = new ArrayList<>();
+        // make a copy (clone) original
+        purchasedItemsList = (ArrayList<GameInventoryItems>) originalPurchasedItemsList.clone();
+        //use bubble sort to sort list of purchaseItems by name
+        GameInventoryItems tempGameInventoryItem;
+        //loop over every item in the list
+        for (int i = 0; i < purchasedItemsList.size()-1; i++){
+//        int i = 0;
+//        for( GameInventoryItems value : purchasedItemsList ){
+//            i++;
+            // for each item in list, compare to other list
+            for (int j = 0; j < purchasedItemsList.size()-1-i; j++){
+           int k = j+ 1;
+//            for( GameInventoryItems index : purchasedItemsList ){
+
+                if (purchasedItemsList.get(j).compareTo(purchasedItemsList.get(k)) > 0) {
+                    
+                    tempGameInventoryItem = purchasedItemsList.get(j);
+                    purchasedItemsList.set(j,purchasedItemsList.get(k));
+                    purchasedItemsList.set(k, tempGameInventoryItem);
+                }
+            }
+    }
+        return purchasedItemsList;
+
+    }
 }
-    public static  Questions[][] createQuestionArray() {
-         Game game = TreeOfLife.getCurrentGame(); 
-        // Create array of questions
-        Questions[][] questions = new Questions[QuestionType.values().length][20];
-      ///////////////////////////Temple Questions/////////////////////////////// 
-    //create array of Question objects (type)
-        Questions templeQuestion1 = new Questions();
-        templeQuestion1.setQuestionNumber(1);
-        templeQuestion1.setQuestionType(QuestionType.temple.ordinal());
-        templeQuestion1.setQuestion("How many days out of the last seven days did you read the book of Mormon?");
-        questions[QuestionType.temple.ordinal()][1] = templeQuestion1;
-        
-        Questions templeQuestion2 = new Questions();
-        templeQuestion2.setQuestionNumber(2);
-        templeQuestion2.setQuestionType(QuestionType.temple.ordinal());
-        templeQuestion2.setQuestion("How many days out of the last seven days did you have your personal prayers?");
-        questions[QuestionType.temple.ordinal()][2] = templeQuestion2;
-        
-        Questions templeQuestion3 = new Questions();
-        templeQuestion3.setQuestionNumber(3);
-        templeQuestion3.setQuestionType(QuestionType.temple.ordinal());
-        templeQuestion3.setQuestion("How many days out of the last seven days did you exercise?");
-        questions[QuestionType.temple.ordinal()][3] = templeQuestion3;
-        
-        Questions templeQuestion4 = new Questions();
-        templeQuestion4.setQuestionNumber(4);
-        templeQuestion4.setQuestionType(QuestionType.temple.ordinal());
-        templeQuestion4.setQuestion("How many days out of the last seven days did you wake up early?");
-        questions[QuestionType.temple.ordinal()][4] = templeQuestion4;
-        
-        Questions templeQuestion5 = new Questions();
-        templeQuestion5.setQuestionNumber(5);
-        templeQuestion5.setQuestionType(QuestionType.temple.ordinal());
-        templeQuestion5.setQuestion("How many days out of the last seven days did you build your marriage (or relationship with someone important to you)?");
-        questions[QuestionType.temple.ordinal()][5] = templeQuestion5;
-    ////////////////////////Mantle Questions /////////////////////////////////////////    
-        //set mantleQuestions in array
-        Questions mantleQuestion1 = new Questions();
-        mantleQuestion1.setQuestionNumber(1);
-        mantleQuestion1.setQuestionType(QuestionType.mantle.ordinal());
-        mantleQuestion1.setQuestion("How many days out of the last seven days did you serve a family member?");
-        questions[QuestionType.mantle.ordinal()][1] = mantleQuestion1;
-        
-          Questions mantleQuestion2 = new Questions();
-        mantleQuestion2.setQuestionNumber(2);
-        mantleQuestion2.setQuestionType(QuestionType.mantle.ordinal());
-        mantleQuestion2.setQuestion("How many days out of the last seven days did you attend the temple?");
-        questions[QuestionType.mantle.ordinal()][2] = mantleQuestion2;
-                
-          Questions mantleQuestion3 = new Questions();
-        mantleQuestion3.setQuestionNumber(3);
-        mantleQuestion3.setQuestionType(QuestionType.mantle.ordinal());
-        mantleQuestion3.setQuestion("How many days out of the last seven days did you help a stranger?");
-        questions[QuestionType.mantle.ordinal()][3] = mantleQuestion3;
-    ///////////////////////Level Questions //////////////////////////////
-        Questions levelQuestion1 = new Questions();
-        levelQuestion1.setQuestionNumber(1);
-        levelQuestion1.setQuestionType(QuestionType.levelQuestions.ordinal());
-        levelQuestion1.setQuestion("How many books are in the Book of Mormon?");
-        questions[QuestionType.levelQuestions.ordinal()][1] = levelQuestion1;
-        
-         Questions levelQuestion2 = new Questions();
-        levelQuestion2.setQuestionNumber(2);
-        levelQuestion2.setQuestionType(QuestionType.levelQuestions.ordinal());
-        levelQuestion2.setQuestion("How many men comprise the First Presidency and Quorum of Twelve?");
-        questions[QuestionType.levelQuestions.ordinal()][2] = levelQuestion2;
-        
-         Questions levelQuestion3 = new Questions();
-        levelQuestion3.setQuestionNumber(3);
-        levelQuestion3.setQuestionType(QuestionType.levelQuestions.ordinal());
-        levelQuestion3.setQuestion("How many Presidents have led the church since the restoration?");
-        questions[QuestionType.levelQuestions.ordinal()][3] = levelQuestion3;
-        
-         Questions levelQuestion4 = new Questions();
-        levelQuestion4.setQuestionNumber(4);
-        levelQuestion4.setQuestionType(QuestionType.levelQuestions.ordinal());
-        levelQuestion4.setQuestion("In what chapter of the Doctrine and Covenants is the \"Word of Wisdom\" found?");
-        questions[QuestionType.levelQuestions.ordinal()][4] = levelQuestion4;
-    //return questions array
-        return questions;
+    public static void displayCharacterInventory() {
+        ArrayList<GameInventoryItems> purchasedItemsList = new ArrayList<>();
+         purchasedItemsList = TreeOfLife.getCurrentGame().getPurchasedItems();
+         
+         for(GameInventoryItems armor: purchasedItemsList) {
+             String armorPiece = armor.getArmorPiece();
+             String armorDescr = armor.getItemDescription();
+             int armorFaithPoints = armor.getFaithPoints();
+             int armorObedPoints = armor.getObedPoints();
+             int armorKnowPoints = armor.getKnowPoints();
+             System.out.println( armorPiece + "-" + armorDescr);
+             System.out.println("Faith pts = " + armorFaithPoints);
+             System.out.println("Obedience pts = " + armorObedPoints); 
+             System.out.println("Knowledge pts =" + armorKnowPoints);
+         
+         }
+         
     }
 }
 

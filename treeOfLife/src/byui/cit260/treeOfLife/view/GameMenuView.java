@@ -5,6 +5,7 @@
  */
 package byui.cit260.treeOfLife.view;
 
+import byui.cit260.treeOfLife.control.GameControl;
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
@@ -172,8 +173,10 @@ class GameMenuView extends View {
     }
 
     private void viewCharacterInventory() {
-       System.out.println("*** viewInventory stub function called ***");
+//       System.out.println("*** viewInventory stub function called ***");
        //get Character inventory from purchaseList
+       GameControl gameControl = new GameControl();
+       gameControl.displayCharacterInventory();
 
     }
 

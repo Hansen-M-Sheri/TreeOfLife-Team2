@@ -64,10 +64,10 @@ public class ArmorShopMenuView extends View{
             case 'H':// get Helmet
                 this.getHelmet();
                 break;
-            case 'D': // get the Shield
+            case 'P': // get the ProtectiveShield
                 this.getShield();
                 break;
-            case 'T': // get Belt
+            case 'T': // get TruthBelt
                 this.getBelt();
                 break;
             case 'F': // get Foot Covering
@@ -93,32 +93,60 @@ public class ArmorShopMenuView extends View{
     }
 
     private void getHelmet() {
-        System.out.println("getHelmet function called");
+//        System.out.println("getHelmet function called");
         //once selected either by purchase/earned 
         //remove from forSaleList arrayList
-         //Below is how we will remove item from list - 
-//        forSaleList.remove(GameInventoryItems.helmet);
-        //add to characterInventoryList - do we need a function called createCharacterInventory?  Or just addto CharacterInventory? 
+        Game game = TreeOfLife.getCurrentGame();
+        game.getForSale().remove(GameInventoryItems.Helmet);
+        //add to purchased list
+        game.getPurchasedItems().add(GameInventoryItems.Helmet);
+        System.out.println("Your helmet has been added to your inventory");
+         ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+        armorMenu.display();
+        
     }
 
     private void getShield() {
         System.out.println("getShield function called");
+        Game game = TreeOfLife.getCurrentGame();
+        game.getForSale().remove(GameInventoryItems.ProtectiveShield);
+        //add to purchased list
+        game.getPurchasedItems().add(GameInventoryItems.ProtectiveShield);
+        System.out.println("Your Shield has been added to your inventory");
+         ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+        armorMenu.display();
     }
 
     private void getBelt() {
         System.out.println("getBelt function called");
+        Game game = TreeOfLife.getCurrentGame();
+        game.getForSale().remove(GameInventoryItems.TruthBelt);
+        //add to purchased list
+        game.getPurchasedItems().add(GameInventoryItems.TruthBelt);
     }
 
     private void getFootCovering() {
         System.out.println("getFootCovering function called");
+        Game game = TreeOfLife.getCurrentGame();
+        game.getForSale().remove(GameInventoryItems.FootCovering);
+        //add to purchased list
+        game.getPurchasedItems().add(GameInventoryItems.FootCovering);
     }
 
     private void getSword() {
         System.out.println("getSword function called");
+        Game game = TreeOfLife.getCurrentGame();
+        game.getForSale().remove(GameInventoryItems.Sword);
+        //add to purchased list
+        game.getPurchasedItems().add(GameInventoryItems.Sword);
     }
 
     private void getBreastplate() {
         System.out.println("getBreastplate function called");
+        Game game = TreeOfLife.getCurrentGame();
+        game.getForSale().remove(GameInventoryItems.BreastPlate);
+        //add to purchased list
+        game.getPurchasedItems().add(GameInventoryItems.BreastPlate);
     }
 
     private void goToGameMenu() {
