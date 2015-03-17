@@ -29,20 +29,24 @@ public class ArmorShopMenuView extends View{
         //get the list of forsale items from the game
         Game game = TreeOfLife.getCurrentGame();
         ArrayList<GameInventoryItems> forSale = game.getForSale();
-        //for each item in list
-        for (GameInventoryItems item : forSale) {
-            //get first letter of item name
-            char armorPiece = item.name().charAt(0);
-            //print first letter and description of item
-            String armorDescription = item.getItemDescription();
-            System.out.println("\n" + armorPiece + " - " + armorDescription);
+        if(forSale.size() < 1) {
+            System.out.println("There are no more items available in the Armor Shop");
         }
-            
-        System.out.println(
-            "\nG - Game Menu"
-            +"\nQ - Return to Main Menu"
-            +"\n========================================");
-            
+        else {
+            //for each item in list
+            for (GameInventoryItems item : forSale) {
+                //get first letter of item name
+                char armorPiece = item.name().charAt(0);
+                //print first letter and description of item
+                String armorDescription = item.getItemDescription();
+                System.out.println("\n" + armorPiece + " - " + armorDescription);
+            }
+
+            System.out.println(
+                "\nG - Game Menu"
+                +"\nQ - Return to Main Menu"
+                +"\n========================================");
+        } 
     }
 
 
@@ -107,7 +111,7 @@ public class ArmorShopMenuView extends View{
     }
 
     private void getShield() {
-        System.out.println("getShield function called");
+//        System.out.println("getShield function called");
         Game game = TreeOfLife.getCurrentGame();
         game.getForSale().remove(GameInventoryItems.ProtectiveShield);
         //add to purchased list
@@ -118,35 +122,47 @@ public class ArmorShopMenuView extends View{
     }
 
     private void getBelt() {
-        System.out.println("getBelt function called");
+//        System.out.println("getBelt function called");
         Game game = TreeOfLife.getCurrentGame();
         game.getForSale().remove(GameInventoryItems.TruthBelt);
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.TruthBelt);
+         System.out.println("Your Belt has been added to your inventory");
+         ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+        armorMenu.display();
     }
 
     private void getFootCovering() {
-        System.out.println("getFootCovering function called");
+//        System.out.println("getFootCovering function called");
         Game game = TreeOfLife.getCurrentGame();
         game.getForSale().remove(GameInventoryItems.FootCovering);
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.FootCovering);
+         System.out.println("Your Foot Covering has been added to your inventory");
+         ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+        armorMenu.display();
     }
 
     private void getSword() {
-        System.out.println("getSword function called");
+//        System.out.println("getSword function called");
         Game game = TreeOfLife.getCurrentGame();
         game.getForSale().remove(GameInventoryItems.Sword);
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.Sword);
+          System.out.println("Your Sword has been added to your inventory");
+         ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+        armorMenu.display();
     }
 
     private void getBreastplate() {
-        System.out.println("getBreastplate function called");
+//        System.out.println("getBreastplate function called");
         Game game = TreeOfLife.getCurrentGame();
         game.getForSale().remove(GameInventoryItems.BreastPlate);
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.BreastPlate);
+         System.out.println("Your BreastPlate has been added to your inventory");
+         ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+        armorMenu.display();
     }
 
     private void goToGameMenu() {

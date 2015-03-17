@@ -99,19 +99,17 @@ public class GameControl {
         GameInventoryItems tempGameInventoryItem;
         //loop over every item in the list
         for (int i = 0; i < purchasedItemsList.size()-1; i++){
-//        int i = 0;
-//        for( GameInventoryItems value : purchasedItemsList ){
-//            i++;
-            // for each item in list, compare to other list
+            
             for (int j = 0; j < purchasedItemsList.size()-1-i; j++){
            int k = j+ 1;
 //            for( GameInventoryItems index : purchasedItemsList ){
 
                 if (purchasedItemsList.get(j).compareTo(purchasedItemsList.get(k)) > 0) {
-                    
+            
                     tempGameInventoryItem = purchasedItemsList.get(j);
                     purchasedItemsList.set(j,purchasedItemsList.get(k));
                     purchasedItemsList.set(k, tempGameInventoryItem);
+                   
                 }
             }
     }
@@ -121,23 +119,56 @@ public class GameControl {
 }
     public static void displayCharacterInventory() {
         ArrayList<GameInventoryItems> purchasedItemsList = new ArrayList<>();
-         purchasedItemsList = TreeOfLife.getCurrentGame().getPurchasedItems();
-         
-         for(GameInventoryItems armor: purchasedItemsList) {
-             String armorPiece = armor.getArmorPiece();
-             String armorDescr = armor.getItemDescription();
-             int armorFaithPoints = armor.getFaithPoints();
-             int armorObedPoints = armor.getObedPoints();
-             int armorKnowPoints = armor.getKnowPoints();
-             System.out.println( armorPiece + "-" + armorDescr);
-             System.out.println("Faith pts = " + armorFaithPoints);
-             System.out.println("Obedience pts = " + armorObedPoints); 
-             System.out.println("Knowledge pts =" + armorKnowPoints);
+//         purchasedItemsList = GameControl.getSortedPurchasedItems();
+         purchasedItemsList = GameControl.getCharacterInventoryByHighestStats();
+         if(purchasedItemsList.size() < 1){
+             System.out.println("You have not earned any Armor Pieces yet");
+         }
+         else {
+            for(GameInventoryItems armor: purchasedItemsList) {
+                String armorPiece = armor.name();
+                String armorDescr = armor.getItemDescription();
+                int armorFaithPoints = armor.getFaithPoints();
+                int armorObedPoints = armor.getObedPoints();
+                int armorKnowPoints = armor.getKnowPoints();
+                System.out.println("Armor Piece - " + armorPiece + "  or  " + armorDescr);
+                System.out.println("\tFaith pts = " + armorFaithPoints);
+                System.out.println("\tObedience pts = " + armorObedPoints); 
+                System.out.println("\tKnowledge pts =" + armorKnowPoints);
+            }
          
          }
          
     }
-}
+    
+    public static ArrayList<GameInventoryItems> getCharacterInventoryByHighestStats() {
+        //return items in CharacterInventory sorted by highest Faith points
+        ArrayList<GameInventoryItems> originalPurchasedItemsList = new ArrayList<>();
+        
+        //get list of items purchased for current game
+         originalPurchasedItemsList = TreeOfLife.getCurrentGame().getPurchasedItems();
+        if(originalPurchasedItemsList.size() <= 1 ) { //if only 1 item in list return list
+            return originalPurchasedItemsList;
+        }
+        else { //if more than one item in arrayList, sort by lowest Faith points
+         ArrayList<GameInventoryItems> purchasedItemsList = new ArrayList<>();
+        // make a copy (clone) original
+        purchasedItemsList = (ArrayList<GameInventoryItems>) originalPurchasedItemsList.clone();
+        GameInventoryItems tempGameInventoryItem; //set temp variable for switching purposes
+        for(int i = 0; i <purchasedItemsList.size() -1; i++) {
+            int index = i;
+            for (int j = i + 1; j < purchasedItemsList.size(); j++){
+                if(purchasedItemsList.get(j).getFaithPoints() < purchasedItemsList.get(index).getFaithPoints()){
+                    index = j;
+                }
+                tempGameInventoryItem = purchasedItemsList.get(j);
+                purchasedItemsList.set(j,purchasedItemsList.get(index));
+                purchasedItemsList.set(index, tempGameInventoryItem);
+            }
+        }
+        return purchasedItemsList;
+    }
+}}
 
 
 
