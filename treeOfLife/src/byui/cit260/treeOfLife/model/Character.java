@@ -20,6 +20,7 @@ public enum Character implements Serializable{
     
     private final String description;
     private final Point coordinates;
+
     private final String origStatLevels;
     private Game gameID;
     private Location location;
@@ -52,6 +53,10 @@ public enum Character implements Serializable{
     
     public String getOrigStatLevels() {
        return origStatLevels;
+    }
+    
+    public Point getCoordinates() {
+        return coordinates;
     }
 
     @Override

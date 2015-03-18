@@ -39,10 +39,10 @@ public class MapView extends View{
         value = value.toUpperCase(); //convert to all upper case
         char choice = value.charAt(0); //get first character entered
         switch (choice){
-            case 'T':// create and start a new game
+            case 'T':// go to temple
                 this.goToTempleMenu();
                 break;
-            case 'M': // get and start an existing game
+            case 'M': // go to the mantle
                 this.goToMantleMenu();
                 break;
             case 'A': // to to Armor Shop Menu

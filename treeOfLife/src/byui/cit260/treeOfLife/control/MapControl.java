@@ -221,7 +221,21 @@ public class MapControl {
     
     }
 
-    static int moveCharactersToStartingLocation(Character character, Point coordinates) {
+    public static void moveCharactersToStartingLocation(Map map) {
+//            throw MapControlException { 
+        System.out.println("*** called moveCharactersToStartingLocation() ****");
+     
+//       Character[] characters = TreeOfLife.getCurrentGame().getCharacter();
+//       Point point = new Point();
+//        
+//       for (Character character: characters) {
+//           Point coordinates = character.getCoordinates();
+//           void returnValue = MapControl.moveCharactersToLocation(character, coordinates);
+//           
+//       }
+       
+    }
+        static void moveCharactersToLocation(Character character, Point coordinates) throws MapControlException { 
 //        System.out.println("*** called moveCharactersToStartingLocation() ****");
         Map map = TreeOfLife.getCurrentGame().getMap();
         int newRow = coordinates.x-1;
@@ -234,7 +248,7 @@ public class MapControl {
                                             + " because that location is outside "
                                             + " the bounds of the map.");
         }
-        return 0;
+        
     }
 
     public static ImageIcon getImage(Scene startingScene, String citbyuicitC260curiousworkmanshipimagessta) {

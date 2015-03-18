@@ -21,6 +21,7 @@ public class Game implements Serializable {
     private Map map;
     private ArrayList<GameInventoryItems> forSale = new ArrayList<>();
     private ArrayList<GameInventoryItems> purchasedItems = new ArrayList<>();
+    private Character[] character;
 
     public Players getPlayer() {
         return player;
@@ -53,7 +54,6 @@ public class Game implements Serializable {
     public void setCharacter(Character[] character) {
         this.character = character;
     }
-    private Character[] character;
 
     public ArrayList<GameInventoryItems> getForSale() {
         return forSale;
