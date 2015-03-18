@@ -72,6 +72,7 @@ class GameMenuView extends View {
  
         //get the map locations from the current game
       Location[][]locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+     
 //      Game game = TreeOfLife.getCurrentGame();
 //      Map map = game.getMap();
 // 
