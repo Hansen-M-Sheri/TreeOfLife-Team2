@@ -82,6 +82,21 @@ public class GameControl {
         
     }
     
+//    public static ArrayList<Game> createGameID() {
+//        // get current player
+//        Game game = TreeOfLife.getCurrentGame();
+//        Players player = TreeOfLife.getCurrentGame().getPlayer();
+//        //get current id(? how do I get last id?)
+//       int id = game.getId();
+//       id ++;
+//        //save id to current game
+//        game.setId(id);
+//        //save game to playerID so it will be pulled on open existing game
+//        player.setGameID(id);
+//        
+//        
+//    }
+    
     public static   ArrayList<GameInventoryItems> getSortedPurchasedItems(){
        
         ArrayList<GameInventoryItems> originalPurchasedItemsList = new ArrayList<>();
