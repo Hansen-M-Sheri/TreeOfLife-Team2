@@ -6,6 +6,7 @@
 package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.control.QuestionControl;
+import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
 import java.util.Scanner;
 
 /**
@@ -38,8 +39,8 @@ public class TempleMenuView extends View{
             //case 'R':// Rest at Temple and restore Faith Meter
             //  this.restAtTemple();
             //  break;
-            case 'A': // get and start an existing game
-                this.answerTempleQuestions();
+            case 'A': // get and start an existing game//              
+                this.answerTempleQuestions();            
                 break;
             case 'M': // to to Armor Shop Menu
                 this.displayMapView();
@@ -65,9 +66,14 @@ public class TempleMenuView extends View{
     //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     //}
 
-    private void answerTempleQuestions() {
+    private void answerTempleQuestions()  {
     QuestionControl templeQuestion = new QuestionControl();
-    templeQuestion.getTempleQuestions();  
+    try {
+        templeQuestion.getTempleQuestions();  
+        } 
+        catch (QuestionControlException qe) {
+            System.out.println(qe.getMessage());
+        }
     }
 
     private void displayMapView() {

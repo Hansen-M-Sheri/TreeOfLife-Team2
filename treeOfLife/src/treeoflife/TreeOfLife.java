@@ -6,13 +6,7 @@
 package treeoflife;
 
 import byui.cit260.treeOfLife.model.Game;
-import byui.cit260.treeOfLife.model.GameInventoryItems;
-import byui.cit260.treeOfLife.model.Location;
-import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.Players;
-import byui.cit260.treeOfLife.model.Questions;
-import byui.cit260.treeOfLife.model.Scene;
-import byui.cit260.treeOfLife.model.Character;
 import byui.cit260.treeOfLife.view.StartProgramView;
 
 
@@ -21,7 +15,7 @@ import byui.cit260.treeOfLife.view.StartProgramView;
  * @author Chuck
  */
 public class TreeOfLife {
-    private static Object questionOne;
+    private static Object questionOne; //why is this here? 
 
     private static Game currentGame = null;
     private static Players player = null;
@@ -42,20 +36,27 @@ public class TreeOfLife {
         TreeOfLife.player = player;
     }
     
+//    public static void setPlayers(Players player) { //duplicate
+//       TreeOfLife.player = player;
+//    }
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
        StartProgramView startProgramView = new StartProgramView();
+       try {
        startProgramView.startProgram();
-        
+       }
+       catch (Throwable te) {
+           System.out.println(te.getMessage());
+           te.printStackTrace();
+           startProgramView.displayBanner();
+       }
         
     }
 
-    public static void setPlayers(Players player) {
-       TreeOfLife.player = player;
-    }
+    
 }
     
     

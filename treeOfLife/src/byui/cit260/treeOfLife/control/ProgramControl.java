@@ -25,7 +25,7 @@ public class ProgramControl {
        Players player = new Players();
        player.setName(name);
        
-       TreeOfLife.setPlayers(player);
+       TreeOfLife.setPlayer(player);
        
        return player;
     }

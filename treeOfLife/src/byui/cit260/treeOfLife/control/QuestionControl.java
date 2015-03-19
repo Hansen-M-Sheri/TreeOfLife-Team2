@@ -8,6 +8,7 @@ package byui.cit260.treeOfLife.control;
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Questions;
+import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
 import java.util.Random;
 import java.util.Scanner;
 import treeoflife.TreeOfLife;
@@ -39,10 +40,11 @@ public class QuestionControl {
      * User must answer set of 3 questions correctly to earn a bonus.  
      * 
      */
-    public int calLevelQuestionPoints(int answeredCorrect, int totalQuestionsAsked) {
+    public int calLevelQuestionPoints(int answeredCorrect, int totalQuestionsAsked)   {//throws QuestionControlException
         //if to few questions or too many are asked, return error
         if (totalQuestionsAsked < 3 || totalQuestionsAsked > 9){
             return -1;
+//            throw new QuestionControlException("You must answer 3 questions, but no more than 9 questions");
         }   
 	//if questions asked is within range, determine bonus points earned
         else {
@@ -78,7 +80,7 @@ public class QuestionControl {
      *  if highest range in both categories is achieved , larger bonus occurs
      * Range options are 1,2,3 with 3 being highest
      */
-   public int calTemplePoints(int actionRange, int qualityRange) {
+   public int calTemplePoints(int actionRange, int qualityRange)throws QuestionControlException {
         
        //determine actionRange and set actionPoints
        if(actionRange == 1) {
@@ -92,11 +94,12 @@ public class QuestionControl {
             actionPoints = 2;
         }
         else {
-            return -1;
+//            return -1;
+            throw new QuestionControlException("Invalid Selection. You must select 1, 2, or 3, to continue");
         }
         //verify qualityRange is valid & set qualityPoints
         if(qualityRange <1 || qualityRange >3) {
-            return -1;
+           throw new QuestionControlException("Invalid Selection. You must select 1, 2, or 3, to continue");
         }
         else {
         //points will be 1, 2, or 3 ; same integer as qualityRange
@@ -134,11 +137,11 @@ public class QuestionControl {
      * The mantle will be used to regain faith points lost during the game.
      */
    
-    public int calMantlePoints(int answerAverage, int mantleQuestionsAsked) {
+    public int calMantlePoints(int answerAverage, int mantleQuestionsAsked) throws QuestionControlException {
         //if too few questions or too many are asked, return error
         if(mantleQuestionsAsked <= 0 || mantleQuestionsAsked> 3){
-            return -1;
-            
+//            return -1;
+             throw new QuestionControlException("Invalid number of Questions answered. Must be between 0  & 3");
         
         
         //Each question is service based. 
@@ -149,7 +152,8 @@ public class QuestionControl {
         }else{
         //If you answer less than zero, return error
             if(answerAverage <0){
-                return -1;
+//                return -1;
+                throw new QuestionControlException("Invalid average number of questions answered");
         }
         // bonus structure for the correct expexted response from user if answered between 0 and 2 is zero bonus point
             else if(answerAverage < 3){
@@ -172,7 +176,8 @@ public class QuestionControl {
         }
         // return error if the user answers more than 7.
             else if(answerAverage > 7){
-                return -1;
+//                return -1;
+                throw new QuestionControlException("Invalid answer. Must be less than 7");
         }
                 
             
@@ -187,7 +192,7 @@ public class QuestionControl {
     
     }   
 
-    public void getTempleQuestions(){
+    public void getTempleQuestions() throws QuestionControlException {
         //check isBlocked - determine how we determine block and not blocked to answer questions
         //Location location = new Location();
         //boolean isBlocked = location.isBlocked();
@@ -217,7 +222,7 @@ public class QuestionControl {
         //        this.doActionTempleBonus(bonusAnswer); // working on calling point functions.
                 boolean bonusValid = this.doActionBonusQuestions(bonusAnswer);
         //        generate response by calling calTemplePoints function
-        //        int templePoints = this.calTemplePoints(actionRange, qualityRange);
+                int templePoints = this.calTemplePoints(actionRange, qualityRange);
                 
                 //return to game menue after finishing up temple questions
                 this.askReturnToGameMenu();
@@ -289,7 +294,7 @@ public class QuestionControl {
     }
     
     private boolean doActionTempleQuestions(int templeAnswer) {
-        //int answerInt = Integer.parseInt("templeAnswer");
+        
         if (templeAnswer < 0 || templeAnswer >7){
         System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
             return false;
@@ -344,7 +349,7 @@ public class QuestionControl {
     }
     
     private boolean doActionBonusQuestions(int bonusAnswer) {
-        //int answerInt = Integer.parseInt("templeAnswer");
+    
         if (bonusAnswer < 0 || bonusAnswer >7){
         System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
             return false;
@@ -442,7 +447,7 @@ public class QuestionControl {
             //get answer from user
 //            String mantleAnswer = this.getMantleInput();
             int answer = this.getMantleInput();
-//            int answer = Integer.parseInt(mantleAnswer); //change result from string to integer
+
             combinedMantleAnswer = answer; //this will gather the totals from each question asked, add them and use this to get average
 //  System.out.println("mantleAnswer generated " + mantleAnswer);
              //validate answer and provide response if invalid answer
