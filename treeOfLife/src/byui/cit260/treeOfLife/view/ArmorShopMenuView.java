@@ -122,7 +122,7 @@ public class ArmorShopMenuView extends View{
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.Helmet);
         System.out.println("Your helmet has been added to your inventory");
-         ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+        ArmorShopMenuView armorMenu = new ArmorShopMenuView();
         armorMenu.display();
         
     }

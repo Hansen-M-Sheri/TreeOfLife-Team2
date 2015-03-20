@@ -12,6 +12,8 @@ import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.control.MapControl.SceneType;
 import byui.cit260.treeOfLife.model.Players;
 import byui.cit260.treeOfLife.model.Scene;
+import byui.cit260.treeOfLife.view.ArmorShopMenuView;
+import citbyui.cit260.treeOfLife.exceptions.GameControlException;
 import java.util.ArrayList;
 import treeoflife.TreeOfLife;
 
@@ -114,12 +116,13 @@ public class GameControl {
         }
     }
 
-    public static void displayCharacterInventory() {
+    public static void displayCharacterInventory() throws GameControlException{
         ArrayList<GameInventoryItems> purchasedItemsList = new ArrayList<>();
 //         purchasedItemsList = GameControl.getSortedPurchasedItems();
         purchasedItemsList = GameControl.getCharacterInventoryByHighestStats();
         if (purchasedItemsList.size() < 1) {
-            System.out.println("You have not earned any Armor Pieces yet");
+            throw new GameControlException("You have not earned any Armor Pieces yet");
+           
         } else {
             for (GameInventoryItems armor : purchasedItemsList) {
                 String armorPiece = armor.name();
@@ -172,7 +175,10 @@ public class GameControl {
         for (int i = 0; i < inventoryItems.length; i++) { //sorting faithPoints
             System.out.println(inventoryItems[i].name()); //sorting name in GameInventoryItems enum
             System.out.println("Faith Points = " + inventoryItems[i].getFaithPoints() + "\n");  //Display both returned name with connected faithpoints.
+            
         }
+            ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+            armorMenu.display();
         return inventoryItems; 
     } 
 

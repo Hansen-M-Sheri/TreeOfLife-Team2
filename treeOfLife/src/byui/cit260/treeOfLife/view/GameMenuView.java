@@ -10,7 +10,10 @@ import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.Scene;
+import citbyui.cit260.treeOfLife.exceptions.GameControlException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import treeoflife.TreeOfLife;
 
 /**
@@ -47,8 +50,15 @@ class GameMenuView extends View {
             case 'P': // View Progress Meter
                 this.viewProgressMeter();
                 break;
-            case 'I': // View Character Inventory
+            case 'I': {
+            try {
+                // View Character Inventory
                 this.viewCharacterInventory();
+            } catch (GameControlException ex) {
+                //Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex); *** creates log for programmer on issues
+                System.out.println(ex.getMessage());
+            }
+        }
                 break;
             case 'C':// Go to the Map
                 this.displayCharacterMenu();
@@ -173,7 +183,7 @@ class GameMenuView extends View {
         characterMenu.display();
     }
 
-    private void viewCharacterInventory() {
+    private void viewCharacterInventory() throws GameControlException {
 //       System.out.println("*** viewInventory stub function called ***");
        //get Character inventory from purchaseList
        GameControl gameControl = new GameControl();
