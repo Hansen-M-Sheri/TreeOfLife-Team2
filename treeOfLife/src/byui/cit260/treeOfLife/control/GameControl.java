@@ -167,16 +167,17 @@ public class GameControl {
     }
     
     public static GameInventoryItems[] sortFaithPoints() {
+        //sorting faithPoints along with name
         GameInventoryItems[] inventoryItems = GameInventoryItems.values();
-        for (int i = 0; i < inventoryItems.length; i++) { 
-            System.out.println(inventoryItems[i].name());
-            System.out.println("Faith Points = " + inventoryItems[i].getFaithPoints() + "\n");  
+        for (int i = 0; i < inventoryItems.length; i++) { //sorting faithPoints
+            System.out.println(inventoryItems[i].name()); //sorting name in GameInventoryItems enum
+            System.out.println("Faith Points = " + inventoryItems[i].getFaithPoints() + "\n");  //Display both returned name with connected faithpoints.
         }
-        return inventoryItems;
+        return inventoryItems; 
     } 
 
     public void display() {
-        GameControl.sortFaithPoints();
+        GameControl.sortFaithPoints();//calling the sortFaithPoints() function
        
     }
     
