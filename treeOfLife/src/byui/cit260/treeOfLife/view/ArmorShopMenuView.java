@@ -52,7 +52,7 @@ public class ArmorShopMenuView extends View{
                 +"\n"
                 +"\nG - Game Menu"
                 +"\n"
-                +"\nQ - Return to Main Menut"
+                +"\nQ - Return to Main Menu"
                 +"\n========================================");
         } 
     }
