@@ -69,9 +69,9 @@ public class GameControl {
         forSaleList.add(GameInventoryItems.Helmet);
         forSaleList.add(GameInventoryItems.ProtectiveShield);
         forSaleList.add(GameInventoryItems.TruthBelt);
-        forSaleList.add(GameInventoryItems.FootCovering);
+        forSaleList.add(GameInventoryItems.Boots);
         forSaleList.add(GameInventoryItems.Sword);
-        forSaleList.add(GameInventoryItems.BreastPlate);
+        forSaleList.add(GameInventoryItems.IronBreastPlate);
         //Below is how we will remove item from list - 
 //        forSaleList.remove(GameInventoryItems.helmet);
 
@@ -166,10 +166,19 @@ public class GameControl {
 
     }
     
-//    public static GameInventoryItems[] sortArmorPoints(String[] args) {
-//        GameInventoryItems[] inventoryItems = GameInventoryItems.values();
-//        GameInventoryItems.Sword.getFaithPoints();
-//    } 
+    public static GameInventoryItems[] sortFaithPoints() {
+        GameInventoryItems[] inventoryItems = GameInventoryItems.values();
+        for (int i = 0; i < inventoryItems.length; i++) { 
+            System.out.println(inventoryItems[i].name());
+            System.out.println("Faith Points = " + inventoryItems[i].getFaithPoints() + "\n");  
+        }
+        return inventoryItems;
+    } 
+
+    public void display() {
+        GameControl.sortFaithPoints();
+       
+    }
     
     
     

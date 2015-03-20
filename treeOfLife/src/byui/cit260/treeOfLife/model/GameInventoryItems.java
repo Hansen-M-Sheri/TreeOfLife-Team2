@@ -23,11 +23,19 @@ public enum GameInventoryItems implements Serializable{
     Helmet("Helmet of Salvation", 5,3, 10),
     ProtectiveShield("Protective sheriShield of Faith", 10, 5, 5),
     TruthBelt("Belt of Truth", 4, 8, 4),
-    FootCovering("Feet shod with Peace", 3, 3, 6),
+    Boots("Feet shod with Peace", 3, 3, 6),
     Sword("Sword of Truth", 8, 8, 8),
-    BreastPlate("BreastPlate of Righteousness", 10, 2, 8), 
+    IronBreastPlate("IronBreastPlate of Righteousness", 10, 2, 8), 
     
     ;
+
+    public static int size() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static boolean get(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     //class instance variables
@@ -44,6 +52,8 @@ public enum GameInventoryItems implements Serializable{
         this.obedPoints = obedPoints;
         this.knowPoints = knowPoints;
     }
+    
+
     
 //
     //getter and setters

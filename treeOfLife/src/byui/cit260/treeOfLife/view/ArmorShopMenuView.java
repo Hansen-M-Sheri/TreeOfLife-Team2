@@ -5,6 +5,7 @@
  */
 package byui.cit260.treeOfLife.view;
 
+import byui.cit260.treeOfLife.control.GameControl;
 import byui.cit260.treeOfLife.control.ProgramControl;
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.GameInventoryItems;
@@ -43,8 +44,15 @@ public class ArmorShopMenuView extends View{
             }
 
             System.out.println(
-                "\nG - Game Menu"
-                +"\nQ - Return to Main Menu"
+                "\nF - Sort Faith Points"
+                +"\n"
+                +"\nO - Sort Obedience Points"
+                +"\n"
+                +"\nK - Sort Knowledge Points" 
+                +"\n"
+                +"\nG - Game Menu"
+                +"\n"
+                +"\nQ - Return to Main Menut"
                 +"\n========================================");
         } 
     }
@@ -74,14 +82,23 @@ public class ArmorShopMenuView extends View{
             case 'T': // get TruthBelt
                 this.getBelt();
                 break;
-            case 'F': // get Foot Covering
-                this.getFootCovering(); 
+            case 'B': // get Boots
+                this.getBoots(); 
                 break;
             case 'S': // get Sword
                 this.getSword();
                 break;
-            case 'B':  // get Breastplate
-                this.getBreastplate(); 
+            case 'I':  // get IronBreastplate
+                this.getIronBreastplate(); 
+                break;
+            case 'F':  // get FaithPoints
+                this.getSortFaithPoints(); 
+                break;
+            case 'O':  // get ObedientPoints
+                this.getSortObedPoints(); 
+                break;
+            case 'K':  // get KnowledgePoints
+                this.getSortKnowPoints(); 
                 break;
             case 'G':  // go to game menu
                 this.goToGameMenu(); 
@@ -132,13 +149,13 @@ public class ArmorShopMenuView extends View{
         armorMenu.display();
     }
 
-    private void getFootCovering() {
+    private void getBoots() {
 //        System.out.println("getFootCovering function called");
         Game game = TreeOfLife.getCurrentGame();
-        game.getForSale().remove(GameInventoryItems.FootCovering);
+        game.getForSale().remove(GameInventoryItems.Boots);
         //add to purchased list
-        game.getPurchasedItems().add(GameInventoryItems.FootCovering);
-         System.out.println("Your Foot Covering has been added to your inventory");
+        game.getPurchasedItems().add(GameInventoryItems.Boots);
+         System.out.println("Your Boots have been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
         armorMenu.display();
     }
@@ -154,13 +171,13 @@ public class ArmorShopMenuView extends View{
         armorMenu.display();
     }
 
-    private void getBreastplate() {
+    private void getIronBreastplate() {
 //        System.out.println("getBreastplate function called");
         Game game = TreeOfLife.getCurrentGame();
-        game.getForSale().remove(GameInventoryItems.BreastPlate);
+        game.getForSale().remove(GameInventoryItems.IronBreastPlate);
         //add to purchased list
-        game.getPurchasedItems().add(GameInventoryItems.BreastPlate);
-         System.out.println("Your BreastPlate has been added to your inventory");
+        game.getPurchasedItems().add(GameInventoryItems.IronBreastPlate);
+         System.out.println("Your Iron Breast Plate has been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
         armorMenu.display();
     }
@@ -171,8 +188,21 @@ public class ArmorShopMenuView extends View{
     }
 
     private void returnToMainMenu() {
-       MainMenuView mainMenu = new MainMenuView();
-       mainMenu.display();
+        MainMenuView mainMenu = new MainMenuView();
+        mainMenu.display();
+    }
+
+    private void getSortFaithPoints() {
+        GameControl sortFaith = new GameControl();
+        sortFaith.display();
+    }
+
+    private void getSortObedPoints() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void getSortKnowPoints() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 
