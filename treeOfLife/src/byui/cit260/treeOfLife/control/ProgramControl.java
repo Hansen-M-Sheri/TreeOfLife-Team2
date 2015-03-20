@@ -16,7 +16,7 @@ import treeoflife.TreeOfLife;
 public class ProgramControl {
 
     public static Players createPlayer(String name) {
-       System.out.println("\n**** createPlayer function called ****");
+//       System.out.println("\n**** createPlayer function called ****");
        
        if (name == null){
            return null;

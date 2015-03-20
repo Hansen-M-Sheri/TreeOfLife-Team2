@@ -5,8 +5,15 @@
  */
 package byui.cit260.treeOfLife.view;
 
+import byui.cit260.treeOfLife.control.GameControl;
+import byui.cit260.treeOfLife.model.GameInventoryItems;
 import byui.cit260.treeOfLife.model.ProgressMeter;
+import citbyui.cit260.treeOfLife.exceptions.GameControlException;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -50,7 +57,13 @@ public class ProgressMeterView extends View{
                 this.displayObedienceStats();
                 break;
             case 'E': // display armor items earned
+               
+            try {
                 this.displayArmorItemsEarned();
+            } catch (GameControlException ex) {
+//                Logger.getLogger(ProgressMeterView.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
+            }
                 break;
             case 'G': // display game menu
                 this.displayGameMenu();              
@@ -87,9 +100,10 @@ public class ProgressMeterView extends View{
         progressMeter.getObedienceStat();
     }
 
-    private void displayArmorItemsEarned() {
-         ProgressMeter progressMeter = new ProgressMeter();
-               progressMeter.getItemsEarned();
+    private void displayArmorItemsEarned()  throws GameControlException{
+//       ArrayList<GameInventoryItems> armorItemsEarned = TreeOfLife.getCurrentGame().getPurchasedItems();
+        GameControl gameControl = new GameControl();
+       gameControl.displayCharacterInventory();
     }
 
     private void displayGameMenu() {
