@@ -16,7 +16,7 @@ import byui.cit260.treeOfLife.view.StartProgramView;
  */
 public class TreeOfLife {
     private static Object questionOne; //why is this here? 
-
+    private static int lastGameId = 0;
     private static Game currentGame = null;
     private static Players player = null;
 
@@ -34,6 +34,14 @@ public class TreeOfLife {
 
     public static void setPlayer(Players player) {
         TreeOfLife.player = player;
+    }
+
+    public static int getLastGameId() {
+        return lastGameId;
+    }
+
+    public static void setLastGameId(int lastGameId) {
+        TreeOfLife.lastGameId = lastGameId;
     }
     
 //    public static void setPlayers(Players player) { //duplicate
