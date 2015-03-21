@@ -6,7 +6,7 @@
 package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.control.QuestionControl;
-import byui.cit260.treeOfLife.model.Questions;
+import byui.cit260.treeOfLife.model.QuestionArray;
 import java.util.Scanner;
 
 /**
@@ -36,7 +36,7 @@ public MantleMenuView(){
         char choice = value.charAt(0); //get first character entered
           switch (choice){
            
-            case 'A': // answer Mantle Questions
+            case 'A': // answer Mantle QuestionArray
                 this.answerMantleQuestions();
                 break;
             case 'M': // display Map view
@@ -98,7 +98,7 @@ public MantleMenuView(){
                 anotherQuestion.getAnotherMantleQuestion();
                 break;
             case "M":
-                Questions question = new Questions();
+                QuestionArray question = new QuestionArray();
                 question.resetMantleQuestionsAsked();
                 this.display();
                 break;

@@ -5,13 +5,11 @@
  */
 package byui.cit260.treeOfLife.control;
 
-import byui.cit260.treeOfLife.model.Game;
-import byui.cit260.treeOfLife.model.Location;
-import byui.cit260.treeOfLife.model.Questions;
+import byui.cit260.treeOfLife.model.QuestionArray;
+import byui.cit260.treeOfLife.view.TempleMenuView;
 import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
 import java.util.Random;
 import java.util.Scanner;
-import treeoflife.TreeOfLife;
 
 /**
  *
@@ -118,6 +116,7 @@ public class QuestionControl {
             bonus = 1;
         }
         templeQuestionPoints = (actionPoints + qualityPoints) * bonus;
+        System.out.println("Congratulations! You just earned "+ templeQuestionPoints + " points");
         return templeQuestionPoints;
     }
    
@@ -193,6 +192,7 @@ public class QuestionControl {
     }   
 
     public void getTempleQuestions() throws QuestionControlException {
+        
         //check isBlocked - determine how we determine block and not blocked to answer questions
         //Location location = new Location();
         //boolean isBlocked = location.isBlocked();
@@ -201,14 +201,17 @@ public class QuestionControl {
         //   System.out.println("Sorry, you need to answer more level questions before you can answer an additional Temple question.");
         //}
         //else {
-            //display random question
-            Random rand = new Random();
-                int range = 2 - 1 + 1;
-                int randomNum = rand.nextInt(range) + 1;
-                this.displayQuestion(randomNum);
-                
-                
-                //get answer from user
+            //get next question
+            QuestionArray question = new QuestionArray();
+            String nextQuestion = question.getNextQuestion(QuestionArray.QuestionType.temple);
+            if(nextQuestion.isEmpty() || nextQuestion == null) {
+                throw new QuestionControlException("Question is empty");
+            }
+            else {
+                System.out.println(nextQuestion);
+            }
+            
+            //get answer from user
                 int templeAnswer = this.getTempleInput();
 
                 //validate answer and provide response
@@ -221,7 +224,8 @@ public class QuestionControl {
                 int bonusAnswer = this.getTempleBonusInput();
                 
         //        this.doActionTempleBonus(bonusAnswer); // working on calling point functions.
-                boolean bonusValid = this.doActionBonusQuestions(bonusAnswer);
+//                boolean bonusValid = this.doActionBonusQuestions(bonusAnswer);
+                this.doActionBonusQuestions(bonusAnswer);
         //        generate response by calling calTemplePoints function
                 int templePoints = this.calTemplePoints(actionRange, qualityRange);
                 
@@ -233,13 +237,15 @@ public class QuestionControl {
                 boolean validReturn = this.doActionReturnToGame(returnGameMenu);
                 
         //        display string "You achieved XXX number of days with XXX effort and are rewarded with Call calTemplePoints"
-        //        System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
+                System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
 
         //        display prompt "Enter Q to retun to Temple Menu"
-        //        System.out.println("Enter Q to return to the Temple Menu");
-
-                //validate response for returning to Temple Menu
-                //String returnTempleMenu = this.displayTempleMenu();
+                System.out.println("Enter Q to return to the Temple Menu");
+                //return to temple menu
+                TempleMenuView templeMenu = new TempleMenuView();
+                templeMenu.display();
+//                //validate response for returning to Temple Menu
+//                String returnTempleMenu = this.displayTempleMenu();
     
     
     
@@ -349,11 +355,11 @@ public class QuestionControl {
 
     }
     
-    private boolean doActionBonusQuestions(int bonusAnswer) {
+    private void doActionBonusQuestions(int bonusAnswer) throws QuestionControlException{
     
         if (bonusAnswer < 0 || bonusAnswer >7){
-        System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
-            return false;
+       throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
+            
         }
         else{
             if (bonusAnswer == 1){
@@ -365,7 +371,7 @@ public class QuestionControl {
             if (bonusAnswer == 3){
                System.out.println("Outstanding effort! For this level of commitment you will be rewarded with many blessings");
             }
-            return true;
+            
         }
     }
 
@@ -455,7 +461,7 @@ public class QuestionControl {
             boolean valid = this.doActionMantleQuestions(answer); //either returns false for error - invalid response  or true if valid
             
             //track total questions asked in mantle
-            Questions question = new Questions();
+            QuestionArray question = new QuestionArray();
             question.incrementMantleQuestionsAsked();//not sure if this is adding one each time
             
             //if invalid answer is given ask for valid input until response is valid
@@ -532,103 +538,11 @@ public class QuestionControl {
         System.out.println("getAnotherMantleQuestion function called");
     }
 
-    public enum QuestionType {
-    temple,
-    mantle,
-    levelQuestions;
-}
     
-    public static void  createQuestionArray() {
-        Questions question = new Questions();
-        Questions[][] questionArray = new Questions[QuestionType.values().length][20];
-//        question.setQuestionArray(questionArray[QuestionType.temple.ordinal()][1] = "How many days out of the last seven days did you read the book of Mormon?");
-//        question.setQuestionArray(questionArray[QuestionType.temple.ordinal()][]);
-////       Questions[][] questionArray = Questions.getQuestionArray(); //how do I save it to Questions[][] questoinArray
-//        
-//        questionArray[QuestionType.temple.ordinal()][1] = "How many days out of the last seven days did you read the book of Mormon?";
+
    
-    }
-//    public static  Questions[][] createQuestionArray() {
-//         Game game = TreeOfLife.getCurrentGame(); 
-//        // Create array of questions
-//        Questions[][] questions = new Questions[QuestionType.values().length][20];
-//      ///////////////////////////Temple Questions/////////////////////////////// 
-//    //create array of Question objects (type)
-//        Questions templeQuestion1 = new Questions();
-//        templeQuestion1.setQuestionNumber(1);
-//        templeQuestion1.setQuestionType(QuestionType.temple.ordinal());
-//        templeQuestion1.setQuestion("How many days out of the last seven days did you read the book of Mormon?");
-//        questions[QuestionType.temple.ordinal()][1] = templeQuestion1;
-//        
-//        Questions templeQuestion2 = new Questions();
-//        templeQuestion2.setQuestionNumber(2);
-//        templeQuestion2.setQuestionType(QuestionType.temple.ordinal());
-//        templeQuestion2.setQuestion("How many days out of the last seven days did you have your personal prayers?");
-//        questions[QuestionType.temple.ordinal()][2] = templeQuestion2;
-//        
-//        Questions templeQuestion3 = new Questions();
-//        templeQuestion3.setQuestionNumber(3);
-//        templeQuestion3.setQuestionType(QuestionType.temple.ordinal());
-//        templeQuestion3.setQuestion("How many days out of the last seven days did you exercise?");
-//        questions[QuestionType.temple.ordinal()][3] = templeQuestion3;
-//        
-//        Questions templeQuestion4 = new Questions();
-//        templeQuestion4.setQuestionNumber(4);
-//        templeQuestion4.setQuestionType(QuestionType.temple.ordinal());
-//        templeQuestion4.setQuestion("How many days out of the last seven days did you wake up early?");
-//        questions[QuestionType.temple.ordinal()][4] = templeQuestion4;
-//        
-//        Questions templeQuestion5 = new Questions();
-//        templeQuestion5.setQuestionNumber(5);
-//        templeQuestion5.setQuestionType(QuestionType.temple.ordinal());
-//        templeQuestion5.setQuestion("How many days out of the last seven days did you build your marriage (or relationship with someone important to you)?");
-//        questions[QuestionType.temple.ordinal()][5] = templeQuestion5;
-//    ////////////////////////Mantle Questions /////////////////////////////////////////    
-//        //set mantleQuestions in array
-//        Questions mantleQuestion1 = new Questions();
-//        mantleQuestion1.setQuestionNumber(1);
-//        mantleQuestion1.setQuestionType(QuestionType.mantle.ordinal());
-//        mantleQuestion1.setQuestion("How many days out of the last seven days did you serve a family member?");
-//        questions[QuestionType.mantle.ordinal()][1] = mantleQuestion1;
-//        
-//          Questions mantleQuestion2 = new Questions();
-//        mantleQuestion2.setQuestionNumber(2);
-//        mantleQuestion2.setQuestionType(QuestionType.mantle.ordinal());
-//        mantleQuestion2.setQuestion("How many days out of the last seven days did you attend the temple?");
-//        questions[QuestionType.mantle.ordinal()][2] = mantleQuestion2;
-//                
-//          Questions mantleQuestion3 = new Questions();
-//        mantleQuestion3.setQuestionNumber(3);
-//        mantleQuestion3.setQuestionType(QuestionType.mantle.ordinal());
-//        mantleQuestion3.setQuestion("How many days out of the last seven days did you help a stranger?");
-//        questions[QuestionType.mantle.ordinal()][3] = mantleQuestion3;
-//    ///////////////////////Level Questions //////////////////////////////
-//        Questions levelQuestion1 = new Questions();
-//        levelQuestion1.setQuestionNumber(1);
-//        levelQuestion1.setQuestionType(QuestionType.levelQuestions.ordinal());
-//        levelQuestion1.setQuestion("How many books are in the Book of Mormon?");
-//        questions[QuestionType.levelQuestions.ordinal()][1] = levelQuestion1;
-//        
-//         Questions levelQuestion2 = new Questions();
-//        levelQuestion2.setQuestionNumber(2);
-//        levelQuestion2.setQuestionType(QuestionType.levelQuestions.ordinal());
-//        levelQuestion2.setQuestion("How many men comprise the First Presidency and Quorum of Twelve?");
-//        questions[QuestionType.levelQuestions.ordinal()][2] = levelQuestion2;
-//        
-//         Questions levelQuestion3 = new Questions();
-//        levelQuestion3.setQuestionNumber(3);
-//        levelQuestion3.setQuestionType(QuestionType.levelQuestions.ordinal());
-//        levelQuestion3.setQuestion("How many Presidents have led the church since the restoration?");
-//        questions[QuestionType.levelQuestions.ordinal()][3] = levelQuestion3;
-//        
-//         Questions levelQuestion4 = new Questions();
-//        levelQuestion4.setQuestionNumber(4);
-//        levelQuestion4.setQuestionType(QuestionType.levelQuestions.ordinal());
-//        levelQuestion4.setQuestion("In what chapter of the Doctrine and Covenants is the \"Word of Wisdom\" found?");
-//        questions[QuestionType.levelQuestions.ordinal()][4] = levelQuestion4;
-//    //return questions array
-//        return questions;
-//    }
+    
+    
 
     
 

@@ -7,7 +7,7 @@ package byui.cit260.treeOfLife.control;
 
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Map;
-import byui.cit260.treeOfLife.model.Questions;
+import byui.cit260.treeOfLife.model.QuestionArray;
 import byui.cit260.treeOfLife.model.Scene;
 import citbyui.cit260.treeOfLife.exceptions.MapControlException;
 import java.awt.Point;
@@ -31,7 +31,7 @@ public class MapControl {
         GameControl.assignScenesToLocations(map, scenes);
         String quest = "null";
         //Create questions for all the scenes in the map
-//        Questions[][] questions = QuestionControl.createQuestionArray();
+//        QuestionArray[][] questions = QuestionControl.createQuestionArray();
 
         
         return map;
