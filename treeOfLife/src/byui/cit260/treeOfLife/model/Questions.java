@@ -20,6 +20,8 @@ public class Questions implements Serializable{
     private int mantleQuestionsAsked = 0;
     private Scene scene;
     private String question;
+    private Questions[][] questionArray;
+    
    
 // public Questions() {
 //    }
@@ -74,7 +76,7 @@ public class Questions implements Serializable{
         this.questionPoints = questionPoints;
     }
 
-    public String getQuestion() {
+    public String  getQuestion() {
         return question;
     }
 
@@ -85,6 +87,14 @@ public class Questions implements Serializable{
     @Override
     public String toString() {
         return "Questions{" + "questionType=" + questionType + ", questionAnswered=" + questionAnswered + ", questionNumber=" + questionNumber + ", questionPoints=" + questionPoints + ", mantleQuestionsAsked=" + mantleQuestionsAsked + ", scene=" + scene + ", question=" + question + '}';
+    }
+
+    public Questions[][] getQuestionArray() {
+        return questionArray;
+    }
+
+    public void setQuestionArray(Questions[][] questionArray) {
+        this.questionArray = questionArray;
     }
 
 //    @Override
