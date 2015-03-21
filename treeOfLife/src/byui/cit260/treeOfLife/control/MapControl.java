@@ -31,7 +31,7 @@ public class MapControl {
         GameControl.assignScenesToLocations(map, scenes);
         String quest = "null";
         //Create questions for all the scenes in the map
-        Questions[][] questions = QuestionControl.createQuestionArray();
+//        Questions[][] questions = QuestionControl.createQuestionArray();
 
         
         return map;
