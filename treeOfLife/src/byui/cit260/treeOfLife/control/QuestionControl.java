@@ -20,7 +20,7 @@ import treeoflife.TreeOfLife;
  * @author Chuck
  */
 public class QuestionControl {
-    private int totalQuestionsAsked;
+    private static int totalQuestionsAsked;
     private int bonus;
     private int pointValuePerQuestion;
     private int questionPoints;

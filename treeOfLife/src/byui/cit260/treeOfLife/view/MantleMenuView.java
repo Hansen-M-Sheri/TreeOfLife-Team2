@@ -62,9 +62,23 @@ public MantleMenuView(){
         System.out.println("Would you like to answer another mantle question? (A) or return to the Mantle Menu?(M) ");
        String wantContinue = this.getInput();
        //check if mantleQuestionsAsked > 3 if so 
-//       call    antlePoints, 
+       if(wantContinue.equalsIgnoreCase("A") ) {
+           QuestionArray mantleQuestAsked = new QuestionArray();
+           int numQuestions = mantleQuestAsked.getMantleQuestionsAsked();
+           if(numQuestions > 3){
+               //@todo - set this section to blocked
+               System.out.println("You must return to the Level and answer more questions before answering any more mantle questions.");
+               System.out.println("Thank you for visiting the mantle.");
+               //display mapView menu
+               this.displayMapView();
+           }
+           mantleQuestAsked.setMantleQuestionsAsked(numQuestions++);
+           //       call    antlePoints,
 //       return give message and return to menu, else ask if they would like another ?
-       System.out.println("wantContinue input is: " + wantContinue);
+           System.out.println("wantContinue input is: " + wantContinue);
+       } else {
+           this.displayMapView();
+       }
        this.doActionWantContinue(wantContinue);
        //get answer to getAnotherMantleQuestion input
        //incrementMantleQuestionsAsked - do this step in getAnotherMantleQuestion? Not sure

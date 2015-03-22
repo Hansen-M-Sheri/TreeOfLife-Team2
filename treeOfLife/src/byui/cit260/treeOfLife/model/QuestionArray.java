@@ -15,7 +15,7 @@ public class QuestionArray implements Serializable{
     
     private String questionAnswered;
     private String questionPoints;
-    private int mantleQuestionsAsked ;
+    private static int mantleQuestionsAsked ;
     private Scene scene;
    
     private static String[][] questionArray;
