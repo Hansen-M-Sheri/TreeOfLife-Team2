@@ -5,11 +5,15 @@
  */
 package byui.cit260.treeOfLife.control;
 
+import byui.cit260.treeOfLife.model.Game;
+import byui.cit260.treeOfLife.model.Location;
+import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.QuestionArray;
 import byui.cit260.treeOfLife.view.TempleMenuView;
 import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
 import java.util.Random;
 import java.util.Scanner;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -25,8 +29,8 @@ public class QuestionControl {
     private int templeQuestionPoints;
     private int answeredCorrect;
     private int mantleQuestionPoints;
-    private int actionRange;
-    private int qualityRange;
+    private int actionRange = 0;
+    private int qualityRange = 0;
     private int combinedMantleAnswer;
     private String bonusAnswer;
     //private String BONUS;
@@ -38,11 +42,11 @@ public class QuestionControl {
      * User must answer set of 3 questions correctly to earn a bonus.  
      * 
      */
-    public int calLevelQuestionPoints(int answeredCorrect, int totalQuestionsAsked)   {//throws QuestionControlException
+    public int calLevelQuestionPoints(int answeredCorrect, int totalQuestionsAsked)throws QuestionControlException   {
         //if to few questions or too many are asked, return error
         if (totalQuestionsAsked < 3 || totalQuestionsAsked > 9){
-            return -1;
-//            throw new QuestionControlException("You must answer 3 questions, but no more than 9 questions");
+            
+            throw new QuestionControlException("You must answer 3 questions, but no more than 9 questions");
         }   
 	//if questions asked is within range, determine bonus points earned
         else {
@@ -209,13 +213,20 @@ public class QuestionControl {
             }
             else {
                 System.out.println(nextQuestion);
+            
             }
+    }
+        // this function deals with verifying response of user to templeQuestion
+        public void responseTempleQuestion() throws QuestionControlException {
             
             //get answer from user
                 int templeAnswer = this.getTempleInput();
 
                 //validate answer and provide response
-                boolean valid = this.doActionTempleQuestions(templeAnswer);
+                this.doActionTempleQuestions(templeAnswer);
+        }
+        
+        public void templeBonusQuestionProcess()throws QuestionControlException{
 
                 //ask follow up question for bonus
                 this.displayBonusQuestion();
@@ -228,19 +239,21 @@ public class QuestionControl {
                 this.doActionBonusQuestions(bonusAnswer);
         //        generate response by calling calTemplePoints function
                 int templePoints = this.calTemplePoints(actionRange, qualityRange);
-                
+                //set temple to be blocked (until 3 more level questions are asked)
+               ///////////////********//how do I set is blocked (that was set in createScenes()?  How do I access that object from here? 
+//                Game game = TreeOfLife.getCurrentGame; 
                 //return to game menue after finishing up temple questions
-                this.askReturnToGameMenu();
+//                this.askReturnToGameMenu(); //this is repeating what is done in next method
                 
                 int returnGameMenu = this.getReturntoGameMenu();
                 
-                boolean validReturn = this.doActionReturnToGame(returnGameMenu);
+                this.doActionReturnToGame(returnGameMenu);
                 
         //        display string "You achieved XXX number of days with XXX effort and are rewarded with Call calTemplePoints"
-                System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
+//                System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
 
         //        display prompt "Enter Q to retun to Temple Menu"
-                System.out.println("Enter Q to return to the Temple Menu");
+//                System.out.println("Enter Q to return to the Temple Menu");
                 //return to temple menu
                 TempleMenuView templeMenu = new TempleMenuView();
                 templeMenu.display();
@@ -299,16 +312,24 @@ public class QuestionControl {
             return userInput; // return the name
     
     }
-    
-    private boolean doActionTempleQuestions(int templeAnswer) {
+    //sets actionRange value
+    private void doActionTempleQuestions(int templeAnswer) throws QuestionControlException {
         
         if (templeAnswer < 0 || templeAnswer >7){
-        System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
-            return false;
+        throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
+            
         }
         else{
+            if(templeAnswer >=0 || templeAnswer < 3){
+                this.setActionRange(1);
+            }
+            if(templeAnswer >=3 || templeAnswer < 6){
+                this.setActionRange(2);
+            }
+            if(templeAnswer >=6 || templeAnswer <= 7){
+                this.setActionRange(3);
+            }
            System.out.println("Thanks for your answer. Let's move on to the bonus question");
-           return true;
         }
     }
         
@@ -330,7 +351,7 @@ public class QuestionControl {
                 //prompt for user input for a value between 0 through 7
                 System.out.println("Enter the value 1 for poor, 2 for good and 3 for outstanding.");
 
-                //get the name from the keyboard and trim off the blanks
+                //get the integer from the keyboard 
                 //userInput = keyboard.nextLine();
                 if(keyboard.hasNextInt()) {
                     userInput = keyboard.nextInt();
@@ -357,18 +378,21 @@ public class QuestionControl {
     
     private void doActionBonusQuestions(int bonusAnswer) throws QuestionControlException{
     
-        if (bonusAnswer < 0 || bonusAnswer >7){
+        if (bonusAnswer < 0 || bonusAnswer >3){
        throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
             
         }
         else{
             if (bonusAnswer == 1){
+                this.setQualityRange(1);
                System.out.println("In order to gain extra obedience points, you will need to put forth more effort!");
             }
             if (bonusAnswer == 2){
+                 this.setQualityRange(2);
                System.out.println("Feels good to to put forth a good effort when accomplishing this task.");
             }
             if (bonusAnswer == 3){
+                 this.setQualityRange(3);
                System.out.println("Outstanding effort! For this level of commitment you will be rewarded with many blessings");
             }
             
@@ -414,18 +438,16 @@ public class QuestionControl {
     
     }
     
-    private boolean doActionReturnToGame(int returnGameMenu) {
+    private void doActionReturnToGame(int returnGameMenu) throws QuestionControlException{
         if (returnGameMenu < 9 || returnGameMenu >9){
-        System.out.println("You have entered an incorrect response. Please enter the number 9 to return to the Temple Menu.");
-            return false;
+        throw new QuestionControlException("You have entered an incorrect response. Please enter the number 9 to return to the Temple Menu.");
+            
         }
         else{
             if (returnGameMenu == 9){
                System.out.println("You will now be returned ot the Temple Menu");
               
             }
-            
-            return true;
         }
     }
     
@@ -536,6 +558,110 @@ public class QuestionControl {
 
     public void getAnotherMantleQuestion() {
         System.out.println("getAnotherMantleQuestion function called");
+    }
+
+    public int getTotalQuestionsAsked() {
+        return totalQuestionsAsked;
+    }
+
+    public void setTotalQuestionsAsked(int totalQuestionsAsked) {
+        this.totalQuestionsAsked = totalQuestionsAsked;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
+    }
+
+    public int getPointValuePerQuestion() {
+        return pointValuePerQuestion;
+    }
+
+    public void setPointValuePerQuestion(int pointValuePerQuestion) {
+        this.pointValuePerQuestion = pointValuePerQuestion;
+    }
+
+    public int getQuestionPoints() {
+        return questionPoints;
+    }
+
+    public void setQuestionPoints(int questionPoints) {
+        this.questionPoints = questionPoints;
+    }
+
+    public int getActionPoints() {
+        return actionPoints;
+    }
+
+    public void setActionPoints(int actionPoints) {
+        this.actionPoints = actionPoints;
+    }
+
+    public int getQualityPoints() {
+        return qualityPoints;
+    }
+
+    public void setQualityPoints(int qualityPoints) {
+        this.qualityPoints = qualityPoints;
+    }
+
+    public int getTempleQuestionPoints() {
+        return templeQuestionPoints;
+    }
+
+    public void setTempleQuestionPoints(int templeQuestionPoints) {
+        this.templeQuestionPoints = templeQuestionPoints;
+    }
+
+    public int getAnsweredCorrect() {
+        return answeredCorrect;
+    }
+
+    public void setAnsweredCorrect(int answeredCorrect) {
+        this.answeredCorrect = answeredCorrect;
+    }
+
+    public int getMantleQuestionPoints() {
+        return mantleQuestionPoints;
+    }
+
+    public void setMantleQuestionPoints(int mantleQuestionPoints) {
+        this.mantleQuestionPoints = mantleQuestionPoints;
+    }
+
+    public int getActionRange() {
+        return actionRange;
+    }
+
+    public void setActionRange(int actionRange) {
+        this.actionRange = actionRange;
+    }
+
+    public int getQualityRange() {
+        return qualityRange;
+    }
+
+    public void setQualityRange(int qualityRange) {
+        this.qualityRange = qualityRange;
+    }
+
+    public int getCombinedMantleAnswer() {
+        return combinedMantleAnswer;
+    }
+
+    public void setCombinedMantleAnswer(int combinedMantleAnswer) {
+        this.combinedMantleAnswer = combinedMantleAnswer;
+    }
+
+    public String getBonusAnswer() {
+        return bonusAnswer;
+    }
+
+    public void setBonusAnswer(String bonusAnswer) {
+        this.bonusAnswer = bonusAnswer;
     }
 
     

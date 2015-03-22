@@ -40,7 +40,12 @@ public class TempleMenuView extends View{
             //  this.restAtTemple();
             //  break;
             case 'A': // get and start an existing game//              
-                this.answerTempleQuestions();            
+                try {
+                     this.answerTempleQuestions();   
+                } 
+                catch (QuestionControlException qe) {
+                    System.out.println(qe.getMessage());
+                }
                 break;
             case 'M': // to to Armor Shop Menu
                 this.displayMapView();
@@ -66,14 +71,17 @@ public class TempleMenuView extends View{
     //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     //}
 
-    private void answerTempleQuestions()  {
+    private void answerTempleQuestions() throws QuestionControlException {
     QuestionControl templeQuestion = new QuestionControl();
-    try {
+        //get question
         templeQuestion.getTempleQuestions();  
-        } 
-        catch (QuestionControlException qe) {
-            System.out.println(qe.getMessage());
-        }
+        //process user's response to question
+        templeQuestion.responseTempleQuestion();
+        //bonus question procedure
+        templeQuestion.templeBonusQuestionProcess();
+        //assign points templePoints to progress meter
+        //if 1st visit points go to knowledge, 2nd obedience, 3rd faith
+    
     }
 
     private void displayMapView() {
