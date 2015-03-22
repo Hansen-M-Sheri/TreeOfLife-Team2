@@ -15,14 +15,14 @@ public class QuestionArray implements Serializable{
     
     private String questionAnswered;
     private String questionPoints;
-    private int mantleQuestionsAsked = 0;
+    private int mantleQuestionsAsked ;
     private Scene scene;
    
     private static String[][] questionArray;
     private static Question[][] levelQuestionArray;
-    private int lastTempleQuestionAsked = 0;
-    private int lastMantleQuestionAsked = 0;
-    private int lastLevelQuestionAsked = 0;
+    private static int lastTempleQuestionAsked ;
+    private static int lastMantleQuestionAsked ;
+    private static int lastLevelQuestionAsked;
    
 
    
@@ -166,9 +166,9 @@ public enum QuestionType {
             case temple:
                 //get last temple question asked + 1 save to index
                 //by checking modulus here it will return 0 if we go past length requirements so question will start all over
-                index = (this.getLastTempleQuestionAsked() + 1) % questionArray[QuestionType.temple.ordinal()].length;
+                 index = (this.getLastTempleQuestionAsked() + 1) % questionArray[QuestionType.temple.ordinal()].length;
                 //increment last question Asked
-                this.setLastTempleQuestionAsked(index);
+                this.setLastTempleQuestionAsked(index++);
                 break;
             case mantle:
                 //by checking modulus here it will return 0 if we go past length requirements so question will start all over
@@ -184,7 +184,9 @@ public enum QuestionType {
                 break;
                 default: 
                     break;
-        }         
+           
+        } 
+                
         return questionArray[typeEnum.ordinal()][index];  
     }
 
