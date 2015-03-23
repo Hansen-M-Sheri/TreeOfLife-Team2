@@ -198,12 +198,81 @@ public class QuestionControl {
 
     public void getTempleQuestions() throws QuestionControlException {
         
+        
         //check isBlocked - determine how we determine block and not blocked to answer questions
        Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
         
       
         if(locations[1][0].isBlocked() == true) {
            System.out.println("Sorry, you need to answer more level questions before you can answer an additional Temple question.");
+           // if blocked return to map
+           GameMenuView gameMenu = new GameMenuView();
+            gameMenu.displayMap();
+        }
+        else {
+            //get next question
+            QuestionArray question = new QuestionArray();
+            String nextQuestion = question.getNextQuestion(QuestionArray.QuestionType.temple);
+            if(nextQuestion.isEmpty() || nextQuestion == null) {
+                throw new QuestionControlException("Question is empty");
+            }
+            else {
+                System.out.println(nextQuestion);
+            
+            }
+        }
+    }
+    public void getMantleQuestions() throws QuestionControlException {
+        
+        
+        //check isBlocked - determine how we determine block and not blocked to answer questions
+       Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+        
+      
+        if(locations[2][0].isBlocked() == true) {
+           System.out.println("Sorry, you need to answer more level questions before you can answer an additional Mantle question.");
+           // if blocked return to map
+           GameMenuView gameMenu = new GameMenuView();
+            gameMenu.displayMap();
+        }
+        else {
+            //get next question
+            QuestionArray question = new QuestionArray();
+            String nextQuestion = question.getNextQuestion(QuestionArray.QuestionType.mantle);
+            if(nextQuestion.isEmpty() || nextQuestion == null) {
+                throw new QuestionControlException("Question is empty");
+            }
+            else {
+                System.out.println(nextQuestion);
+            
+            }
+        }
+    }
+    //work on this to avoid duplication - nextQuestion isn't liking questionEnum - how to call a passed parameter enum?
+    public void getMantleOrTempleQuestion(QuestionArray.QuestionType questionEnum) throws QuestionControlException {
+       boolean currentLocationIsBlocked = false; 
+       String message = " ";
+       
+       switch(questionEnum){
+           case temple:
+                //check isBlocked - determine how we determine block and not blocked to answer questions
+                Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+                currentLocationIsBlocked = locations[1][0].isBlocked();
+                message = "Sorry, you need to answer more level questions before you can answer any more Temple questions";
+               break;
+           case mantle:
+                locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+                currentLocationIsBlocked = locations[2][0].isBlocked();
+                message = "Sorry, you need to answer more level questions before you can answer any more Mantle questions";
+               break;
+               
+           default:
+               break;
+          
+       } 
+     
+        if(currentLocationIsBlocked) {
+           System.out.println(message);
            // if blocked return to map
            GameMenuView gameMenu = new GameMenuView();
             gameMenu.displayMap();
@@ -457,28 +526,13 @@ public class QuestionControl {
         }
     }
     
+  
+    
+    
+    
     
    
-    
-    
-    
-    
-    public void getMantleQuestion() {
-    //check isBlocked - determine how we determine block and not blocked to answer questions
-//        Location location = new Location();
-//        boolean isBlocked = location.isBlocked();
-//      
-//        if(isBlocked == true) {
-//            System.out.println("Sorry, you need to answer more level questions before you can answer a mantle question.  ");
-//        }
-//        else {
-            //display random question
-            Random rand = new Random();
-            int range = 33 - 30 + 1;    //mantle questions will range from 30 - 40
-            int randomNum = rand.nextInt(range) + 30;
-            this.displayMantleQuestion(randomNum);
-//            System.out.println("randNumb generated " + randomNum);
-
+public void mantleResponse() {
             //get answer from user
 //            String mantleAnswer = this.getMantleInput();
             int answer = this.getMantleInput();

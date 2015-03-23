@@ -6,8 +6,11 @@
 package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.control.QuestionControl;
+import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.QuestionArray;
+import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
 import java.util.Scanner;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -37,7 +40,11 @@ public MantleMenuView(){
           switch (choice){
            
             case 'A': // answer Mantle QuestionArray
+                try{
                 this.answerMantleQuestions();
+                }catch (QuestionControlException qe) {
+                    System.out.println(qe.getMessage());
+                } 
                 break;
             case 'M': // display Map view
                 this.displayMapView();
@@ -54,19 +61,39 @@ public MantleMenuView(){
 }
     return true;
     }
-
-    private void answerMantleQuestions() {
+// private void answerMantleQuestions() throws QuestionControlException {
+//    QuestionControl mantleQuestion = new QuestionControl();
+//        //get question
+//        mantleQuestion.getMantleQuestions();  
+//        //process user's response to question
+//        mantleQuestion.mantleResponse();
+//        //bonus question procedure
+//        mantleQuestion.templeBonusQuestionProcess();
+//        //assign points templePoints to progress meter
+//        //if 1st visit points go to knowledge, 2nd obedience, 3rd faith
+//    
+//    }
+    private void answerMantleQuestions() throws QuestionControlException {
        QuestionControl mantleQuestion = new QuestionControl();
-        mantleQuestion.getMantleQuestion(); //get first question, validate, etc
+       //get first question, validate, etc
+        mantleQuestion.getMantleQuestions(); 
+       
         //maybe need to call calMantlePoints here, include total phrase, you just earned... points.  Would you like to answer....?
+        mantleQuestion.mantleResponse();
         System.out.println("Would you like to answer another mantle question? (A) or return to the Mantle Menu?(M) ");
-       String wantContinue = this.getInput();
+       
+        String wantContinue = this.getInput();
        //check if mantleQuestionsAsked > 3 if so 
        if(wantContinue.equalsIgnoreCase("A") ) {
            QuestionArray mantleQuestAsked = new QuestionArray();
            int numQuestions = mantleQuestAsked.getMantleQuestionsAsked();
            if(numQuestions > 3){
                //@todo - set this section to blocked
+                Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+                locations[2][0].setBlocked(true);
+                //reset num mantle questions asked to 0
+                mantleQuestAsked.setMantleQuestionsAsked(0);
+
                System.out.println("You must return to the Level and answer more questions before answering any more mantle questions.");
                System.out.println("Thank you for visiting the mantle.");
                //display mapView menu
