@@ -20,7 +20,7 @@ import treeoflife.TreeOfLife;
  *
  * @author Chuck
  */
-class GameMenuView extends View {
+public class GameMenuView extends View {
     public GameMenuView(){
         super("\n"
     

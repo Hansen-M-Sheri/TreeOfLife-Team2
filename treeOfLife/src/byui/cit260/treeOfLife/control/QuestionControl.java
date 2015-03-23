@@ -9,6 +9,7 @@ import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.QuestionArray;
+import byui.cit260.treeOfLife.view.GameMenuView;
 import byui.cit260.treeOfLife.view.TempleMenuView;
 import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
 import java.util.Random;
@@ -198,13 +199,16 @@ public class QuestionControl {
     public void getTempleQuestions() throws QuestionControlException {
         
         //check isBlocked - determine how we determine block and not blocked to answer questions
-        //Location location = new Location();
-        //boolean isBlocked = location.isBlocked();
+       Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+        
       
-        //if(isBlocked == true) {
-        //   System.out.println("Sorry, you need to answer more level questions before you can answer an additional Temple question.");
-        //}
-        //else {
+        if(locations[1][0].isBlocked() == true) {
+           System.out.println("Sorry, you need to answer more level questions before you can answer an additional Temple question.");
+           // if blocked return to map
+           GameMenuView gameMenu = new GameMenuView();
+            gameMenu.displayMap();
+        }
+        else {
             //get next question
             QuestionArray question = new QuestionArray();
             String nextQuestion = question.getNextQuestion(QuestionArray.QuestionType.temple);
@@ -215,6 +219,7 @@ public class QuestionControl {
                 System.out.println(nextQuestion);
             
             }
+        }
     }
         // this function deals with verifying response of user to templeQuestion
         public void responseTempleQuestion() throws QuestionControlException {
@@ -240,8 +245,9 @@ public class QuestionControl {
         //        generate response by calling calTemplePoints function
                 int templePoints = this.calTemplePoints(actionRange, qualityRange);
                 //set temple to be blocked (until 3 more level questions are asked)
-               ///////////////********//how do I set is blocked (that was set in createScenes()?  How do I access that object from here? 
-//                Game game = TreeOfLife.getCurrentGame; 
+              Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+                locations[1][0].setBlocked(true);
+
                 //return to game menue after finishing up temple questions
 //                this.askReturnToGameMenu(); //this is repeating what is done in next method
                 

@@ -91,7 +91,7 @@ public class MapControl {
                 "\nLevel Two Scene Description"
                 +"Need to add content");
         levelTwoScene.setMapSymbol("LVL 2");
-        levelTwoScene.setBlocked(false);
+        levelTwoScene.setBlocked(true);
 //        ImageIcon levelTwoSceneImage = MapControl.getImage(levelTwoScene,
 //                "/citbyui/citC260/curiousworkmanship/images/levelTwoScene.jpg");
 //        levelTwoScene.setIcon(levelTwoSceneImage);
@@ -103,7 +103,7 @@ public class MapControl {
                 "\nLevel Three Scene Description"
                 +"Need to add content");
         levelThreeScene.setMapSymbol("LVL 3");
-        levelThreeScene.setBlocked(false);
+        levelThreeScene.setBlocked(true);
 //        ImageIcon levelThreeSceneImage = MapControl.getImage(levelThreeScene,
 //                "/citbyui/citC260/curiousworkmanship/images/levelThreeScene.jpg");
 //        levelThreeScene.setIcon(levelThreeSceneImage);
@@ -115,7 +115,7 @@ public class MapControl {
                 "\nLevel Four Scene Description"
                 +"Need to add content");
         levelFourScene.setMapSymbol("LVL 4");
-        levelFourScene.setBlocked(false);
+        levelFourScene.setBlocked(true);
 //        ImageIcon levelFourSceneImage = MapControl.getImage(levelFourScene,
 //                "/citbyui/citC260/curiousworkmanship/images/levelFourScene.jpg");
 //        levelFourScene.setIcon(levelFourSceneImage);
@@ -127,7 +127,7 @@ public class MapControl {
                 "\nLevel Five Scene Description"
                 +"Need to add content");
         levelFiveScene.setMapSymbol("LVL 5");
-        levelFiveScene.setBlocked(false);
+        levelFiveScene.setBlocked(true);
 //        ImageIcon levelFiveSceneImage = MapControl.getImage(levelFiveScene,
 //                "/citbyui/citC260/curiousworkmanship/images/levelFiveScene.jpg");
 //        levelFiveScene.setIcon(levelFiveSceneImage);
@@ -175,7 +175,7 @@ public class MapControl {
                 "\n Tree of Life Scene Description"
                 +"Need to add content");
         treeOfLifeScene.setMapSymbol("  *  ");
-        treeOfLifeScene.setBlocked(false);
+        treeOfLifeScene.setBlocked(true);
 //        ImageIcon treeOfLifeSceneImage = MapControl.getImage(treeOfLifeScene,
 //                "/citbyui/citC260/curiousworkmanship/images/treeOfLifeScene.jpg");
 //        treeOfLifeScene.setIcon(treeOfLifeSceneImage);
@@ -187,7 +187,7 @@ public class MapControl {
                 "\n Tree of Knowledge Scene Description"
                 +"Need to add content");
         treeOfKnowledgeScene.setMapSymbol("  !  ");
-        treeOfKnowledgeScene.setBlocked(false);
+        treeOfKnowledgeScene.setBlocked(true);
 //        ImageIcon treeOfKnowledgeSceneImage = MapControl.getImage(treeOfKnowledgeScene,
 //                "/citbyui/citC260/curiousworkmanship/images/treeOfKnowledgeScene.jpg");
 //        treeOfKnowledgeScene.setIcon(treeOfKnowledgeSceneImage);
@@ -199,7 +199,7 @@ public class MapControl {
                 "\n Spacious Building Scene Description"
                 +"Need to add content");
         spaciousBuildingScene.setMapSymbol(" #$& ");
-        spaciousBuildingScene.setBlocked(false);
+        spaciousBuildingScene.setBlocked(true);
 //        ImageIcon spaciousBuildingSceneImage = MapControl.getImage(spaciousBuildingScene,
 //                "/citbyui/citC260/curiousworkmanship/images/spaciousBuildingScene.jpg");
 //        spaciousBuildingScene.setIcon(spaciousBuildingSceneImage);
