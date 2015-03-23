@@ -35,6 +35,11 @@ public class QuestionControl {
     private int combinedMantleAnswer;
     private String bonusAnswer;
     //private String BONUS;
+
+    public QuestionControl() {
+    }
+    
+    
     /**
      * This function calculates the points earned within a  level
      * @param answeredCorrect
@@ -124,7 +129,64 @@ public class QuestionControl {
         System.out.println("Congratulations! You just earned "+ templeQuestionPoints + " points");
         return templeQuestionPoints;
     }
-   
+    /**
+    * This function assigns points for Temple questions (replaces calMantlePoints
+    * For 1st question asked at temple - points will be earned for knowledge
+    * For 2nd question asked at temple - points will be earned for obedience
+    * for 3rd question asked at temple - points will be earned for faith
+    * 
+    * @param int templeQuestionPoints is calculated in calTemplePoints
+    */
+   public void assignTemplePoints(int numTempleQuestions, int templeQuestionPoints){
+       switch(numTempleQuestions){
+           case 1:
+              int knowledge =   TreeOfLife.getCurrentGame().getProgressMeter().getKnowledgeStat();
+            int currentKnowStat = knowledge + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
+            TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(currentKnowStat);
+             break;
+           case 2:
+             int obedience =   TreeOfLife.getCurrentGame().getProgressMeter().getObedienceStat();
+             int currentObedStat = obedience + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
+             TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(currentObedStat);
+            break;
+           case 3:
+               int faith =   TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+             int currentFaithStat = faith + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
+             TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(currentFaithStat);
+            
+             break;
+       }
+   }
+   /**
+    * This function assigns points for Mantle questions (replaces calMantlePoints
+    * For 1st question asked at mantle - points will be earned for faith
+    * For 2nd question asked at mantle - points will be earned for knowledge
+    * for 3rd question asked at mantle - points will be earned for obedience
+    */
+   public void assignMantlePoints(int numMantleQuestions){
+       System.out.println(numMantleQuestions);
+       switch(numMantleQuestions){
+           case 1:
+             int faith =   TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+             System.out.println("getFaithStat returns "+ faith);
+             int currentFaithStat = faith + 50; //@todo - need to set correct amount for 1st visit
+             TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(currentFaithStat);
+             break;
+           case 2:
+            int knowledge =   TreeOfLife.getCurrentGame().getProgressMeter().getKnowledgeStat();
+            int currentKnowStat = knowledge + 50; //@todo - need to set correct amount for 1st visit
+            TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(currentKnowStat);
+            break;
+           case 3:
+             int obedience =   TreeOfLife.getCurrentGame().getProgressMeter().getObedienceStat();
+             int currentObedStat = obedience + 50; //@todo - need to set correct amount for 1st visit
+             TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(currentObedStat);
+             break;
+           default:
+               System.out.println("your number of questions is " + numMantleQuestions);
+               break;
+       }
+   }
    /**
      * This function calculates how many points earned in mantle
      * @param answeredCorrect
@@ -248,6 +310,7 @@ public class QuestionControl {
             }
         }
     }
+    //getTempleQuestion and getMantleQuestion are almost duplicates - this would be more efficient if we can get it workingsher
     //work on this to avoid duplication - nextQuestion isn't liking questionEnum - how to call a passed parameter enum?
     public void getMantleOrTempleQuestion(QuestionArray.QuestionType questionEnum) throws QuestionControlException {
        boolean currentLocationIsBlocked = false; 
@@ -532,7 +595,7 @@ public class QuestionControl {
     
     
    
-public void mantleResponse() {
+public void mantleResponse() throws QuestionControlException{
             //get answer from user
 //            String mantleAnswer = this.getMantleInput();
             int answer = this.getMantleInput();
@@ -540,17 +603,13 @@ public void mantleResponse() {
             combinedMantleAnswer = answer; //this will gather the totals from each question asked, add them and use this to get average
 //  System.out.println("mantleAnswer generated " + mantleAnswer);
              //validate answer and provide response if invalid answer
-            boolean valid = this.doActionMantleQuestions(answer); //either returns false for error - invalid response  or true if valid
-            
-            //track total questions asked in mantle
-            QuestionArray question = new QuestionArray();
-            question.incrementMantleQuestionsAsked();//not sure if this is adding one each time
+           this.doActionMantleQuestions(answer); //either returns false for error - invalid response  or true if valid
             
             //if invalid answer is given ask for valid input until response is valid
-           while(valid == false){
-                System.out.println("Please enter a number between 0 and 7");
-                
-            }
+//           while(valid == false){
+//                System.out.println("Please enter a number between 0 and 7");
+//                
+//            }
 //        }
     }  
 
@@ -588,37 +647,36 @@ public void mantleResponse() {
     
     } 
 
-    private void displayMantleQuestion(int randomNum) {
-        if(randomNum == 30){
-           System.out.println("How many days out of the last seven days did you serve a family member?");
-        }           
-        else if (randomNum == 31){
-            System.out.println("How many times in the last seven days did you attend the temple?");
-        }
-        else if (randomNum == 32){
-            System.out.println("How many days out of the last seven days did you participate in family history work?");
-        }
-        else if (randomNum == 33){
-            System.out.println("How many days out of the last seven days did you perform service for a stranger?");
-        }
-    }
+//    private void displayMantleQuestion(int randomNum) {
+//        if(randomNum == 30){
+//           System.out.println("How many days out of the last seven days did you serve a family member?");
+//        }           
+//        else if (randomNum == 31){
+//            System.out.println("How many times in the last seven days did you attend the temple?");
+//        }
+//        else if (randomNum == 32){
+//            System.out.println("How many days out of the last seven days did you participate in family history work?");
+//        }
+//        else if (randomNum == 33){
+//            System.out.println("How many days out of the last seven days did you perform service for a stranger?");
+//        }
+//    }
 
-    private boolean doActionMantleQuestions(int answer) {
+    private void doActionMantleQuestions(int answer) throws QuestionControlException{
        
         if (answer < 0 || answer >7){
-        System.out.println("You have entered an incorrect response. Please enter a number between 0 and 7.");
-            return false;
+       throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
+            
         }
         else{
             System.out.println("Thanks for your answer.");
-            return true;
            
         }
     }
 
-    public void getAnotherMantleQuestion() {
-        System.out.println("getAnotherMantleQuestion function called");
-    }
+//    public void getAnotherMantleQuestion() {
+//        System.out.println("getAnotherMantleQuestion function called");
+//    }
 
     public int getTotalQuestionsAsked() {
         return totalQuestionsAsked;

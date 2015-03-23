@@ -6,7 +6,9 @@
 package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.control.QuestionControl;
+import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
+import byui.cit260.treeOfLife.model.ProgressMeter;
 import byui.cit260.treeOfLife.model.QuestionArray;
 import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
 import java.util.Scanner;
@@ -77,38 +79,28 @@ public MantleMenuView(){
        QuestionControl mantleQuestion = new QuestionControl();
        //get first question, validate, etc
         mantleQuestion.getMantleQuestions(); 
-       
-        //maybe need to call calMantlePoints here, include total phrase, you just earned... points.  Would you like to answer....?
+        //increment mantleQuestions asked (this determines what stat points will be earned for
+        //since numQuestions will start at 0, increment after asking first question (this will match how many quesitons have been asked)
+        QuestionArray mantleQuestAsked = new QuestionArray();
+        int numQuestions = mantleQuestAsked.getNumMantleQuestion();
+        mantleQuestAsked.setNumMantleQuestion(numQuestions++);
+       //get user's response
         mantleQuestion.mantleResponse();
-        System.out.println("Would you like to answer another mantle question? (A) or return to the Mantle Menu?(M) ");
        
-        String wantContinue = this.getInput();
-       //check if mantleQuestionsAsked > 3 if so 
-       if(wantContinue.equalsIgnoreCase("A") ) {
-           QuestionArray mantleQuestAsked = new QuestionArray();
-           int numQuestions = mantleQuestAsked.getMantleQuestionsAsked();
-           if(numQuestions > 3){
-               //@todo - set this section to blocked
-                Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
-                locations[2][0].setBlocked(true);
-                //reset num mantle questions asked to 0
-                mantleQuestAsked.setMantleQuestionsAsked(0);
+        Game game =   TreeOfLife.getCurrentGame();
+        ProgressMeter progress = new ProgressMeter();
+        progress= game.getProgressMeter();
+        int faith = progress.getFaithStat();
+System.out.println("faith = "+ faith);        
+//maybe need to call calMantlePoints here, include total phrase, you just earned... points. 
+       mantleQuestion.assignMantlePoints(numQuestions);
+        //@todo - set this section to blocked
+        Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+        locations[2][0].setBlocked(true);
 
-               System.out.println("You must return to the Level and answer more questions before answering any more mantle questions.");
-               System.out.println("Thank you for visiting the mantle.");
-               //display mapView menu
-               this.displayMapView();
-           }
-           mantleQuestAsked.setMantleQuestionsAsked(numQuestions++);
-           //       call    antlePoints,
-//       return give message and return to menu, else ask if they would like another ?
-           System.out.println("wantContinue input is: " + wantContinue);
-       } else {
-           this.displayMapView();
-       }
-       this.doActionWantContinue(wantContinue);
-       //get answer to getAnotherMantleQuestion input
-       //incrementMantleQuestionsAsked - do this step in getAnotherMantleQuestion? Not sure
+        System.out.println("Thank you for visiting the mantle.");
+        //display mapView menu
+        this.displayMapView();       //incrementMantleQuestionsAsked - do this step in getAnotherMantleQuestion? Not sure
        //add answer to combinedMantleAnswer (do this for each answer)
        
        
@@ -132,23 +124,23 @@ public MantleMenuView(){
     }
 
    
-    private void doActionWantContinue(String wantContinue) {
-        switch (wantContinue) {
-            case "A":
-                QuestionControl anotherQuestion = new QuestionControl();
-                anotherQuestion.getAnotherMantleQuestion();
-                break;
-            case "M":
-                QuestionArray question = new QuestionArray();
-                question.resetMantleQuestionsAsked();
-                this.display();
-                break;
-            default:
-                System.out.println("Your entry was invalid.  Please enter an A or an M");
-                this.getInput();
-                break;
-        }
-    }
-    
-    
+//    private void doActionWantContinue(String wantContinue) {
+//        switch (wantContinue) {
+//            case "A":
+//                QuestionControl anotherQuestion = new QuestionControl();
+//                anotherQuestion.getAnotherMantleQuestion();
+//                break;
+//            case "M":
+//                QuestionArray question = new QuestionArray();
+//                question.resetMantleQuestionsAsked();
+//                this.display();
+//                break;
+//            default:
+//                System.out.println("Your entry was invalid.  Please enter an A or an M");
+//                this.getInput();
+//                break;
+//        }
+//    }
+//    
+//    
 }

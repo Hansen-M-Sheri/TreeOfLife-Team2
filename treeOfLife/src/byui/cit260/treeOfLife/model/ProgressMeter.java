@@ -15,9 +15,9 @@ import java.util.ArrayList;
 public class ProgressMeter implements Serializable {
     
     //class instance variables
-    private int faithStat;      //current stats in faith
-    private int knowledgeStat;  //current stats in knowledge
-    private int obedienceStat;  //current stats in obedience
+    private int faithStat = 0;      //current stats in faith
+    private int knowledgeStat = 0;  //current stats in knowledge
+    private int obedienceStat = 0;  //current stats in obedience
     private int faithNeededToLevelUp;   //numb of faith needed to level up
     private int knowNeededToLevelUp;    //numb knowledge needed to level up
     private int obedNeededToLevelUp;    //number obedience needed to level up

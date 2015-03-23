@@ -15,7 +15,7 @@ public class QuestionArray implements Serializable{
     
     private String questionAnswered;
     private String questionPoints;
-    private static int mantleQuestionsAsked ;
+    private static int numMantleQuestion = 0 ;
     private Scene scene;
    
     private static String[][] questionArray;
@@ -103,16 +103,16 @@ public enum QuestionType {
 
   
     
-    public void setMantleQuestionsAsked(int mantleQuestionsAsked) {
-        this.mantleQuestionsAsked = mantleQuestionsAsked;
+    public void setNumMantleQuestion(int numMantleQuestion) {
+        this.numMantleQuestion = numMantleQuestion;
     }
 
     public void setScene(Scene scene) {
         this.scene = scene;
     }
 
-    public int getMantleQuestionsAsked() {
-        return mantleQuestionsAsked;
+    public int getNumMantleQuestion() {
+        return numMantleQuestion;
     }
 
     public Scene getScene() {
@@ -192,7 +192,7 @@ public enum QuestionType {
 
     @Override
     public String toString() {
-        return "QuestionArray{" + "questionAnswered=" + questionAnswered + ", questionPoints=" + questionPoints + ", mantleQuestionsAsked=" + mantleQuestionsAsked + ", scene=" + scene + ", lastTempleQuestionAsked=" + lastTempleQuestionAsked + ", lastMantleQuestionAsked=" + lastMantleQuestionAsked + ", lastLevelQuestionAsked=" + lastLevelQuestionAsked + '}';
+        return "QuestionArray{" + "questionAnswered=" + questionAnswered + ", questionPoints=" + questionPoints + ", mantleQuestionsAsked=" + numMantleQuestion + ", scene=" + scene + ", lastTempleQuestionAsked=" + lastTempleQuestionAsked + ", lastMantleQuestionAsked=" + lastMantleQuestionAsked + ", lastLevelQuestionAsked=" + lastLevelQuestionAsked + '}';
     }
     
 
@@ -232,7 +232,7 @@ public enum QuestionType {
         if (!Objects.equals(this.questionPoints, other.questionPoints)) {
             return false;
         }
-        if (this.mantleQuestionsAsked != other.mantleQuestionsAsked) {
+        if (this.numMantleQuestion != other.numMantleQuestion) {
             return false;
         }
         if (!Objects.equals(this.scene, other.scene)) {
@@ -252,12 +252,4 @@ public enum QuestionType {
 
 
 
-    public void incrementMantleQuestionsAsked() {
-        mantleQuestionsAsked ++;
-//        System.out.println(mantleQuestionsAsked);
-    }
-    
-    public void resetMantleQuestionsAsked() {
-        mantleQuestionsAsked = 0;
-    }
 }
