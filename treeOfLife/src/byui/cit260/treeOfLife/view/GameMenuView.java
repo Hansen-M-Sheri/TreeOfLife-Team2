@@ -82,20 +82,12 @@ class GameMenuView extends View {
  
         //get the map locations from the current game
       Location[][]locations = TreeOfLife.getCurrentGame().getMap().getLocations();
-     
-//      Game game = TreeOfLife.getCurrentGame();
-//      Map map = game.getMap();
-// 
-//         Location[][] locations = map.getLocations();
+
         //DISPLAY title
         System.out.println("Tree of Life Map");
         //DISPLAY row of column numbers
 
         System.out.println("\n | --0-- | --1-- | --2-- | --3-- |");
-//        String width = "-";
-        int columnWidth = 6;
-        int w = 0;
-//            System.out.println("\n \t" +  0  +"|\t" + 1 +"|\t" + 2  + "|\t" +  3 + " |");
         for(int i = 0; i < locations.length; i++){
 //             DISPLAY row divider
                 System.out.println("--------------------------------");
@@ -131,37 +123,6 @@ class GameMenuView extends View {
         
     }
 
-//    private void displayMap() {
-// 
-//        //get the map locations from the current game
-//        Map map = new Map();
-//       Location[][] locations = map.getLocations();
-//        //DISPLAY title
-//        System.out.println("Tree of Life Map");
-//        //DISPLAY row of column numbers
-//        System.out.println("\n    0   |   1   |   2   |   3   |");
-//
-//        for (Location[] location1 : locations) {
-//            //             DISPLAY row divider
-//            System.out.println(" ------------------------------"
-//                    +"\n 2");
-//            for (Location location : location1) {
-//                //                 DISPLAY column divider
-//                System.out.println("|\t \t \t|\t \t \t|\t \t \t|\t \t \t|");
-//                // IF location has been visited
-//                System.out.println(location);
-//                if(location.isVisited()) {
-//                    Scene scene = new Scene();
-//                    scene.getMapSymbol();
-//                }
-//                else {
-//                    System.out.println("??");
-//                }
-//            }
-//        }
-//        // DISPLAY ending row divider  
-//        System.out.println(" ------------------------------");
-//    }
     
     private void viewProgressMeter() {
       ProgressMeterView progressMeter = new ProgressMeterView();
