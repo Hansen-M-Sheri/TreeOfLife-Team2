@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import treeoflife.TreeOfLife;
 import byui.cit260.treeOfLife.model.Character;
+import byui.cit260.treeOfLife.model.Location;
 
 /**
  *
@@ -248,6 +249,9 @@ public class MapControl {
         }
         character.getCoordinates().x = coordinates.x;
         character.getCoordinates().y = coordinates.y;
+        //set location as visited
+        Location location = map.getLocations()[coordinates.x][coordinates.y];
+        location.setVisited(true);
     }
 
     public static ImageIcon getImage(Scene startingScene, String citbyuicitC260curiousworkmanshipimagessta) {

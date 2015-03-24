@@ -6,14 +6,9 @@
 package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.control.GameControl;
-import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
-import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.Scene;
 import citbyui.cit260.treeOfLife.exceptions.GameControlException;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import treeoflife.TreeOfLife;
 
 /**
@@ -29,8 +24,7 @@ public class GameMenuView extends View {
             +"\n========================================"
             +"\nM - Go to the Map"
             +"\nP - View Progress Meter"
-            +"\nI - View Character Inventory"
-            +"\nC - Choose Character for Game"              
+            +"\nI - View Character Inventory"          
             +"\nH - Help Menu"
             +"\nQ - Return to Main Menu" 
             +"\n========================================");
@@ -60,9 +54,7 @@ public class GameMenuView extends View {
             }
         }
                 break;
-            case 'C':// Go to the Map
-                this.displayCharacterMenu();
-                break;
+
             case 'H': // Go to the Help Menu
                 this.displayHelpMenu();
                 break;
@@ -99,7 +91,7 @@ public class GameMenuView extends View {
                     // IF location has been visited
 
                    String symbol;
-                   if(location.isVisited() == false) { //change to true for game, this is false to test isVisited
+                   if(location.isVisited() ) { 
                        //get current game
                         
                        Scene scene = location.getScene();
@@ -119,7 +111,8 @@ public class GameMenuView extends View {
         System.out.println("--------------------------------");
         
         //print out map menu
-//       this.displayMapMenu();
+      MapView mapView = new MapView();
+      mapView.display();
         
     }
 
@@ -145,10 +138,9 @@ public class GameMenuView extends View {
     }
 
     private void viewCharacterInventory() throws GameControlException {
-//       System.out.println("*** viewInventory stub function called ***");
+
        //get Character inventory from purchaseList
-       GameControl gameControl = new GameControl();
-       gameControl.displayCharacterInventory();
+       GameControl.displayCharacterInventory();
 
     }
 

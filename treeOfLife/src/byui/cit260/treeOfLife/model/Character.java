@@ -42,7 +42,7 @@ public enum Character implements Serializable{
     
     Character(String description, int origFaithLevel,int origKnowLevel, int origObedLevel ){
     this.description = description;
-    coordinates = new Point(1,1);
+    coordinates = new Point(0,1);
 //    origStatLevels = this.getOrigStatLevels();
     this.origFaithLevel = origFaithLevel;
     this.origKnowLevel = origKnowLevel;

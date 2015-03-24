@@ -74,9 +74,11 @@ public class TempleMenuView extends View{
     QuestionControl templeQuestion = new QuestionControl();
         //get question
         Point coordinates = TreeOfLife.getCurrentGame().getCharacter().getCoordinates();
+        System.out.println("coordinates = "+ coordinates);
         try{
-        templeQuestion.getMantleOrTempleQuestion(coordinates);  
-         //process user's response to question
+        //templeQuestion.getMantleOrTempleQuestion(coordinates);  
+        templeQuestion.getTempleQuestions();
+//process user's response to question
         templeQuestion.responseTempleQuestion();
         //bonus question procedure
         templeQuestion.templeBonusQuestionProcess();

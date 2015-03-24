@@ -54,18 +54,22 @@ public class GameControl {
 
     //@todo - instructions said to have this private, but it caused issues in Map.createMap()
     public static void assignScenesToLocations(Map map, Scene[] scenes) {
+        //setting 3 locations to visited - these are accessible always
         Location[][] locations = map.getLocations();
-
+        locations[0][0].setVisited(true);
         locations[0][0].setScene(scenes[SceneType.armorShop.ordinal()]);
         //start point
         locations[0][1].setScene(scenes[SceneType.cottage.ordinal()]);
+        
         locations[0][2].setScene(scenes[SceneType.levelOne.ordinal()]);
         locations[0][3].setScene(scenes[SceneType.spaciousBuilding.ordinal()]);
         locations[1][0].setScene(scenes[SceneType.temple.ordinal()]);
+        locations[1][0].setVisited(true);
         locations[1][1].setScene(scenes[SceneType.levelTwo.ordinal()]);
         locations[1][2].setScene(scenes[SceneType.levelThree.ordinal()]);
         locations[1][3].setScene(scenes[SceneType.treeOfKnowledge.ordinal()]);
         locations[2][0].setScene(scenes[SceneType.mantle.ordinal()]);
+        locations[2][0].setVisited(true);
         locations[2][1].setScene(scenes[SceneType.levelFour.ordinal()]);
         locations[2][2].setScene(scenes[SceneType.levelFive.ordinal()]);
         locations[2][3].setScene(scenes[SceneType.treeOfLife.ordinal()]);
@@ -124,7 +128,7 @@ public class GameControl {
     public static void displayCharacterInventory() throws GameControlException {
         ArrayList<GameInventoryItems> purchasedItemsList = new ArrayList<>();
 //         purchasedItemsList = GameControl.getSortedPurchasedItems();
-        purchasedItemsList = GameControl.getCharacterInventoryByHighestStats();
+//        purchasedItemsList = GameControl.getCharacterInventoryByHighestStats();
         if (purchasedItemsList.size() < 1) {
             throw new GameControlException("You have not earned any Armor Pieces yet");
 
@@ -145,14 +149,14 @@ public class GameControl {
 
     }
 
-    public static ArrayList<GameInventoryItems> getCharacterInventoryByHighestStats() {
+    public static ArrayList<GameInventoryItems> getCharacterInventoryByHighestStats() throws GameControlException {
         //return items in CharacterInventory sorted by highest Faith points
         ArrayList<GameInventoryItems> originalPurchasedItemsList = new ArrayList<>();
 
         //get list of items purchased for current game
         originalPurchasedItemsList = TreeOfLife.getCurrentGame().getPurchasedItems();
         if (originalPurchasedItemsList.size() <= 1) { //if only 1 item in list return list
-            return originalPurchasedItemsList;
+            throw new GameControlException("You have not earned any Armor Pieces yet");
         } else { //if more than one item in arrayList, sort by lowest Faith points
             ArrayList<GameInventoryItems> purchasedItemsList = new ArrayList<>();
             // make a copy (clone) original

@@ -5,6 +5,7 @@
  */
 package byui.cit260.treeOfLife.model;
 
+import byui.cit260.treeOfLife.control.MapControl;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class ProgressMeter implements Serializable {
     private int faithNeededToLevelUp;   //numb of faith needed to level up
     private int knowNeededToLevelUp;    //numb knowledge needed to level up
     private int obedNeededToLevelUp;    //number obedience needed to level up
-    private int currentLevel;           //current level player is at
+    private MapControl.SceneType currentLevel;           //current level player is at
     private boolean helmetEarned;       //T if helmet earned
     private boolean shieldEarned;       
     private boolean beltEarned;
@@ -46,6 +47,7 @@ public class ProgressMeter implements Serializable {
         this.faithStat = 0;
         this.obedienceStat = 0;
         this.knowledgeStat = 0;
+        this.currentLevel = MapControl.SceneType.cottage;
     }
 
     public ProgressMeter(int faithStat, int knowledgeStat, int obedienceStat) {
@@ -107,12 +109,12 @@ public class ProgressMeter implements Serializable {
         this.obedNeededToLevelUp = obedNeededToLevelUp;
     }
 
-    public int getCurrentLevel() {
+    public MapControl.SceneType getCurrentLevel() {
         System.out.println("getCurrentLevel() called");
         return currentLevel;
     }
 
-    public void setCurrentLevel(int currentLevel) {
+    public void  setCurrentLevel(MapControl.SceneType currentLevel) {
         this.currentLevel = currentLevel;
     }
 
@@ -178,7 +180,7 @@ public class ProgressMeter implements Serializable {
         hash = 59 * hash + this.faithNeededToLevelUp;
         hash = 59 * hash + this.knowNeededToLevelUp;
         hash = 59 * hash + this.obedNeededToLevelUp;
-        hash = 59 * hash + this.currentLevel;
+        
         hash = 59 * hash + (this.helmetEarned ? 1 : 0);
         hash = 59 * hash + (this.shieldEarned ? 1 : 0);
         hash = 59 * hash + (this.beltEarned ? 1 : 0);

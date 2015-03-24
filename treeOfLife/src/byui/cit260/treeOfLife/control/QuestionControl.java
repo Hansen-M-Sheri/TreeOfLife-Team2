@@ -314,7 +314,7 @@ public class QuestionControl {
     //getTempleQuestion and getMantleQuestion are almost duplicates - this would be more efficient if we can get it workingsher
     //work on this to avoid duplication - nextQuestion isn't liking questionEnum - how to call a passed parameter enum?
     public void getMantleOrTempleQuestion(Point coordinates) throws QuestionControlException {
-       boolean currentLocationIsBlocked = false; 
+//       boolean currentLocationIsBlocked = false; 
        String message = " ";
        
 //       switch(questionEnum){
@@ -335,7 +335,8 @@ public class QuestionControl {
 //          
 //       } 
        Location location = TreeOfLife.getCurrentGame().getMap().getLocations()[coordinates.x][coordinates.y];
-        if(location.isBlocked()) {
+        System.out.println("location = "+ location);
+       if(location.isBlocked()) {
            throw new QuestionControlException("Sorry you need to answer more level questions before you can answer any more questions here.");
            // if blocked return to map
 //           GameMenuView gameMenu = new GameMenuView();
