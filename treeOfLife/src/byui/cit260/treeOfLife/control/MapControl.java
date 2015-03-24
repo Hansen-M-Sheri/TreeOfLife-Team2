@@ -224,7 +224,7 @@ public class MapControl {
 
     public static void moveCharactersToStartingLocation(Map map) throws MapControlException {
 
-        System.out.println("*** called moveCharactersToStartingLocation() ****");
+       // System.out.println("*** called moveCharactersToStartingLocation() ****");
 
         Character character = TreeOfLife.getCurrentGame().getCharacter();
        System.out.println(character);
