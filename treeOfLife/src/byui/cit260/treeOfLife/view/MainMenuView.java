@@ -6,6 +6,7 @@
 package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.control.GameControl;
+import citbyui.cit260.treeOfLife.exceptions.MapControlException;
 import java.util.Scanner;
 import treeoflife.TreeOfLife;
 
@@ -62,19 +63,18 @@ public class MainMenuView extends View{
     
     }
 
-    private void startNewGame() {
+    private void startNewGame()  {
       
-    
+        try{
         //Create a new Game
         GameControl.createNewGame(TreeOfLife.getPlayer());
-        
-        System.out.println("Please select a character for your game.");
-        //choose Character 
-        CharacterMenuView character = new CharacterMenuView();
-        character.display();
-        //Display the Game Menu
-//        GameMenuView gameMenu = new GameMenuView();
-//        gameMenu.display();
+        } catch (MapControlException me){
+            System.out.println(me.getMessage());
+        }
+ 
+//        Display the Game Menu
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
     private void startExistingGame() {

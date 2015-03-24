@@ -73,8 +73,10 @@ public enum Character implements Serializable{
 
     @Override
     public String toString() {
-        return "Character{ description=" + description + '}';
+        return "Character{" + "description=" + description + ", coordinates=" + coordinates + ", origFaithLevel=" + origFaithLevel + ", origKnowLevel=" + origKnowLevel + ", origObedLevel=" + origObedLevel + ", gameID=" + gameID + '}';
     }
+
+    
 
    
     

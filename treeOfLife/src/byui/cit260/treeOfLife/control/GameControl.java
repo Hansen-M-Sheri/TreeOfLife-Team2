@@ -14,7 +14,9 @@ import byui.cit260.treeOfLife.model.Players;
 import byui.cit260.treeOfLife.model.ProgressMeter;
 import byui.cit260.treeOfLife.model.Scene;
 import byui.cit260.treeOfLife.view.ArmorShopMenuView;
+import byui.cit260.treeOfLife.view.CharacterMenuView;
 import citbyui.cit260.treeOfLife.exceptions.GameControlException;
+import citbyui.cit260.treeOfLife.exceptions.MapControlException;
 import java.util.ArrayList;
 import treeoflife.TreeOfLife;
 
@@ -24,7 +26,7 @@ import treeoflife.TreeOfLife;
  */
 public class GameControl {
 
-    public static void createNewGame(Players player) {
+    public static void createNewGame(Players player) throws MapControlException {
 
         Game game = new Game();//create a new game
         TreeOfLife.setCurrentGame(game);//save the game in TreeOfLife
@@ -40,7 +42,12 @@ public class GameControl {
         //create progress Meter
         ProgressMeter progress = new ProgressMeter();
         TreeOfLife.getCurrentGame().setProgressMeter(progress);
-        //move characters to starting position in the map
+        
+         System.out.println("Please select a character for your game.");
+        //choose Character 
+        CharacterMenuView character = new CharacterMenuView();
+        character.display();
+        //move characters to starting position in the map - moved to StartNewGame
         MapControl.moveCharactersToStartingLocation(map);
 
     }

@@ -32,10 +32,7 @@ public class MapControl {
         Scene[] scenes = createScenes();
         //Assign each scene to a location in the map 
         GameControl.assignScenesToLocations(map, scenes);
-        String quest = "null";
-        //Create questions for all the scenes in the map
-//        QuestionArray[][] questions = QuestionControl.createQuestionArray();
-
+        
         return map;
 
     }
@@ -225,11 +222,11 @@ public class MapControl {
     }
 
     public static void moveCharactersToStartingLocation(Map map) throws MapControlException {
-//            throw MapControlException { 
+
         System.out.println("*** called moveCharactersToStartingLocation() ****");
 
         Character character = TreeOfLife.getCurrentGame().getCharacter();
-        Point point = new Point();
+       System.out.println(character);
 
         Point coordinates = character.getCoordinates();
         MapControl.moveCharactersToLocation(character, coordinates);
