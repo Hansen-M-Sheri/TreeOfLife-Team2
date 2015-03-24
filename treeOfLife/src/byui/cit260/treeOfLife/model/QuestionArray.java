@@ -166,9 +166,9 @@ public enum QuestionType {
             case temple:
                 //get last temple question asked + 1 save to index
                 //by checking modulus here it will return 0 if we go past length requirements so question will start all over
-                 index = (this.getLastTempleQuestionAsked() + 1) % questionArray[QuestionType.temple.ordinal()].length;
+                 index = (this.lastTempleQuestionAsked + 1) % questionArray[QuestionType.temple.ordinal()].length;
                 //increment last question Asked
-                this.setLastTempleQuestionAsked(index++);
+                this.lastTempleQuestionAsked++;
                 break;
             case mantle:
                 //by checking modulus here it will return 0 if we go past length requirements so question will start all over

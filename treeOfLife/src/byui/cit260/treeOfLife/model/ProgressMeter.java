@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class ProgressMeter implements Serializable {
     
     //class instance variables
+    private String description;
     private int faithStat;      //current stats in faith
     private int knowledgeStat;  //current stats in knowledge
     private int obedienceStat;  //current stats in obedience
@@ -40,6 +41,11 @@ public class ProgressMeter implements Serializable {
     }
 
     public ProgressMeter() {
+        this.description = "\n These are your current levels of faith, obedience, and knowledge."
+                           +"\n Work to increase in all areas so you can obtain the Tree Of Life.";
+        this.faithStat = 0;
+        this.obedienceStat = 0;
+        this.knowledgeStat = 0;
     }
 
     public ProgressMeter(int faithStat, int knowledgeStat, int obedienceStat) {

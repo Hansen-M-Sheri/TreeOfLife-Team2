@@ -78,7 +78,7 @@ public class GameMenuView extends View {
 
     
     }
-  public void displayMap() {//changed this to public so can call this to display map from multiple menu's 
+  public static void displayMap() {//changed this to public so can call this to display map from multiple menu's 
  
         //get the map locations from the current game
       Location[][]locations = TreeOfLife.getCurrentGame().getMap().getLocations();
@@ -119,7 +119,7 @@ public class GameMenuView extends View {
         System.out.println("--------------------------------");
         
         //print out map menu
-       this.displayMapMenu();
+//       this.displayMapMenu();
         
     }
 

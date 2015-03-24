@@ -19,9 +19,10 @@ public class Game implements Serializable {
     private Players player;
     private ProgressMeter progressMeter;
     private Map map;
-    private ArrayList<GameInventoryItems> forSale = new ArrayList<>();
-    private ArrayList<GameInventoryItems> purchasedItems = new ArrayList<>();
-    private Character[] character;
+    private ArrayList<GameInventoryItems> forSale;
+    private ArrayList<GameInventoryItems> purchasedItems ;
+    private Character[] characters;
+    private Character character;
 
     public Players getPlayer() {
         return player;
@@ -47,12 +48,12 @@ public class Game implements Serializable {
         this.map = map;
     }
 
-    public Character[] getCharacter() {
-        return character;
+    public Character[] getCharactersArray() {
+        return characters;
     }
 
-    public void setCharacter(Character[] character) {
-        this.character = character;
+    public void setCharactersArray(Character[] characters) {
+        this.characters = characters;
     }
 
     public ArrayList<GameInventoryItems> getForSale() {
@@ -69,6 +70,14 @@ public class Game implements Serializable {
 
     public void setPurchasedItems(ArrayList<GameInventoryItems> purchasedItems) {
         this.purchasedItems = purchasedItems;
+    }
+
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
     }
     
 

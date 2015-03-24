@@ -12,6 +12,7 @@ import byui.cit260.treeOfLife.model.QuestionArray;
 import byui.cit260.treeOfLife.view.GameMenuView;
 import byui.cit260.treeOfLife.view.TempleMenuView;
 import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
+import java.awt.Point;
 import java.util.Random;
 import java.util.Scanner;
 import treeoflife.TreeOfLife;
@@ -312,33 +313,34 @@ public class QuestionControl {
     }
     //getTempleQuestion and getMantleQuestion are almost duplicates - this would be more efficient if we can get it workingsher
     //work on this to avoid duplication - nextQuestion isn't liking questionEnum - how to call a passed parameter enum?
-    public void getMantleOrTempleQuestion(QuestionArray.QuestionType questionEnum) throws QuestionControlException {
+    public void getMantleOrTempleQuestion(Point coordinates) throws QuestionControlException {
        boolean currentLocationIsBlocked = false; 
        String message = " ";
        
-       switch(questionEnum){
-           case temple:
-                //check isBlocked - determine how we determine block and not blocked to answer questions
-                Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
-                currentLocationIsBlocked = locations[1][0].isBlocked();
-                message = "Sorry, you need to answer more level questions before you can answer any more Temple questions";
-               break;
-           case mantle:
-                locations = TreeOfLife.getCurrentGame().getMap().getLocations();
-                currentLocationIsBlocked = locations[2][0].isBlocked();
-                message = "Sorry, you need to answer more level questions before you can answer any more Mantle questions";
-               break;
-               
-           default:
-               break;
-          
-       } 
-     
-        if(currentLocationIsBlocked) {
-           System.out.println(message);
+//       switch(questionEnum){
+//           case temple:
+//                //check isBlocked - determine how we determine block and not blocked to answer questions
+//                Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+//                currentLocationIsBlocked = locations[1][0].isBlocked();
+//                message = "Sorry, you need to answer more level questions before you can answer any more Temple questions";
+//               break;
+//           case mantle:
+//                locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+//                currentLocationIsBlocked = locations[2][0].isBlocked();
+//                message = "Sorry, you need to answer more level questions before you can answer any more Mantle questions";
+//               break;
+//               
+//           default:
+//               break;
+//          
+//       } 
+       Location location = TreeOfLife.getCurrentGame().getMap().getLocations()[coordinates.x][coordinates.y];
+        if(location.isBlocked()) {
+           throw new QuestionControlException("Sorry you need to answer more level questions before you can answer any more questions here.");
            // if blocked return to map
-           GameMenuView gameMenu = new GameMenuView();
-            gameMenu.displayMap();
+//           GameMenuView gameMenu = new GameMenuView();
+//            gameMenu.displayMap();
+           
         }
         else {
             //get next question

@@ -7,7 +7,9 @@ package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.control.QuestionControl;
 import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
+import java.awt.Point;
 import java.util.Scanner;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -40,13 +42,10 @@ public class TempleMenuView extends View{
             //  this.restAtTemple();
             //  break;
             case 'A': // get and start an existing game//              
-                try {
+               
                      this.answerTempleQuestions();   
-                } 
-                catch (QuestionControlException qe) {
-                    System.out.println(qe.getMessage());
-                }
-                break;
+               return true;
+//                break;
             case 'M': // to to Armor Shop Menu
                 this.displayMapView();
                 break;
@@ -71,14 +70,23 @@ public class TempleMenuView extends View{
     //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     //}
 
-    private void answerTempleQuestions() throws QuestionControlException {
+    private void answerTempleQuestions()  {
     QuestionControl templeQuestion = new QuestionControl();
         //get question
-        templeQuestion.getTempleQuestions();  
-        //process user's response to question
+        Point coordinates = TreeOfLife.getCurrentGame().getCharacter().getCoordinates();
+        try{
+        templeQuestion.getMantleOrTempleQuestion(coordinates);  
+         //process user's response to question
         templeQuestion.responseTempleQuestion();
         //bonus question procedure
         templeQuestion.templeBonusQuestionProcess();
+        }catch (QuestionControlException qe){
+            System.out.println(qe.getMessage());
+             
+            GameMenuView.displayMap();
+        }
+       
+        
         //assign points templePoints to progress meter
         //if 1st visit points go to knowledge, 2nd obedience, 3rd faith
     

@@ -34,9 +34,6 @@ public class ArmorShopMenuView extends View{
             System.out.println("There are no more items available in the Armor Shop");
         }
         else {
-            //clone array, compare character points vs points required to earn armor
-            //after comparing, only display those items that are available to purchase
-            // points required will be amounts of faith, obed, know
             
             //for each item in list
             for (GameInventoryItems item : forSale) {

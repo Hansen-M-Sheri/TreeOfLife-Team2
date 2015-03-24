@@ -68,6 +68,7 @@ public class MainMenuView extends View{
         //Create a new Game
         GameControl.createNewGame(TreeOfLife.getPlayer());
         
+        System.out.println("Please select a character for your game.");
         //choose Character 
         CharacterMenuView character = new CharacterMenuView();
         character.display();

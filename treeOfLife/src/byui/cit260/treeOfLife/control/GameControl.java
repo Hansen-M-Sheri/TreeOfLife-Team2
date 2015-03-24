@@ -11,6 +11,7 @@ import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.control.MapControl.SceneType;
 import byui.cit260.treeOfLife.model.Players;
+import byui.cit260.treeOfLife.model.ProgressMeter;
 import byui.cit260.treeOfLife.model.Scene;
 import byui.cit260.treeOfLife.view.ArmorShopMenuView;
 import citbyui.cit260.treeOfLife.exceptions.GameControlException;
@@ -31,19 +32,20 @@ public class GameControl {
         game.setPlayer(player);//save player in game
 
         ArrayList<GameInventoryItems> forSale = GameControl.createInventoryList();//create items for sale in game
-//        game.setInventory();//don't think I need to save since inventory is enum
+        game.setForSale(forSale);
 
         Map map = MapControl.createMap();//create the Map
         game.setMap(map);//save map in the game
 
+        //create progress Meter
+        ProgressMeter progress = new ProgressMeter();
+        TreeOfLife.getCurrentGame().setProgressMeter(progress);
         //move characters to starting position in the map
         MapControl.moveCharactersToStartingLocation(map);
 
-        //System.out.println("*** createNewGame function called ***");
     }
 
     //@todo - instructions said to have this private, but it caused issues in Map.createMap()
-
     public static void assignScenesToLocations(Map map, Scene[] scenes) {
         Location[][] locations = map.getLocations();
 
@@ -63,10 +65,8 @@ public class GameControl {
     }
 
     public static ArrayList<GameInventoryItems> createInventoryList() {
-        //get list of forSale items from current game
-        Game game = TreeOfLife.getCurrentGame();
-        //create an arrayList forSaleList
-        ArrayList<GameInventoryItems> forSaleList = game.getForSale();
+
+        ArrayList<GameInventoryItems> forSaleList = new ArrayList<>();
         //add each armor piece to the forSaleList
         forSaleList.add(GameInventoryItems.Helmet);
         forSaleList.add(GameInventoryItems.ProtectiveShield);
@@ -74,9 +74,7 @@ public class GameControl {
         forSaleList.add(GameInventoryItems.Boots);
         forSaleList.add(GameInventoryItems.Sword);
         forSaleList.add(GameInventoryItems.IronBreastPlate);
-        //Below is how we will remove item from list - 
-//        forSaleList.remove(GameInventoryItems.helmet);
-
+ 
         return forSaleList;
 
     }
@@ -116,13 +114,13 @@ public class GameControl {
         }
     }
 
-    public static void displayCharacterInventory() throws GameControlException{
+    public static void displayCharacterInventory() throws GameControlException {
         ArrayList<GameInventoryItems> purchasedItemsList = new ArrayList<>();
 //         purchasedItemsList = GameControl.getSortedPurchasedItems();
         purchasedItemsList = GameControl.getCharacterInventoryByHighestStats();
         if (purchasedItemsList.size() < 1) {
             throw new GameControlException("You have not earned any Armor Pieces yet");
-           
+
         } else {
             for (GameInventoryItems armor : purchasedItemsList) {
                 String armorPiece = armor.name();
@@ -168,25 +166,23 @@ public class GameControl {
         }
 
     }
-    
+
     public static GameInventoryItems[] sortFaithPoints() {
         //sorting faithPoints along with name
         GameInventoryItems[] inventoryItems = GameInventoryItems.values();
         for (int i = 0; i < inventoryItems.length; i++) { //sorting faithPoints
             System.out.println(inventoryItems[i].name()); //sorting name in GameInventoryItems enum
             System.out.println("Faith Points = " + inventoryItems[i].getFaithPoints() + "\n");  //Display both returned name with connected faithpoints.
-            
+
         }
-            ArmorShopMenuView armorMenu = new ArmorShopMenuView();
-            armorMenu.display();
-        return inventoryItems; 
-    } 
+        ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+        armorMenu.display();
+        return inventoryItems;
+    }
 
     public void display() {
         GameControl.sortFaithPoints();//calling the sortFaithPoints() function
-       
+
     }
-    
-    
-    
+
 }

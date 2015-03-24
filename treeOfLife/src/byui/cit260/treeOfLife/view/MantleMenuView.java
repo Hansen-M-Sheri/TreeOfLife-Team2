@@ -86,11 +86,8 @@ public MantleMenuView(){
         mantleQuestAsked.setNumMantleQuestion(numQuestions++);
        //get user's response
         mantleQuestion.mantleResponse();
-       
-        Game game =   TreeOfLife.getCurrentGame();
-        ProgressMeter progress = new ProgressMeter();
-        progress= game.getProgressMeter();
-        int faith = progress.getFaithStat();
+    
+        int faith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
         
 //     int faith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
 System.out.println("faith = "+ faith);        

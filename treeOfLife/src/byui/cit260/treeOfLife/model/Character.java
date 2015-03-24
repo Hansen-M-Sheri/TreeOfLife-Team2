@@ -8,22 +8,25 @@ package byui.cit260.treeOfLife.model;
 import java.awt.Point;
 import java.util.Objects;
 import java.io.Serializable;
+import treeoflife.TreeOfLife;
 /**
  *
  * @author Chuck
  */
 public enum Character implements Serializable{
     
-    Nephi("Faithful son and later the prophet and leader of the Nephites."),
-    Sariah("She is Lehi's wife and mother of Nephi and Jacob"),
-    Jacob("Nephi's faithful brother, prophet and successor to Nephi.");
+    Nephi("Faithful son and later the prophet and leader of the Nephites.", 10, 5, 5),
+    Sariah("She is Lehi's wife and mother of Nephi and Jacob", 5,5,10),
+    Jacob("Nephi's faithful brother, prophet and successor to Nephi.", 5,10,5);
     
     private final String description;
     private final Point coordinates;
 
-    private final String origStatLevels;
+    private final int origFaithLevel;
+    private final int origKnowLevel;
+    private final int origObedLevel;
     private Game gameID;
-    private Location location;
+   
 
     public Game getGameID() {
         return gameID;
@@ -33,27 +36,36 @@ public enum Character implements Serializable{
         this.gameID = gameID;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
     
-    Character(String description){
+
+    
+    
+    Character(String description, int origFaithLevel,int origKnowLevel, int origObedLevel ){
     this.description = description;
     coordinates = new Point(1,1);
-    origStatLevels = this.getOrigStatLevels();
+//    origStatLevels = this.getOrigStatLevels();
+    this.origFaithLevel = origFaithLevel;
+    this.origKnowLevel = origKnowLevel;
+    this.origObedLevel = origObedLevel;
+    }
+
+    public int getOrigFaithLevel() {
+        return origFaithLevel;
+    }
+
+    public int getOrigKnowLevel() {
+        return origKnowLevel;
+    }
+
+    public int getOrigObedLevel() {
+        return origObedLevel;
     }
 
     public String getDescription() {
         return description;
     }
     
-    public String getOrigStatLevels() {
-       return origStatLevels;
-    }
+    
     
     public Point getCoordinates() {
         return coordinates;
@@ -61,12 +73,9 @@ public enum Character implements Serializable{
 
     @Override
     public String toString() {
-        return "Character{ description=" + description + ", origStatLevels=" + origStatLevels + '}';
+        return "Character{ description=" + description + '}';
     }
 
    
-
-   
-    
     
 }
