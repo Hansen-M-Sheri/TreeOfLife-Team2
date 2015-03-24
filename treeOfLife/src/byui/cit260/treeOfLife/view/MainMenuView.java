@@ -44,9 +44,10 @@ public class MainMenuView extends View{
             case 'G': // get and start an existing game
                 this.startExistingGame();
                 break;
-            case 'H': // display the help menu
-                this.displayHelpMenu();
-                break;
+                //removing help from main menu to avoid access to game without creating new game
+//            case 'H': // display the help menu
+//                this.displayHelpMenu();
+//                break;
             case 'S': //save the current game
                 this.saveGame(); // save the current game
                 break;
@@ -67,9 +68,12 @@ public class MainMenuView extends View{
         //Create a new Game
         GameControl.createNewGame(TreeOfLife.getPlayer());
         
+        //choose Character 
+        CharacterMenuView character = new CharacterMenuView();
+        character.display();
         //Display the Game Menu
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();
+//        GameMenuView gameMenu = new GameMenuView();
+//        gameMenu.display();
     }
 
     private void startExistingGame() {

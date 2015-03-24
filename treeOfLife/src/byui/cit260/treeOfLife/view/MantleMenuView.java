@@ -91,6 +91,8 @@ public MantleMenuView(){
         ProgressMeter progress = new ProgressMeter();
         progress= game.getProgressMeter();
         int faith = progress.getFaithStat();
+        
+//     int faith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
 System.out.println("faith = "+ faith);        
 //maybe need to call calMantlePoints here, include total phrase, you just earned... points. 
        mantleQuestion.assignMantlePoints(numQuestions);
