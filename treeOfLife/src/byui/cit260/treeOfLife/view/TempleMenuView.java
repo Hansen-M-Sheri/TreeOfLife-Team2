@@ -56,7 +56,7 @@ public class TempleMenuView extends View{
                 this.returnToMainMenu();
                 break;
             default:
-            System.out.println("n*** Invalid Temple Menu selection *** Try again");
+            ErrorView.display("TempleMenuView", "n*** Invalid Temple Menu selection *** Try again");
                 break;
 }
         return true;
@@ -74,7 +74,7 @@ public class TempleMenuView extends View{
     QuestionControl templeQuestion = new QuestionControl();
         //get question
         Point coordinates = TreeOfLife.getCurrentGame().getCharacter().getCoordinates();
-        System.out.println("coordinates = "+ coordinates);
+        this.console.println("coordinates = "+ coordinates);
         try{
         //templeQuestion.getMantleOrTempleQuestion(coordinates);  
         templeQuestion.getTempleQuestions();
@@ -83,7 +83,7 @@ public class TempleMenuView extends View{
         //bonus question procedure
         templeQuestion.templeBonusQuestionProcess();
         }catch (QuestionControlException qe){
-            System.out.println(qe.getMessage());
+            ErrorView.display(this.getClass().getName(), "Error reading input: "+ qe.getMessage());
              
             GameMenuView.displayMap();
         }

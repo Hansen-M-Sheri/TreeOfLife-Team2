@@ -54,7 +54,7 @@ public class MainMenuView extends View{
             case 'Q': // Exit the program
                 return true;
             default:
-            System.out.println("n*** Invalid selection *** Try again");
+            ErrorView.display("MainMenuView","n*** Invalid selection *** Try again");
                 break;
 }
         return true;
@@ -68,7 +68,7 @@ public class MainMenuView extends View{
         //Create a new Game
         GameControl.createNewGame(TreeOfLife.getPlayer());
         } catch (MapControlException me){
-            System.out.println(me.getMessage());
+           ErrorView.display(this.getClass().getName(), "Error reading input: "+ me.getMessage());
         }
  
 //        Display the Game Menu
@@ -77,7 +77,7 @@ public class MainMenuView extends View{
     }
 
     private void startExistingGame() {
-        System.out.println("*** startExistingGame function called ***");
+        this.console.println("*** startExistingGame function called ***");
     
     }
 
@@ -89,7 +89,7 @@ public class MainMenuView extends View{
     }
 
     private void saveGame() {
-         System.out.println("*** saveGame function called ***");
+         this.console.println("*** saveGame function called ***");
         
     }
 

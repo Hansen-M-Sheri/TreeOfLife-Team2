@@ -45,7 +45,7 @@ public MantleMenuView(){
                 try{
                 this.answerMantleQuestions();
                 }catch (QuestionControlException qe) {
-                    System.out.println(qe.getMessage());
+                   ErrorView.display(this.getClass().getName(), "Error reading input:"+ qe.getMessage());
                 } 
                 break;
             case 'M': // display Map view
@@ -58,7 +58,7 @@ public MantleMenuView(){
                 this.returnToMainMenu();
                 break;
             default:
-            System.out.println("n*** Invalid Mantle menu selection *** Try again");
+            ErrorView.display("MantleMenuView", "n*** Invalid Mantle menu selection *** Try again");
                 break;
 }
     return true;
@@ -90,14 +90,14 @@ public MantleMenuView(){
         int faith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
         
 //     int faith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
-System.out.println("faith = "+ faith);        
+this.console.println("faith = "+ faith);        
 //maybe need to call calMantlePoints here, include total phrase, you just earned... points. 
        mantleQuestion.assignMantlePoints(numQuestions);
         //@todo - set this section to blocked
         Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
         locations[2][0].setBlocked(true);
 
-        System.out.println("Thank you for visiting the mantle.");
+        this.console.println("Thank you for visiting the mantle.");
         //display mapView menu
         this.displayMapView();       //incrementMantleQuestionsAsked - do this step in getAnotherMantleQuestion? Not sure
        //add answer to combinedMantleAnswer (do this for each answer)
@@ -135,7 +135,7 @@ System.out.println("faith = "+ faith);
 //                this.display();
 //                break;
 //            default:
-//                System.out.println("Your entry was invalid.  Please enter an A or an M");
+//                this.console.println("Your entry was invalid.  Please enter an A or an M");
 //                this.getInput();
 //                break;
 //        }

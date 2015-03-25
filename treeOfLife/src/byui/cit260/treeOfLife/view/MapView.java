@@ -61,7 +61,7 @@ public class MapView extends View{
                 this.returnToMainMenu();
                 break;
             default:
-            System.out.println("n*** Invalid map menu selection *** Try again");
+            ErrorView.display("MapView","n*** Invalid map menu selection *** Try again");
                 break;
 }
          return true;
@@ -93,7 +93,7 @@ public class MapView extends View{
     }
 
     private void goToLevelMenu() {
-        System.out.println("*** goToLevelMenu function called ***");
+        this.console.println("*** goToLevelMenu function called ***");
     }
 
     private void displayGameMenu() {

@@ -60,9 +60,9 @@ public class ProgressMeterView extends View{
                
             try {
                 this.displayArmorItemsEarned();
-            } catch (GameControlException ex) {
+            } catch (GameControlException e) {
 //                Logger.getLogger(ProgressMeterView.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println(ex.getMessage());
+               ErrorView.display(this.getClass().getName(), "Error reading input: "+ e.getMessage());
             }
                 break;
             case 'G': // display game menu
@@ -72,7 +72,7 @@ public class ProgressMeterView extends View{
                 this.displayMainMenu();            
                 break;
             default:
-            System.out.println("n*** Invalid help menu selection *** Try again");
+            ErrorView.display("ProgressMeterView", "****Invalid selection **** Try again");
                 break;
 }
                 return true;

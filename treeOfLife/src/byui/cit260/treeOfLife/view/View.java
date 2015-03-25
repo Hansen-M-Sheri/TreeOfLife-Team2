@@ -5,7 +5,10 @@
  */
 package byui.cit260.treeOfLife.view;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
+import treeoflife.TreeOfLife;
 
 /**
  *
@@ -14,6 +17,9 @@ import java.util.Scanner;
 public abstract class View implements ViewInterface{
    
     private String promptMessage;
+    
+    protected final BufferedReader keyboard = TreeOfLife.getInFile();
+    protected final PrintWriter console = TreeOfLife.getOutFile();
     
     public View(String promptMessage){
         this.promptMessage = promptMessage;
@@ -33,7 +39,7 @@ public abstract class View implements ViewInterface{
     
     do {
         
-        System.out.println(this.promptMessage);//display the prompt
+        this.console.println(this.promptMessage);//display the prompt
         value = this.getInput();  //get the user selection
         this.doAction(value);  // do action based on selection
         
@@ -45,29 +51,32 @@ public abstract class View implements ViewInterface{
     @Override 
     public String getInput() {
         
-        Scanner keyboard = new Scanner(System.in); //keyboard input stream
+       
         boolean valid =false; //indicates if the name has been recieved
         String selection = null;
-        
+        try {
         //while a valid name has not been retrieved
         while(!valid) { 
             
             //prompt for the player's name
-            System.out.println("\t\nEnter your selection below:");
+            this.console.println("\t\nEnter your selection below:");
             
             //get the value entered from the keyboard
-            selection = keyboard.nextLine();
+            selection = this.keyboard.readLine();
             selection = selection.trim();
             selection = selection.toUpperCase();
             
             //if the name is invalid(less than two character in length)
             if (selection.length() < 1) {
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "You must enter a value.");
+               
                 continue; // and repeat again
             }
             break; //out of the (exit) the repitition
         }
-        
+        }catch (Exception e) {
+           ErrorView.display(this.getClass().getName(), "Error reading input "+ e.getMessage());
+        }   
         return selection; // return the name
     
     }

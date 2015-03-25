@@ -13,8 +13,13 @@ import byui.cit260.treeOfLife.view.GameMenuView;
 import byui.cit260.treeOfLife.view.TempleMenuView;
 import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
 import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import treeoflife.TreeOfLife;
 
 /**
@@ -22,6 +27,11 @@ import treeoflife.TreeOfLife;
  * @author Chuck
  */
 public class QuestionControl {
+    
+    protected final BufferedReader keyboard = TreeOfLife.getInFile();
+    protected final PrintWriter console = TreeOfLife.getOutFile();
+    
+    
     private static int totalQuestionsAsked;
     private int bonus;
     private int pointValuePerQuestion;
@@ -334,6 +344,7 @@ public class QuestionControl {
 //               break;
 //          
 //       } 
+      
        Location location = TreeOfLife.getCurrentGame().getMap().getLocations()[coordinates.x][coordinates.y];
         System.out.println("location = "+ location);
        if(location.isBlocked()) {
@@ -423,24 +434,27 @@ public class QuestionControl {
     public int getTempleInput() {
         boolean valid =false; //indicates if the input has been recieved
         int userInput = 0;
-        Scanner keyboard = new Scanner(System.in); //keyboard input stream
         
+        try {
         while(!valid) { //while a valid name has not been retrieved
             
             //prompt for user input for a value between 0 through 7
             System.out.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
             
-            //get the name from the keyboard and trim off the blanks
-            //userInput = keyboard.nextLine();
-            if(keyboard.hasNextInt()) {
-                userInput = keyboard.nextInt();
-                //userInput = userInput.trim();
-                //userInput = userInput.toUpperCase();
-            }
-            else {
-                System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
-                this.getTempleInput();
-            }
+            
+                //get the name from the keyboard and trim off the blanks
+                //userInput = keyboard.nextLine();
+//            if(keyboard.hasNextInt()) {
+                if(keyboard.read() > 0 || keyboard.read() <= 7) { //using this one because it is an int
+                    userInput = keyboard.read();
+                    //userInput = userInput.trim();
+                    //userInput = userInput.toUpperCase();
+                }
+                else {
+                    System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
+                    this.getTempleInput();
+                }
+        
             //if the input is invalid
             //if (userInput.length() < 1 || userInput.length() > 1) {
                 if (userInput < 0 || userInput > 7) {
@@ -450,6 +464,9 @@ public class QuestionControl {
                 break; //out of the (exit) the repitition
         }
         
+            } catch (Exception e) { //program said it was IOException
+                System.out.println("Error reading input: " + e.getMessage());
+            }
             return userInput; // return the name
     
     }
@@ -485,8 +502,8 @@ public class QuestionControl {
     
         boolean valid =false; //indicates if the input has been recieved
             int userInput = 0;
-            Scanner keyboard = new Scanner(System.in); //keyboard input stream
-
+            
+        try{
             while(!valid) { //while a valid name has not been retrieved
 
                 //prompt for user input for a value between 0 through 7
@@ -494,8 +511,8 @@ public class QuestionControl {
 
                 //get the integer from the keyboard 
                 //userInput = keyboard.nextLine();
-                if(keyboard.hasNextInt()) {
-                    userInput = keyboard.nextInt();
+                if(keyboard.read() > 0 || keyboard.read() <= 7) {
+                    userInput = keyboard.read();
                     //userInput = userInput.trim();
                     //userInput = userInput.toUpperCase();
                 }
@@ -511,7 +528,9 @@ public class QuestionControl {
                     }
                     break; //out of the (exit) the repitition
             }
-
+        } catch (Exception e) { //program said it was IOException
+                System.out.println("Error reading input: " + e.getMessage());
+            }
                 return userInput; // return the name
 
 
@@ -548,8 +567,8 @@ public class QuestionControl {
     private int getReturntoGameMenu() {
         boolean valid =false; //indicates if the input has been recieved
             int userInput = 0;
-            Scanner keyboard = new Scanner(System.in); //keyboard input stream
-
+           
+            try{
             while(!valid) { //while a valid name has not been retrieved
 
                 //prompt for user input for the number 9
@@ -557,8 +576,8 @@ public class QuestionControl {
 
                 //get the name from the keyboard and trim off the blanks
                 //userInput = keyboard.nextLine();
-                if(keyboard.hasNextInt()) {
-                    userInput = keyboard.nextInt();
+                if(keyboard.read() == 9) {
+                    userInput = keyboard.read();
                     //userInput = userInput.trim();
                     //userInput = userInput.toUpperCase();
                 }
@@ -574,7 +593,9 @@ public class QuestionControl {
                     }
                     break; //out of the (exit) the repitition
             }
-
+              } catch (Exception e) { //program said it was IOException
+                System.out.println("Error reading input: " + e.getMessage());
+            }
                 return userInput; // return the name
     
     }
@@ -619,8 +640,8 @@ public void mantleResponse() throws QuestionControlException{
     private int getMantleInput() {
        boolean valid =false; //indicates if the name has been recieved
         int userInput = 0;
-        Scanner keyboard = new Scanner(System.in); //keyboard input stream
         
+    try{
         while(!valid) { //while a valid name has not been retrieved
             
             //prompt for the player's name
@@ -628,8 +649,8 @@ public void mantleResponse() throws QuestionControlException{
             
             //get the name from the keyboard and trim off the blanks
 //            userInput = keyboard.nextLine();
-            if(keyboard.hasNextInt()) {
-                userInput = keyboard.nextInt();
+            if(keyboard.read() > 0 || keyboard.read() <= 7) {
+                userInput = keyboard.read();
 //                userInput = userInput.trim();
 //                userInput = userInput.toUpperCase();
             }
@@ -645,7 +666,9 @@ public void mantleResponse() throws QuestionControlException{
             }
             break; //out of the (exit) the repitition
         }
-        
+    } catch (Exception e) { //program said it was IOException
+           System.out.println("Error reading input: " + e.getMessage());
+       }
         return userInput; // return the name
     
     } 

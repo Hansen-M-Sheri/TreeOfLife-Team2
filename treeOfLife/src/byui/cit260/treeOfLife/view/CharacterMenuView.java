@@ -24,13 +24,13 @@ public class CharacterMenuView extends View {
         Character[] characters = Character.values();
         for (Character character : characters) {
             char firstCharacter = character.name().charAt(0);
-            System.out.println(firstCharacter + " - Select " + character.name());
-            System.out.println("\t " + character.getDescription());
-            System.out.println("\tFaith points = " + character.getOrigFaithLevel());
-            System.out.println("\tKnowledge points = " + character.getOrigKnowLevel());
-            System.out.println("\tObedience points = " + character.getOrigObedLevel());
+            this.console.println(firstCharacter + " - Select " + character.name());
+            this.console.println("\t " + character.getDescription());
+            this.console.println("\tFaith points = " + character.getOrigFaithLevel());
+            this.console.println("\tKnowledge points = " + character.getOrigKnowLevel());
+            this.console.println("\tObedience points = " + character.getOrigObedLevel());
         }
-        System.out.println(
+        this.console.println(
                 "\nQ - Quit - "
                 + "\n========================================");
 
@@ -57,7 +57,7 @@ public class CharacterMenuView extends View {
 
                 break;
             default:
-                System.out.println("n*** Invalid help menu selection *** Try again");
+                ErrorView.display("CharacterMenuView","*** Invalid help menu selection *** Try again");
                 break;
         }
         return true;
@@ -65,26 +65,26 @@ public class CharacterMenuView extends View {
     }
 
     private void selectNephi() {
-//        System.out.println("*** selcectNephi function called ***");
+
         
         TreeOfLife.getCurrentGame().setCharacter(Character.Nephi);
-        System.out.println("Welcome Nephi, let's begin your journey to the Tree of Life!");
+        this.console.println("Welcome Nephi, let's begin your journey to the Tree of Life!");
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.display();
     }
 
     private void selectSariah() {
-//        System.out.println("*** selectSariah function called ***");
+
         TreeOfLife.getCurrentGame().setCharacter(Character.Sariah);
-        System.out.println("Welcome Sariah, let's begin your journey to the Tree of Life!");
+        this.console.println("Welcome Sariah, let's begin your journey to the Tree of Life!");
 //        GameMenuView gameMenu = new GameMenuView();
 //        gameMenu.display();
     }
 
     private void selectJacob() {
-//      System.out.println("*** selectJacob function called ***");
+
         TreeOfLife.getCurrentGame().setCharacter(Character.Jacob);
-        System.out.println("Welcome Jacob, let's begin your journey to the Tree of Life!");
+        this.console.println("Welcome Jacob, let's begin your journey to the Tree of Life!");
 //        GameMenuView gameMenu = new GameMenuView();
 //        gameMenu.display();
     }

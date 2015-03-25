@@ -50,7 +50,7 @@ public class GameMenuView extends View {
                 this.viewCharacterInventory();
             } catch (GameControlException ex) {
                 //Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex); *** creates log for programmer on issues
-                System.out.println(ex.getMessage());
+                this.console.println(ex.getMessage());
             }
         }
                 break;
@@ -63,7 +63,7 @@ public class GameMenuView extends View {
                 break;
             
             default:
-            System.out.println("n*** Invalid game menu selection *** Try again");
+            ErrorView.display("GameMenuView", "*** Invalid game menu selection *** Try again");
                 break;
 }
         return true;
