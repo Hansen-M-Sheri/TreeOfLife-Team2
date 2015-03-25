@@ -69,24 +69,24 @@ public class CharacterMenuView extends View {
         
         TreeOfLife.getCurrentGame().setCharacter(Character.Nephi);
         System.out.println("Welcome Nephi, let's begin your journey to the Tree of Life!");
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();
+//        GameMenuView gameMenu = new GameMenuView();
+//        gameMenu.display();
     }
 
     private void selectSariah() {
 //        System.out.println("*** selectSariah function called ***");
         TreeOfLife.getCurrentGame().setCharacter(Character.Sariah);
         System.out.println("Welcome Sariah, let's begin your journey to the Tree of Life!");
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();
+//        GameMenuView gameMenu = new GameMenuView();
+//        gameMenu.display();
     }
 
     private void selectJacob() {
 //      System.out.println("*** selectJacob function called ***");
         TreeOfLife.getCurrentGame().setCharacter(Character.Jacob);
         System.out.println("Welcome Jacob, let's begin your journey to the Tree of Life!");
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();
+//        GameMenuView gameMenu = new GameMenuView();
+//        gameMenu.display();
     }
 
     private void returnToMainMenu() {

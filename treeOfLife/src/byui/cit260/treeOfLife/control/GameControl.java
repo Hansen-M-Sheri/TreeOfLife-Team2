@@ -47,8 +47,9 @@ public class GameControl {
         //choose Character 
         CharacterMenuView character = new CharacterMenuView();
         character.display();
+        throw new MapControlException("Line 50 of createNewGame is hit");
         //move characters to starting position in the map - moved to StartNewGame
-        MapControl.moveCharactersToStartingLocation(map);
+//        MapControl.moveCharactersToStartingLocation(map);
 
     }
 

@@ -231,6 +231,7 @@ public class MapControl {
 
         Point coordinates = character.getCoordinates();
         MapControl.moveCharactersToLocation(character, coordinates);
+//        System.out.println(coordinates);
 
     }
 
@@ -251,6 +252,7 @@ public class MapControl {
         character.getCoordinates().y = coordinates.y;
         //set location as visited
         Location location = map.getLocations()[coordinates.x][coordinates.y];
+//       throw new MapControlException("starting location is: "+location); //this is to test location 
         location.setVisited(true);
     }
 
