@@ -69,8 +69,8 @@ public class CharacterMenuView extends View {
         
         TreeOfLife.getCurrentGame().setCharacter(Character.Nephi);
         System.out.println("Welcome Nephi, let's begin your journey to the Tree of Life!");
-//        GameMenuView gameMenu = new GameMenuView();
-//        gameMenu.display();
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
     private void selectSariah() {
