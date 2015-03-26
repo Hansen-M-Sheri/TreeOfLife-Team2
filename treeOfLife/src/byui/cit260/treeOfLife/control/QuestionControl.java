@@ -439,19 +439,20 @@ public class QuestionControl {
         while(!valid) { //while a valid name has not been retrieved
             
             //prompt for user input for a value between 0 through 7
-            System.out.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
+            this.console.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
             
             
                 //get the name from the keyboard and trim off the blanks
                 //userInput = keyboard.nextLine();
 //            if(keyboard.hasNextInt()) {
-                if(keyboard.read() > 0 || keyboard.read() <= 7) { //using this one because it is an int
-                    userInput = keyboard.read();
+            int response = this.keyboard.read();
+                if(response > 0 || response <= 7) { //using this one because it is an int
+                    userInput = this.keyboard.read();
                     //userInput = userInput.trim();
                     //userInput = userInput.toUpperCase();
                 }
                 else {
-                    System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
+                    this.console.println("Invalid selection - Must select a nubmer between 0 and 7.");
                     this.getTempleInput();
                 }
         
