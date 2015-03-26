@@ -12,8 +12,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -29,6 +27,7 @@ public class TreeOfLife {
     private static PrintWriter outFile = null;
     private static BufferedReader inFile = null;
     private static PrintWriter logFile = null;
+    
 
 //    public static void setPlayers(Players player) { //duplicate
 //       TreeOfLife.player = player;
@@ -51,9 +50,10 @@ public class TreeOfLife {
             TreeOfLife.outFile = new PrintWriter(System.out, true);
             
             //open log file
-//            String filePath = "/users/Documents/tmp/logfile.txt"; //might have to use full file path /users/Documents/tmp/logfile.txt (Mac) or something similar
+//            String filePath = "/Documents/tmp/logfile.txt"; //might have to use full file path /users/Documents/tmp/logfile.txt (Mac) or something similar
              String filePath = "logfile.txt";
             TreeOfLife.logFile = new PrintWriter(filePath);
+           
             
             StartProgramView startProgramView = new StartProgramView();
         try {
