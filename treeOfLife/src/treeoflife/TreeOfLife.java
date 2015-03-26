@@ -37,6 +37,14 @@ public class TreeOfLife {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        TreeOfLife obj = new TreeOfLife ();
+        obj.start (args);
+   
+}
+
+    
+    public  void start(String[] args)   {
         try{
             //open character stream files for end user input and output
             TreeOfLife.inFile = new BufferedReader(new InputStreamReader(System.in));
