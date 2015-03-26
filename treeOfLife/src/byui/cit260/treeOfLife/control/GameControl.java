@@ -44,14 +44,17 @@ public class GameControl {
         TreeOfLife.getCurrentGame().setProgressMeter(progress);
         
          System.out.println("Please select a character for your game.");
-        //choose Character 
+       
+         //choose Character 
         CharacterMenuView character = new CharacterMenuView();
         character.display();
-        throw new MapControlException("Line 50 of createNewGame is hit");
+               
         //move characters to starting position in the map - moved to StartNewGame
-//        MapControl.moveCharactersToStartingLocation(map);
+        MapControl.moveCharactersToStartingLocation(map);
 
     }
+    
+ 
 
     //@todo - instructions said to have this private, but it caused issues in Map.createMap()
     public static void assignScenesToLocations(Map map, Scene[] scenes) {

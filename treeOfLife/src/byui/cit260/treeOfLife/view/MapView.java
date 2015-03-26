@@ -21,7 +21,7 @@ public class MapView extends View{
 
             +"\n========================================"
             +"\n| Map Menu                             |"
-            +"\n========================================"
+            +"\n========================================" 
             +"\nT - Temple"
             +"\nM - Mantle"
             +"\nA - Armor Shop"
@@ -39,6 +39,7 @@ public class MapView extends View{
         value = value.toUpperCase(); //convert to all upper case
         char choice = value.charAt(0); //get first character entered
         switch (choice){
+            
             case 'T':// go to temple
                 this.goToTempleMenu();
                 break;

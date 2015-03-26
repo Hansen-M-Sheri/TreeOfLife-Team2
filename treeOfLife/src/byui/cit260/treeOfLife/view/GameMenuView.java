@@ -9,6 +9,7 @@ import byui.cit260.treeOfLife.control.GameControl;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Scene;
 import citbyui.cit260.treeOfLife.exceptions.GameControlException;
+import java.awt.Point;
 import treeoflife.TreeOfLife;
 
 /**
@@ -91,7 +92,14 @@ public class GameMenuView extends View {
                     // IF location has been visited
 
                    String symbol;
-                   if(location.isVisited() ) { 
+                   //@todo - adding a way to show character if on spot
+                   Point currentCoordinates= TreeOfLife.getCurrentGame().getCharacter().getCoordinates();
+                   Location characterLocation = locations[currentCoordinates.x][currentCoordinates.y];
+                   
+                   if(location == characterLocation) {
+                       symbol = "URHere";
+                   }
+                   else if(location.isVisited() ) { 
                        //get current game
                         
                        Scene scene = location.getScene();

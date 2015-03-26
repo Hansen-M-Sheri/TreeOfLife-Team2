@@ -240,6 +240,8 @@ public class MapControl {
         Map map = TreeOfLife.getCurrentGame().getMap();
         int newRow = coordinates.x - 1;
         int newColumn = coordinates.y - 1;
+//         int newRow = coordinates.x ; //@todo removing -1 gets rid of error (location is outside the bounds of the map).  Why is it necessary? 
+//        int newColumn = coordinates.y ;
 
         if (newRow < 0 || newRow >= map.getRowCount()
                 || newColumn < 0 || newColumn >= map.getColumnCount()) {
@@ -254,6 +256,7 @@ public class MapControl {
         Location location = map.getLocations()[coordinates.x][coordinates.y];
 //       throw new MapControlException("starting location is: "+location); //this is to test location 
         location.setVisited(true);
+        
     }
 
     public static ImageIcon getImage(Scene startingScene, String citbyuicitC260curiousworkmanshipimagessta) {
