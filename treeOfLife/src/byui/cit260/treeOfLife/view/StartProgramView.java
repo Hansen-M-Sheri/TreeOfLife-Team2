@@ -36,7 +36,7 @@ public class StartProgramView {//We did not extend this class because it does no
        
     //Prompt the player to enter their name retrieve the name of the player
     String playersName = this.getPlayersName();
-        
+        System.out.println(playersName);
     //Create and save the player object
     Players player = ProgramControl.createPlayer(playersName);
 

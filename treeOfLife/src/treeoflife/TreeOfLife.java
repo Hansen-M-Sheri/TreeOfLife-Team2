@@ -51,8 +51,18 @@ public class TreeOfLife {
             TreeOfLife.outFile = new PrintWriter(System.out, true);
             
             //open log file
-            String filePath = "log.txt"; //might have to use full file path /users/Documents/tmp/logfile.txt (Mac) or something similar
+//            String filePath = "/users/Documents/tmp/logfile.txt"; //might have to use full file path /users/Documents/tmp/logfile.txt (Mac) or something similar
+             String filePath = "logfile.txt";
             TreeOfLife.logFile = new PrintWriter(filePath);
+            
+            StartProgramView startProgramView = new StartProgramView();
+        try {
+            startProgramView.startProgram();
+        } catch (Throwable te) {
+            System.out.println(te.getMessage());
+            te.printStackTrace();
+            startProgramView.displayBanner();
+        }
         }
         catch (Exception e) {
                 System.out.println("Exception: " + e.toString() +
@@ -77,14 +87,7 @@ public class TreeOfLife {
             }
             
         }
-        StartProgramView startProgramView = new StartProgramView();
-        try {
-            startProgramView.startProgram();
-        } catch (Throwable te) {
-            System.out.println(te.getMessage());
-            te.printStackTrace();
-            startProgramView.displayBanner();
-        }
+       
         
     }
 
