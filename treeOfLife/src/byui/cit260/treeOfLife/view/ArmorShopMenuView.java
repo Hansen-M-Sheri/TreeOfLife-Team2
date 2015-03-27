@@ -125,8 +125,17 @@ public class ArmorShopMenuView extends View{
         //remove from forSaleList arrayList
         Game game = TreeOfLife.getCurrentGame();
         game.getForSale().remove(GameInventoryItems.Helmet);
+        if(game.getPurchasedItems() == null){
+            ArrayList<GameInventoryItems> purchaseItems = new ArrayList<>();
+           purchaseItems.add(GameInventoryItems.Helmet);
+            game.setPurchasedItems(purchaseItems);
+            this.console.println(game.getPurchasedItems());
+            
+        }
+        else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.Helmet);
+        }
         this.console.println("Your helmet has been added to your inventory");
         ArmorShopMenuView armorMenu = new ArmorShopMenuView();
         armorMenu.display();
@@ -137,8 +146,15 @@ public class ArmorShopMenuView extends View{
 //        this.console.println("getShield function called");
         Game game = TreeOfLife.getCurrentGame();
         game.getForSale().remove(GameInventoryItems.ProtectiveShield);
+        if(game.getPurchasedItems() == null){
+            ArrayList<GameInventoryItems> purchaseItems = new ArrayList<>();
+           purchaseItems.add(GameInventoryItems.ProtectiveShield);
+            game.setPurchasedItems(purchaseItems);
+        }
+        else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.ProtectiveShield);
+        }
         this.console.println("Your Shield has been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
         armorMenu.display();
@@ -148,8 +164,15 @@ public class ArmorShopMenuView extends View{
 //        this.console.println("getBelt function called");
         Game game = TreeOfLife.getCurrentGame();
         game.getForSale().remove(GameInventoryItems.TruthBelt);
+        if(game.getPurchasedItems() == null){
+            ArrayList<GameInventoryItems> purchaseItems = new ArrayList<>();
+           purchaseItems.add(GameInventoryItems.TruthBelt);
+            game.setPurchasedItems(purchaseItems);
+        }
+        else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.TruthBelt);
+        }
          this.console.println("Your Belt has been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
         armorMenu.display();
@@ -159,8 +182,15 @@ public class ArmorShopMenuView extends View{
 
         Game game = TreeOfLife.getCurrentGame();
         game.getForSale().remove(GameInventoryItems.Boots);
+        if(game.getPurchasedItems() == null){
+            ArrayList<GameInventoryItems> purchaseItems = new ArrayList<>();
+           purchaseItems.add(GameInventoryItems.Boots);
+            game.setPurchasedItems(purchaseItems);
+        }
+        else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.Boots);
+        }
          this.console.println("Your Boots have been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
         armorMenu.display();
@@ -181,8 +211,15 @@ public class ArmorShopMenuView extends View{
 
         Game game = TreeOfLife.getCurrentGame();
         game.getForSale().remove(GameInventoryItems.IronBreastPlate);
+        if(game.getPurchasedItems() == null){
+            ArrayList<GameInventoryItems> purchaseItems = new ArrayList<>();
+           purchaseItems.add(GameInventoryItems.IronBreastPlate);
+            game.setPurchasedItems(purchaseItems);
+        }
+        else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.IronBreastPlate);
+        }
          this.console.println("Your Iron Breast Plate has been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
         armorMenu.display();
