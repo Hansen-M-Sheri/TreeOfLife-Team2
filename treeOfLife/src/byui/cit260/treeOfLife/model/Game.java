@@ -5,6 +5,7 @@
  */
 package byui.cit260.treeOfLife.model;
 
+import byui.cit260.treeOfLife.control.QuestionControl;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -23,6 +24,15 @@ public class Game implements Serializable {
     private ArrayList<GameInventoryItems> purchasedItems ;
     private Character[] characters;
     private Character character;
+    private QuestionControl totalQuestionsAsked;
+
+    public QuestionControl getTotalQuestionsAsked() {
+        return totalQuestionsAsked;
+    }
+
+    public void setTotalQuestionsAsked(QuestionControl totalQuestionsAsked) {
+        this.totalQuestionsAsked = totalQuestionsAsked;
+    }
 
     public Players getPlayer() {
         return player;
