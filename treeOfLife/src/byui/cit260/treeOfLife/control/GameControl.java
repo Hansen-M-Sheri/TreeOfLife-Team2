@@ -138,7 +138,7 @@ public class GameControl {
     public static void displayCharacterInventory() throws GameControlException {
         ArrayList<GameInventoryItems> purchasedItemsList = new ArrayList<>();
 //         purchasedItemsList = GameControl.getSortedPurchasedItems();
-//        purchasedItemsList = GameControl.getCharacterInventoryByHighestStats();
+        purchasedItemsList = GameControl.getCharacterInventoryByHighestStats();
         if (purchasedItemsList.size() < 1) {
             throw new GameControlException("You have not earned any Armor Pieces yet");
 
@@ -165,7 +165,7 @@ public class GameControl {
 
         //get list of items purchased for current game
         originalPurchasedItemsList = TreeOfLife.getCurrentGame().getPurchasedItems();
-         System.out.println("in getPurchaseList List is returning" +originalPurchasedItemsList);
+      
         if (originalPurchasedItemsList.size() < 1) { //if only 1 item in list return list
             throw new GameControlException("You have not earned any Armor Pieces yet");
         } else { //if more than one item in arrayList, sort by lowest Faith points
