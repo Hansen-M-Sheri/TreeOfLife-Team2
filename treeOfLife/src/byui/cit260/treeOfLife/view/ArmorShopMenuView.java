@@ -129,7 +129,7 @@ public class ArmorShopMenuView extends View{
             ArrayList<GameInventoryItems> purchaseItems = new ArrayList<>();
            purchaseItems.add(GameInventoryItems.Helmet);
             game.setPurchasedItems(purchaseItems);
-            this.console.println(game.getPurchasedItems());
+           
             
         }
         else {
