@@ -53,6 +53,8 @@ public class ArmorShopMenuView extends View{
                 +"\n"
                 +"\nK - Sort Knowledge Points" 
                 +"\n"
+                +"\nP - Print Armor items available and items purchased"        
+                +"\n"
                 +"\nG - Game Menu"
                 +"\n"
                 +"\nQ - Return to Main Menu"
@@ -105,6 +107,9 @@ public class ArmorShopMenuView extends View{
                 break;
             case 'K':  // get KnowledgePoints
                 this.getSortKnowPoints(); 
+                break;
+            case 'R':  // print list of items available and purchased
+                this.printInventory(); 
                 break;
             case 'G':  // go to game menu
                 this.goToGameMenu(); 
@@ -246,6 +251,10 @@ public class ArmorShopMenuView extends View{
 
     private void getSortKnowPoints() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void printInventory() {
+        
     }
     
 
