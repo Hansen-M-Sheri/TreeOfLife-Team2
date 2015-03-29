@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import treeoflife.TreeOfLife;
 import byui.cit260.treeOfLife.model.Character;
 import byui.cit260.treeOfLife.model.Location;
+import java.io.Serializable;
 
 /**
  *
@@ -38,21 +39,31 @@ public class MapControl {
 
     }
 
-    public enum SceneType {
+    public enum SceneType implements Serializable{
 
-        cottage,
-        levelOne,
-        levelTwo,
-        levelThree,
-        levelFour,
-        levelFive,
-        mantle,
-        temple,
-        armorShop,
-        treeOfLife,
-        treeOfKnowledge,
-        spaciousBuilding;
+        cottage("Starting Point in the Game"),
+        levelOne("First Level in the Game"),
+        levelTwo("Second Level in the Game"),
+        levelThree("Third Level in the Game"),
+        levelFour("Fourth Level in the Game"),
+        levelFive("Fifth Level in the Game"),
+        mantle("The Mantle is where you can repent and increase your faith points"),
+        temple("The Temple is where you can gain Faith, Obedience and Knowledge Points"),
+        armorShop("The Armor Shop is where you can purchase Armor Pieces to increase Faith Points"),
+        treeOfLife("The Tree of Life is the highest level achieved at the end of the game"),
+        treeOfKnowledge("The Tree of Knowledge is the second highest level achieved at the end of the game"),
+        spaciousBuilding("The Spacious Building is the lowest level of achievement at the end of the game"),
+        ;
 //    finish; //removing since this will not be on map
+        private String locationDescription;
+
+        SceneType(String locationDescription) {
+        this.locationDescription = locationDescription;
+        }
+        
+        public String getLocationDescription() {
+        return locationDescription; 
+        }
     }
 
     private static Scene[] createScenes() { //uncomment setIcon, getImage when implementing images

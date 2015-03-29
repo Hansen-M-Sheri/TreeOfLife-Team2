@@ -5,9 +5,13 @@
  */
 package byui.cit260.treeOfLife.view;
 
+import byui.cit260.treeOfLife.control.MapControl.SceneType;
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 import treeoflife.TreeOfLife;
 
@@ -25,9 +29,10 @@ public class MapView extends View{
             +"\nT - Temple"
             +"\nM - Mantle"
             +"\nA - Armor Shop"
-            +"\nL - Level Menu" 
+            +"\nC - Choose Level Menu" 
             +"\nH - Help Menu"
             +"\nG - Game Menu"
+            +"\nL - Print List of Locations and Description"
             +"\nQ - Return to Main Menu" 
             +"\n========================================");
      }
@@ -57,6 +62,9 @@ public class MapView extends View{
                 break;
             case 'G':  // Go To the Game Menu
                 this.displayGameMenu(); 
+                break;
+            case 'L':  // Print a list of all map locations
+                this.printLocations(); 
                 break;
             case 'Q': // Quit the Map Menu and return to the Main Menu
                 this.returnToMainMenu();
@@ -106,6 +114,66 @@ public class MapView extends View{
         MainMenuView mainMenu = new MainMenuView();
         mainMenu.display();
     }
-     
-     
+    
+    private void printLocations() {
+            //prompt for and get the name of the file to save the game in
+        this.console.println("\n\nEnter the file path for file where the list of locations is to be saved.");
+        
+        String filePath = this.getInput();
+        
+        try {
+            ArrayList<SceneType> locations = TreeOfLife.getCurrentGame().getlocationList();
+            // save the game to the specified file
+            this.printScenes(locations,filePath);
+        }catch(Exception ex) {
+            ErrorView.display("MapLocationsView", ex.getMessage());
+        }
+        this.displayGameMenu();
+    }
+
+    private void printScenes(ArrayList<SceneType> locations, String filePath)  {
+        try( FileOutputStream fops = new FileOutputStream(filePath)){
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+         
+       String locationList = "\n\nList of all Locations";
+       
+            try {
+                if(locations.size() < 1) {
+                    ErrorView.display(this.getClass().getName(), "There are no more items available in the Armor Shop");
+                }
+                else {
+
+                    //for each item in list
+                    for (SceneType item : locations) {
+                        //get first letter of item name
+                        char locationName = item.name().charAt(0);
+                        //print first letter and description of item
+                        String  locationDescription = item.getLocationDescription();
+                        locationList += ("\n" + locationName + " - " + locationDescription);
+                    }
+               
+
+                } 
+            }catch (Exception e) {
+               ErrorView.display(this.getClass().getName(), "Error reading input "+ e.getMessage());
+            }
+
+                output.writeObject(locationList); //write the locationList ArrayList out to file
+                
+               
+            }
+         catch(Exception e) {
+             ErrorView.display("MapLocationsView", e.getMessage());
+         }
+        //check file size
+        if(filePath.length()> 1){
+            this.console.println("Congrats! Your location list has printed to the specified file.");
+            
+        }
+        
+    }
 }
+
+   
+
+    

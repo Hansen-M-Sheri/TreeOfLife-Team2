@@ -5,6 +5,7 @@
  */
 package byui.cit260.treeOfLife.model;
 
+import byui.cit260.treeOfLife.control.MapControl.SceneType;
 import byui.cit260.treeOfLife.control.QuestionControl;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class Game implements Serializable {
     private Players player;
     private ProgressMeter progressMeter;
     private Map map;
+    private ArrayList<SceneType> locations;
     private ArrayList<GameInventoryItems> forSale;
     private ArrayList<GameInventoryItems> purchasedItems ;
     private Character[] characters;
@@ -57,7 +59,11 @@ public class Game implements Serializable {
     public void setMap(Map map) {
         this.map = map;
     }
-
+    
+    public ArrayList<SceneType> getlocationList() {
+        return locations;
+    }
+    
     public Character[] getCharactersArray() {
         return characters;
     }
