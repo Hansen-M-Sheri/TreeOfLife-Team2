@@ -58,7 +58,7 @@ public MantleMenuView(){
 //                this.returnToMainMenu();
 //                break;
             default:
-            ErrorView.display("MantleMenuView", "n*** Invalid Mantle menu selection *** Try again");
+            ErrorView.display("MantleMenuView", "*** Invalid Mantle menu selection *** Try again");
                 break;
 }
     return true;
@@ -82,17 +82,25 @@ public MantleMenuView(){
         //increment mantleQuestions asked (this determines what stat points will be earned for
         //since numQuestions will start at 0, increment after asking first question (this will match how many quesitons have been asked)
         QuestionArray mantleQuestAsked = new QuestionArray();
+        //set number of mantle questions asked to determine what stat gets points 
         int numQuestions = mantleQuestAsked.getNumMantleQuestion();
-        mantleQuestAsked.setNumMantleQuestion(numQuestions++);
+        if(numQuestions >= 3){
+                // 
+                mantleQuestAsked.setNumMantleQuestion(0);
+            }
+       
+         int increment = numQuestions + 1;
+        mantleQuestAsked.setNumMantleQuestion(increment);
+      
        //get user's response
-        mantleQuestion.mantleResponse();
+        int answer = mantleQuestion.mantleResponse();
     
-        int faith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+      
         
 //     int faith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
-this.console.println("faith = "+ faith);        
+      int pointsEarned = mantleQuestion.calMantlePoints(answer);
 //maybe need to call calMantlePoints here, include total phrase, you just earned... points. 
-       mantleQuestion.assignMantlePoints(numQuestions);
+       mantleQuestion.assignMantlePoints(increment, pointsEarned);
         //@todo - set this section to blocked
         Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
         locations[2][0].setBlocked(true);

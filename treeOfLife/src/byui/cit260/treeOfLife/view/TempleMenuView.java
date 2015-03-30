@@ -83,7 +83,7 @@ public class TempleMenuView extends View{
        
             int numTempleQuestion = QuestionArray.getNumTempleQuestion();
 
-            if(numTempleQuestion >= 3){//@todo does this check allow points to be assigned to templeQuestion = 3? 
+            if(numTempleQuestion >= 3){
                 // 
                 QuestionArray.setNumTempleQuestion(0);
             }

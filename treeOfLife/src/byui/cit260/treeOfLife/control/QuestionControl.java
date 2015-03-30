@@ -9,6 +9,7 @@ import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.QuestionArray;
+import byui.cit260.treeOfLife.view.ErrorView;
 import byui.cit260.treeOfLife.view.GameMenuView;
 import byui.cit260.treeOfLife.view.TempleMenuView;
 import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
@@ -179,31 +180,51 @@ public class QuestionControl {
     * For 2nd question asked at mantle - points will be earned for knowledge
     * for 3rd question asked at mantle - points will be earned for obedience
     */
-   public void assignMantlePoints(int numMantleQuestions){
-       System.out.println(numMantleQuestions);
+   public void assignMantlePoints(int numMantleQuestions, int pointsEarned){
+      
        switch(numMantleQuestions){
            case 1:
              int faith =   TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
-             System.out.println("getFaithStat returns "+ faith);
-             int currentFaithStat = faith + 50; //@todo - need to set correct amount for 1st visit
+//             System.out.println("getFaithStat returns "+ faith);
+             int currentFaithStat = faith + pointsEarned; //@todo - need to set correct amount for 1st visit
              TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(currentFaithStat);
+             this.console.println("Congratulations!  You just increased your faith by "+ pointsEarned);
              break;
            case 2:
             int knowledge =   TreeOfLife.getCurrentGame().getProgressMeter().getKnowledgeStat();
-            int currentKnowStat = knowledge + 50; //@todo - need to set correct amount for 1st visit
+            int currentKnowStat = knowledge + pointsEarned; //@todo - need to set correct amount for 1st visit
             TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(currentKnowStat);
+            this.console.println("Congratulations!  You just increased your knowledge by "+ pointsEarned);
             break;
            case 3:
              int obedience =   TreeOfLife.getCurrentGame().getProgressMeter().getObedienceStat();
-             int currentObedStat = obedience + 50; //@todo - need to set correct amount for 1st visit
+             int currentObedStat = obedience + pointsEarned; //@todo - need to set correct amount for 1st visit
              TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(currentObedStat);
+             this.console.println("Congratulations!  You just increased your obedience by "+ pointsEarned);
              break;
            default:
-               System.out.println("your number of questions is " + numMantleQuestions);
+//               System.out.println("your number of questions is " + numMantleQuestions);
                break;
        }
    }
-   /**
+   
+   /*Questions require 0 -7 answer
+          User enters in a value between 0 and 7. Points awarded based on answer
+            */
+      public int calMantlePoints(int answer){
+        int pointsEarned = 0;
+          if (answer > 0 && answer < 3) {
+              pointsEarned = 15;
+          } 
+          else if(answer >= 3 && answer < 6) {
+              pointsEarned = 25;
+          }else {
+              pointsEarned = 50;    
+        }
+          return pointsEarned;
+     
+      }  
+      /**
      * This function calculates how many points earned in mantle
      * @param answeredCorrect
      * @param totalQuestionsAsked
@@ -218,62 +239,61 @@ public class QuestionControl {
      * Once at the mantle, if you try and answer more than three questions, it will return an error.
      * The mantle will be used to regain faith points lost during the game.
      */
-   
-    public int calMantlePoints(int answerAverage, int mantleQuestionsAsked) throws QuestionControlException {
-        //if too few questions or too many are asked, return error
-        if(mantleQuestionsAsked <= 0 || mantleQuestionsAsked> 3){
-//            return -1;
-             throw new QuestionControlException("Invalid number of Questions answered. Must be between 0  & 3");
-        
-        
-        //Each question is service based. 
-        //The questions will require the user to enter a number 0-7
-        //Example – How many days in the last seven days did you provide service to a neighbor or friend? 
-        //User enters in a value between 0 and 7. Bonus 0 for <3, Bonus 1 for 3-4, bonus 3 for 5-6, 5 point bonus for 7
-
-        }else{
-        //If you answer less than zero, return error
-            if(answerAverage <0){
-//                return -1;
-                throw new QuestionControlException("Invalid average number of questions answered");
-        }
-        // bonus structure for the correct expexted response from user if answered between 0 and 2 is zero bonus point
-            else if(answerAverage < 3){
-            bonus = 0;
-        
-        }
-        // bonus structure for the correct expexted response from user if answered between 3 and 4 is one bonus point
-            else if(answerAverage >= 3 && answerAverage < 5) {
-            bonus = 1;
-            
-        }
-        // bonus structure for the correct expexted response from user if answered between 5 and 6 is three bonus points
-            else if(answerAverage >= 5 && answerAverage < 7) {
-            bonus = 3;
-        }
-        // bonus structure for the correct expexted response from user if answered 7 is 5 bonus points 
-            else if(answerAverage == 7) {
-            bonus = 5;
-            
-        }
-        // return error if the user answers more than 7.
-            else if(answerAverage > 7){
-//                return -1;
-                throw new QuestionControlException("Invalid answer. Must be less than 7");
-        }
-                
-            
-        
-          
-    }       //total points per question asked
-        pointValuePerQuestion = 5;	
-        
-        //calculations to determine the points during your session at the Mantle
-        mantleQuestionPoints = mantleQuestionsAsked * pointValuePerQuestion + bonus;
-        return mantleQuestionPoints;
-    
-    }   
-
+//    public int calMantlePoints(int answerAverage, int mantleQuestionsAsked) throws QuestionControlException {
+//        //if too few questions or too many are asked, return error
+//        if(mantleQuestionsAsked <= 0 || mantleQuestionsAsked> 3){
+////            return -1;
+//             throw new QuestionControlException("Invalid number of Questions answered. Must be between 0  & 3");
+//        
+//        
+//        //Each question is service based. 
+//        //The questions will require the user to enter a number 0-7
+//        //Example – How many days in the last seven days did you provide service to a neighbor or friend? 
+//        //User enters in a value between 0 and 7. Bonus 0 for <3, Bonus 1 for 3-4, bonus 3 for 5-6, 5 point bonus for 7
+//
+//        }else{
+//        //If you answer less than zero, return error
+//            if(answerAverage <0){
+////                return -1;
+//                throw new QuestionControlException("Invalid average number of questions answered");
+//        }
+//        // bonus structure for the correct expexted response from user if answered between 0 and 2 is zero bonus point
+//            else if(answerAverage < 3){
+//            bonus = 0;
+//        
+//        }
+//        // bonus structure for the correct expexted response from user if answered between 3 and 4 is one bonus point
+//            else if(answerAverage >= 3 && answerAverage < 5) {
+//            bonus = 1;
+//            
+//        }
+//        // bonus structure for the correct expexted response from user if answered between 5 and 6 is three bonus points
+//            else if(answerAverage >= 5 && answerAverage < 7) {
+//            bonus = 3;
+//        }
+//        // bonus structure for the correct expexted response from user if answered 7 is 5 bonus points 
+//            else if(answerAverage == 7) {
+//            bonus = 5;
+//            
+//        }
+//        // return error if the user answers more than 7.
+//            else if(answerAverage > 7){
+////                return -1;
+//                throw new QuestionControlException("Invalid answer. Must be less than 7");
+//        }
+//                
+//            
+//        
+//          
+//    }       //total points per question asked
+//        pointValuePerQuestion = 5;	
+//        
+//        //calculations to determine the points during your session at the Mantle
+//        mantleQuestionPoints = mantleQuestionsAsked * pointValuePerQuestion + bonus;
+//        return mantleQuestionPoints;
+//    
+//    }   
+//
     public void getTempleQuestions() throws QuestionControlException {
         
         
@@ -309,7 +329,7 @@ public class QuestionControl {
         
       
         if(locations[2][0].isBlocked() == true) {
-           System.out.println("Sorry, you need to answer more level questions before you can answer an additional Mantle question.");
+           ErrorView.display("QuestionControl", "Sorry, you need to answer more level questions before you can answer an additional Mantle questions.");
            // if blocked return to map
            GameMenuView gameMenu = new GameMenuView();
             gameMenu.displayMap();
@@ -327,57 +347,57 @@ public class QuestionControl {
             }
         }
     }
-    //getTempleQuestion and getMantleQuestion are almost duplicates - this would be more efficient if we can get it workingsher
+//    getTempleQuestion and getMantleQuestion are almost duplicates - this would be more efficient if we can get it workingsher
     //work on this to avoid duplication - nextQuestion isn't liking questionEnum - how to call a passed parameter enum?
-    public void getMantleOrTempleQuestion(Point coordinates) throws QuestionControlException {
-//       boolean currentLocationIsBlocked = false; 
-       String message = " ";
-       
-//       switch(questionEnum){
-//           case temple:
-//                //check isBlocked - determine how we determine block and not blocked to answer questions
-//                Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
-//                currentLocationIsBlocked = locations[1][0].isBlocked();
-//                message = "Sorry, you need to answer more level questions before you can answer any more Temple questions";
-//               break;
-//           case mantle:
-//                locations = TreeOfLife.getCurrentGame().getMap().getLocations();
-//                currentLocationIsBlocked = locations[2][0].isBlocked();
-//                message = "Sorry, you need to answer more level questions before you can answer any more Mantle questions";
-//               break;
-//               
-//           default:
-//               break;
-//          
-//       } 
-      
-       Location location = TreeOfLife.getCurrentGame().getMap().getLocations()[coordinates.x][coordinates.y];
-        System.out.println("location = "+ location);
-       if(location.isBlocked()) {
-           throw new QuestionControlException("Sorry you need to answer more level questions before you can answer any more questions here.");
-           // if blocked return to map
-//           GameMenuView gameMenu = new GameMenuView();
-//            gameMenu.displayMap();
-           
-        }
-        else {
-            //get next question
-            QuestionArray question = new QuestionArray();
-            String nextQuestion = question.getNextQuestion(QuestionArray.QuestionType.temple);
-            if(nextQuestion.isEmpty() || nextQuestion == null) {
-                throw new QuestionControlException("Question is empty");
-            }
-            else {
-                System.out.println(nextQuestion);
-            
-            }
-        }
-    }
+//    public void getMantleOrTempleQuestion(Point coordinates) throws QuestionControlException {
+////       boolean currentLocationIsBlocked = false; 
+//       String message = " ";
+//       
+////       switch(questionEnum){
+////           case temple:
+////                //check isBlocked - determine how we determine block and not blocked to answer questions
+////                Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+////                currentLocationIsBlocked = locations[1][0].isBlocked();
+////                message = "Sorry, you need to answer more level questions before you can answer any more Temple questions";
+////               break;
+////           case mantle:
+////                locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+////                currentLocationIsBlocked = locations[2][0].isBlocked();
+////                message = "Sorry, you need to answer more level questions before you can answer any more Mantle questions";
+////               break;
+////               
+////           default:
+////               break;
+////          
+////       } 
+//      
+//       Location location = TreeOfLife.getCurrentGame().getMap().getLocations()[coordinates.x][coordinates.y];
+//        System.out.println("location = "+ location);
+//       if(location.isBlocked()) {
+//           throw new QuestionControlException("Sorry you need to answer more level questions before you can answer any more questions here.");
+//           // if blocked return to map
+////           GameMenuView gameMenu = new GameMenuView();
+////            gameMenu.displayMap();
+//           
+//        }
+//        else {
+//            //get next question
+//            QuestionArray question = new QuestionArray();
+//            String nextQuestion = question.getNextQuestion(QuestionArray.QuestionType.temple);
+//            if(nextQuestion.isEmpty() || nextQuestion == null) {
+//                throw new QuestionControlException("Question is empty");
+//            }
+//            else {
+//                System.out.println(nextQuestion);
+//            
+//            }
+//        }
+//    }
         // this function deals with verifying response of user to templeQuestion
         public void responseTempleQuestion() throws QuestionControlException {
             
             //get answer from user
-                int templeAnswer = this.getTempleInput();
+                int templeAnswer = this.getUserInput();
 
                 //validate answer and provide response
                 this.doActionTempleQuestions(templeAnswer);
@@ -389,7 +409,7 @@ public class QuestionControl {
                 this.displayBonusQuestion();
 
                 //validate answer and provide response
-                int bonusAnswer = this.getTempleInput();
+                int bonusAnswer = this.getUserInput();
                 
         //        this.doActionTempleBonus(bonusAnswer); // working on calling point functions.
 //                boolean bonusValid = this.doActionBonusQuestions(bonusAnswer);
@@ -410,7 +430,7 @@ public class QuestionControl {
                 
 //                this.askReturnToGameMenu(); //this is repeating what is done in next method
                 
-//                int returnGameMenu = this.getTempleInput();
+//                int returnGameMenu = this.getUserInput();
 //                
 //                this.doActionReturnToGame(returnGameMenu);
                 
@@ -433,18 +453,18 @@ public class QuestionControl {
     
     }
     
-    private void displayQuestion(int randomNum) {
-        
-        if (randomNum == 1){
-            System.out.println("How many days out of the last seven days did you read the book of Mormon?");
-        }
-        else if (randomNum ==2){
-            System.out.println("How many days out of the last seven days did you have your personal prayers?");
-        }
-    }       
+//    private void displayQuestion(int randomNum) {
+//        
+//        if (randomNum == 1){
+//            System.out.println("How many days out of the last seven days did you read the book of Mormon?");
+//        }
+//        else if (randomNum ==2){
+//            System.out.println("How many days out of the last seven days did you have your personal prayers?");
+//        }
+//    }       
   
 
-    public int getTempleInput() {
+    public int getUserInput() {
         boolean valid =false; //indicates if the input has been recieved
        
         int response = 0;
@@ -470,7 +490,7 @@ public class QuestionControl {
 //                }
 //                else {
 //                    this.console.println("Invalid selection - Must select a nubmer between 0 and 7.");
-//                    this.getTempleInput();
+//                    this.getUserInput();
 //                }
 //        
 //            //if the input is invalid
@@ -516,43 +536,43 @@ public class QuestionControl {
             
     }          
      
-    private int getTempleBonusInput() {
-    
-        boolean valid =false; //indicates if the input has been recieved
-            int userInput = 0;
-            
-        try{
-            while(!valid) { //while a valid name has not been retrieved
-
-                //prompt for user input for a value between 0 through 7
-                System.out.println("Enter the value 1 for poor, 2 for good and 3 for outstanding.");
-
-                //get the integer from the keyboard 
-                //userInput = keyboard.nextLine();
-                if(keyboard.read() > 0 || keyboard.read() <= 7) {
-                    userInput = keyboard.read();
-                    //userInput = userInput.trim();
-                    //userInput = userInput.toUpperCase();
-                }
-                else {
-                    System.out.println("Invalid selection - Must select either 1, 2 or 3.");
-                    this.getTempleInput();
-                }
-                //if the input is invalid
-                //if (userInput.length() < 1 || userInput.length() > 1) {
-                    if (userInput < 1 || userInput > 3) {
-                        System.out.println("Invalid selection - Must select either 1, 2 or 3.");
-                        continue; // and repeat again
-                    }
-                    break; //out of the (exit) the repitition
-            }
-        } catch (Exception e) { //program said it was IOException
-                System.out.println("Error reading input: " + e.getMessage());
-            }
-                return userInput; // return the name
-
-
-    }
+//    private int getTempleBonusInput() {
+//    
+//        boolean valid =false; //indicates if the input has been recieved
+//            int userInput = 0;
+//            
+//        try{
+//            while(!valid) { //while a valid name has not been retrieved
+//
+//                //prompt for user input for a value between 0 through 7
+//                System.out.println("Enter the value 1 for poor, 2 for good and 3 for outstanding.");
+//
+//                //get the integer from the keyboard 
+//                //userInput = keyboard.nextLine();
+//                if(keyboard.read() > 0 || keyboard.read() <= 7) {
+//                    userInput = keyboard.read();
+//                    //userInput = userInput.trim();
+//                    //userInput = userInput.toUpperCase();
+//                }
+//                else {
+//                    System.out.println("Invalid selection - Must select either 1, 2 or 3.");
+//                    this.getUserInput();
+//                }
+//                //if the input is invalid
+//                //if (userInput.length() < 1 || userInput.length() > 1) {
+//                    if (userInput < 1 || userInput > 3) {
+//                        System.out.println("Invalid selection - Must select either 1, 2 or 3.");
+//                        continue; // and repeat again
+//                    }
+//                    break; //out of the (exit) the repitition
+//            }
+//        } catch (Exception e) { //program said it was IOException
+//                System.out.println("Error reading input: " + e.getMessage());
+//            }
+//                return userInput; // return the name
+//
+//
+//    }
     
     private void doActionBonusQuestions(int bonusAnswer) throws QuestionControlException{
     
@@ -577,59 +597,59 @@ public class QuestionControl {
         }
     }
 
-    private void askReturnToGameMenu() {
-        System.out.println("Enter 9 to Return to the Temple Menu");
+//    private void askReturnToGameMenu() {
+//        System.out.println("Enter 9 to Return to the Temple Menu");
+//    
+//    }
     
-    }
-    
-    private int getReturntoGameMenu() {
-        boolean valid =false; //indicates if the input has been recieved
-            int userInput = 0;
-           
-            try{
-            while(!valid) { //while a valid name has not been retrieved
-
-                //prompt for user input for the number 9
-                System.out.println("Enter the value 9 in order to return to the Temple Menu");
-
-                //get the name from the keyboard and trim off the blanks
-                //userInput = keyboard.nextLine();
-                if(keyboard.read() == 9) {
-                    userInput = keyboard.read();
-                    //userInput = userInput.trim();
-                    //userInput = userInput.toUpperCase();
-                }
-                else {
-                    System.out.println("Invalid selection - Must select 9 to return to the Game Menu");
-                    this.getTempleInput();
-                }
-                //if the input is invalid
-                //if (userInput.length() < 1 || userInput.length() > 1) {
-                    if (userInput < 9 || userInput > 9) {
-                        System.out.println("Invalid selection - Must select 9 to return to the Game Menu");
-                        continue; // and repeat again
-                    }
-                    break; //out of the (exit) the repitition
-            }
-              } catch (Exception e) { //program said it was IOException
-                System.out.println("Error reading input: " + e.getMessage());
-            }
-                return userInput; // return the name
-    
-    }
-    
-    private void doActionReturnToGame(int returnGameMenu) throws QuestionControlException{
-        if (returnGameMenu < 9 || returnGameMenu >9){
-        throw new QuestionControlException("You have entered an incorrect response. Please enter the number 9 to return to the Temple Menu.");
-            
-        }
-        else{
-            if (returnGameMenu == 9){
-               System.out.println("You will now be returned ot the Temple Menu");
-              
-            }
-        }
-    }
+//    private int getReturntoGameMenu() {
+//        boolean valid =false; //indicates if the input has been recieved
+//            int userInput = 0;
+//           
+//            try{
+//            while(!valid) { //while a valid name has not been retrieved
+//
+//                //prompt for user input for the number 9
+//                System.out.println("Enter the value 9 in order to return to the Temple Menu");
+//
+//                //get the name from the keyboard and trim off the blanks
+//                //userInput = keyboard.nextLine();
+//                if(keyboard.read() == 9) {
+//                    userInput = keyboard.read();
+//                    //userInput = userInput.trim();
+//                    //userInput = userInput.toUpperCase();
+//                }
+//                else {
+//                    System.out.println("Invalid selection - Must select 9 to return to the Game Menu");
+//                    this.getUserInput();
+//                }
+//                //if the input is invalid
+//                //if (userInput.length() < 1 || userInput.length() > 1) {
+//                    if (userInput < 9 || userInput > 9) {
+//                        System.out.println("Invalid selection - Must select 9 to return to the Game Menu");
+//                        continue; // and repeat again
+//                    }
+//                    break; //out of the (exit) the repitition
+//            }
+//              } catch (Exception e) { //program said it was IOException
+//                System.out.println("Error reading input: " + e.getMessage());
+//            }
+//                return userInput; // return the name
+//    
+//    }
+//    
+//    private void doActionReturnToGame(int returnGameMenu) throws QuestionControlException{
+//        if (returnGameMenu < 9 || returnGameMenu >9){
+//        throw new QuestionControlException("You have entered an incorrect response. Please enter the number 9 to return to the Temple Menu.");
+//            
+//        }
+//        else{
+//            if (returnGameMenu == 9){
+//               System.out.println("You will now be returned ot the Temple Menu");
+//              
+//            }
+//        }
+//    }
     
   
     
@@ -637,10 +657,10 @@ public class QuestionControl {
     
     
    
-public void mantleResponse() throws QuestionControlException{
+public int mantleResponse() throws QuestionControlException{
             //get answer from user
 //            String mantleAnswer = this.getMantleInput();
-            int answer = this.getMantleInput();
+            int answer = this.getUserInput();
 
             combinedMantleAnswer = answer; //this will gather the totals from each question asked, add them and use this to get average
 //  System.out.println("mantleAnswer generated " + mantleAnswer);
@@ -653,43 +673,44 @@ public void mantleResponse() throws QuestionControlException{
 //                
 //            }
 //        }
+           return answer;
     }  
 
-    private int getMantleInput() {
-       boolean valid =false; //indicates if the name has been recieved
-        int userInput = 0;
-        
-    try{
-        while(!valid) { //while a valid name has not been retrieved
-            
-            //prompt for the player's name
-            System.out.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
-            
-            //get the name from the keyboard and trim off the blanks
-//            userInput = keyboard.nextLine();
-            if(keyboard.read() > 0 || keyboard.read() <= 7) {
-                userInput = keyboard.read();
-//                userInput = userInput.trim();
-//                userInput = userInput.toUpperCase();
-            }
-            else {
-                System.out.println("Sorry try a number between 0 & 7");
-                this.getMantleInput();
-            }
-            //if the name is invalid(less than two character in length)
-//            if (userInput.length() < 1 || userInput.length() > 1) {
-                 if (userInput < 0 || userInput > 7) {
-                System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
-                continue; // and repeat again
-            }
-            break; //out of the (exit) the repitition
-        }
-    } catch (Exception e) { //program said it was IOException
-           System.out.println("Error reading input: " + e.getMessage());
-       }
-        return userInput; // return the name
-    
-    } 
+//    private int getMantleInput() {
+//       boolean valid =false; //indicates if the name has been recieved
+//        int userInput = 0;
+//        
+//    try{
+//        while(!valid) { //while a valid name has not been retrieved
+//            
+//            //prompt for the player's name
+//            System.out.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
+//            
+//            //get the name from the keyboard and trim off the blanks
+////            userInput = keyboard.nextLine();
+//            if(keyboard.read() > 0 || keyboard.read() <= 7) {
+//                userInput = keyboard.read();
+////                userInput = userInput.trim();
+////                userInput = userInput.toUpperCase();
+//            }
+//            else {
+//                System.out.println("Sorry try a number between 0 & 7");
+//                this.getMantleInput();
+//            }
+//            //if the name is invalid(less than two character in length)
+////            if (userInput.length() < 1 || userInput.length() > 1) {
+//                 if (userInput < 0 || userInput > 7) {
+//                System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
+//                continue; // and repeat again
+//            }
+//            break; //out of the (exit) the repitition
+//        }
+//    } catch (Exception e) { //program said it was IOException
+//           System.out.println("Error reading input: " + e.getMessage());
+//       }
+//        return userInput; // return the name
+//    
+//    } 
 
 //    private void displayMantleQuestion(int randomNum) {
 //        if(randomNum == 30){
@@ -712,10 +733,7 @@ public void mantleResponse() throws QuestionControlException{
        throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
             
         }
-        else{
-            System.out.println("Thanks for your answer.");
-           
-        }
+        
     }
 
     
