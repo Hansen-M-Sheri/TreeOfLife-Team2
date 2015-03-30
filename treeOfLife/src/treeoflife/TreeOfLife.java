@@ -51,7 +51,7 @@ public class TreeOfLife {
             
             //open log file
 //            String filePath = "/Documents/tmp/logfile.txt"; //might have to use full file path /users/Documents/tmp/logfile.txt (Mac) or something similar
-             String filePath = "/Users/Chuck/NetbeansProjects/TreeOfLife-Team2/treeOfLife/logfile.txt";
+             String filePath = "/Users/sherihansen/NetbeansProjects/TreeOfLife-Team2/treeOfLife/logfile.txt";
             TreeOfLife.logFile = new PrintWriter(filePath);
            
             
