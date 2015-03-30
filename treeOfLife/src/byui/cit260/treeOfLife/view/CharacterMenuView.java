@@ -68,6 +68,15 @@ public class CharacterMenuView extends View {
 
         
         TreeOfLife.getCurrentGame().setCharacter(Character.Nephi);
+        //set faith stat
+        int faith = TreeOfLife.getCurrentGame().getCharacter().getOrigFaithLevel();
+        TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(faith);
+        //set Knowledge stat
+        int knowledge = TreeOfLife.getCurrentGame().getCharacter().getOrigKnowLevel();
+        TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(knowledge);
+        //set obedience stat
+        int obedience = TreeOfLife.getCurrentGame().getCharacter().getOrigObedLevel();
+        TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(obedience);
         this.console.println("Welcome Nephi, let's begin your journey to the Tree of Life!");
         this.console.println("Select Q to begin!");
     }
@@ -75,6 +84,15 @@ public class CharacterMenuView extends View {
     private void selectSariah() {
 
         TreeOfLife.getCurrentGame().setCharacter(Character.Sariah);
+        //set faith stat
+        int faith = TreeOfLife.getCurrentGame().getCharacter().getOrigFaithLevel();
+        TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(faith);
+        //set Knowledge stat
+        int knowledge = TreeOfLife.getCurrentGame().getCharacter().getOrigKnowLevel();
+        TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(knowledge);
+        //set obedience stat
+        int obedience = TreeOfLife.getCurrentGame().getCharacter().getOrigObedLevel();
+        TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(obedience);
         this.console.println("Welcome Sariah, let's begin your journey to the Tree of Life!");
         this.console.println("Select Q to begin!");
 //        GameMenuView gameMenu = new GameMenuView();
@@ -85,6 +103,15 @@ public class CharacterMenuView extends View {
     private void selectJacob() {
 
         TreeOfLife.getCurrentGame().setCharacter(Character.Jacob);
+        //set faith stat
+        int faith = TreeOfLife.getCurrentGame().getCharacter().getOrigFaithLevel();
+        TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(faith);
+        //set Knowledge stat
+        int knowledge = TreeOfLife.getCurrentGame().getCharacter().getOrigKnowLevel();
+        TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(knowledge);
+        //set obedience stat
+        int obedience = TreeOfLife.getCurrentGame().getCharacter().getOrigObedLevel();
+        TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(obedience);
         this.console.println("Welcome Jacob, let's begin your journey to the Tree of Life!");
        this.console.println("Select Q to begin!");
     }
