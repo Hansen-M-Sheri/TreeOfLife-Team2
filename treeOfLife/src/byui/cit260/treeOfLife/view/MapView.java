@@ -33,7 +33,7 @@ public class MapView extends View{
             +"\nH - Help Menu"
             +"\nG - Game Menu"
             +"\nL - Print List of Locations and Description"
-            +"\nQ - Return to Main Menu" 
+//            +"\nQ - Return to Main Menu" 
             +"\n========================================");
      }
     
@@ -66,9 +66,9 @@ public class MapView extends View{
             case 'L':  // Print a list of all map locations
                 this.printLocations(); 
                 break;
-            case 'Q': // Quit the Map Menu and return to the Main Menu
-                this.returnToMainMenu();
-                break;
+//            case 'Q': // Quit the Map Menu and return to the Main Menu
+//                this.returnToMainMenu();
+//                break;
             default:
             ErrorView.display("MapView","n*** Invalid map menu selection *** Try again");
                 break;

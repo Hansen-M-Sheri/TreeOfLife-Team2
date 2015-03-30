@@ -1,3 +1,0 @@
-byui.cit260.treeOfLife.view.MainMenuView - Error reading input: Can not move actor to location 0, 1 because that location is outside  the bounds of the map.
-byui.cit260.treeOfLife.view.MapView - Error reading input null
-byui.cit260.treeOfLife.view.MapView - Error reading input null

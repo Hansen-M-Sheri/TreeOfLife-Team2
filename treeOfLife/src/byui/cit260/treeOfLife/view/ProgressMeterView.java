@@ -24,17 +24,26 @@ public class ProgressMeterView extends View{
         super("\n"
             +"\n======================================================"
             +"\n| Progress Meter                                      |"
-            +"\n======================================================"
-            +"\nL -  Current Level is ..."
-            +"\nF -  Faith stats are..."
-            +"\nK -  Knowledge stats are ..."
-            +"\nO -  Obedience stats are ..."
-            +"\nE - Armor Items Earned: "
-            +"\nG - Game Menu"
-            +"\nQ- Return to Main Menu"
+            +"\n======================================================");
+        
+       
+       try{
+           ProgressMeter progressMeter = TreeOfLife.getCurrentGame().getProgressMeter();
+         
+           this.console.println(progressMeter.getDescription());
+            this.console.println("\tL -  Current Level is "+ progressMeter.getCurrentLevel());
+            this.console.println("\tF -  Faith stats are..."+ progressMeter.getFaithStat());
+            this.console.println("\tK -  Knowledge stats are ..."+ progressMeter.getKnowledgeStat());
+            this.console.println("\tO -  Obedience stats are ..." + progressMeter.getObedienceStat());
+            
+           this.console.println( "\nG - Game Menu"
+           
             
             +"\n======================================================");
-
+       }catch (Exception e){
+           ErrorView.display(this.getClass().getName(), "Error reading input "+ e.getMessage());
+       }
+       
         }  
 
    
@@ -68,9 +77,9 @@ public class ProgressMeterView extends View{
             case 'G': // display game menu
                 this.displayGameMenu();              
                 break;
-            case 'Q': // Quit Help Menu and return to Main Menu
-                this.displayMainMenu();            
-                break;
+//            case 'Q': // Quit Help Menu and return to Main Menu
+//                this.displayMainMenu();            
+//                break;
             default:
             ErrorView.display("ProgressMeterView", "****Invalid selection **** Try again");
                 break;

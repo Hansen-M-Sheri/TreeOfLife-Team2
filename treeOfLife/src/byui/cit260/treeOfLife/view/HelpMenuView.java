@@ -23,7 +23,7 @@ public class HelpMenuView extends View{
             +"\nT - What is the Temple"
             +"\nP - What is the Praying Mantle"
             +"\nA - What is the Armor Shop"
-            +"\nQ - Quit - Return to Main Menu"
+//            +"\nQ - Quit - Return to Main Menu"
             +"\n========================================");
     }
 
@@ -55,9 +55,9 @@ public class HelpMenuView extends View{
             case 'A': //What is the Armor Shop
                 this.helpArmor();
                 break;
-            case 'Q': // Quit Help Menu and return to Main Menu
-                this.returnToMainMenu();
-                break;
+//            case 'Q': // Quit Help Menu and return to Main Menu
+//                this.returnToMainMenu();
+//                break;
             default:
            ErrorView.display("HelpMenuView","n*** Invalid help menu selection *** Try again");
                 break;

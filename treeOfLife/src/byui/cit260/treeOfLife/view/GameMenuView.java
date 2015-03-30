@@ -27,7 +27,7 @@ public class GameMenuView extends View {
             +"\nP - View Progress Meter"
             +"\nI - View Character Inventory"          
             +"\nH - Help Menu"
-            +"\nQ - Return to Main Menu" 
+            +"\nQ - Quit the Game" 
             +"\n========================================");
     }
 

@@ -27,7 +27,7 @@ public MantleMenuView(){
             +"\nA - Answer Mantle Questions"
             +"\nM - Go back to Map"
             +"\nG - Go to Game Menu"
-            +"\nQ - Return to Main Menu" 
+//            +"\nQ - Return to Main Menu" 
             +"\n========================================");
         }   
    
@@ -54,9 +54,9 @@ public MantleMenuView(){
             case 'G': // display game menu
                 this.displayGameMenu(); 
                 break;
-            case 'Q': // return to the  Main Menu
-                this.returnToMainMenu();
-                break;
+//            case 'Q': // return to the  Main Menu
+//                this.returnToMainMenu();
+//                break;
             default:
             ErrorView.display("MantleMenuView", "n*** Invalid Mantle menu selection *** Try again");
                 break;

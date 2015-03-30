@@ -26,7 +26,7 @@ public class TempleMenuView extends View{
             +"\nA - Answer Temple Questions"
             +"\nM - Go back to Map"
             +"\nG - Go to Game Menu"
-            +"\nQ - Return to Main Menu" 
+//            +"\nQ - Return to Main Menu" 
             +"\n========================================");
    
     }
@@ -52,11 +52,11 @@ public class TempleMenuView extends View{
             case 'G': // go to level view
                 this.displayGameMenu(); 
                 break;
-            case 'Q': // go to the Main Menu
-                this.returnToMainMenu();
-                break;
+//            case 'Q': // go to the Main Menu
+//                this.returnToMainMenu();
+//                break;
             default:
-            ErrorView.display("TempleMenuView", "n*** Invalid Temple Menu selection *** Try again");
+            ErrorView.display("TempleMenuView", "\n*** Invalid Temple Menu selection *** Try again");
                 break;
 }
         return true;

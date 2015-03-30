@@ -55,10 +55,13 @@ public class ProgressMeter implements Serializable {
         this.knowledgeStat = knowledgeStat;
         this.obedienceStat = obedienceStat;
     }
+
+    public String getDescription() {
+        return description;
+    }
     
     
     public int getFaithStat() {
-        System.out.println("getFaithStat() called");
         return faithStat;
     }
 
@@ -68,7 +71,6 @@ public class ProgressMeter implements Serializable {
     }
 
     public int getKnowledgeStat() {
-        System.out.println("getKnowledgeStat() called");
         return knowledgeStat;
     }
 
@@ -77,7 +79,6 @@ public class ProgressMeter implements Serializable {
     }
 
     public int getObedienceStat() {
-        System.out.println("getObedienceStat() called");
         return obedienceStat;
     }
 
@@ -110,7 +111,6 @@ public class ProgressMeter implements Serializable {
     }
 
     public MapControl.SceneType getCurrentLevel() {
-        System.out.println("getCurrentLevel() called");
         return currentLevel;
     }
 
