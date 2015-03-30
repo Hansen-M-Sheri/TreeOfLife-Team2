@@ -45,6 +45,7 @@ public class QuestionControl {
     private int qualityRange = 0;
     private int combinedMantleAnswer;
     private String bonusAnswer;
+  
     //private String BONUS;
 
     public QuestionControl() {
@@ -146,6 +147,8 @@ public class QuestionControl {
     * For 2nd question asked at temple - points will be earned for obedience
     * for 3rd question asked at temple - points will be earned for faith
     * 
+     * @param numTempleQuestions
+     * @param templeQuestionPoints
     * @param int templeQuestionPoints is calculated in calTemplePoints
     */
    public void assignTemplePoints(int numTempleQuestions, int templeQuestionPoints){
@@ -154,17 +157,19 @@ public class QuestionControl {
               int knowledge =   TreeOfLife.getCurrentGame().getProgressMeter().getKnowledgeStat();
             int currentKnowStat = knowledge + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
             TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(currentKnowStat);
+                 
              break;
            case 2:
              int obedience =   TreeOfLife.getCurrentGame().getProgressMeter().getObedienceStat();
              int currentObedStat = obedience + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
              TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(currentObedStat);
+                   
             break;
            case 3:
                int faith =   TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
              int currentFaithStat = faith + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
              TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(currentFaithStat);
-            
+                
              break;
        }
    }
@@ -291,6 +296,7 @@ public class QuestionControl {
             }
             else {
                 System.out.println(nextQuestion);
+                
             
             }
         }
@@ -383,23 +389,30 @@ public class QuestionControl {
                 this.displayBonusQuestion();
 
                 //validate answer and provide response
-                int bonusAnswer = this.getTempleBonusInput();
+                int bonusAnswer = this.getTempleInput();
                 
         //        this.doActionTempleBonus(bonusAnswer); // working on calling point functions.
 //                boolean bonusValid = this.doActionBonusQuestions(bonusAnswer);
                 this.doActionBonusQuestions(bonusAnswer);
         //        generate response by calling calTemplePoints function
                 int templePoints = this.calTemplePoints(actionRange, qualityRange);
+                
+                int numTempleQuestion = QuestionArray.getNumTempleQuestion();
+               
+                this.assignTemplePoints(numTempleQuestion, templePoints);
+                
                 //set temple to be blocked (until 3 more level questions are asked)
               Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
                 locations[1][0].setBlocked(true);
 
                 //return to game menue after finishing up temple questions
+                this.console.println("Thank you for coming to the Temple.  To help you continue your journey you will be taken to the game menu.");
+                
 //                this.askReturnToGameMenu(); //this is repeating what is done in next method
                 
-                int returnGameMenu = this.getReturntoGameMenu();
-                
-                this.doActionReturnToGame(returnGameMenu);
+//                int returnGameMenu = this.getTempleInput();
+//                
+//                this.doActionReturnToGame(returnGameMenu);
                 
         //        display string "You achieved XXX number of days with XXX effort and are rewarded with Call calTemplePoints"
 //                System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
@@ -407,8 +420,8 @@ public class QuestionControl {
         //        display prompt "Enter Q to retun to Temple Menu"
 //                System.out.println("Enter Q to return to the Temple Menu");
                 //return to temple menu
-                TempleMenuView templeMenu = new TempleMenuView();
-                templeMenu.display();
+                GameMenuView gameMenu= new GameMenuView();
+                gameMenu.display();
 //                //validate response for returning to Temple Menu
 //                String returnTempleMenu = this.displayTempleMenu();
     
@@ -433,42 +446,46 @@ public class QuestionControl {
 
     public int getTempleInput() {
         boolean valid =false; //indicates if the input has been recieved
-        int userInput = 0;
-        
+       
+        int response = 0;
         try {
         while(!valid) { //while a valid name has not been retrieved
             
             //prompt for user input for a value between 0 through 7
-            this.console.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
+//            this.console.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
             
             
                 //get the name from the keyboard and trim off the blanks
                 //userInput = keyboard.nextLine();
 //            if(keyboard.hasNextInt()) {
-            int response = this.keyboard.read();
-                if(response > 0 || response <= 7) { //using this one because it is an int
-                    userInput = this.keyboard.read();
+//            int response = this.keyboard.read();
+                String userResponse = this.keyboard.readLine();
+                //convert to int
+                 response = Integer.parseInt(userResponse);
+//                this.console.println("response = "+ response);
+//                if(response >= 0 || response <= 7) { //using this one because it is an int
+//                    userInput = this.keyboard.read();
                     //userInput = userInput.trim();
                     //userInput = userInput.toUpperCase();
-                }
-                else {
-                    this.console.println("Invalid selection - Must select a nubmer between 0 and 7.");
-                    this.getTempleInput();
-                }
-        
-            //if the input is invalid
-            //if (userInput.length() < 1 || userInput.length() > 1) {
-                if (userInput < 0 || userInput > 7) {
-                    System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
-                    continue; // and repeat again
-                }
+//                }
+//                else {
+//                    this.console.println("Invalid selection - Must select a nubmer between 0 and 7.");
+//                    this.getTempleInput();
+//                }
+//        
+//            //if the input is invalid
+//            //if (userInput.length() < 1 || userInput.length() > 1) {
+//                if (userInput < 0 || userInput > 7) {
+//                    System.out.println("Invalid selection - Must select a nubmer between 0 and 7.");
+//                    continue; // and repeat again
+//                }
                 break; //out of the (exit) the repitition
         }
         
             } catch (Exception e) { //program said it was IOException
                 System.out.println("Error reading input: " + e.getMessage());
             }
-            return userInput; // return the name
+            return response; // return the name
     
     }
     //sets actionRange value
@@ -701,9 +718,12 @@ public void mantleResponse() throws QuestionControlException{
         }
     }
 
+    
+
 //    public void getAnotherMantleQuestion() {
 //        System.out.println("getAnotherMantleQuestion function called");
 //    }
+   
 
     public int getTotalQuestionsAsked() {
         return totalQuestionsAsked;

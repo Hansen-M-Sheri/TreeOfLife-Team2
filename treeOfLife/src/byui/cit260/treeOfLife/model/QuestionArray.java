@@ -5,6 +5,7 @@
  */
 package byui.cit260.treeOfLife.model;
 
+import byui.cit260.treeOfLife.control.QuestionControl;
 import java.util.Objects;
 import java.io.Serializable;
 /**
@@ -16,6 +17,7 @@ public class QuestionArray implements Serializable{
     private String questionAnswered;
     private String questionPoints;
     private static int numMantleQuestion = 0 ;
+    private static int numLevelQuestionsAnswered = 0;
     private Scene scene;
    
     private static String[][] questionArray;
@@ -23,7 +25,7 @@ public class QuestionArray implements Serializable{
     private static int lastTempleQuestionAsked ;
     private static int lastMantleQuestionAsked ;
     private static int lastLevelQuestionAsked;
-   
+   private static int numTempleQuestion;
 
    
    
@@ -100,6 +102,20 @@ public enum QuestionType {
     //return questions array
         return levelQuestionArray;
     } 
+
+    public static int getNumTempleQuestion() {
+        return numTempleQuestion;
+    }
+     public static void setNumTempleQuestion(int numTempleQuestion) {
+        QuestionArray.numTempleQuestion = numTempleQuestion;
+    }
+    public static int getNumLevelQuestionsAnswered() {
+        return numLevelQuestionsAnswered;
+    }
+
+    public static void setNumLevelQuestionsAnswered(int numLevelQuestionsAnswered) {
+        QuestionArray.numLevelQuestionsAnswered = numLevelQuestionsAnswered;
+    }
 
   
     
