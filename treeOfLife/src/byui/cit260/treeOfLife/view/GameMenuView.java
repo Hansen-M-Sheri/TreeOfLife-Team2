@@ -118,6 +118,24 @@ public class GameMenuView extends View {
         // DISPLAY ending row divider  
         System.out.println("--------------------------------");
         
+        
+        //Code to get input for map movement
+//        this.console.println("\n\nEnter the Coordinates to move to a different location. First enter Row Number and then Column Number. (example 0,1 wil take you to the Temple)");
+//        
+//        String filePath = this.getInput();
+//        
+//       
+//        
+//        try {
+//            ArrayList<createScenes> items = Arrays.asList(str.split("\\s*,\\s*"));;
+//            // save the game to the specified file
+//            this.printScenes(locations,filePath);
+//        }catch(Exception ex) {
+//            ErrorView.display("MapLocationsView", ex.getMessage());
+//        }
+//        this.displayGameMenu();
+        
+        
         //print out map menu
       MapView mapView = new MapView();
       mapView.display();

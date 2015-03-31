@@ -1,5 +1,1 @@
-CharacterMenuView - *** Invalid help menu selection *** Try again
 byui.cit260.treeOfLife.view.MainMenuView - Error reading input: Can not move actor to location 0, 1 because that location is outside  the bounds of the map.
-MapLocationsView - /USER/CHUCK/NETBEANS/TREEOFLIFE-TEAM2/TREEOFLIFE (No such file or directory)
-ArmorShopMenuView - /USER/CHUCK/NETBEANS/TREEOFLIFE-TEAM2/TREEOFLIFE (No such file or directory)
-byui.cit260.treeOfLife.view.GameMenuView - Error reading input null

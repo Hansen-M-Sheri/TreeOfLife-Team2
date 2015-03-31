@@ -132,7 +132,7 @@ public class MapView extends View{
     }
 
     private void printScenes(ArrayList<SceneType> locations, String filePath)  {
-        try( FileOutputStream fops = new FileOutputStream(filePath)){
+        try(FileOutputStream fops = new FileOutputStream(filePath)){
             ObjectOutputStream output = new ObjectOutputStream(fops);
          
        String locationList = "\n\nList of all Locations";
