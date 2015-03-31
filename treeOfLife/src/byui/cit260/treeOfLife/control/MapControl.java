@@ -246,7 +246,7 @@ public class MapControl {
 
     }
 
-    static void moveCharactersToLocation(Character character, Point coordinates) throws MapControlException {
+   public static void moveCharactersToLocation(Character character, Point coordinates) throws MapControlException {
 //        System.out.println("*** called moveCharactersToStartingLocation() ****");
         Map map = TreeOfLife.getCurrentGame().getMap();
 //        int newRow = coordinates.x - 1;

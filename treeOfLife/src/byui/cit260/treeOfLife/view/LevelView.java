@@ -4,11 +4,20 @@
  * and open the template in the editor.
  */
 package byui.cit260.treeOfLife.view;
+import byui.cit260.treeOfLife.control.GameControl;
+import byui.cit260.treeOfLife.control.MapControl;
+import byui.cit260.treeOfLife.control.MapControl.SceneType;
 import byui.cit260.treeOfLife.control.QuestionControl;
 import byui.cit260.treeOfLife.model.Location;
+import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.QuestionArray;
 import byui.cit260.treeOfLife.model.Scene;
 import java.awt.Point;
+import byui.cit260.treeOfLife.model.Character;
+import citbyui.cit260.treeOfLife.exceptions.MapControlException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import treeoflife.TreeOfLife;
 /**
  *
@@ -86,19 +95,29 @@ this.console.println("\n========================================"
         
         QuestionArray levelQuestion = new QuestionArray();
         //get first (in group of 3 level questions)
-        int numQuestionsAnswered = levelQuestion.getNumLevelQuestionsAnswered();
-        //check answer
-        //loop 3 times - while numLevelQuestionAnswere <=3 continue
-        while (numQuestionsAnswered <= 3) {            
-            //ask a question
-            //get input
+            
+            int numQuestionsAnswered = levelQuestion.getNumLevelQuestionsAnswered();
             //check answer
-            //assign points
+            //loop 3 times - while numLevelQuestionAnswere <=3 continue
+            while (numQuestionsAnswered <= 3) {            
+                //ask a question
+               String nextQuestion =  levelQuestion.getNextQuestion(QuestionArray.QuestionType.levelQuestions);
+               this.console.println(nextQuestion);
+               //get input
+
+                //check answer
+                //assign points
+               //increment and set  number level Questions asked
+               
+               int increment = numQuestionsAnswered++;
+               levelQuestion.setNumLevelQuestionsAnswered(increment);
+            }
+            //set numLevelQuestions to 0 after while loop ends so can restart on next loop if needed
+            levelQuestion.setNumLevelQuestionsAnswered(0);
+            this.wantMoreLevelQuestions();
+        
+
         }
-        this.wantMoreQuestions();
-        
-        
-    }
 
     private void displayMapView() {
       GameMenuView gameMenu = new GameMenuView();
@@ -110,16 +129,18 @@ this.console.println("\n========================================"
         gameMenu.display();     
     }
 
-    private void wantMoreQuestions() {
+    private void wantMoreLevelQuestions() {
         //ask for user input
     this.console.println("Would you like to (A)answer another set of questions or (C)continue to the next level?");
     //get user input
-    this.getAnotherQuestionInput();
+    String answer = this.levelQuestionInput();
+    //do action
+    this.doActionLevelQuestion(answer);
     }
 
-    private String getAnotherQuestionInput() {
+    private String levelQuestionInput() {
         boolean valid = false; //indicates if the input has been recieved
-String response = "";
+        String response = "";
         try {
             while (!valid) { //while a valid name has not been retrieved
                   response = this.keyboard.readLine();
@@ -127,10 +148,73 @@ String response = "";
             }
 
         } catch (Exception e) { //program said it was IOException
-            System.out.println("Error reading input: " + e.getMessage());
+             ErrorView.display(this.getClass().getName(),"Error reading input: " + e.getMessage());
         }
         return response; // return the name
 
     }
+    
+    private void doActionLevelQuestion(String answer){
+         answer = answer.toUpperCase();
+        char choice = answer.charAt(0);
+            switch(choice){
+                case 'A': // answer another set of questions
+                    this.answerLevelQuestions();
+                    break;
+                case 'C': {
+             try {
+                 //continue to next level
+                 
+                 this.continueToNextLevel();
+             } catch (MapControlException ex) {
+                  ErrorView.display(this.getClass().getName(), "Error reading input: "+ ex.getMessage());
+             }
+         }
+                    break;
+                default:
+                    break;
+            }
+    }
+
+    private void continueToNextLevel() throws MapControlException {
+        //get currentLevel of player & move them to next level
+        MapControl.SceneType currentLevel = TreeOfLife.getCurrentGame().getProgressMeter().getCurrentLevel();
+        Character character = TreeOfLife.getCurrentGame().getCharacter();
+       Point currentCoordinates = character.getCoordinates();
+       Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
        
+       switch(currentLevel){
+            case levelOne:
+                locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
+                Point coordinates = new Point(1,1);
+                MapControl.moveCharactersToLocation(character, coordinates);
+                this.display();
+               break;
+            case levelTwo:
+                 locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
+                 coordinates = new Point(2,1);
+                MapControl.moveCharactersToLocation(character, coordinates);
+                this.display();
+               break;
+            case levelThree:
+                 locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
+                coordinates = new Point(1,2);
+                MapControl.moveCharactersToLocation(character, coordinates);
+                this.display();
+                break;
+            case levelFour:
+                 locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
+                coordinates = new Point(2,2);
+                 MapControl.moveCharactersToLocation(character, coordinates);
+                 this.display();
+                
+                break;
+            case levelFive:
+                 locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
+                this.console.println("Congratulations!!! You have completed the Tree of Life.");
+                GameControl.endOfGameProcess();
+                                    
+                break;
+       }
+    }
 }

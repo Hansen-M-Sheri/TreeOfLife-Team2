@@ -438,7 +438,8 @@ public class QuestionControl {
 //        else if (randomNum ==2){
 //            System.out.println("How many days out of the last seven days did you have your personal prayers?");
 //        }
-//    }       
+//    }   
+    
     public int getUserInput() {
         boolean valid = false; //indicates if the input has been recieved
 
@@ -476,7 +477,7 @@ public class QuestionControl {
             }
 
         } catch (Exception e) { //program said it was IOException
-            System.out.println("Error reading input: " + e.getMessage());
+            ErrorView.display(this.getClass().getName(), "Error reading input "+ e.getMessage());
         }
         return response; // return the name
 
@@ -499,13 +500,13 @@ public class QuestionControl {
             if (templeAnswer >= 6 || templeAnswer <= 7) {
                 this.setActionRange(3);
             }
-            System.out.println("Thanks for your answer. Let's move on to the bonus question");
+            this.console.println("Thanks for your answer. Let's move on to the bonus question");
         }
     }
 
     public void displayBonusQuestion() {
 
-        System.out.println("Do you feel your effort was (1) poor, (2) good or (3) outstanding?");
+        this.console.println("Do you feel your effort was (1) poor, (2) good or (3) outstanding?");
 
     }
 

@@ -1,1 +1,1 @@
-byui.cit260.treeOfLife.view.LevelView - Error reading input null
+byui.cit260.treeOfLife.view.MapView - You must enter a value.
