@@ -14,6 +14,7 @@ import byui.cit260.treeOfLife.model.QuestionArray;
 import byui.cit260.treeOfLife.model.Scene;
 import java.awt.Point;
 import byui.cit260.treeOfLife.model.Character;
+import byui.cit260.treeOfLife.model.Question;
 import citbyui.cit260.treeOfLife.exceptions.MapControlException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,7 +85,7 @@ this.console.println("\n========================================"
 //                break;
             default:
             ErrorView.display("LevelView", "\n*** Invalid Level Menu selection *** Try again");
-                break;
+                  break;
 }
         return true;
         
@@ -99,18 +100,33 @@ this.console.println("\n========================================"
             int numQuestionsAnswered = levelQuestion.getNumLevelQuestionsAnswered();
             //check answer
             //loop 3 times - while numLevelQuestionAnswere <=3 continue
-            while (numQuestionsAnswered <= 3) {            
+            while (numQuestionsAnswered < 3) {            
                 //ask a question
-               String nextQuestion =  levelQuestion.getNextQuestion(QuestionArray.QuestionType.levelQuestions);
+              Question question =  levelQuestion.getNextLevelQuestion();
+              String nextQuestion = question.getQuestion();
                this.console.println(nextQuestion);
                //get input
-
-                //check answer
+              String response =  this.getInput();
+              String answerToQuestion = question.getAnswerToLevelQuestion();
+              //convert answer and check to upperCase
+              String userResponse = response.toUpperCase();
+              String answer = answerToQuestion.toUpperCase();
+              //check answer
+              if(userResponse.equals(answer)){
+                  int points = 15;
+                 this.console.println("Correct!  You just earned "+ points + " points!");
+                 
+              }
+              else {
+                  this.console.println("Good try.  But the correct answer was " + answerToQuestion);
+                  
+              }
                 //assign points
                //increment and set  number level Questions asked
                
                int increment = numQuestionsAnswered++;
                levelQuestion.setNumLevelQuestionsAnswered(increment);
+               this.console.println(numQuestionsAnswered);
             }
             //set numLevelQuestions to 0 after while loop ends so can restart on next loop if needed
             levelQuestion.setNumLevelQuestionsAnswered(0);
@@ -214,6 +230,9 @@ this.console.println("\n========================================"
                 this.console.println("Congratulations!!! You have completed the Tree of Life.");
                 GameControl.endOfGameProcess();
                                     
+                break;
+            default:
+                this.console.println("continueToNextLevelCalled ");
                 break;
        }
     }

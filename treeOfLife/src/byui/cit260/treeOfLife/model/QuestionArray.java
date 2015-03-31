@@ -192,18 +192,30 @@ public enum QuestionType {
                 //increment last question Asked
                 this.setLastMantleQuestionAsked(index);
                 break;
-            case levelQuestions:
-                 //by checking modulus here it will return 0 if we go past length requirements so question will start all over
-                 index = (this.getLastLevelQuestionAsked() + 1) % questionArray[QuestionType.levelQuestions.ordinal()].length;
-                //increment last question Asked
-                this.setLastLevelQuestionAsked(index);
-                break;
+//            case levelQuestions:
+//                 //by checking modulus here it will return 0 if we go past length requirements so question will start all over
+//                 index = (this.getLastLevelQuestionAsked() + 1) % levelQuestionArray[QuestionType.levelQuestions.ordinal()].length;
+//                //increment last question Asked
+//                this.setLastLevelQuestionAsked(index);
+//                Question question =  levelQuestionArray[QuestionType.levelQuestions.ordinal()][index];
+//                
+//                return question.getQuestion();
                 default: 
                     break;
            
         } 
                 
         return questionArray[typeEnum.ordinal()][index];  
+    }
+    
+    public Question getNextLevelQuestion() {
+        //by checking modulus here it will return 0 if we go past length requirements so question will start all over
+        int index = (this.getLastLevelQuestionAsked() + 1) % levelQuestionArray[QuestionType.levelQuestions.ordinal()].length;
+        //increment last question Asked
+        this.setLastLevelQuestionAsked(index);
+        Question question =  levelQuestionArray[QuestionType.levelQuestions.ordinal()][index];
+
+        return question; 
     }
 
     @Override
