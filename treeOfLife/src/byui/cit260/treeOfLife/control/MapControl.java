@@ -89,8 +89,8 @@ public class MapControl {
         //create scene for Level One
         Scene levelOneScene = new Scene();
         levelOneScene.setDescriptions(
-                "\nLevel One Scene Description"
-                + "Need to add content");
+                "\nWelcome to Level One!"
+                +"\n You must answer atleast 1 set of three questions before continuing to the next level");
         levelOneScene.setMapSymbol("LVL 1");
         levelOneScene.setBlocked(false);
 //        ImageIcon levelOneSceneImage = MapControl.getImage(levelOneScene,
@@ -267,6 +267,8 @@ public class MapControl {
         Location location = map.getLocations()[coordinates.x][coordinates.y];
 //       throw new MapControlException("starting location is: "+location); //this is to test location 
         location.setVisited(true);
+        //if moves to new level then setCurrentLevel
+        
         
     }
 

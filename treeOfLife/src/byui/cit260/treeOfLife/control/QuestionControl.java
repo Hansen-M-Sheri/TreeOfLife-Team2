@@ -28,11 +28,10 @@ import treeoflife.TreeOfLife;
  * @author Chuck
  */
 public class QuestionControl {
-    
+
     protected final BufferedReader keyboard = TreeOfLife.getInFile();
     protected final PrintWriter console = TreeOfLife.getOutFile();
-    
-    
+
     private static int totalQuestionsAsked;
     private int bonus;
     private int pointValuePerQuestion;
@@ -46,198 +45,192 @@ public class QuestionControl {
     private int qualityRange = 0;
     private int combinedMantleAnswer;
     private String bonusAnswer;
-  
-    //private String BONUS;
 
+    //private String BONUS;
     public QuestionControl() {
     }
-    
-    
+
     /**
-     * This function calculates the points earned within a  level
+     * This function calculates the points earned within a level
+     *
      * @param answeredCorrect
      * @param totalQuestionsAsked
-     * @return integer questionPoints
-     * User must answer set of 3 questions correctly to earn a bonus.  
-     * 
+     * @return integer questionPoints User must answer set of 3 questions
+     * correctly to earn a bonus.
+     *
      */
-    public int calLevelQuestionPoints(int answeredCorrect, int totalQuestionsAsked)throws QuestionControlException   {
+    public int calLevelQuestionPoints(int answeredCorrect, int totalQuestionsAsked) throws QuestionControlException {
         //if to few questions or too many are asked, return error
-        if (totalQuestionsAsked < 3 || totalQuestionsAsked > 9){
-            
+        if (totalQuestionsAsked < 3 || totalQuestionsAsked > 9) {
+
             throw new QuestionControlException("You must answer 3 questions, but no more than 9 questions");
-        }   
-	//if questions asked is within range, determine bonus points earned
+        } //if questions asked is within range, determine bonus points earned
         else {
-           if(answeredCorrect <3) { 
-		bonus = 0;
-            }
-            else if(answeredCorrect >=3 && answeredCorrect <6){
+            if (answeredCorrect < 3) {
+                bonus = 0;
+            } else if (answeredCorrect >= 3 && answeredCorrect < 6) {
                 bonus = 1;
-            }
-            else if (answeredCorrect >=6 && answeredCorrect <10) {
+            } else if (answeredCorrect >= 6 && answeredCorrect < 10) {
                 bonus = 3;
             }
         }
-        pointValuePerQuestion = 5;	
-        
+        pointValuePerQuestion = 5;
+
         //multiply how many questions were answered correctly by pointValue per
         //question and add bonus points earned
-        questionPoints = answeredCorrect * pointValuePerQuestion + bonus; 
+        questionPoints = answeredCorrect * pointValuePerQuestion + bonus;
         return questionPoints;
     }
-    
+
     /**
      * This function calculates how many points earned in temple
+     *
      * @param actionRange
      * @param qualityRange
-     * @return templeQuestionPoints (integer)
-     * At each visit to temple, user will be asked two questions. 
-     * 1st based on action performed this week
-     * 2nd based on quality of action (ie: good, better, best)
-     * Their answer will fall into a range for action and quality
-     * For each range a point value is assigned
-     * Bonus points are available for any combo where highest range is hit
-     *  if highest range in both categories is achieved , larger bonus occurs
-     * Range options are 1,2,3 with 3 being highest
+     * @return templeQuestionPoints (integer) At each visit to temple, user will
+     * be asked two questions. 1st based on action performed this week 2nd based
+     * on quality of action (ie: good, better, best) Their answer will fall into
+     * a range for action and quality For each range a point value is assigned
+     * Bonus points are available for any combo where highest range is hit if
+     * highest range in both categories is achieved , larger bonus occurs Range
+     * options are 1,2,3 with 3 being highest
      */
-   public int calTemplePoints(int actionRange, int qualityRange)throws QuestionControlException {
-        
-       //determine actionRange and set actionPoints
-       if(actionRange == 1) {
+    public int calTemplePoints(int actionRange, int qualityRange) throws QuestionControlException {
+
+        //determine actionRange and set actionPoints
+        if (actionRange == 1) {
             actionPoints = 0;
-        }
-        else if(actionRange == 2) {
+        } else if (actionRange == 2) {
             actionPoints = 1;
-        }       
-           
-        else if(actionRange == 3) {
+        } else if (actionRange == 3) {
             actionPoints = 2;
-        }
-        else {
+        } else {
 //            return -1;
             throw new QuestionControlException("Invalid Selection. You must select 1, 2, or 3, to continue");
         }
         //verify qualityRange is valid & set qualityPoints
-        if(qualityRange <1 || qualityRange >3) {
-           throw new QuestionControlException("Invalid Selection. You must select 1, 2, or 3, to continue");
-        }
-        else {
-        //points will be 1, 2, or 3 ; same integer as qualityRange
+        if (qualityRange < 1 || qualityRange > 3) {
+            throw new QuestionControlException("Invalid Selection. You must select 1, 2, or 3, to continue");
+        } else {
+            //points will be 1, 2, or 3 ; same integer as qualityRange
             qualityPoints = qualityRange;
 
         }
-        
+
         //determine bonus points
-        if(actionRange == 3 && qualityRange == 3) {
+        if (actionRange == 3 && qualityRange == 3) {
             bonus = 3;
-        }
-        else if (actionRange ==3 || qualityRange ==3 ) {
+        } else if (actionRange == 3 || qualityRange == 3) {
             bonus = 2;
-        }
-        else {
+        } else {
             bonus = 1;
         }
         templeQuestionPoints = (actionPoints + qualityPoints) * bonus;
-        System.out.println("Congratulations! You just earned "+ templeQuestionPoints + " points");
+        System.out.println("Congratulations! You just earned " + templeQuestionPoints + " points");
         return templeQuestionPoints;
     }
+
     /**
-    * This function assigns points for Temple questions (replaces calMantlePoints
-    * For 1st question asked at temple - points will be earned for knowledge
-    * For 2nd question asked at temple - points will be earned for obedience
-    * for 3rd question asked at temple - points will be earned for faith
-    * 
+     * This function assigns points for Temple questions (replaces
+     * calMantlePoints For 1st question asked at temple - points will be earned
+     * for knowledge For 2nd question asked at temple - points will be earned
+     * for obedience for 3rd question asked at temple - points will be earned
+     * for faith
+     *
      * @param numTempleQuestions
      * @param templeQuestionPoints
-    * @param int templeQuestionPoints is calculated in calTemplePoints
-    */
-   public void assignTemplePoints(int numTempleQuestions, int templeQuestionPoints){
-       switch(numTempleQuestions){
-           case 1:
-              int knowledge =   TreeOfLife.getCurrentGame().getProgressMeter().getKnowledgeStat();
-            int currentKnowStat = knowledge + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
-            TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(currentKnowStat);
-                 
-             break;
-           case 2:
-             int obedience =   TreeOfLife.getCurrentGame().getProgressMeter().getObedienceStat();
-             int currentObedStat = obedience + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
-             TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(currentObedStat);
-                   
-            break;
-           case 3:
-               int faith =   TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
-             int currentFaithStat = faith + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
-             TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(currentFaithStat);
-                
-             break;
-       }
-   }
-   /**
-    * This function assigns points for Mantle questions (replaces calMantlePoints
-    * For 1st question asked at mantle - points will be earned for faith
-    * For 2nd question asked at mantle - points will be earned for knowledge
-    * for 3rd question asked at mantle - points will be earned for obedience
-    */
-   public void assignMantlePoints(int numMantleQuestions, int pointsEarned){
-      
-       switch(numMantleQuestions){
-           case 1:
-             int faith =   TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
-//             System.out.println("getFaithStat returns "+ faith);
-             int currentFaithStat = faith + pointsEarned; //@todo - need to set correct amount for 1st visit
-             TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(currentFaithStat);
-             this.console.println("Congratulations!  You just increased your faith by "+ pointsEarned);
-             break;
-           case 2:
-            int knowledge =   TreeOfLife.getCurrentGame().getProgressMeter().getKnowledgeStat();
-            int currentKnowStat = knowledge + pointsEarned; //@todo - need to set correct amount for 1st visit
-            TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(currentKnowStat);
-            this.console.println("Congratulations!  You just increased your knowledge by "+ pointsEarned);
-            break;
-           case 3:
-             int obedience =   TreeOfLife.getCurrentGame().getProgressMeter().getObedienceStat();
-             int currentObedStat = obedience + pointsEarned; //@todo - need to set correct amount for 1st visit
-             TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(currentObedStat);
-             this.console.println("Congratulations!  You just increased your obedience by "+ pointsEarned);
-             break;
-           default:
-//               System.out.println("your number of questions is " + numMantleQuestions);
-               break;
-       }
-   }
-   
-   /*Questions require 0 -7 answer
-          User enters in a value between 0 and 7. Points awarded based on answer
-            */
-      public int calMantlePoints(int answer){
-        int pointsEarned = 0;
-          if (answer > 0 && answer < 3) {
-              pointsEarned = 15;
-          } 
-          else if(answer >= 3 && answer < 6) {
-              pointsEarned = 25;
-          }else {
-              pointsEarned = 50;    
+     * @param int templeQuestionPoints is calculated in calTemplePoints
+     */
+    public void assignTemplePoints(int numTempleQuestions, int templeQuestionPoints) {
+        switch (numTempleQuestions) {
+            case 1:
+                int knowledge = TreeOfLife.getCurrentGame().getProgressMeter().getKnowledgeStat();
+                int currentKnowStat = knowledge + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
+                TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(currentKnowStat);
+
+                break;
+            case 2:
+                int obedience = TreeOfLife.getCurrentGame().getProgressMeter().getObedienceStat();
+                int currentObedStat = obedience + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
+                TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(currentObedStat);
+
+                break;
+            case 3:
+                int faith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+                int currentFaithStat = faith + templeQuestionPoints; //@todo - need to set correct amount for 1st visit
+                TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(currentFaithStat);
+
+                break;
         }
-          return pointsEarned;
-     
-      }  
-      /**
+    }
+
+    /**
+     * This function assigns points for Mantle questions (replaces
+     * calMantlePoints For 1st question asked at mantle - points will be earned
+     * for faith For 2nd question asked at mantle - points will be earned for
+     * knowledge for 3rd question asked at mantle - points will be earned for
+     * obedience
+     */
+    public void assignMantlePoints(int numMantleQuestions, int pointsEarned) {
+
+        switch (numMantleQuestions) {
+            case 1:
+                int faith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+//             System.out.println("getFaithStat returns "+ faith);
+                int currentFaithStat = faith + pointsEarned; //@todo - need to set correct amount for 1st visit
+                TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(currentFaithStat);
+                this.console.println("Congratulations!  You just increased your faith by " + pointsEarned);
+                break;
+            case 2:
+                int knowledge = TreeOfLife.getCurrentGame().getProgressMeter().getKnowledgeStat();
+                int currentKnowStat = knowledge + pointsEarned; //@todo - need to set correct amount for 1st visit
+                TreeOfLife.getCurrentGame().getProgressMeter().setKnowledgeStat(currentKnowStat);
+                this.console.println("Congratulations!  You just increased your knowledge by " + pointsEarned);
+                break;
+            case 3:
+                int obedience = TreeOfLife.getCurrentGame().getProgressMeter().getObedienceStat();
+                int currentObedStat = obedience + pointsEarned; //@todo - need to set correct amount for 1st visit
+                TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(currentObedStat);
+                this.console.println("Congratulations!  You just increased your obedience by " + pointsEarned);
+                break;
+            default:
+//               System.out.println("your number of questions is " + numMantleQuestions);
+                break;
+        }
+    }
+
+    /*Questions require 0 -7 answer
+     User enters in a value between 0 and 7. Points awarded based on answer
+     */
+    public int calMantlePoints(int answer) {
+        int pointsEarned = 0;
+        if (answer > 0 && answer < 3) {
+            pointsEarned = 15;
+        } else if (answer >= 3 && answer < 6) {
+            pointsEarned = 25;
+        } else {
+            pointsEarned = 50;
+        }
+        return pointsEarned;
+
+    }
+
+    /**
      * This function calculates how many points earned in mantle
+     *
      * @param answeredCorrect
      * @param totalQuestionsAsked
-     * @return mantleQuestionPoints (integer)
-     * At each visit to mantle, user will be asked one question type. 
-     * How many days out of seven did the user complete, do or provide service, etc.
-     * By coming to the Mantle and taking one question - user automatically gets 5 points.
-     * Depending on the answer, the can get a bonus of 0, 1, 3 or 5 points.
-     * Calculations is total questions asked multiplied by the point value per question at 5 plus their bonus earned.
-     * Answering outside the parameters of 0-7 will result in an error.
-     * Once at the mantle, if you try and leave before the question is asked, it will return an error.
-     * Once at the mantle, if you try and answer more than three questions, it will return an error.
-     * The mantle will be used to regain faith points lost during the game.
+     * @return mantleQuestionPoints (integer) At each visit to mantle, user will
+     * be asked one question type. How many days out of seven did the user
+     * complete, do or provide service, etc. By coming to the Mantle and taking
+     * one question - user automatically gets 5 points. Depending on the answer,
+     * the can get a bonus of 0, 1, 3 or 5 points. Calculations is total
+     * questions asked multiplied by the point value per question at 5 plus
+     * their bonus earned. Answering outside the parameters of 0-7 will result
+     * in an error. Once at the mantle, if you try and leave before the question
+     * is asked, it will return an error. Once at the mantle, if you try and
+     * answer more than three questions, it will return an error. The mantle
+     * will be used to regain faith points lost during the game.
      */
 //    public int calMantlePoints(int answerAverage, int mantleQuestionsAsked) throws QuestionControlException {
 //        //if too few questions or too many are asked, return error
@@ -295,55 +288,47 @@ public class QuestionControl {
 //    }   
 //
     public void getTempleQuestions() throws QuestionControlException {
-        
-        
+
         //check isBlocked - determine how we determine block and not blocked to answer questions
-       Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
-        
-      
-        if(locations[1][0].isBlocked() == true) {
-           System.out.println("Sorry, you need to answer more level questions before you can answer an additional Temple question.");
-           // if blocked return to map
-           GameMenuView gameMenu = new GameMenuView();
+        Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+
+        if (locations[1][0].isBlocked() == true) {
+            System.out.println("Sorry, you need to answer more level questions before you can answer an additional Temple question.");
+            // if blocked return to map
+            GameMenuView gameMenu = new GameMenuView();
             gameMenu.displayMap();
-        }
-        else {
+        } else {
             //get next question
             QuestionArray question = new QuestionArray();
             String nextQuestion = question.getNextQuestion(QuestionArray.QuestionType.temple);
-            if(nextQuestion.isEmpty() || nextQuestion == null) {
+            if (nextQuestion.isEmpty() || nextQuestion == null) {
                 throw new QuestionControlException("Question is empty");
-            }
-            else {
+            } else {
                 System.out.println(nextQuestion);
-                
-            
+
             }
         }
     }
+
     public void getMantleQuestions() throws QuestionControlException {
-        
-        
+
         //check isBlocked - determine how we determine block and not blocked to answer questions
-       Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
-        
-      
-        if(locations[2][0].isBlocked() == true) {
-           ErrorView.display("QuestionControl", "Sorry, you need to answer more level questions before you can answer an additional Mantle questions.");
-           // if blocked return to map
-           GameMenuView gameMenu = new GameMenuView();
+        Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+
+        if (locations[2][0].isBlocked() == true) {
+            ErrorView.display("QuestionControl", "Sorry, you need to answer more level questions before you can answer an additional Mantle questions.");
+            // if blocked return to map
+            GameMenuView gameMenu = new GameMenuView();
             gameMenu.displayMap();
-        }
-        else {
+        } else {
             //get next question
             QuestionArray question = new QuestionArray();
             String nextQuestion = question.getNextQuestion(QuestionArray.QuestionType.mantle);
-            if(nextQuestion.isEmpty() || nextQuestion == null) {
+            if (nextQuestion.isEmpty() || nextQuestion == null) {
                 throw new QuestionControlException("Question is empty");
-            }
-            else {
+            } else {
                 System.out.println(nextQuestion);
-            
+
             }
         }
     }
@@ -393,66 +378,58 @@ public class QuestionControl {
 //            }
 //        }
 //    }
-        // this function deals with verifying response of user to templeQuestion
-        public void responseTempleQuestion() throws QuestionControlException {
-            
-            //get answer from user
-                int templeAnswer = this.getUserInput();
+    // this function deals with verifying response of user to templeQuestion
 
-                //validate answer and provide response
-                this.doActionTempleQuestions(templeAnswer);
-        }
-        
-        public void templeBonusQuestionProcess()throws QuestionControlException{
+    public void responseTempleQuestion() throws QuestionControlException {
 
-                //ask follow up question for bonus
-                this.displayBonusQuestion();
+        //get answer from user
+        int templeAnswer = this.getUserInput();
 
-                //validate answer and provide response
-                int bonusAnswer = this.getUserInput();
-                
+        //validate answer and provide response
+        this.doActionTempleQuestions(templeAnswer);
+    }
+
+    public void templeBonusQuestionProcess() throws QuestionControlException {
+
+        //ask follow up question for bonus
+        this.displayBonusQuestion();
+
+        //validate answer and provide response
+        int bonusAnswer = this.getUserInput();
+
         //        this.doActionTempleBonus(bonusAnswer); // working on calling point functions.
 //                boolean bonusValid = this.doActionBonusQuestions(bonusAnswer);
-                this.doActionBonusQuestions(bonusAnswer);
+        this.doActionBonusQuestions(bonusAnswer);
         //        generate response by calling calTemplePoints function
-                int templePoints = this.calTemplePoints(actionRange, qualityRange);
-                
-                int numTempleQuestion = QuestionArray.getNumTempleQuestion();
-               
-                this.assignTemplePoints(numTempleQuestion, templePoints);
-                
-                //set temple to be blocked (until 3 more level questions are asked)
-              Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
-                locations[1][0].setBlocked(true);
+        int templePoints = this.calTemplePoints(actionRange, qualityRange);
 
-                //return to game menue after finishing up temple questions
-                this.console.println("Thank you for coming to the Temple.  To help you continue your journey you will be taken to the game menu.");
-                
+        int numTempleQuestion = QuestionArray.getNumTempleQuestion();
+
+        this.assignTemplePoints(numTempleQuestion, templePoints);
+
+        //set temple to be blocked (until 3 more level questions are asked)
+        Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+        locations[1][0].setBlocked(true);
+
+        //return to game menue after finishing up temple questions
+        this.console.println("Thank you for coming to the Temple.  To help you continue your journey you will be taken to the game menu.");
+
 //                this.askReturnToGameMenu(); //this is repeating what is done in next method
-                
 //                int returnGameMenu = this.getUserInput();
 //                
 //                this.doActionReturnToGame(returnGameMenu);
-                
         //        display string "You achieved XXX number of days with XXX effort and are rewarded with Call calTemplePoints"
 //                System.out.println("Based on your response, you have increased your obedience meter by " + templePoints + ".");
-
         //        display prompt "Enter Q to retun to Temple Menu"
 //                System.out.println("Enter Q to return to the Temple Menu");
-                //return to temple menu
-                GameMenuView gameMenu= new GameMenuView();
-                gameMenu.display();
+        //return to temple menu
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
 //                //validate response for returning to Temple Menu
 //                String returnTempleMenu = this.displayTempleMenu();
-    
-    
-    
-    
-        
-        
-    
+
     }
-    
+
 //    private void displayQuestion(int randomNum) {
 //        
 //        if (randomNum == 1){
@@ -462,31 +439,27 @@ public class QuestionControl {
 //            System.out.println("How many days out of the last seven days did you have your personal prayers?");
 //        }
 //    }       
-  
-
     public int getUserInput() {
-        boolean valid =false; //indicates if the input has been recieved
-       
+        boolean valid = false; //indicates if the input has been recieved
+
         int response = 0;
         try {
-        while(!valid) { //while a valid name has not been retrieved
-            
+            while (!valid) { //while a valid name has not been retrieved
+
             //prompt for user input for a value between 0 through 7
 //            this.console.println("Enter a value between 0 through 7 for the number of days you completed the activity.");
-            
-            
                 //get the name from the keyboard and trim off the blanks
                 //userInput = keyboard.nextLine();
 //            if(keyboard.hasNextInt()) {
 //            int response = this.keyboard.read();
                 String userResponse = this.keyboard.readLine();
                 //convert to int
-                 response = Integer.parseInt(userResponse);
+                response = Integer.parseInt(userResponse);
 //                this.console.println("response = "+ response);
 //                if(response >= 0 || response <= 7) { //using this one because it is an int
 //                    userInput = this.keyboard.read();
-                    //userInput = userInput.trim();
-                    //userInput = userInput.toUpperCase();
+                //userInput = userInput.trim();
+                //userInput = userInput.toUpperCase();
 //                }
 //                else {
 //                    this.console.println("Invalid selection - Must select a nubmer between 0 and 7.");
@@ -500,42 +473,42 @@ public class QuestionControl {
 //                    continue; // and repeat again
 //                }
                 break; //out of the (exit) the repitition
-        }
-        
-            } catch (Exception e) { //program said it was IOException
-                System.out.println("Error reading input: " + e.getMessage());
             }
-            return response; // return the name
-    
-    }
-    //sets actionRange value
-    private void doActionTempleQuestions(int templeAnswer) throws QuestionControlException {
-        
-        if (templeAnswer < 0 || templeAnswer >7){
-        throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
-            
+
+        } catch (Exception e) { //program said it was IOException
+            System.out.println("Error reading input: " + e.getMessage());
         }
-        else{
-            if(templeAnswer >=0 || templeAnswer < 3){
+        return response; // return the name
+
+    }
+
+    //sets actionRange value
+
+    private void doActionTempleQuestions(int templeAnswer) throws QuestionControlException {
+
+        if (templeAnswer < 0 || templeAnswer > 7) {
+            throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
+
+        } else {
+            if (templeAnswer >= 0 || templeAnswer < 3) {
                 this.setActionRange(1);
             }
-            if(templeAnswer >=3 || templeAnswer < 6){
+            if (templeAnswer >= 3 || templeAnswer < 6) {
                 this.setActionRange(2);
             }
-            if(templeAnswer >=6 || templeAnswer <= 7){
+            if (templeAnswer >= 6 || templeAnswer <= 7) {
                 this.setActionRange(3);
             }
-           System.out.println("Thanks for your answer. Let's move on to the bonus question");
+            System.out.println("Thanks for your answer. Let's move on to the bonus question");
         }
     }
-        
+
     public void displayBonusQuestion() {
-      
-            System.out.println("Do you feel your effort was (1) poor, (2) good or (3) outstanding?");
-            
-            
-    }          
-     
+
+        System.out.println("Do you feel your effort was (1) poor, (2) good or (3) outstanding?");
+
+    }
+
 //    private int getTempleBonusInput() {
 //    
 //        boolean valid =false; //indicates if the input has been recieved
@@ -573,27 +546,25 @@ public class QuestionControl {
 //
 //
 //    }
-    
-    private void doActionBonusQuestions(int bonusAnswer) throws QuestionControlException{
-    
-        if (bonusAnswer < 0 || bonusAnswer >3){
-       throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
-            
-        }
-        else{
-            if (bonusAnswer == 1){
+    private void doActionBonusQuestions(int bonusAnswer) throws QuestionControlException {
+
+        if (bonusAnswer < 0 || bonusAnswer > 3) {
+            throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
+
+        } else {
+            if (bonusAnswer == 1) {
                 this.setQualityRange(1);
-               System.out.println("In order to gain extra obedience points, you will need to put forth more effort!");
+                System.out.println("In order to gain extra obedience points, you will need to put forth more effort!");
             }
-            if (bonusAnswer == 2){
-                 this.setQualityRange(2);
-               System.out.println("Feels good to to put forth a good effort when accomplishing this task.");
+            if (bonusAnswer == 2) {
+                this.setQualityRange(2);
+                System.out.println("Feels good to to put forth a good effort when accomplishing this task.");
             }
-            if (bonusAnswer == 3){
-                 this.setQualityRange(3);
-               System.out.println("Outstanding effort! For this level of commitment you will be rewarded with many blessings");
+            if (bonusAnswer == 3) {
+                this.setQualityRange(3);
+                System.out.println("Outstanding effort! For this level of commitment you will be rewarded with many blessings");
             }
-            
+
         }
     }
 
@@ -601,7 +572,6 @@ public class QuestionControl {
 //        System.out.println("Enter 9 to Return to the Temple Menu");
 //    
 //    }
-    
 //    private int getReturntoGameMenu() {
 //        boolean valid =false; //indicates if the input has been recieved
 //            int userInput = 0;
@@ -650,31 +620,24 @@ public class QuestionControl {
 //            }
 //        }
 //    }
-    
-  
-    
-    
-    
-    
-   
-public int mantleResponse() throws QuestionControlException{
-            //get answer from user
+    public int mantleResponse() throws QuestionControlException {
+        //get answer from user
 //            String mantleAnswer = this.getMantleInput();
-            int answer = this.getUserInput();
+        int answer = this.getUserInput();
 
-            combinedMantleAnswer = answer; //this will gather the totals from each question asked, add them and use this to get average
+        combinedMantleAnswer = answer; //this will gather the totals from each question asked, add them and use this to get average
 //  System.out.println("mantleAnswer generated " + mantleAnswer);
-             //validate answer and provide response if invalid answer
-           this.doActionMantleQuestions(answer); //either returns false for error - invalid response  or true if valid
-            
-            //if invalid answer is given ask for valid input until response is valid
+        //validate answer and provide response if invalid answer
+        this.doActionMantleQuestions(answer); //either returns false for error - invalid response  or true if valid
+
+        //if invalid answer is given ask for valid input until response is valid
 //           while(valid == false){
 //                System.out.println("Please enter a number between 0 and 7");
 //                
 //            }
 //        }
-           return answer;
-    }  
+        return answer;
+    }
 
 //    private int getMantleInput() {
 //       boolean valid =false; //indicates if the name has been recieved
@@ -711,7 +674,6 @@ public int mantleResponse() throws QuestionControlException{
 //        return userInput; // return the name
 //    
 //    } 
-
 //    private void displayMantleQuestion(int randomNum) {
 //        if(randomNum == 30){
 //           System.out.println("How many days out of the last seven days did you serve a family member?");
@@ -726,23 +688,18 @@ public int mantleResponse() throws QuestionControlException{
 //            System.out.println("How many days out of the last seven days did you perform service for a stranger?");
 //        }
 //    }
+    private void doActionMantleQuestions(int answer) throws QuestionControlException {
 
-    private void doActionMantleQuestions(int answer) throws QuestionControlException{
-       
-        if (answer < 0 || answer >7){
-       throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
-            
+        if (answer < 0 || answer > 7) {
+            throw new QuestionControlException("You have entered an incorrect response. Please enter a number between 0 and 7.");
+
         }
-        
-    }
 
-    
+    }
 
 //    public void getAnotherMantleQuestion() {
 //        System.out.println("getAnotherMantleQuestion function called");
 //    }
-   
-
     public int getTotalQuestionsAsked() {
         return totalQuestionsAsked;
     }
@@ -847,27 +804,4 @@ public int mantleResponse() throws QuestionControlException{
         this.bonusAnswer = bonusAnswer;
     }
 
-    
-
-   
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-   
-
 }
-
-
-
-
-
-
-    

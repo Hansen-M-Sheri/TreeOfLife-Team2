@@ -102,7 +102,8 @@ public class MapView extends View{
     }
 
     private void goToLevelMenu() {
-        this.console.println("*** goToLevelMenu function called ***");
+       LevelView levelMenu = new LevelView();
+       levelMenu.display();
     }
 
     private void displayGameMenu() {
