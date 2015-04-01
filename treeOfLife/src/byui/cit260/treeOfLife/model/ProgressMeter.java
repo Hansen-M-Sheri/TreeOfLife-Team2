@@ -47,7 +47,7 @@ public class ProgressMeter implements Serializable {
         this.faithStat = 0;
         this.obedienceStat = 0;
         this.knowledgeStat = 0;
-        this.currentLevel = MapControl.SceneType.cottage;
+        this.currentLevel = MapControl.SceneType.levelOne;
     }
 
     public ProgressMeter(int faithStat, int knowledgeStat, int obedienceStat) {

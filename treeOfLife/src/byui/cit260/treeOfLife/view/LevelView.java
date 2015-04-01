@@ -103,6 +103,7 @@ this.console.println("\n========================================"
             while (numQuestionsAnswered < 3) {            
                 //ask a question
               Question question =  levelQuestion.getNextLevelQuestion();
+        
               String nextQuestion = question.getQuestion();
                this.console.println(nextQuestion);
                //get input
@@ -198,31 +199,38 @@ this.console.println("\n========================================"
         Character character = TreeOfLife.getCurrentGame().getCharacter();
        Point currentCoordinates = character.getCoordinates();
        Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
-       
+       MapView map = new MapView();
        switch(currentLevel){
             case levelOne:
                 locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
                 Point coordinates = new Point(1,1);
                 MapControl.moveCharactersToLocation(character, coordinates);
+                //set current level
+                TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelTwo);
                 this.display();
+//                map.display();
+                
                break;
             case levelTwo:
                  locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
                  coordinates = new Point(2,1);
                 MapControl.moveCharactersToLocation(character, coordinates);
-                this.display();
+                 TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelThree);
+                map.display();
                break;
             case levelThree:
                  locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
                 coordinates = new Point(1,2);
                 MapControl.moveCharactersToLocation(character, coordinates);
-                this.display();
+                 TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelFour);
+                map.display();
                 break;
             case levelFour:
                  locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
                 coordinates = new Point(2,2);
                  MapControl.moveCharactersToLocation(character, coordinates);
-                 this.display();
+                   TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelFive);
+                map.display();
                 
                 break;
             case levelFive:

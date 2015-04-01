@@ -87,7 +87,7 @@ public enum QuestionType {
          
          Question levelQuestion5 = new Question();
         levelQuestion5.setQuestion("How many sons did Lehi  & Sariah have?");
-        levelQuestion4.setAnswerToLevelQuestion("6");
+        levelQuestion5.setAnswerToLevelQuestion("6");
         levelQuestionArray[QuestionType.levelQuestions.ordinal()][4] = levelQuestion5;
         
          Question levelQuestion6 = new Question();
