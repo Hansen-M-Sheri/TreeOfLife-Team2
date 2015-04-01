@@ -87,7 +87,7 @@ public enum QuestionType {
          
          Question levelQuestion5 = new Question();
         levelQuestion5.setQuestion("How many sons did Lehi  & Sariah have?");
-        levelQuestion4.setAnswerToLevelQuestion("6");
+        levelQuestion5.setAnswerToLevelQuestion("6");
         levelQuestionArray[QuestionType.levelQuestions.ordinal()][4] = levelQuestion5;
         
          Question levelQuestion6 = new Question();
@@ -192,18 +192,30 @@ public enum QuestionType {
                 //increment last question Asked
                 this.setLastMantleQuestionAsked(index);
                 break;
-            case levelQuestions:
-                 //by checking modulus here it will return 0 if we go past length requirements so question will start all over
-                 index = (this.getLastLevelQuestionAsked() + 1) % questionArray[QuestionType.levelQuestions.ordinal()].length;
-                //increment last question Asked
-                this.setLastLevelQuestionAsked(index);
-                break;
+//            case levelQuestions:
+//                 //by checking modulus here it will return 0 if we go past length requirements so question will start all over
+//                 index = (this.getLastLevelQuestionAsked() + 1) % levelQuestionArray[QuestionType.levelQuestions.ordinal()].length;
+//                //increment last question Asked
+//                this.setLastLevelQuestionAsked(index);
+//                Question question =  levelQuestionArray[QuestionType.levelQuestions.ordinal()][index];
+//                
+//                return question.getQuestion();
                 default: 
                     break;
            
         } 
                 
         return questionArray[typeEnum.ordinal()][index];  
+    }
+    
+    public Question getNextLevelQuestion() {
+        //by checking modulus here it will return 0 if we go past length requirements so question will start all over
+        int index = (this.getLastLevelQuestionAsked() + 1) % levelQuestionArray[QuestionType.levelQuestions.ordinal()].length;
+        //increment last question Asked
+        this.setLastLevelQuestionAsked(index);
+        Question question =  levelQuestionArray[QuestionType.levelQuestions.ordinal()][index];
+
+        return question; 
     }
 
     @Override

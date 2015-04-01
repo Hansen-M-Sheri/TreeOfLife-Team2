@@ -75,7 +75,7 @@ public class MapView extends View{
 //                this.returnToMainMenu();
 //                break;
             default:
-            ErrorView.display("MapView","n*** Invalid map menu selection *** Try again");
+            ErrorView.display("MapView","\n*** Invalid map menu selection *** Try again");
                 break;
 }
          return true;

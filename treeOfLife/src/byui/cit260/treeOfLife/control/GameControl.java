@@ -68,9 +68,10 @@ public class GameControl {
         Location[][] locations = map.getLocations();
         locations[0][0].setVisited(true);
         locations[0][0].setScene(scenes[SceneType.armorShop.ordinal()]);
+        locations[0][1].setVisited(true);
         //start point
         locations[0][1].setScene(scenes[SceneType.cottage.ordinal()]);
-        
+        locations[0][2].setVisited(true);
         locations[0][2].setScene(scenes[SceneType.levelOne.ordinal()]);
         locations[0][3].setScene(scenes[SceneType.spaciousBuilding.ordinal()]);
         locations[1][0].setScene(scenes[SceneType.temple.ordinal()]);

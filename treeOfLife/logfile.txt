@@ -1,3 +1,0 @@
-HelpMenuView - n*** Invalid help menu selection *** Try again
-byui.cit260.treeOfLife.view.MapView - You must enter a value.
-byui.cit260.treeOfLife.view.MapView - Error reading input null

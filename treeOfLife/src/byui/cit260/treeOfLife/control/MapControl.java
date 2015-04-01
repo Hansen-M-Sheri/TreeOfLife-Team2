@@ -269,7 +269,7 @@ public class MapControl {
         Location location = map.getLocations()[coordinates.x][coordinates.y];
 //       throw new MapControlException("starting location is: "+location); //this is to test location 
         location.setVisited(true);
-        //if moves to new level then setCurrentLevel
+         //if moves to new level then setCurrentLevel
         
         
     }
