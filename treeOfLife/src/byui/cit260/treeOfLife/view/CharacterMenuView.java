@@ -16,10 +16,10 @@ public class CharacterMenuView extends View {
 
     public CharacterMenuView() {
 
-        super("\n"
-                + "\n========================================"
-                + "\n| Character Menu                       |"
-                + "\n========================================");
+        super("\n=================================================================");
+                this.console.println("\n================================================================="
+                + "\n\t\t\t Character Menu                       "
+                + "\n=================================================================");
         //get Characters in game
         Character[] characters = Character.values();
         for (Character character : characters) {
@@ -32,7 +32,7 @@ public class CharacterMenuView extends View {
         }
         this.console.println(
                 "\nQ - Quit - "
-                + "\n========================================");
+              );
 
     }
 
@@ -78,7 +78,9 @@ public class CharacterMenuView extends View {
         int obedience = TreeOfLife.getCurrentGame().getCharacter().getOrigObedLevel();
         TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(obedience);
         this.console.println("Welcome Nephi, let's begin your journey to the Tree of Life!");
-        this.console.println("Select Q to begin!");
+//        this.console.println("Select Q to begin!");
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
     private void selectSariah() {
@@ -94,9 +96,9 @@ public class CharacterMenuView extends View {
         int obedience = TreeOfLife.getCurrentGame().getCharacter().getOrigObedLevel();
         TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(obedience);
         this.console.println("Welcome Sariah, let's begin your journey to the Tree of Life!");
-        this.console.println("Select Q to begin!");
-//        GameMenuView gameMenu = new GameMenuView();
-//        gameMenu.display();
+//        this.console.println("Select Q to begin!");
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
        
     }
 
@@ -113,7 +115,9 @@ public class CharacterMenuView extends View {
         int obedience = TreeOfLife.getCurrentGame().getCharacter().getOrigObedLevel();
         TreeOfLife.getCurrentGame().getProgressMeter().setObedienceStat(obedience);
         this.console.println("Welcome Jacob, let's begin your journey to the Tree of Life!");
-       this.console.println("Select Q to begin!");
+//       this.console.println("Select Q to begin!");
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
     private void returnToMainMenu() {

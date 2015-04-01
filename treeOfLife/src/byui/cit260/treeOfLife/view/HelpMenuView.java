@@ -14,9 +14,9 @@ import java.util.Scanner;
 public class HelpMenuView extends View{
     public HelpMenuView(){
         super("\n"
-            +"\n========================================"
-            +"\n| Help Menu                            |"
-            +"\n========================================"
+            +"\n================================================================="
+            +"\n\t\t Help Menu                            "
+            +"\n================================================================="
             +"\nG - Go to Game Main Menu"
             +"\nI - Info - What is the goal of the game?"
             +"\nM - How to move"
@@ -24,7 +24,7 @@ public class HelpMenuView extends View{
             +"\nP - What is the Praying Mantle"
             +"\nA - What is the Armor Shop"
 //            +"\nQ - Quit - Return to Main Menu"
-            +"\n========================================");
+            +"\n=================================================================");
     }
 
 

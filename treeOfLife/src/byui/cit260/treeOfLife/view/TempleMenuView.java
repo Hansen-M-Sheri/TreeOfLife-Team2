@@ -20,15 +20,15 @@ public class TempleMenuView extends View{
     public TempleMenuView(){
         super("\n"
   
-            +"\n========================================"
-            +"\n| Temple Menu                             |"
-            +"\n========================================"
+            +"\n================================================================="
+            +"\n\t\t\tTemple Menu                             "
+            +"\n================================================================="
             //+"\nR - Rest at Temple" Potential variance in game - faith dwindles with questions asked, can be restored here. What would be the consequence of not having faith?
             +"\nA - Answer Temple Questions"
             +"\nM - Go back to Map"
             +"\nG - Go to Game Menu"
 //            +"\nQ - Return to Main Menu" 
-            +"\n========================================");
+            +"\n=================================================================");
    
     }
     

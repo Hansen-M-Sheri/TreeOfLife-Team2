@@ -23,9 +23,9 @@ public class MapView extends View{
      public MapView(){
         super("\n"
 
-            +"\n========================================"
-            +"\n| Map Menu                             |"
-            +"\n========================================" 
+            +"\n================================================================="
+            +"\n\t\t\t Map Menu                             "
+            +"\n=================================================================" 
             +"\nT - Temple"
             +"\nM - Mantle"
             +"\nA - Armor Shop"
@@ -34,7 +34,7 @@ public class MapView extends View{
             +"\nG - Game Menu"
             +"\nL - Print List of Locations and Description"
 //            +"\nQ - Return to Main Menu" 
-            +"\n========================================");
+            +"\n=================================================================");
      }
     
      

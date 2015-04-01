@@ -49,11 +49,12 @@ public class GameControl {
         ProgressMeter progress = new ProgressMeter();
         TreeOfLife.getCurrentGame().setProgressMeter(progress);
         
-         System.out.println("Please select a character for your game.");
+         
        
          //choose Character 
         CharacterMenuView character = new CharacterMenuView();
         character.display();
+        System.out.println("Please select a character for your game.");
                
         //move characters to starting position in the map - moved to StartNewGame
         MapControl.moveCharactersToStartingLocation(map);

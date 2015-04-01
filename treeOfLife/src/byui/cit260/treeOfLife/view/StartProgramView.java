@@ -124,10 +124,10 @@ public class StartProgramView {//We did not extend this class because it does no
     }
 
     public void displayWelcomeMessage(Players player) {
-        this.console.println("\n\n=============================");
-        this.console.println("\tWelcome to the game " + player.getName());
-        this.console.println("\tWe hope you have a lot of fun!");
-        this.console.println("=============================");
+        this.console.println("=================================================================");
+        this.console.println("\t\tWelcome to the game " + player.getName());
+        this.console.println("\t\tWe hope you have a lot of fun!");
+        this.console.println("=================================================================");
     }
     
     

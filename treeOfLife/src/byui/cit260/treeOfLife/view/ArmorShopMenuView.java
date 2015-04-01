@@ -27,10 +27,10 @@ public class ArmorShopMenuView extends View{
     //go to the Game, get the forSaleList to see what is still available
     public ArmorShopMenuView(){
         
-        super("\n"
-            +"\n========================================"
-            +"\n| Armor Shop Menu                            |"
-            +"\n========================================");
+        super("\n=================================================================");
+            this.console.println("\n================================================================="
+            +"\n\t\t Armor Shop Menu                            "
+            +"\n=================================================================");
         //get the list of forsale items from the game
         Game game = TreeOfLife.getCurrentGame();
         try{

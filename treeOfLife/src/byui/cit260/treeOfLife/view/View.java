@@ -59,7 +59,7 @@ public abstract class View implements ViewInterface{
         while(!valid) { 
             
             //prompt for the player's name
-            this.console.println("\t\nEnter your selection below:");
+//            this.console.println("\t\nEnter your selection below:");
             
             //get the value entered from the keyboard
             selection = this.keyboard.readLine();

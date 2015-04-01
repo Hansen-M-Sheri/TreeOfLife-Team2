@@ -42,22 +42,22 @@ public class LevelView extends View {
 //   
 //    }
     
-     super("\n========================================");
+     super("=================================================================");
      
         currentCoordinates = TreeOfLife.getCurrentGame().getCharacter().getCoordinates();
         Location location =  TreeOfLife.getCurrentGame().getMap().getLocations()[currentCoordinates.x][currentCoordinates.y];
         String description = location.getScene().getDescriptions();
         Scene levelName = location.getScene();
      
-this.console.println("\n========================================"
-            +"\n| "+ description + "                      |"
-            +"\n========================================"
+this.console.println("\n================================================================="
+            +"\n "+ description 
+            +"\n================================================================="
            
             +"\nA - Answer Level Questions"
             +"\nM - Go back to Map"
             +"\nG - Go to Game Menu"
 //            +"\nQ - Return to Main Menu" 
-            +"\n========================================");
+           );
    
     }
            
