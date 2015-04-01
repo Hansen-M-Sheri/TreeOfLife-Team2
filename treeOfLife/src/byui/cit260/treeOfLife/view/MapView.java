@@ -26,10 +26,12 @@ public class MapView extends View{
             +"\n========================================"
             +"\n| Map Menu                             |"
             +"\n========================================" 
-            +"\nT - Temple"
-            +"\nM - Mantle"
-            +"\nA - Armor Shop"
-            +"\nC - Choose Level Menu" 
+            +"\n M - Move to location"
+                
+ //           +"\nT - Temple"
+//            +"\nM - Mantle"
+//            +"\nA - Armor Shop"
+//            +"\nC - Choose Level Menu" 
             +"\nH - Help Menu"
             +"\nG - Game Menu"
             +"\nL - Print List of Locations and Description"
@@ -48,16 +50,16 @@ public class MapView extends View{
             case 'T':// go to temple
                 this.goToTempleMenu();
                 break;
-            case 'M': // go to the mantle
-                this.goToMantleMenu();
-                break;
+//            case 'M': // go to the mantle
+//                this.goToMantleMenu();
+//                break;
             case 'A': // to to Armor Shop Menu
                 this.goToArmorShopMenu();
                 break;
             case 'C': // go to level view
                 this.goToLevelMenu(); 
                 break;
-            case 'H': // go to the Main Menu
+            case 'H': // go to the Main Menu  
                 this.displayHelpMenu();
                 break;
             case 'G':  // Go To the Game Menu
@@ -65,6 +67,9 @@ public class MapView extends View{
                 break;
             case 'L':  // Print a list of all map locations
                 this.printLocations(); 
+                break;
+            case 'M':  // Print a list of all map locations
+                this.moveLocation(); 
                 break;
 //            case 'Q': // Quit the Map Menu and return to the Main Menu
 //                this.returnToMainMenu();
@@ -172,6 +177,29 @@ public class MapView extends View{
             
         }
         
+        
+           
+        
+    }
+
+    private void moveLocation() {
+    
+        //Code to get input for map movement
+//        this.console.println("\n\nEnter the Coordinates to move to a different location. First enter Row Number and then Column Number. (example 0,1 will take you to the Temple)");
+//        
+//        String filePath = this.getInput();
+//        
+//       
+//        
+//        try {
+//            ArrayList<String> items = new ArrayList<>();
+//            items = (ArrayList<String>) Arrays.asList(filePath.split("\\s*,\\s*"));
+//            // save the game to the specified file
+//            this.goToLevelMenu();(locations,filePath);
+//        }catch(Exception ex) {
+//            ErrorView.display("MapLocationsView", ex.getMessage());
+//        }
+//        this.displayGameMenu();
     }
 }
 

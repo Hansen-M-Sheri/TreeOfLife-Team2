@@ -10,6 +10,8 @@ import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Scene;
 import citbyui.cit260.treeOfLife.exceptions.GameControlException;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Arrays;
 import treeoflife.TreeOfLife;
 
 /**
@@ -17,6 +19,7 @@ import treeoflife.TreeOfLife;
  * @author Chuck
  */
 public class GameMenuView extends View {
+    
     public GameMenuView(){
         super("\n"
     
@@ -119,25 +122,11 @@ public class GameMenuView extends View {
         System.out.println("--------------------------------");
         
         
-        //Code to get input for map movement
-//        this.console.println("\n\nEnter the Coordinates to move to a different location. First enter Row Number and then Column Number. (example 0,1 wil take you to the Temple)");
-//        
-//        String filePath = this.getInput();
-//        
-//       
-//        
-//        try {
-//            ArrayList<createScenes> items = Arrays.asList(str.split("\\s*,\\s*"));;
-//            // save the game to the specified file
-//            this.printScenes(locations,filePath);
-//        }catch(Exception ex) {
-//            ErrorView.display("MapLocationsView", ex.getMessage());
-//        }
-//        this.displayGameMenu();
+       
         
         
         //print out map menu
-      MapView mapView = new MapView();
+    MapView mapView = new MapView(); //Change this to call different function so user enters in the coordinates
       mapView.display();
         
     }
@@ -175,5 +164,7 @@ public class GameMenuView extends View {
         mapMenu.display();
     }
     
+    
+  
     
 }

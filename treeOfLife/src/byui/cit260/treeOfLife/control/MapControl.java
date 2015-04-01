@@ -85,6 +85,8 @@ public class MapControl {
 //                "/citbyui/citC260/curiousworkmanship/images/startingPoint.jpg");
 //        startingScene.setIcon(startingSceneImage);
         scenes[SceneType.cottage.ordinal()] = startingScene;
+        
+        
 
         //create scene for Level One
         Scene levelOneScene = new Scene();
