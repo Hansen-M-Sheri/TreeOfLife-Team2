@@ -6,6 +6,7 @@
 package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.control.QuestionControl;
+import byui.cit260.treeOfLife.model.QuestionArray;
 import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
 import java.awt.Point;
 import java.util.Scanner;
@@ -26,7 +27,7 @@ public class TempleMenuView extends View{
             +"\nA - Answer Temple Questions"
             +"\nM - Go back to Map"
             +"\nG - Go to Game Menu"
-            +"\nQ - Return to Main Menu" 
+//            +"\nQ - Return to Main Menu" 
             +"\n========================================");
    
     }
@@ -52,11 +53,11 @@ public class TempleMenuView extends View{
             case 'G': // go to level view
                 this.displayGameMenu(); 
                 break;
-            case 'Q': // go to the Main Menu
-                this.returnToMainMenu();
-                break;
+//            case 'Q': // go to the Main Menu
+//                this.returnToMainMenu();
+//                break;
             default:
-            ErrorView.display("TempleMenuView", "n*** Invalid Temple Menu selection *** Try again");
+            ErrorView.display("TempleMenuView", "\n*** Invalid Temple Menu selection *** Try again");
                 break;
 }
         return true;
@@ -73,15 +74,28 @@ public class TempleMenuView extends View{
     private void answerTempleQuestions()  {
     QuestionControl templeQuestion = new QuestionControl();
         //get question
-        Point coordinates = TreeOfLife.getCurrentGame().getCharacter().getCoordinates();
-        this.console.println("coordinates = "+ coordinates);
+//        Point coordinates = TreeOfLife.getCurrentGame().getCharacter().getCoordinates();
+//        this.console.println("coordinates = "+ coordinates);
         try{
         //templeQuestion.getMantleOrTempleQuestion(coordinates);  
         templeQuestion.getTempleQuestions();
+        //get numTempleQuestion and increment
+       
+            int numTempleQuestion = QuestionArray.getNumTempleQuestion();
+
+            if(numTempleQuestion >= 3){
+                // 
+                QuestionArray.setNumTempleQuestion(0);
+            }
+            int increment = numTempleQuestion + 1;
+            QuestionArray.setNumTempleQuestion(increment);
+              
 //process user's response to question
         templeQuestion.responseTempleQuestion();
         //bonus question procedure
+       
         templeQuestion.templeBonusQuestionProcess();
+       
         }catch (QuestionControlException qe){
             ErrorView.display(this.getClass().getName(), "Error reading input: "+ qe.getMessage());
              

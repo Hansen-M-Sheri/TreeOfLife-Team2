@@ -166,7 +166,7 @@ public class GameControl {
         //get list of items purchased for current game
         originalPurchasedItemsList = TreeOfLife.getCurrentGame().getPurchasedItems();
       
-        if (originalPurchasedItemsList.size() < 1) { //if only 1 item in list return list
+        if (originalPurchasedItemsList == null) { //if only 1 item in list return list
             throw new GameControlException("You have not earned any Armor Pieces yet");
         } else { //if more than one item in arrayList, sort by lowest Faith points
             ArrayList<GameInventoryItems> purchasedItemsList = new ArrayList<>();
@@ -232,6 +232,10 @@ public class GameControl {
         
         //close the output file
         TreeOfLife.setCurrentGame(game); // save in TreeOfLife
+    }
+
+    public static void endOfGameProcess() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void display() {

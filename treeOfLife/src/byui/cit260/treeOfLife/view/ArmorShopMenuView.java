@@ -60,8 +60,7 @@ public class ArmorShopMenuView extends View{
                 +"\nR - Print Armor items available and items purchased"        
                 +"\n"
                 +"\nG - Game Menu"
-                +"\n"
-                +"\nQ - Return to Main Menu"
+                
                 +"\n========================================");
         } 
         }catch (Exception e) {
@@ -118,9 +117,7 @@ public class ArmorShopMenuView extends View{
             case 'G':  // go to game menu
                 this.goToGameMenu(); 
                 break;
-            case 'Q': // Quit the Map Menu and return to the Main Menu
-                this.returnToMainMenu();
-                break;
+            
             default:
             ErrorView.display("ArmorShopMenuView ","\n*** Invalid Armor menu selection *** Try again");
                 break;

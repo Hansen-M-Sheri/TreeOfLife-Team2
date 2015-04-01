@@ -89,8 +89,8 @@ public class MapControl {
         //create scene for Level One
         Scene levelOneScene = new Scene();
         levelOneScene.setDescriptions(
-                "\nLevel One Scene Description"
-                + "Need to add content");
+                "\nWelcome to Level One!"
+                +"\n You must answer atleast 1 set of three questions before continuing to the next level");
         levelOneScene.setMapSymbol("LVL 1");
         levelOneScene.setBlocked(false);
 //        ImageIcon levelOneSceneImage = MapControl.getImage(levelOneScene,
@@ -246,13 +246,13 @@ public class MapControl {
 
     }
 
-    static void moveCharactersToLocation(Character character, Point coordinates) throws MapControlException {
+   public static void moveCharactersToLocation(Character character, Point coordinates) throws MapControlException {
 //        System.out.println("*** called moveCharactersToStartingLocation() ****");
         Map map = TreeOfLife.getCurrentGame().getMap();
-        int newRow = coordinates.x - 1;
-        int newColumn = coordinates.y - 1;
-//         int newRow = coordinates.x ; //@todo removing -1 gets rid of error (location is outside the bounds of the map).  Why is it necessary? 
-//        int newColumn = coordinates.y ;
+//        int newRow = coordinates.x - 1;
+//        int newColumn = coordinates.y - 1;
+         int newRow = coordinates.x ; //@todo removing -1 gets rid of error (location is outside the bounds of the map).  Why is it necessary? 
+        int newColumn = coordinates.y ;
 
         if (newRow < 0 || newRow >= map.getRowCount()
                 || newColumn < 0 || newColumn >= map.getColumnCount()) {
@@ -267,6 +267,8 @@ public class MapControl {
         Location location = map.getLocations()[coordinates.x][coordinates.y];
 //       throw new MapControlException("starting location is: "+location); //this is to test location 
         location.setVisited(true);
+        //if moves to new level then setCurrentLevel
+        
         
     }
 

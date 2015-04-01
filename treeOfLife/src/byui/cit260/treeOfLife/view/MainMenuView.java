@@ -52,9 +52,10 @@ public class MainMenuView extends View{
                 this.saveGame(); // save the current game
                 break;
             case 'Q': // Exit the program
+                this.console.println("Thank you for playing Tree of Life.");
                 return true;
             default:
-            ErrorView.display("MainMenuView","n*** Invalid selection *** Try again");
+            ErrorView.display("MainMenuView","*** Invalid selection *** Try again");
                 break;
 }
         return true;
