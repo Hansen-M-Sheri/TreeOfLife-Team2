@@ -238,7 +238,7 @@ public class MapControl {
        // System.out.println("*** called moveCharactersToStartingLocation() ****");
 
         Character character = TreeOfLife.getCurrentGame().getCharacter();
-       System.out.println(character);
+     
 
         Point coordinates = character.getCoordinates();
         MapControl.moveCharactersToLocation(character, coordinates);

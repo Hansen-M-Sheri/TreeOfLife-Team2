@@ -99,9 +99,11 @@ this.console.println("\n========================================"
             
             int numQuestionsAnswered = levelQuestion.getNumLevelQuestionsAnswered();
             //check answer
+            levelQuestion.setLastLevelQuestionAsked(20);
             //loop 3 times - while numLevelQuestionAnswere <=3 continue
             while (numQuestionsAnswered < 3) {            
                 //ask a question
+                
               Question question =  levelQuestion.getNextLevelQuestion();
         
               String nextQuestion = question.getQuestion();
