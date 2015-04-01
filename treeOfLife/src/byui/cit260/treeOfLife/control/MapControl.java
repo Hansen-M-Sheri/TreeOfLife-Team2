@@ -77,8 +77,8 @@ public class MapControl {
         //Create scene 1
         Scene startingScene = new Scene();
         startingScene.setDescriptions(
-                "\nCottage Opening Scene Description"
-                + "Need to add content");
+                "\nCottage "
+                + "Starting Location");
         startingScene.setMapSymbol(" -C- ");
         startingScene.setBlocked(false);
 //        ImageIcon startingSceneImage = MapControl.getImage(startingScene,
@@ -92,7 +92,8 @@ public class MapControl {
         Scene levelOneScene = new Scene();
         levelOneScene.setDescriptions(
                 "\nWelcome to Level One!"
-                +"\n You must answer atleast 1 set of three questions before continuing to the next level");
+                +"\n You must answer atleast 1 set of "
+                +"three questions before continuing to the next level");
         levelOneScene.setMapSymbol("LVL 1");
         levelOneScene.setBlocked(false);
 //        ImageIcon levelOneSceneImage = MapControl.getImage(levelOneScene,
@@ -103,8 +104,10 @@ public class MapControl {
         //create scene for Level Two
         Scene levelTwoScene = new Scene();
         levelTwoScene.setDescriptions(
-                "\nLevel Two Scene Description"
-                + "Need to add content");
+                "\nLevel Two "
+                + "You are progessing well, "
+                + "but must continue to answer "
+                + "questions to progress");
         levelTwoScene.setMapSymbol("LVL 2");
         levelTwoScene.setBlocked(true);
 //        ImageIcon levelTwoSceneImage = MapControl.getImage(levelTwoScene,
@@ -115,8 +118,8 @@ public class MapControl {
         //create scene for Level Three
         Scene levelThreeScene = new Scene();
         levelThreeScene.setDescriptions(
-                "\nLevel Three Scene Description"
-                + "Need to add content");
+                "\nLevel Three "
+                + "You are making EXCELLENT progress!!");
         levelThreeScene.setMapSymbol("LVL 3");
         levelThreeScene.setBlocked(true);
 //        ImageIcon levelThreeSceneImage = MapControl.getImage(levelThreeScene,
@@ -127,7 +130,7 @@ public class MapControl {
         //create scene for Level Four
         Scene levelFourScene = new Scene();
         levelFourScene.setDescriptions(
-                "\nLevel Four Scene Description"
+                "\nLevel Four "
                 + "Need to add content");
         levelFourScene.setMapSymbol("LVL 4");
         levelFourScene.setBlocked(true);
@@ -139,8 +142,9 @@ public class MapControl {
         //create scene for Level Five
         Scene levelFiveScene = new Scene();
         levelFiveScene.setDescriptions(
-                "\nLevel Five Scene Description"
-                + "Need to add content");
+                "\nLevel Five "
+                + "You are at the final level!!"
+                        + "Gather points while you can!");
         levelFiveScene.setMapSymbol("LVL 5");
         levelFiveScene.setBlocked(true);
 //        ImageIcon levelFiveSceneImage = MapControl.getImage(levelFiveScene,
@@ -240,7 +244,7 @@ public class MapControl {
        // System.out.println("*** called moveCharactersToStartingLocation() ****");
 
         Character character = TreeOfLife.getCurrentGame().getCharacter();
-       System.out.println(character);
+     
 
         Point coordinates = character.getCoordinates();
         MapControl.moveCharactersToLocation(character, coordinates);
