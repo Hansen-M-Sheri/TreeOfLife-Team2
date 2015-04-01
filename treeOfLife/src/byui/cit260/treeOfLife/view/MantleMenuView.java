@@ -21,14 +21,14 @@ import treeoflife.TreeOfLife;
 public class MantleMenuView extends View{
 public MantleMenuView(){
         super("\n"
-            +"\n========================================"
-            +"\n| Mantle Menu                             |"
-            +"\n========================================"
+            +"\n================================================================="
+            +"\n\t\t\t Mantle Menu                             "
+            +"\n================================================================="
             +"\nA - Answer Mantle Questions"
             +"\nM - Go back to Map"
             +"\nG - Go to Game Menu"
 //            +"\nQ - Return to Main Menu" 
-            +"\n========================================");
+            +"\n=================================================================");
         }   
    
 

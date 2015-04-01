@@ -21,13 +21,12 @@ import treeoflife.TreeOfLife;
  */
 public class ProgressMeterView extends View{
  public ProgressMeterView(){
-        super("\n"
-            +"\n======================================================"
-            +"\n| Progress Meter                                      |"
-            +"\n======================================================");
+        super("\n=================================================================");
+       this.console.println("================================================================="
+               + "\n\t\t\t PROGRESS METER"
+               + "\n=================================================================");
         
-       
-       try{
+        try{
            ProgressMeter progressMeter = TreeOfLife.getCurrentGame().getProgressMeter();
          
            this.console.println(progressMeter.getDescription());
@@ -36,10 +35,8 @@ public class ProgressMeterView extends View{
             this.console.println("\tK -  Knowledge stats are ..."+ progressMeter.getKnowledgeStat());
             this.console.println("\tO -  Obedience stats are ..." + progressMeter.getObedienceStat());
             
-           this.console.println( "\nG - Game Menu"
-           
-            
-            +"\n======================================================");
+           this.console.println( "\t\nG -  Game Menu");
+
        }catch (Exception e){
            ErrorView.display(this.getClass().getName(), "Error reading input "+ e.getMessage());
        }
