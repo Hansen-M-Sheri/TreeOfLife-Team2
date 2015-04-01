@@ -26,7 +26,7 @@ public class MapView extends View{
             +"\n========================================"
             +"\n| Map Menu                             |"
             +"\n========================================" 
-            +"\n M - Move to location"
+            +"\n E - Enter Map Coordinates"
                 
  //           +"\nT - Temple"
 //            +"\nM - Mantle"
@@ -68,8 +68,8 @@ public class MapView extends View{
             case 'L':  // Print a list of all map locations
                 this.printLocations(); 
                 break;
-            case 'M':  // Print a list of all map locations
-                this.moveLocation(); 
+            case 'E':  // Print a list of all map locations
+                this.enterCoordinates(); 
                 break;
 //            case 'Q': // Quit the Map Menu and return to the Main Menu
 //                this.returnToMainMenu();
@@ -182,7 +182,7 @@ public class MapView extends View{
         
     }
 
-    private void moveLocation() {
+    //private void moveLocation() { //working code for entry of coordinates
     
         //Code to get input for map movement
 //        this.console.println("\n\nEnter the Coordinates to move to a different location. First enter Row Number and then Column Number. (example 0,1 will take you to the Temple)");
@@ -200,8 +200,22 @@ public class MapView extends View{
 //            ErrorView.display("MapLocationsView", ex.getMessage());
 //        }
 //        this.displayGameMenu();
+
+    private void enterCoordinates() {
+    //Code to get input for map movement
+        this.console.println("\n\nEnter the Coordinates to move to a different location. First enter Row Number and then Column Number. (Example 0,1 will take you to the Temple)");
+        
+        String filePath = this.getInput();
+   
+        
+    
+        
     }
+    
+    
 }
+
+    
 
    
 

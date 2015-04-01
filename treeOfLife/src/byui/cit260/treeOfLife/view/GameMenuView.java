@@ -126,8 +126,8 @@ public class GameMenuView extends View {
         
         
         //print out map menu
-    MapView mapView = new MapView(); //Change this to call different function so user enters in the coordinates
-      mapView.display();
+    MapView mapView = new MapView(); 
+    mapView.display();
         
     }
 
