@@ -50,7 +50,7 @@ public class LevelView extends View {
         Scene levelName = location.getScene();
      
 this.console.println("\n================================================================="
-            +"\n "+ description 
+            + description 
             +"\n================================================================="
            
             +"\nA - Answer Level Questions"

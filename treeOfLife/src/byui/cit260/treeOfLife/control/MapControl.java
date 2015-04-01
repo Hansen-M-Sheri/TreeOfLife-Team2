@@ -77,8 +77,8 @@ public class MapControl {
         //Create scene 1
         Scene startingScene = new Scene();
         startingScene.setDescriptions(
-                "\nCottage "
-                + "Starting Location");
+                "\n\t\t\tCottage "
+                + "\n\tStarting Location");
         startingScene.setMapSymbol(" -C- ");
         startingScene.setBlocked(false);
 //        ImageIcon startingSceneImage = MapControl.getImage(startingScene,
@@ -89,9 +89,9 @@ public class MapControl {
         //create scene for Level One
         Scene levelOneScene = new Scene();
         levelOneScene.setDescriptions(
-                "\nWelcome to Level One!"
-                +"\n You must answer atleast 1 set of "
-                +"three questions before continuing to the next level");
+                "\n\t\t\tWelcome to Level One!"
+                +"\n\t You must answer atleast 1 set of three questions"
+                +"\n\t  before continuing to the next level");
         levelOneScene.setMapSymbol("LVL 1");
         levelOneScene.setBlocked(false);
 //        ImageIcon levelOneSceneImage = MapControl.getImage(levelOneScene,
@@ -102,10 +102,10 @@ public class MapControl {
         //create scene for Level Two
         Scene levelTwoScene = new Scene();
         levelTwoScene.setDescriptions(
-                "\nLevel Two "
-                + "You are progessing well, "
-                + "but must continue to answer "
-                + "questions to progress");
+                "\n\t\t\tLevel Two "
+                + "\n\tYou are progessing well, "
+                + "\n\tbut must continue to answer "
+                + "\n\tquestions to progress");
         levelTwoScene.setMapSymbol("LVL 2");
         levelTwoScene.setBlocked(true);
 //        ImageIcon levelTwoSceneImage = MapControl.getImage(levelTwoScene,
@@ -116,8 +116,10 @@ public class MapControl {
         //create scene for Level Three
         Scene levelThreeScene = new Scene();
         levelThreeScene.setDescriptions(
-                "\nLevel Three "
-                + "You are making EXCELLENT progress!!");
+                "\n\t\t\tLevel Three "
+                +"\n\t You must answer atleast 1 set of three questions"
+                +"\n\t  before continuing to the next level"
+                + "\n\tYou are making EXCELLENT progress!!");
         levelThreeScene.setMapSymbol("LVL 3");
         levelThreeScene.setBlocked(true);
 //        ImageIcon levelThreeSceneImage = MapControl.getImage(levelThreeScene,
@@ -128,7 +130,9 @@ public class MapControl {
         //create scene for Level Four
         Scene levelFourScene = new Scene();
         levelFourScene.setDescriptions(
-                "\nLevel Four "
+                "\n\t\t\tLevel Four "
+                +"\n\t You must answer atleast 1 set of three questions"
+                +"\n\t  before continuing to the next level"
                 + "Need to add content");
         levelFourScene.setMapSymbol("LVL 4");
         levelFourScene.setBlocked(true);
@@ -140,9 +144,9 @@ public class MapControl {
         //create scene for Level Five
         Scene levelFiveScene = new Scene();
         levelFiveScene.setDescriptions(
-                "\nLevel Five "
-                + "You are at the final level!!"
-                        + "Gather points while you can!");
+                "\n\t\t\tLevel Five "
+                + "\n\tYou are at the final level!!"
+                + "\n\tGather points while you can!");
         levelFiveScene.setMapSymbol("LVL 5");
         levelFiveScene.setBlocked(true);
 //        ImageIcon levelFiveSceneImage = MapControl.getImage(levelFiveScene,
@@ -153,8 +157,9 @@ public class MapControl {
         //create scene for mantle
         Scene mantleScene = new Scene();
         mantleScene.setDescriptions(
-                "\nMantle Scene Description"
-                + "Need to add content");
+                "\n\t\t\tMantle"
+                + "\n\tHere at you can rejuvenate your spirits and strength"
+                + "\n\t Just answer a question and see how much better you feel.");
         mantleScene.setMapSymbol(" -M- ");
         mantleScene.setBlocked(false);
 //        ImageIcon mantleSceneImage = MapControl.getImage(mantleScene,
@@ -165,8 +170,10 @@ public class MapControl {
         //create scene for temple
         Scene templeScene = new Scene();
         templeScene.setDescriptions(
-                "\n Temple Scene Description"
-                + "Need to add content");
+                "\n\t\t\t Temple "
+                + "\n\t Through your service here, you will find"
+                + "\n\t an increase of strength and protection"
+                + "\n\t Answer a question to obtain the blessings");
         templeScene.setMapSymbol(" -T- ");
         templeScene.setBlocked(false);
 //        ImageIcon templeSceneImage = MapControl.getImage(templeScene,
@@ -177,8 +184,10 @@ public class MapControl {
         //create scene for armorShop
         Scene armorShopScene = new Scene();
         armorShopScene.setDescriptions(
-                "\n Armor Shop Scene Description"
-                + "Need to add content");
+                "\n\t\t\t Armor Shop "
+                + "\n\tPut on the Armor of God "
+                        + "\n\t and see how you are strengthened."
+                        + "\n\t Make sure you have enough faith for the purchase!");
         armorShopScene.setMapSymbol(" -A- ");
         armorShopScene.setBlocked(false);
 //        ImageIcon armorShopSceneImage = MapControl.getImage(armorShopScene,
