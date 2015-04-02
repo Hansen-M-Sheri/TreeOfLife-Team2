@@ -46,7 +46,7 @@ public class LevelView extends View {
      
         currentCoordinates = TreeOfLife.getCurrentGame().getCharacter().getCoordinates();
         Location location =  TreeOfLife.getCurrentGame().getMap().getLocations()[currentCoordinates.x][currentCoordinates.y];
-        String description = location.getScene().getDescriptions();
+        String description = location.getScene().getMapSymbol();
         Scene levelName = location.getScene();
      
 this.console.println("\n================================================================="
