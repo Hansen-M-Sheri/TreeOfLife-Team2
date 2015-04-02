@@ -25,7 +25,7 @@ public class QuestionArray implements Serializable{
     private static int lastTempleQuestionAsked ;
     private static int lastMantleQuestionAsked ;
     private static int lastLevelQuestionAsked;
-   private static int numTempleQuestion;
+    private static int numTempleQuestion;
 
    
    

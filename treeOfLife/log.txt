@@ -1,0 +1,15 @@
+
+
+List of all Locations
+c - Starting Point in the Game
+l - First Level in the Game
+l - Second Level in the Game
+l - Third Level in the Game
+l - Fourth Level in the Game
+l - Fifth Level in the Game
+m - The Mantle is where you can repent and increase your faith points
+t - The Temple is where you can gain Faith, Obedience and Knowledge Points
+a - The Armor Shop is where you can purchase Armor Pieces to increase Faith Points
+t - The Tree of Life is the highest level achieved at the end of the game
+t - The Tree of Knowledge is the second highest level achieved at the end of the game
+s - The Spacious Building is the lowest level of achievement at the end of the game

@@ -94,11 +94,13 @@ public class MapControl {
 
         //create scene for Level One
         Scene levelOneScene = new Scene();
+        
         levelOneScene.setDescriptions(
                 "\n\t\t\tWelcome to Level One!"
                 +"\n\t You must answer atleast 1 set of three questions"
                 +"\n\t  before continuing to the next level");
-        //levelOneScene.setSceneView(new LevelView());
+        //LevelView levelView = new LevelView();
+        //levelOneScene.setSceneView(levelView);
         levelOneScene.setMapSymbol("LVL 1");
         levelOneScene.setBlocked(false);
 //        ImageIcon levelOneSceneImage = MapControl.getImage(levelOneScene,
@@ -199,9 +201,9 @@ public class MapControl {
         armorShopScene.setDescriptions(
                 "\n\t\t\t Armor Shop "
                 + "\n\tPut on the Armor of God "
-                        + "\n\t and see how you are strengthened."
-                        + "\n\t Make sure you have enough faith for the purchase!");
-        armorShopScene.setSceneView(new ArmorShopMenuView());
+                + "\n\t and see how you are strengthened."
+                + "\n\t Make sure you have enough faith for the purchase!");
+        //armorShopScene.setSceneView(new ArmorShopMenuView());//Pulls into starting menue for some reason. Displays part of ArmorShop.
         armorShopScene.setMapSymbol(" -A- ");
         armorShopScene.setBlocked(false);
 //        ImageIcon armorShopSceneImage = MapControl.getImage(armorShopScene,
