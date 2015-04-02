@@ -9,12 +9,13 @@ import byui.cit260.treeOfLife.view.View;
 import java.util.Objects;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
+
 /**
  *
  * @author Chuck
  */
-public class Scene implements Serializable{
-   
+public class Scene implements Serializable {
+
     private String descriptions;
     private String userQuestions;
     private Location location;
@@ -23,7 +24,7 @@ public class Scene implements Serializable{
     private Boolean blocked;
     private View sceneView;
 
-     public Scene() {
+    public Scene() {
     }
 
     public View getSceneView() {
@@ -50,8 +51,7 @@ public class Scene implements Serializable{
         this.userQuestions = userQuestions;
     }
 
-       
-   public Location getLocation() {
+    public Location getLocation() {
         return location;
     }
 
@@ -66,7 +66,7 @@ public class Scene implements Serializable{
     public void setQuestions(QuestionArray[][] questions) {
         this.questions = questions;
     }
-    
+
     public String getMapSymbol() {
         return mapSymbol;
     }
@@ -83,11 +83,10 @@ public class Scene implements Serializable{
         this.blocked = blocked;
     }
 
-   public void setIcon(ImageIcon startingSceneImage) {
+    public void setIcon(ImageIcon startingSceneImage) {
         System.out.println("**** setIcon() function was called ****");
     }
-    
-    
+
     @Override
     public String toString() {
         return "Scene{" + "descriptions=" + descriptions + ", userQuestions=" + userQuestions + '}';
@@ -131,7 +130,5 @@ public class Scene implements Serializable{
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
 //
-    
-    
-    
+
 }

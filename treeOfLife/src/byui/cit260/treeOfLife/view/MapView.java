@@ -181,7 +181,7 @@ public class MapView extends View {
         //Code to get input for map movement
         this.console.println("\n\nEnter the Coordinates to move to a different location."
                 + "\nFirst enter Row Number and then Column Number."
-                + "\n(Example 0,1 will take you to the Temple)");
+                + "\n(Example 1,0 will take you to the Temple)");
 
         String value = this.getInput();
 
@@ -208,11 +208,30 @@ public class MapView extends View {
             String description = currentLocation.getScene().getDescriptions();
             this.console.println(description);
 
-            View myView = currentLocation.getScene().getSceneView();
+            
+            //if (myView != null){
+                
+//            //}
+            if (currentLocation == locations[0][2] || currentLocation == locations[1][2] || currentLocation == locations[1][1] || currentLocation == locations[2][1] || currentLocation == locations[2][2]){
+               // currentLocation.getScene().setSceneView(new LevelView());
+                //myView.display();
+                View myView = new LevelView();
+                if (myView != null){
+                myView.display();
+                }
+            }else if (currentLocation == locations[0][0]){
+                //currentLocation.getScene().setSceneView(new ArmorShopMenuView());
+                View myView = new ArmorShopMenuView();
+                if (myView != null){
+                myView.display();
+                }
+            }else{
+                View myView = currentLocation.getScene().getSceneView();
             if (myView != null){
                 myView.display();
             }
-            
+                
+            }
             //deterime and select scene type  
           //if ( ){
 ////                

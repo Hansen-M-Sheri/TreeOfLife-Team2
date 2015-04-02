@@ -65,27 +65,39 @@ public class GameControl {
 
     //@todo - instructions said to have this private, but it caused issues in Map.createMap()
     public static void assignScenesToLocations(Map map, Scene[] scenes) {
-        //setting 3 locations to visited - these are accessible always
+        //setting 3 locations to visited - these are accessible always 
         Location[][] locations = map.getLocations();
-        locations[0][0].setVisited(true);
         locations[0][0].setScene(scenes[SceneType.armorShop.ordinal()]);
-        locations[0][1].setVisited(true);
+        locations[0][0].setVisited(true);
+        locations[1][0].setScene(scenes[SceneType.temple.ordinal()]);
+        locations[1][0].setVisited(true); 
+        locations[2][0].setScene(scenes[SceneType.mantle.ordinal()]);
+        locations[2][0].setVisited(true);   
+        
         //start point
         locations[0][1].setScene(scenes[SceneType.cottage.ordinal()]);
-        locations[0][2].setVisited(true);
+        locations[0][1].setVisited(true); 
+        
+        //Levels - this is where the user will be able to answer Level Questions to gain faith, knowledge and obedience points
         locations[0][2].setScene(scenes[SceneType.levelOne.ordinal()]);
-        locations[0][3].setScene(scenes[SceneType.spaciousBuilding.ordinal()]);
-        locations[1][0].setScene(scenes[SceneType.temple.ordinal()]);
-        locations[1][0].setVisited(true);
-        locations[1][1].setScene(scenes[SceneType.levelTwo.ordinal()]);
-        locations[1][2].setScene(scenes[SceneType.levelThree.ordinal()]);
-        locations[1][3].setScene(scenes[SceneType.treeOfKnowledge.ordinal()]);
-        locations[2][0].setScene(scenes[SceneType.mantle.ordinal()]);
-        locations[2][0].setVisited(true);
+        locations[0][2].setVisited(true);
+        locations[1][2].setScene(scenes[SceneType.levelTwo.ordinal()]);
+            locations[1][2].setVisited(true);
+        locations[1][1].setScene(scenes[SceneType.levelThree.ordinal()]);
+            locations[1][1].setVisited(true);
         locations[2][1].setScene(scenes[SceneType.levelFour.ordinal()]);
-        locations[2][2].setScene(scenes[SceneType.levelFive.ordinal()]);
-        locations[2][3].setScene(scenes[SceneType.treeOfLife.ordinal()]);   
-    }
+            locations[2][1].setVisited(true);
+        locations[2][2].setScene(scenes[SceneType.levelFive.ordinal()]);       
+            locations[2][2].setVisited(true);
+        //End Scenes - these are the scenes that the user will achieve based on their faith, knowledge and obedience points
+        locations[0][3].setScene(scenes[SceneType.treeOfLife.ordinal()]);   
+            locations[0][3].setVisited(true);
+        locations[1][3].setScene(scenes[SceneType.treeOfKnowledge.ordinal()]);
+            locations[1][3].setVisited(true);
+        locations[2][3].setScene(scenes[SceneType.spaciousBuilding.ordinal()]);
+            locations[2][3].setVisited(true);
+        
+    }   
 
     public static ArrayList<GameInventoryItems> createInventoryList() {
 

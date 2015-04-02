@@ -59,9 +59,9 @@ public class ArmorShopMenuView extends View{
                 +"\n"
                 +"\nR - Print Armor items available and items purchased"        
                 +"\n"
-                +"\nG - Game Menu"
-                
-                +"\n========================================");
+                +"\nM - Go back to Map"        
+                 //+"\nQ - Return to Main Menu"      
+                );
         } 
         }catch (Exception e) {
            ErrorView.display(this.getClass().getName(), "Error reading input "+ e.getMessage());
@@ -114,8 +114,8 @@ public class ArmorShopMenuView extends View{
             case 'R':  // print list of items available and purchased
                 this.printInventory(); 
                 break;
-            case 'G':  // go to game menu
-                this.goToGameMenu(); 
+            case 'M': // to to Armor Shop Menu
+                this.displayMapView();
                 break;
             
             default:
@@ -262,7 +262,7 @@ public class ArmorShopMenuView extends View{
 
     private void printInventory() {
             //prompt for and get the name of the file to save the game in
-        this.console.println("\n\nEnter the file path for file where the game is to be saved.");
+        this.console.println("\n\nEnter the file path where lInventory List will be saved.");
         
         String filePath = this.getInput();
         
@@ -331,6 +331,11 @@ public class ArmorShopMenuView extends View{
             
         }
         
+    }
+
+    private void displayMapView() {
+      GameMenuView gameMenu = new GameMenuView();
+      gameMenu.displayMap();
     }
     
 

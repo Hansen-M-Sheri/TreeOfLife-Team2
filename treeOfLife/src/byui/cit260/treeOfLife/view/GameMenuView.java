@@ -97,7 +97,7 @@ public class GameMenuView extends View {
                    String symbol;
                    //@todo - adding a way to show character if on spot
                    Point currentCoordinates= TreeOfLife.getCurrentGame().getCharacter().getCoordinates();
-                   Location characterLocation = locations[currentCoordinates.x][currentCoordinates.y];
+                   Location characterLocation = locations[currentCoordinates.y] [currentCoordinates.x];
                    
                    if(location == characterLocation) {
                        symbol = "URHere";
