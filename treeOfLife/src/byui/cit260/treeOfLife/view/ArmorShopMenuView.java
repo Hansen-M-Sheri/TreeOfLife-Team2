@@ -282,7 +282,7 @@ public class ArmorShopMenuView extends View{
             ObjectOutputStream output = new ObjectOutputStream(fops);
          
        String armorShopList = "\n\nArmor Inventory";
-       String armorPurchaseList = "\n\n\nPurchased Armor Items";
+//       String armorPurchaseList = "\n\n\nPurchased Armor Items";
             try {
                 if(forSale.size() < 1) {
                     ErrorView.display(this.getClass().getName(), "There are no more items available in the Armor Shop");
@@ -298,28 +298,28 @@ public class ArmorShopMenuView extends View{
                         armorShopList += ("\n" + armorPiece + " - " + armorDescription);
                     }
                 }
-                if(purchasedItems.size() < 1) {
-                    ErrorView.display(this.getClass().getName(), "You have not purchased any armor pieces yet");
-                }
-                else {
-
-                    //for each item in list
-                    for (GameInventoryItems item : purchasedItems) {
-                        //get first letter of item name
-                        char armorPiece = item.name().charAt(0);
-                        //print first letter and description of item
-                        String armorDescription = item.getItemDescription();
-                        armorPurchaseList +=("\n" + armorPiece + " - " + armorDescription);
-                    }
-
-
-                } 
+//                if(purchasedItems.size() < 1) {
+//                    ErrorView.display(this.getClass().getName(), "You have not purchased any armor pieces yet");
+//                }
+//                else {
+//
+//                    //for each item in list
+//                    for (GameInventoryItems item : purchasedItems) {
+//                        //get first letter of item name
+//                        char armorPiece = item.name().charAt(0);
+//                        //print first letter and description of item
+//                        String armorDescription = item.getItemDescription();
+//                        armorPurchaseList +=("\n" + armorPiece + " - " + armorDescription);
+//                    }
+//
+//
+//                } 
             }catch (Exception e) {
                ErrorView.display(this.getClass().getName(), "Error reading input "+ e.getMessage());
             }
 
                 output.writeObject(armorShopList); //write the forSale ArrayList out to file
-                output.writeObject(armorPurchaseList); 
+//                output.writeObject(armorPurchaseList); 
                
             }
          catch(Exception e) {
