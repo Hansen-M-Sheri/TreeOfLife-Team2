@@ -5,6 +5,7 @@
  */
 package byui.cit260.treeOfLife.model;
 
+import byui.cit260.treeOfLife.view.View;
 import java.util.Objects;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
@@ -20,8 +21,17 @@ public class Scene implements Serializable{
     private QuestionArray[][] questions;
     private String mapSymbol;
     private Boolean blocked;
+    private View sceneView;
 
      public Scene() {
+    }
+
+    public View getSceneView() {
+        return sceneView;
+    }
+
+    public void setSceneView(View sceneView) {
+        this.sceneView = sceneView;
     }
 
     public String getDescriptions() {

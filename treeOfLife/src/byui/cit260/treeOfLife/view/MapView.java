@@ -176,23 +176,7 @@ public class MapView extends View {
 
     }
 
-    //private void moveLocation() { //working code for entry of coordinates
-        //Code to get input for map movement
-//        this.console.println("\n\nEnter the Coordinates to move to a different location. First enter Row Number and then Column Number. (example 0,1 will take you to the Temple)");
-//        
-//        String filePath = this.getInput();
-//        
-//       
-//        
-//        try {
-//            ArrayList<String> items = new ArrayList<>();
-//            items = (ArrayList<String>) Arrays.asList(filePath.split("\\s*,\\s*"));
-//            // save the game to the specified file
-//            this.goToLevelMenu();(locations,filePath);
-//        }catch(Exception ex) {
-//            ErrorView.display("MapLocationsView", ex.getMessage());
-//        }
-//        this.displayGameMenu();
+   
     private void enterCoordinates() {
         //Code to get input for map movement
         this.console.println("\n\nEnter the Coordinates to move to a different location."
@@ -224,10 +208,20 @@ public class MapView extends View {
             String description = currentLocation.getScene().getDescriptions();
             this.console.println(description);
 
+            View myView = currentLocation.getScene().getSceneView();
+            if (myView != null){
+                myView.display();
+            }
+            
             //deterime and select scene type  
-            //if //create scene view for selected scene type
-                    //display scene view
-                    //return
+          //if ( ){
+////                
+//            }
+
+
+                //create scene view for selected scene type
+                //display scene view
+                //return
           
         } catch (MapControlException ex) {
             ErrorView.display("MapView", ex.getMessage());
