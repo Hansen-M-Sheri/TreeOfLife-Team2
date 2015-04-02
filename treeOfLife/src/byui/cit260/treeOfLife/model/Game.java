@@ -21,7 +21,6 @@ public class Game implements Serializable {
     private Players player;
     private ProgressMeter progressMeter;
     private Map map;
-    private ArrayList<SceneType> locations;
     private ArrayList<GameInventoryItems> forSale;
     private ArrayList<GameInventoryItems> purchasedItems ;
     private Character[] characters;
@@ -58,10 +57,6 @@ public class Game implements Serializable {
 
     public void setMap(Map map) {
         this.map = map;
-    }
-    
-    public ArrayList<SceneType> getlocationList() {
-        return locations;
     }
     
     public Character[] getCharactersArray() {

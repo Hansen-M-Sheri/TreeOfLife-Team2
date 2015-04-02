@@ -23,7 +23,7 @@ import treeoflife.TreeOfLife;
 
 
 public class Map implements Serializable{
-     private int rowCount;
+    private int rowCount;
     private int columnCount;
     ArrayList<Game> gameID = new ArrayList<>();
     private Location[][] locations;

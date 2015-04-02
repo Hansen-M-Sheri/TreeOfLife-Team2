@@ -84,7 +84,7 @@ public class GameControl {
         locations[2][0].setVisited(true);
         locations[2][1].setScene(scenes[SceneType.levelFour.ordinal()]);
         locations[2][2].setScene(scenes[SceneType.levelFive.ordinal()]);
-        locations[2][3].setScene(scenes[SceneType.treeOfLife.ordinal()]);
+        locations[2][3].setScene(scenes[SceneType.treeOfLife.ordinal()]);   
     }
 
     public static ArrayList<GameInventoryItems> createInventoryList() {

@@ -10,6 +10,8 @@ import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Scene;
 import citbyui.cit260.treeOfLife.exceptions.GameControlException;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Arrays;
 import treeoflife.TreeOfLife;
 
 /**
@@ -17,6 +19,7 @@ import treeoflife.TreeOfLife;
  * @author Chuck
  */
 public class GameMenuView extends View {
+    
     public GameMenuView(){
         super("\n"
     
@@ -118,9 +121,13 @@ public class GameMenuView extends View {
         // DISPLAY ending row divider  
         System.out.println("--------------------------------");
         
+        
+       
+        
+        
         //print out map menu
-      MapView mapView = new MapView();
-      mapView.display();
+    MapView mapView = new MapView(); 
+    mapView.display();
         
     }
 
@@ -157,5 +164,7 @@ public class GameMenuView extends View {
         mapMenu.display();
     }
     
+    
+  
     
 }

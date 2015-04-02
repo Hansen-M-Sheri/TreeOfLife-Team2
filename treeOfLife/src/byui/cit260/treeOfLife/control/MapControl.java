@@ -16,6 +16,10 @@ import javax.swing.ImageIcon;
 import treeoflife.TreeOfLife;
 import byui.cit260.treeOfLife.model.Character;
 import byui.cit260.treeOfLife.model.Location;
+import byui.cit260.treeOfLife.view.ArmorShopMenuView;
+import byui.cit260.treeOfLife.view.LevelView;
+import byui.cit260.treeOfLife.view.MantleMenuView;
+import byui.cit260.treeOfLife.view.TempleMenuView;
 import java.io.Serializable;
 
 /**
@@ -85,6 +89,8 @@ public class MapControl {
 //                "/citbyui/citC260/curiousworkmanship/images/startingPoint.jpg");
 //        startingScene.setIcon(startingSceneImage);
         scenes[SceneType.cottage.ordinal()] = startingScene;
+        
+        
 
         //create scene for Level One
         Scene levelOneScene = new Scene();
@@ -92,6 +98,7 @@ public class MapControl {
                 "\n\t\t\tWelcome to Level One!"
                 +"\n\t You must answer atleast 1 set of three questions"
                 +"\n\t  before continuing to the next level");
+        //levelOneScene.setSceneView(new LevelView());
         levelOneScene.setMapSymbol("LVL 1");
         levelOneScene.setBlocked(false);
 //        ImageIcon levelOneSceneImage = MapControl.getImage(levelOneScene,
@@ -106,6 +113,7 @@ public class MapControl {
                 + "\n\tYou are progessing well, "
                 + "\n\tbut must continue to answer "
                 + "\n\tquestions to progress");
+        //levelTwoScene.setSceneView(new LevelView());
         levelTwoScene.setMapSymbol("LVL 2");
         levelTwoScene.setBlocked(true);
 //        ImageIcon levelTwoSceneImage = MapControl.getImage(levelTwoScene,
@@ -120,6 +128,7 @@ public class MapControl {
                 +"\n\t You must answer atleast 1 set of three questions"
                 +"\n\t  before continuing to the next level"
                 + "\n\tYou are making EXCELLENT progress!!");
+        //levelThreeScene.setSceneView(new LevelView());
         levelThreeScene.setMapSymbol("LVL 3");
         levelThreeScene.setBlocked(true);
 //        ImageIcon levelThreeSceneImage = MapControl.getImage(levelThreeScene,
@@ -134,6 +143,7 @@ public class MapControl {
                 +"\n\t You must answer atleast 1 set of three questions"
                 +"\n\t  before continuing to the next level"
                 + "Need to add content");
+        //levelFourScene.setSceneView(new LevelView());
         levelFourScene.setMapSymbol("LVL 4");
         levelFourScene.setBlocked(true);
 //        ImageIcon levelFourSceneImage = MapControl.getImage(levelFourScene,
@@ -147,6 +157,7 @@ public class MapControl {
                 "\n\t\t\tLevel Five "
                 + "\n\tYou are at the final level!!"
                 + "\n\tGather points while you can!");
+        //levelFiveScene.setSceneView(new LevelView());
         levelFiveScene.setMapSymbol("LVL 5");
         levelFiveScene.setBlocked(true);
 //        ImageIcon levelFiveSceneImage = MapControl.getImage(levelFiveScene,
@@ -160,6 +171,7 @@ public class MapControl {
                 "\n\t\t\tMantle"
                 + "\n\tHere at you can rejuvenate your spirits and strength"
                 + "\n\t Just answer a question and see how much better you feel.");
+        mantleScene.setSceneView(new MantleMenuView());
         mantleScene.setMapSymbol(" -M- ");
         mantleScene.setBlocked(false);
 //        ImageIcon mantleSceneImage = MapControl.getImage(mantleScene,
@@ -174,6 +186,7 @@ public class MapControl {
                 + "\n\t Through your service here, you will find"
                 + "\n\t an increase of strength and protection"
                 + "\n\t Answer a question to obtain the blessings");
+        templeScene.setSceneView(new TempleMenuView());
         templeScene.setMapSymbol(" -T- ");
         templeScene.setBlocked(false);
 //        ImageIcon templeSceneImage = MapControl.getImage(templeScene,
@@ -188,6 +201,7 @@ public class MapControl {
                 + "\n\tPut on the Armor of God "
                         + "\n\t and see how you are strengthened."
                         + "\n\t Make sure you have enough faith for the purchase!");
+        armorShopScene.setSceneView(new ArmorShopMenuView());
         armorShopScene.setMapSymbol(" -A- ");
         armorShopScene.setBlocked(false);
 //        ImageIcon armorShopSceneImage = MapControl.getImage(armorShopScene,
