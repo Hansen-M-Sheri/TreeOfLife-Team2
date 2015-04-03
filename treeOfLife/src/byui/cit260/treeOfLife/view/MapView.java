@@ -51,19 +51,19 @@ public class MapView extends View {
         value = value.toUpperCase(); //convert to all upper case
         char choice = value.charAt(0); //get first character entered
         switch (choice) {
-
-            case 'T':// go to temple
-                this.goToTempleMenu();
-                break;
+//
+//            case 'T':// go to temple
+//                this.goToTempleMenu();
+//                break;
 //            case 'M': // go to the mantle
 //                this.goToMantleMenu();
 //                break;
-            case 'A': // to to Armor Shop Menu
-                this.goToArmorShopMenu();
-                break;
-            case 'C': // go to level view
-                this.goToLevelMenu();
-                break;
+//            case 'A': // to to Armor Shop Menu
+//                this.goToArmorShopMenu();
+//                break;
+//            case 'C': // go to level view
+//                this.goToLevelMenu();
+//                break;
             case 'H': // go to the Main Menu  
                 this.displayHelpMenu();
                 break;
@@ -184,11 +184,12 @@ public class MapView extends View {
                 + "\n(Example 1,0 will take you to the Temple)");
 
         String value = this.getInput();
-
-        String[] values = value.split("\\s*,\\s*");
-        int x = Integer.parseInt(values[0]);
-        int y = Integer.parseInt(values[1]);
-
+        
+            String[] values = value.split("\\s*,\\s*");
+            try{
+                int x = Integer.parseInt(values[0]);
+                int y = Integer.parseInt(values[1]);
+            
         if (x < 0 || x > TreeOfLife.getCurrentGame().getMap().getRowCount()) {
             ErrorView.display("MapView", "You have entered an incorrect row number. Please enter a value between 0 and 3.");
             return;
@@ -197,7 +198,7 @@ public class MapView extends View {
             ErrorView.display("MapView", "You have entered an incorrect column number. Please enter a value between 0 and 2.");
             return;
         }
-        try {
+//        try {
             //moveCharacterToLocation
             MapControl.moveCharactersToLocation(TreeOfLife.getCurrentGame().getCharacter(), new Point(x, y));
             //get location
@@ -244,7 +245,9 @@ public class MapView extends View {
           
         } catch (MapControlException ex) {
             ErrorView.display("MapView", ex.getMessage());
-        }
+        }catch (NumberFormatException nfe){
+                ErrorView.display("MapView", "You must enter a number, no letters please!");
+            }
 
     }
 

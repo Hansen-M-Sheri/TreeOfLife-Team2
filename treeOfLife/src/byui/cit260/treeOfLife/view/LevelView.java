@@ -104,49 +104,53 @@ this.console.println("\n========================================================
                if(setOfQuestionsAlreadyAsked >= 3){
                    this.console.println("You may only answer 9 questions per level. "
                            + "Please continue to next level or return to map");
+                   return;
                    
                }else{
-                    int numQuestionsAnswered = levelQuestion.getNumLevelQuestionsAnswered();
+//                    int numQuestionsAnswered = levelQuestion.getNumLevelQuestionsAnswered();
                     //loop 3 times - while numLevelQuestionAnswere <=3 continue
-                    while (numQuestionsAnswered < 3) {            
+//                      
+                    for(int x = 0; x < 3; x++){
                         //ask a question
 
-                      Question question =  levelQuestion.getNextLevelQuestion();
+                        Question question =  levelQuestion.getNextLevelQuestion();
 
-                      String nextQuestion = question.getQuestion();
-                       this.console.println(nextQuestion);
-                       //get input
-                      String response =  this.getInput();
-                      String answerToQuestion = question.getAnswerToLevelQuestion();
-                      //convert answer and check to upperCase
-                      String userResponse = response.toUpperCase();
-                      String answer = answerToQuestion.toUpperCase();
-                      //check answer
-                      if(userResponse.equals(answer)){
-                          int points = 30;
-                         this.console.println("Correct!  You just earned "+ points + " faith points!");
-                         int currentFaith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
-                         TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(currentFaith + points);
-                      }
-                      else {
-                          this.console.println("Good try.  But the correct answer was " + answerToQuestion);
+                        String nextQuestion = question.getQuestion();
+                         this.console.println(nextQuestion);
+                         //get input
+                        String response =  this.getInput();
+                        String answerToQuestion = question.getAnswerToLevelQuestion();
+                        //convert answer and check to upperCase
+                        String userResponse = response.toUpperCase();
+                        String answer = answerToQuestion.toUpperCase();
+                        //check answer
+                        if(userResponse.equals(answer)){
+                            int points = 30;
+                           this.console.println("Correct!  You just earned "+ points + " faith points!");
+                           int currentFaith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+                           TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(currentFaith + points);
+                        }
+                        else {
+                            this.console.println("Good try.  But the correct answer was " + answerToQuestion);
 
                       }
 //                      
-                    }
-                    int incrementSetQuestions = setOfQuestionsAlreadyAsked + 1;
-                     QuestionArray.setNumSetsOfLevelQuestionsAsked(incrementSetQuestions);
+                    int increment = levelQuestion.getNumLevelQuestionsAnswered() + 1;
+                    levelQuestion.setNumLevelQuestionsAnswered(increment);
+               
+//                    this.console.println("numb of Questions answered is " + numQuestionsAnswered);
+                    
                 //assign points
                //increment and set  number level Questions asked
+               }
+                    int incrementSetQuestions = setOfQuestionsAlreadyAsked + 1;
+                     QuestionArray.setNumSetsOfLevelQuestionsAsked(incrementSetQuestions);
                
-               int increment = numQuestionsAnswered++;
-               levelQuestion.setNumLevelQuestionsAnswered(increment);
-               this.console.println(numQuestionsAnswered);
             
             //set numLevelQuestions to 0 after while loop ends so can restart on next loop if needed
             levelQuestion.setNumLevelQuestionsAnswered(0);
             this.wantMoreLevelQuestions();
-        
+            
                }
         }
 
