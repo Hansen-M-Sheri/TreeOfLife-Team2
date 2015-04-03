@@ -86,25 +86,25 @@ public class MapView extends View {
         return true;
     }
 
-    private void goToTempleMenu() {
-        //set in game that this has been visited
-//        Game game = TreeOfLife.getCurrentGame().; 
-//         Map map = game.getMap();
-        Location location = new Location();
-        location.setVisited(true);
-        TempleMenuView templeMenu = new TempleMenuView();
-        templeMenu.display();
-    }
-
-    private void goToMantleMenu() {
-        MantleMenuView mantleMenu = new MantleMenuView();
-        mantleMenu.display();
-    }
-
-    private void goToArmorShopMenu() {
-        ArmorShopMenuView armorMenu = new ArmorShopMenuView();
-        armorMenu.display();
-    }
+//    private void goToTempleMenu() {
+//        //set in game that this has been visited
+////        Game game = TreeOfLife.getCurrentGame().; 
+////         Map map = game.getMap();
+//        Location location = new Location();
+//        location.setVisited(true);
+//        TempleMenuView templeMenu = new TempleMenuView();
+//        templeMenu.display();
+//    }
+//
+//    private void goToMantleMenu() {
+//        MantleMenuView mantleMenu = new MantleMenuView();
+//        mantleMenu.display();
+//    }
+//
+//    private void goToArmorShopMenu() {
+//        ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+//        armorMenu.display();
+//    }
 
     private void displayHelpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
@@ -199,6 +199,14 @@ public class MapView extends View {
             return;
         }
 //        try {
+        //check if location is blocked
+        Location location = TreeOfLife.getCurrentGame().getMap().getLocations()[x][y];
+        if(location.isBlocked() == true){
+            ErrorView.display("MapView", "This location is blocked. Please try another");
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayMap();
+        }
+        else {
             //moveCharacterToLocation
             MapControl.moveCharactersToLocation(TreeOfLife.getCurrentGame().getCharacter(), new Point(x, y));
             //get location
@@ -231,7 +239,7 @@ public class MapView extends View {
             if (myView != null){
                 myView.display();
             }
-                
+            }   
             }
             //deterime and select scene type  
           //if ( ){

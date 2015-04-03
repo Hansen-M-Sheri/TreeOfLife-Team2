@@ -99,10 +99,10 @@ public class GameMenuView extends View {
                    Point currentCoordinates= TreeOfLife.getCurrentGame().getCharacter().getCoordinates();
                    Location characterLocation = locations[currentCoordinates.y] [currentCoordinates.x];
                    
-                   if(location == characterLocation) {
-                       symbol = "URHere";
-                   }
-                   else if(location.isVisited() ) { 
+//                   if(location == characterLocation) {
+//                       symbol = "URHere";
+//                   }
+                    if(location.isVisited() ) { 
                        //get current game
                         
                        Scene scene = location.getScene();

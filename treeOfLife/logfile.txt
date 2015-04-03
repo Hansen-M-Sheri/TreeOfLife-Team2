@@ -1,3 +1,5 @@
-MapView - You must enter a number, no letters please!
+MapView - This location is blocked. Please try another
 MapView - 
 *** Invalid map menu selection *** Try again
+MapView - This location is blocked. Please try another
+MapView - This location is blocked. Please try another

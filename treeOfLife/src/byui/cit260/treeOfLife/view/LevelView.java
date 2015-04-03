@@ -145,7 +145,10 @@ this.console.println("\n========================================================
                }
                     int incrementSetQuestions = setOfQuestionsAlreadyAsked + 1;
                      QuestionArray.setNumSetsOfLevelQuestionsAsked(incrementSetQuestions);
-               
+              //once set of three has been asked, unblock mantle and temple sites
+                    Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+                     locations[1][0].setBlocked(false); //unblock temple
+                     locations[1][0].setBlocked(false); //unblock mantle
             
             //set numLevelQuestions to 0 after while loop ends so can restart on next loop if needed
             levelQuestion.setNumLevelQuestionsAnswered(0);
@@ -224,7 +227,7 @@ this.console.println("\n========================================================
 //                Point coordinates = new Point(1,1);
 //                MapControl.moveCharactersToLocation(character, coordinates);
                 //open next level
-               locations[1][1].setVisited(true);
+               locations[1][2].setVisited(true);
                 TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelTwo);
                 GameMenuView.displayMap();
                 this.display();
@@ -235,7 +238,7 @@ this.console.println("\n========================================================
                  locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
 //                 coordinates = new Point(2,1);
 //                MapControl.moveCharactersToLocation(character, coordinates);
-                 locations[2][1].setVisited(true);
+                 locations[1][1].setVisited(true);
                  TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelThree);
                  GameMenuView.displayMap();
                  map.display();
@@ -244,7 +247,7 @@ this.console.println("\n========================================================
                  locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
 //                coordinates = new Point(1,2);
 //                MapControl.moveCharactersToLocation(character, coordinates);
-                 locations[1][2].setVisited(true);
+                 locations[2][1].setVisited(true);
                  TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelFour);
                  GameMenuView.displayMap();
                  map.display();
@@ -266,7 +269,7 @@ this.console.println("\n========================================================
                                     
                 break;
             default:
-                this.console.println("continueToNextLevelCalled ");
+               
                 break;
        }
     }

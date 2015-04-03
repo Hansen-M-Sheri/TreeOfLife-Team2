@@ -290,6 +290,9 @@ public class MapControl {
                     + " because that location is outside "
                     + " the bounds of the map.");
         }
+//        if(map.getLocations()[newRow][newColumn].isBlocked()){
+//            throw new MapControlException("This location is blocked. Please try a different location.");
+//        }
         character.getCoordinates().x = coordinates.x;
         character.getCoordinates().y = coordinates.y;
         //set location as visited
@@ -297,13 +300,30 @@ public class MapControl {
 //       throw new MapControlException("starting location is: "+location); //this is to test location 
         location.setVisited(true);
          //if moves to new level then setCurrentLevel
-        
-        
+        MapControl setLevel = new MapControl();
+        setLevel.setCurrentLevel(location);
+     
     }
 
-    public static ImageIcon getImage(Scene startingScene, String citbyuicitC260curiousworkmanshipimagessta) {
-        System.out.println("*** called getImage() function ****");
-        return null;
+//    public static ImageIcon getImage(Scene startingScene, String citbyuicitC260curiousworkmanshipimagessta) {
+//        System.out.println("*** called getImage() function ****");
+//        return null;
+    
+public void  setCurrentLevel(Location location){
+       Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
+         if (location == locations[0][2] ){
+             TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelOne);
+         }
+         else if( location == locations[1][2]){
+             TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelTwo);
+         }else if( location == locations[1][1]){
+             TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelThree);
+         }else if(location == locations[2][1]){
+             TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelFour);
+         }else if( location == locations[2][2]){
+             TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelFive);
+         }
     }
+         
+ }
 
-}
