@@ -11,6 +11,7 @@ import static byui.cit260.treeOfLife.control.MapControl.moveCharactersToLocation
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
 import byui.cit260.treeOfLife.model.Map;
+import byui.cit260.treeOfLife.model.QuestionArray;
 import citbyui.cit260.treeOfLife.exceptions.MapControlException;
 import java.awt.Point;
 import java.io.FileOutputStream;
@@ -184,7 +185,10 @@ public class MapView extends View {
                 + "\n(Example 1,0 will take you to the Temple)");
 
         String value = this.getInput();
-        
+            if(value.indexOf(",")== -1){
+                ErrorView.display("MapView", "Please use the following format to enter coordinates: 0,2 "
+                        );
+            }else{
             String[] values = value.split("\\s*,\\s*");
             try{
                 int x = Integer.parseInt(values[0]);
@@ -226,6 +230,7 @@ public class MapView extends View {
 //            //}
             if (currentLocation == locations[0][2] || currentLocation == locations[1][2] || currentLocation == locations[1][1] || currentLocation == locations[2][1] || currentLocation == locations[2][2]){
                // currentLocation.getScene().setSceneView(new LevelView());
+                this.blockPreviousLevel(currentLocation, locations);
                 //myView.display();
                 View myView = new LevelView();
                 if (myView != null){
@@ -259,7 +264,28 @@ public class MapView extends View {
         }catch (NumberFormatException nfe){
                 ErrorView.display("MapView", "You must enter a number, no letters please!");
             }
-
+            }
     }
+
+    private void blockPreviousLevel(Location currentLocation, Location[][] locations) {
+      //block previous level once moved to new level
+        //reset setQuestionsAsked to 0 so no more questions can be asked at previous level (since it is now blocked)
+         QuestionArray.setNumSetsOfLevelQuestionsAsked(0);
+         
+        if(currentLocation == locations[1][2]){
+            locations[0][2].setBlocked(true);
+        }
+        else if(currentLocation == locations[1][1]){
+            locations[1][2].setBlocked(true);
+        }
+        else if( currentLocation == locations[2][1]){
+            locations[1][1].setBlocked(true);
+        }
+        else if( currentLocation == locations[2][2]){
+            locations[2][1].setBlocked(true);
+                }
+    }
+
+    
 
 }

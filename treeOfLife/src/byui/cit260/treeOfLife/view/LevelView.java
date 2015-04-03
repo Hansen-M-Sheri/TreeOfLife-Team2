@@ -50,7 +50,7 @@ public class LevelView extends View {
         Scene levelName = location.getScene();
      
 this.console.println("\n================================================================="
-            + "\n "+ description 
+            + "\n\t\t\t "+ description 
             +"\n================================================================="
            
             +"\nA - Answer Level Questions"
@@ -223,10 +223,8 @@ this.console.println("\n========================================================
        MapView map = new MapView();
        switch(currentLevel){
             case levelOne:
-                locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
-//                Point coordinates = new Point(1,1);
-//                MapControl.moveCharactersToLocation(character, coordinates);
-                //open next level
+                //unblock next level and show it on map
+                locations[1][2].setBlocked(false);
                locations[1][2].setVisited(true);
                 TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelTwo);
                 GameMenuView.displayMap();
@@ -235,27 +233,21 @@ this.console.println("\n========================================================
                 
                break;
             case levelTwo:
-                 locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
-//                 coordinates = new Point(2,1);
-//                MapControl.moveCharactersToLocation(character, coordinates);
+                locations[1][1].setBlocked(false);
                  locations[1][1].setVisited(true);
                  TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelThree);
                  GameMenuView.displayMap();
                  map.display();
                break;
             case levelThree:
-                 locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
-//                coordinates = new Point(1,2);
-//                MapControl.moveCharactersToLocation(character, coordinates);
+                locations[2][1].setBlocked(false);
                  locations[2][1].setVisited(true);
                  TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelFour);
                  GameMenuView.displayMap();
                  map.display();
                 break;
             case levelFour:
-                 locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
-//                coordinates = new Point(2,2);
-//                 MapControl.moveCharactersToLocation(character, coordinates);
+                locations[2][2].setBlocked(false);
                  locations[2][2].setVisited(true); 
                  TreeOfLife.getCurrentGame().getProgressMeter().setCurrentLevel(SceneType.levelFive);
                  GameMenuView.displayMap();
@@ -264,8 +256,10 @@ this.console.println("\n========================================================
                 break;
             case levelFive:
                  locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
+                 
                 this.console.println("Congratulations!!! You have completed the Tree of Life.");
                 GameControl.endOfGameProcess();
+                //unblock endgame view after calculation has been done (so only 1 area is unblocked - the one they achieve
                                     
                 break;
             default:

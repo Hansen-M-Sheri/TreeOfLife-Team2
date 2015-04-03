@@ -111,8 +111,8 @@ public class MapControl {
         //create scene for Level Two
         Scene levelTwoScene = new Scene();
         levelTwoScene.setDescriptions(
-                "\n\t\t\tLevel Two "
-                + "\n\tYou are progessing well, "
+                "\n\t\tLevel Two "
+                + "\n\tYou are progressing well, "
                 + "\n\tbut must continue to answer "
                 + "\n\tquestions to progress");
         //levelTwoScene.setSceneView(new LevelView());

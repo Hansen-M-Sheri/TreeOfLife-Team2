@@ -1,6 +1,2 @@
-MapView - 
-*** Invalid map menu selection *** Try again
-MapView - 
-*** Invalid map menu selection *** Try again
-GameMenuView - *** Invalid game menu selection *** Try again
-MapView - This location is blocked. Please try another
+LevelView - \u001B31;1m
+*** Invalid Level Menu selection *** Try again
