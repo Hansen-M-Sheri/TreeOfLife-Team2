@@ -1,0 +1,3 @@
+MapView - You must enter a number, no letters please!
+MapView - 
+*** Invalid map menu selection *** Try again

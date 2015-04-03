@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import treeoflife.TreeOfLife;
@@ -52,10 +53,10 @@ public class ArmorShopMenuView extends View{
 
             this.console.println(
                 "\nF - Sort Faith Points"
-                +"\n"
-                +"\nO - Sort Obedience Points"
-                +"\n"
-                +"\nK - Sort Knowledge Points" 
+//                +"\n"
+//                +"\nO - Sort Obedience Points"
+//                +"\n"
+//                +"\nK - Sort Knowledge Points" 
                 +"\n"
                 +"\nR - Print Armor items available and items purchased"        
                 +"\n"
@@ -136,12 +137,12 @@ public class ArmorShopMenuView extends View{
             case 'F':  // get FaithPoints
                 this.getSortFaithPoints(); 
                 break;
-            case 'O':  // get ObedientPoints
-                this.getSortObedPoints(); 
-                break;
-            case 'K':  // get KnowledgePoints
-                this.getSortKnowPoints(); 
-                break;
+//            case 'O':  // get ObedientPoints
+//                this.getSortObedPoints(); 
+//                break;
+//            case 'K':  // get KnowledgePoints
+//                this.getSortKnowPoints(); 
+//                break;
             case 'R':  // print list of items available and purchased
                 this.printInventory(); 
                 break;
@@ -283,17 +284,17 @@ public class ArmorShopMenuView extends View{
         sortFaith.display();
     }
 
-    private void getSortObedPoints() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void getSortKnowPoints() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    private void getSortObedPoints() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    private void getSortKnowPoints() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     private void printInventory() {
             //prompt for and get the name of the file to save the game in
-        this.console.println("\n\nEnter the file path where lInventory List will be saved.");
+        this.console.println("\n\nEnter the file path where Inventory List will be saved.");
         
         String filePath = this.getInput();
         
@@ -305,13 +306,15 @@ public class ArmorShopMenuView extends View{
         }catch(Exception ex) {
             ErrorView.display("ArmorShopMenuView", ex.getMessage());
         }
-        this.goToGameMenu();
+      ArmorShopMenuView armorMenu = new ArmorShopMenuView();
+        armorMenu.display();
     }
 
     private void printItems(ArrayList<GameInventoryItems> forSale, ArrayList<GameInventoryItems> purchasedItems, String filePath) {
-        try( FileOutputStream fops = new FileOutputStream(filePath)){
-            ObjectOutputStream output = new ObjectOutputStream(fops);
-         
+//        try( FileOutputStream fops = new FileOutputStream(filePath)){
+//            ObjectOutputStream output = new ObjectOutputStream(fops);
+         try (PrintWriter output = new PrintWriter(filePath)) {
+             
        String armorShopList = "\n\nArmor Inventory";
 //       String armorPurchaseList = "\n\n\nPurchased Armor Items";
             try {
@@ -349,9 +352,9 @@ public class ArmorShopMenuView extends View{
                ErrorView.display(this.getClass().getName(), "Error reading input "+ e.getMessage());
             }
 
-                output.writeObject(armorShopList); //write the forSale ArrayList out to file
+//                output.writeObject(armorShopList); //write the forSale ArrayList out to file
 //                output.writeObject(armorPurchaseList); 
-               
+               output.println(armorShopList);
             }
          catch(Exception e) {
              ErrorView.display("ArmorShopMenuView", e.getMessage());
