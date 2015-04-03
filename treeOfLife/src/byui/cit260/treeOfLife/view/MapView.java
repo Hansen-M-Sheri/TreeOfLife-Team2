@@ -202,7 +202,10 @@ public class MapView extends View {
         //check if location is blocked
         Location location = TreeOfLife.getCurrentGame().getMap().getLocations()[x][y];
         if(location.isBlocked() == true){
-            ErrorView.display("MapView", "This location is blocked. Please try another");
+            ErrorView.display("MapView", "This location is blocked. Please try another"
+                            + "\n Once you choose to leave a level you may not return to it."
+                            + "\nIf temple or mantle are blocked, you must answer more level questions"
+                            + "\n Answering 3 more questions will give you access. ");
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.displayMap();
         }

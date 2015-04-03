@@ -86,7 +86,7 @@ public class ArmorShopMenuView extends View{
        int currentFaithPoints = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
         switch (choice){
             case 'H':// get Helmet
-                 if(currentFaithPoints >= 650) {
+                 if(currentFaithPoints <= 650) {
                     this.console.println("You need atleast 650 faith points to be able to get this item.  ");
                 }
                 else {
@@ -94,7 +94,7 @@ public class ArmorShopMenuView extends View{
                  }
                 break;
             case 'P': // get the ProtectiveShield
-                 if(currentFaithPoints >=160) {
+                 if(currentFaithPoints <=160) {
                     this.console.println("You need atleast 160 faith points to be able to get this item.  ");
                 }
                 else {
@@ -103,7 +103,7 @@ public class ArmorShopMenuView extends View{
                 break;
             case 'T': // get TruthBelt
                 //check if enough faith points, if so earn belt
-                if(currentFaithPoints >= 75) {
+                if(currentFaithPoints <= 75) {
                     this.console.println("You need atleast 75 faith points to be able to get this item.  ");
                 }
                 else {
@@ -111,7 +111,7 @@ public class ArmorShopMenuView extends View{
                 }
                 break;
             case 'B': // get Boots
-                 if(currentFaithPoints >= 480) {
+                 if(currentFaithPoints <= 480) {
                     this.console.println("You need atleast 480 faith points to be able to get this item.  ");
                 }
                 else {
@@ -119,7 +119,7 @@ public class ArmorShopMenuView extends View{
                  }
                 break;
             case 'S': // get Sword
-                if(currentFaithPoints >= 350) {
+                if(currentFaithPoints <= 350) {
                     this.console.println("You need atleast 350 faith points to be able to get this item.  ");
                 }
                 else {
@@ -127,7 +127,7 @@ public class ArmorShopMenuView extends View{
                 }
                 break;
             case 'I':  // get IronBreastplate
-                if(currentFaithPoints >= 950) {
+                if(currentFaithPoints <= 950) {
                     this.console.println("You need atleast 950 faith points to be able to get this item.  ");
                 }
                 else {

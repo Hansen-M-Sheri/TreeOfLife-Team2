@@ -105,7 +105,9 @@ public MantleMenuView(){
         Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
         locations[2][0].setBlocked(true);
 
-        this.console.println("Thank you for visiting the mantle.");
+        this.console.println("Thank you for visiting the mantle."
+                + "\nYou will not be able to visit the mantle again until you have"
+                + "\nanswered 3 level questions. ");
         //display mapView menu
         this.displayMapView();       //incrementMantleQuestionsAsked - do this step in getAnotherMantleQuestion? Not sure
        //add answer to combinedMantleAnswer (do this for each answer)

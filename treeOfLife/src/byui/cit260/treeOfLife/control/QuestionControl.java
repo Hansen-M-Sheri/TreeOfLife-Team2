@@ -412,7 +412,11 @@ public class QuestionControl {
         locations[1][0].setBlocked(true);
 
         //return to game menue after finishing up temple questions
-        this.console.println("Thank you for coming to the Temple.  To help you continue your journey you will be taken to the game menu.");
+        this.console.println("Thank you for coming to the Temple. "
+                +"\nYou will not be able to visit the temple again until you "
+                + "\n have answered 3 level questions."
+                +" \nTo help you continue your journey you will"
+                +"\n be taken to the game menu.");
 
 //                this.askReturnToGameMenu(); //this is repeating what is done in next method
 //                int returnGameMenu = this.getUserInput();

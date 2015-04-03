@@ -1,5 +1,6 @@
-MapView - This location is blocked. Please try another
 MapView - 
 *** Invalid map menu selection *** Try again
-MapView - This location is blocked. Please try another
+MapView - 
+*** Invalid map menu selection *** Try again
+GameMenuView - *** Invalid game menu selection *** Try again
 MapView - This location is blocked. Please try another
