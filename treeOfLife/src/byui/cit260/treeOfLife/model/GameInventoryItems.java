@@ -20,11 +20,11 @@ public enum GameInventoryItems implements Serializable{
 //define list of items in class
 //define list of items in class
 //define list of items in class
-    Helmet("Helmet of Salvation", 5,3, 10),
-    ProtectiveShield("Protective Shield of Faith", 10, 5, 5),
-    TruthBelt("Belt of Truth", 4, 8, 4),
-    Boots("Boots of Peace", 3, 3, 6),
-    Sword("Sword of Truth", 8, 8, 8),
+    Helmet("Helmet of Salvation", 150,0, 0),
+    ProtectiveShield("Protective Shield of Faith", 60, 0, 0),
+    TruthBelt("Belt of Truth", 30, 0, 0),
+    Boots("Boots of Peace", 120, 0, 0),
+    Sword("Sword of Truth", 180, 0, 0),
     IronBreastPlate("Iron Breast Plate of Righteousness", 10, 2, 8), 
     
     ;

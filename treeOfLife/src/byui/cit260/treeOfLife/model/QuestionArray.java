@@ -18,6 +18,7 @@ public class QuestionArray implements Serializable{
     private String questionPoints;
     private static int numMantleQuestion = 0 ;
     private static int numLevelQuestionsAnswered = 0;
+    private static int numSetsOfLevelQuestionsAsked = 0;
     private Scene scene;
    
     private static String[][] questionArray;
@@ -173,6 +174,14 @@ public enum QuestionType {
     //return questions array
         return levelQuestionArray;
     } 
+
+    public static int getNumSetsOfLevelQuestionsAsked() {
+        return numSetsOfLevelQuestionsAsked;
+    }
+
+    public static void setNumSetsOfLevelQuestionsAsked(int numSetsOfLevelQuestionsAsked) {
+        QuestionArray.numSetsOfLevelQuestionsAsked = numSetsOfLevelQuestionsAsked;
+    }
 
     public static int getNumTempleQuestion() {
         return numTempleQuestion;

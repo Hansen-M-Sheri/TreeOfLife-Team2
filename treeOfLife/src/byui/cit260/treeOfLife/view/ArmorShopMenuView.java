@@ -82,25 +82,56 @@ public class ArmorShopMenuView extends View{
         String value = (String) obj;
         value = value.toUpperCase(); //convert to all upper case
         char choice = value.charAt(0); //get first character entered
-       
+       int currentFaithPoints = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
         switch (choice){
             case 'H':// get Helmet
+                 if(currentFaithPoints >= 650) {
+                    this.console.println("You need atleast 650 faith points to be able to get this item.  ");
+                }
+                else {
                 this.getHelmet();
+                 }
                 break;
             case 'P': // get the ProtectiveShield
+                 if(currentFaithPoints >=160) {
+                    this.console.println("You need atleast 160 faith points to be able to get this item.  ");
+                }
+                else {
                 this.getShield();
+                 }
                 break;
             case 'T': // get TruthBelt
+                //check if enough faith points, if so earn belt
+                if(currentFaithPoints >= 75) {
+                    this.console.println("You need atleast 75 faith points to be able to get this item.  ");
+                }
+                else {
                 this.getBelt();
+                }
                 break;
             case 'B': // get Boots
-                this.getBoots(); 
+                 if(currentFaithPoints >= 480) {
+                    this.console.println("You need atleast 480 faith points to be able to get this item.  ");
+                }
+                else {
+                this.getBoots();
+                 }
                 break;
             case 'S': // get Sword
+                if(currentFaithPoints >= 350) {
+                    this.console.println("You need atleast 350 faith points to be able to get this item.  ");
+                }
+                else {
                 this.getSword();
+                }
                 break;
             case 'I':  // get IronBreastplate
+                if(currentFaithPoints >= 950) {
+                    this.console.println("You need atleast 950 faith points to be able to get this item.  ");
+                }
+                else {
                 this.getIronBreastplate(); 
+                }
                 break;
             case 'F':  // get FaithPoints
                 this.getSortFaithPoints(); 
