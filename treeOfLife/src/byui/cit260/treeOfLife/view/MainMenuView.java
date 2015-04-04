@@ -53,7 +53,7 @@ public class MainMenuView extends View{
                 break;
             case 'Q': // Exit the program
                 this.console.println("Thank you for playing Tree of Life.");
-                return true;
+                System.exit(0);
             default:
             ErrorView.display("MainMenuView","*** Invalid selection *** Try again");
                 break;

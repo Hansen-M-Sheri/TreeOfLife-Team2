@@ -31,7 +31,7 @@ public class CharacterMenuView extends View {
             this.console.println("\tObedience points = " + character.getOrigObedLevel());
         }
         this.console.println(
-                "\nQ - Quit - "
+               
               );
 
     }
@@ -53,9 +53,7 @@ public class CharacterMenuView extends View {
             case 'J': // Select Jacob as a character
                 this.selectJacob();
                 break;
-            case 'Q': // Quit Help Menu and return previous menu
-
-                break;
+           
             default:
                 ErrorView.display("CharacterMenuView","*** Invalid help menu selection *** Try again");
                 break;

@@ -1,7 +1,4 @@
-byui.cit260.treeOfLife.view.LevelView - You must enter a value.
-byui.cit260.treeOfLife.view.LevelView - You must enter a value.
 LevelView - 
 *** Invalid Level Menu selection *** Try again
 LevelView - 
 *** Invalid Level Menu selection *** Try again
-byui.cit260.treeOfLife.view.LevelView - You must enter a value.
