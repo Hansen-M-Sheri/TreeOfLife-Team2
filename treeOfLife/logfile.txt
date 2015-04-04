@@ -1,2 +1,32 @@
-LevelView - \u001B31;1m
+MapView - Please use the following format to enter coordinates: 0,2 
+LevelView - 
 *** Invalid Level Menu selection *** Try again
+LevelView - 
+*** Invalid Level Menu selection *** Try again
+byui.cit260.treeOfLife.view.LevelView - You must enter a value.
+MapView - 
+*** Invalid map menu selection *** Try again
+MapView - Please use the following format to enter coordinates: 0,2 
+MapView - This location is blocked. Please try another
+ Once you choose to leave a level you may not return to it.
+If temple or mantle are blocked, you must answer more level questions
+ Answering 3 more questions will give you access. 
+MapView - This location is blocked. Please try another
+ Once you choose to leave a level you may not return to it.
+If temple or mantle are blocked, you must answer more level questions
+ Answering 3 more questions will give you access. 
+MapView - 
+*** Invalid map menu selection *** Try again
+LevelView - 
+*** Invalid Level Menu selection *** Try again
+MapView - This location is blocked. Please try another
+ Once you choose to leave a level you may not return to it.
+If temple or mantle are blocked, you must answer more level questions
+ Answering 3 more questions will give you access. 
+MapView - This location is blocked. Please try another
+ Once you choose to leave a level you may not return to it.
+If temple or mantle are blocked, you must answer more level questions
+ Answering 3 more questions will give you access. 
+byui.cit260.treeOfLife.view.ArmorShopMenuView - There are no more items available in the Armor Shop
+MapView - 
+*** Invalid map menu selection *** Try again
