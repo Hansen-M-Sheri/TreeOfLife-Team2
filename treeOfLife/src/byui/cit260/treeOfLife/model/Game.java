@@ -27,6 +27,8 @@ public class Game implements Serializable {
     private Character character;
     private QuestionControl totalQuestionsAsked;
 
+    
+    
     public QuestionControl getTotalQuestionsAsked() {
         return totalQuestionsAsked;
     }
