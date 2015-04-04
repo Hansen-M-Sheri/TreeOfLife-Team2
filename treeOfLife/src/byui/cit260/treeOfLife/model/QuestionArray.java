@@ -164,7 +164,7 @@ public enum QuestionType {
         
         Question levelQuestion20 = new Question();
         levelQuestion20.setQuestion("Daniel was thrown into a den of _________________.");
-        levelQuestion20.setAnswerToLevelQuestion("Lion"); 
+        levelQuestion20.setAnswerToLevelQuestion("Lions"); 
         levelQuestionArray[QuestionType.levelQuestions.ordinal()][19] = levelQuestion20;
         
         Question levelQuestion21 = new Question();

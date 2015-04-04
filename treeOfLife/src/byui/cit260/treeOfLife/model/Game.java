@@ -26,6 +26,52 @@ public class Game implements Serializable {
     private Character[] characters;
     private Character character;
     private QuestionControl totalQuestionsAsked;
+    private QuestionArray numLevelQuestionsAnswered;
+    private QuestionArray numSetsOfLevelQuestionsAsked ;
+    private QuestionArray lastTempleQuestionAsked ;
+    private QuestionArray lastMantleQuestionAsked ;
+    private QuestionArray lastLevelQuestionAsked;
+
+    public QuestionArray getNumLevelQuestionsAnswered() {
+        return numLevelQuestionsAnswered;
+    }
+
+    public void setNumLevelQuestionsAnswered(QuestionArray numLevelQuestionsAnswered) {
+        this.numLevelQuestionsAnswered = numLevelQuestionsAnswered;
+    }
+
+    public QuestionArray getNumSetsOfLevelQuestionsAsked() {
+        return numSetsOfLevelQuestionsAsked;
+    }
+
+    public void setNumSetsOfLevelQuestionsAsked(QuestionArray numSetsOfLevelQuestionsAsked) {
+        this.numSetsOfLevelQuestionsAsked = numSetsOfLevelQuestionsAsked;
+    }
+
+    public QuestionArray getLastTempleQuestionAsked() {
+        return lastTempleQuestionAsked;
+    }
+
+    public void setLastTempleQuestionAsked(QuestionArray lastTempleQuestionAsked) {
+        this.lastTempleQuestionAsked = lastTempleQuestionAsked;
+    }
+
+    public QuestionArray getLastMantleQuestionAsked() {
+        return lastMantleQuestionAsked;
+    }
+
+    public void setLastMantleQuestionAsked(QuestionArray lastMantleQuestionAsked) {
+        this.lastMantleQuestionAsked = lastMantleQuestionAsked;
+    }
+
+    public QuestionArray getLastLevelQuestionAsked() {
+        return lastLevelQuestionAsked;
+    }
+
+    public void setLastLevelQuestionAsked(QuestionArray lastLevelQuestionAsked) {
+        this.lastLevelQuestionAsked = lastLevelQuestionAsked;
+    }
+    
 
     public QuestionControl getTotalQuestionsAsked() {
         return totalQuestionsAsked;

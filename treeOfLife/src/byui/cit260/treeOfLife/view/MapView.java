@@ -270,20 +270,26 @@ public class MapView extends View {
     private void blockPreviousLevel(Location currentLocation, Location[][] locations) {
       //block previous level once moved to new level
         //reset setQuestionsAsked to 0 so no more questions can be asked at previous level (since it is now blocked)
-         QuestionArray.setNumSetsOfLevelQuestionsAsked(0);
+         
          
         if(currentLocation == locations[1][2]){
             locations[0][2].setBlocked(true);
+            QuestionArray.setNumSetsOfLevelQuestionsAsked(0);
         }
         else if(currentLocation == locations[1][1]){
             locations[1][2].setBlocked(true);
+            QuestionArray.setNumSetsOfLevelQuestionsAsked(0);
         }
         else if( currentLocation == locations[2][1]){
             locations[1][1].setBlocked(true);
+            QuestionArray.setNumSetsOfLevelQuestionsAsked(0);
         }
         else if( currentLocation == locations[2][2]){
             locations[2][1].setBlocked(true);
+            QuestionArray.setNumSetsOfLevelQuestionsAsked(0);
+                    
                 }
+        
     }
 
     

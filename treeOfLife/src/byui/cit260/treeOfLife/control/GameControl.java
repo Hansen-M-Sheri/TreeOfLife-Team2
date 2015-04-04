@@ -12,6 +12,7 @@ import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.control.MapControl.SceneType;
 import byui.cit260.treeOfLife.model.Players;
 import byui.cit260.treeOfLife.model.ProgressMeter;
+import byui.cit260.treeOfLife.model.QuestionArray;
 import byui.cit260.treeOfLife.model.Scene;
 import byui.cit260.treeOfLife.view.ArmorShopMenuView;
 import byui.cit260.treeOfLife.view.CharacterMenuView;
@@ -232,6 +233,8 @@ public class GameControl {
             ObjectOutputStream output = new ObjectOutputStream(fops);
             
             output.writeObject(currentGame); //write the game object out to file
+//            output.writeObject(QuestionArray.getNumLevelQuestionsAnswered());
+//            output.writeObject(QuestionArray.getNumSetsOfLevelQuestionsAsked());
         }
         catch(IOException e) {
             throw new GameControlException(e.getMessage());

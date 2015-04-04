@@ -103,8 +103,14 @@ this.console.println("\n========================================================
             int setOfQuestionsAlreadyAsked = QuestionArray.getNumSetsOfLevelQuestionsAsked();
                if(setOfQuestionsAlreadyAsked >= 3){
                    this.console.println("You may only answer 9 questions per level. "
-                           + "Please continue to next level or return to map");
-                   return;
+                           + "You will be returned to the map");
+                  try {
+                 //continue to next level
+                 
+                 this.continueToNextLevel();
+             } catch (MapControlException ex) {
+                  ErrorView.display(this.getClass().getName(), "Error reading input: "+ ex.getMessage());
+             }
                    
                }else{
 //                    int numQuestionsAnswered = levelQuestion.getNumLevelQuestionsAnswered();
@@ -148,7 +154,7 @@ this.console.println("\n========================================================
               //once set of three has been asked, unblock mantle and temple sites
                     Location[][] locations = TreeOfLife.getCurrentGame().getMap().getLocations();
                      locations[1][0].setBlocked(false); //unblock temple
-                     locations[1][0].setBlocked(false); //unblock mantle
+                     locations[2][0].setBlocked(false); //unblock mantle
             
             //set numLevelQuestions to 0 after while loop ends so can restart on next loop if needed
             levelQuestion.setNumLevelQuestionsAnswered(0);
