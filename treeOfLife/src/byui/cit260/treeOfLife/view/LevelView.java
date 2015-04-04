@@ -258,7 +258,10 @@ this.console.println("\n========================================================
                  locations[currentCoordinates.x][currentCoordinates.y].setBlocked(true);
                  
                 this.console.println("Congratulations!!! You have completed the Tree of Life.");
-                GameControl.endOfGameProcess();
+                
+                //This will take you to the end game sequence to the JudgementBarView
+                JudgementBarView judgeBar= new JudgementBarView(); 
+                judgeBar.display();
                 //unblock endgame view after calculation has been done (so only 1 area is unblocked - the one they achieve
                                     
                 break;

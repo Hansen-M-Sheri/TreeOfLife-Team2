@@ -21,7 +21,13 @@ public class JudgementBarView extends View {
             +"\n\t\t\t Day of Judgement                          "
             +"\n================================================================="
             +"\nJ - Judgment Day - Discover Your Fate!"
-            +"\n=================================================================");
+            +"\n================================================================="
+            +"\n"
+            +"\nDid you earn enough faith points to enter the Tree of Life?"
+            +"\n"
+            +"\nEnter 'J' in order to face your judgement!"
+                
+        );
     
         
         // Display Message
