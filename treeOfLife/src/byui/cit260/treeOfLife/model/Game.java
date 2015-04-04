@@ -73,6 +73,8 @@ public class Game implements Serializable {
     }
     
 
+    
+    
     public QuestionControl getTotalQuestionsAsked() {
         return totalQuestionsAsked;
     }
