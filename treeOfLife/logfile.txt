@@ -1,4 +1,1 @@
-LevelView - 
-*** Invalid Level Menu selection *** Try again
-LevelView - 
-*** Invalid Level Menu selection *** Try again
+HelpMenuView - n*** Invalid help menu selection *** Try again
