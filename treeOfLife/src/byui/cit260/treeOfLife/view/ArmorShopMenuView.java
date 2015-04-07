@@ -172,6 +172,10 @@ public class ArmorShopMenuView extends View{
         else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.Helmet);
+        //add armor faith points to progressMeter
+        int faith = GameInventoryItems.Helmet.getFaithPoints();
+        int currentFaith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+        TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(faith + currentFaith);
         }
         this.console.println("Your helmet has been added to your inventory");
         ArmorShopMenuView armorMenu = new ArmorShopMenuView();
@@ -191,6 +195,9 @@ public class ArmorShopMenuView extends View{
         else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.ProtectiveShield);
+        int faith = GameInventoryItems.ProtectiveShield.getFaithPoints();
+        int currentFaith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+        TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(faith + currentFaith);
         }
         this.console.println("Your Shield has been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
@@ -209,6 +216,9 @@ public class ArmorShopMenuView extends View{
         else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.TruthBelt);
+        int faith = GameInventoryItems.TruthBelt.getFaithPoints();
+        int currentFaith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+        TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(faith + currentFaith);
         }
          this.console.println("Your Belt has been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
@@ -227,6 +237,9 @@ public class ArmorShopMenuView extends View{
         else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.Boots);
+        int faith = GameInventoryItems.Boots.getFaithPoints();
+        int currentFaith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+        TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(faith + currentFaith);
         }
          this.console.println("Your Boots have been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
@@ -245,6 +258,9 @@ public class ArmorShopMenuView extends View{
         else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.Sword);
+        int faith = GameInventoryItems.Sword.getFaithPoints();
+        int currentFaith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+        TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(faith + currentFaith);
         }
           this.console.println("Your Sword has been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
@@ -263,6 +279,9 @@ public class ArmorShopMenuView extends View{
         else {
         //add to purchased list
         game.getPurchasedItems().add(GameInventoryItems.IronBreastPlate);
+        int faith = GameInventoryItems.IronBreastPlate.getFaithPoints();
+        int currentFaith = TreeOfLife.getCurrentGame().getProgressMeter().getFaithStat();
+        TreeOfLife.getCurrentGame().getProgressMeter().setFaithStat(faith + currentFaith);
         }
          this.console.println("Your Iron Breast Plate has been added to your inventory");
          ArmorShopMenuView armorMenu = new ArmorShopMenuView();
