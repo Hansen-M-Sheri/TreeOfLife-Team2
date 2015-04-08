@@ -324,8 +324,7 @@ public class ArmorShopMenuView extends View{
     }
 
     private void printItems(ArrayList<GameInventoryItems> forSale, ArrayList<GameInventoryItems> purchasedItems, String filePath) {
-//        try( FileOutputStream fops = new FileOutputStream(filePath)){
-//            ObjectOutputStream output = new ObjectOutputStream(fops);
+
          try (PrintWriter output = new PrintWriter(filePath)) {
              
        String armorShopList = "\n\nArmor Inventory";
@@ -345,22 +344,7 @@ public class ArmorShopMenuView extends View{
                         armorShopList += ("\n" + armorPiece + " - " + armorDescription);
                     }
                 }
-//                if(purchasedItems.size() < 1) {
-//                    ErrorView.display(this.getClass().getName(), "You have not purchased any armor pieces yet");
-//                }
-//                else {
-//
-//                    //for each item in list
-//                    for (GameInventoryItems item : purchasedItems) {
-//                        //get first letter of item name
-//                        char armorPiece = item.name().charAt(0);
-//                        //print first letter and description of item
-//                        String armorDescription = item.getItemDescription();
-//                        armorPurchaseList +=("\n" + armorPiece + " - " + armorDescription);
-//                    }
-//
-//
-//                } 
+
             }catch (Exception e) {
                ErrorView.display(this.getClass().getName(), "Error reading input "+ e.getMessage());
             }
