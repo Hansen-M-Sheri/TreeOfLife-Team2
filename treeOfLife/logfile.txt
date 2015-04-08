@@ -1,8 +1,0 @@
-GameMenuView - *** Invalid game menu selection *** Try again
-MapView - This location is blocked. Please try another
- Once you choose to leave a level you may not return to it.
-If temple or mantle are blocked, you must answer more level questions
- Answering 3 more questions will give you access. 
-byui.cit260.treeOfLife.view.MapView - You must enter a value.
-MapView - 
-*** Invalid map menu selection *** Try again

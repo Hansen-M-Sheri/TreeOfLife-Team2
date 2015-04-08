@@ -6,16 +6,10 @@
 package byui.cit260.treeOfLife.view;
 
 import byui.cit260.treeOfLife.control.GameControl;
-import byui.cit260.treeOfLife.control.ProgramControl;
 import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.GameInventoryItems;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import treeoflife.TreeOfLife;
 
 /**

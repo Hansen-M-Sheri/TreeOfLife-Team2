@@ -5,22 +5,13 @@
  */
 package byui.cit260.treeOfLife.control;
 
-import byui.cit260.treeOfLife.model.Game;
 import byui.cit260.treeOfLife.model.Location;
-import byui.cit260.treeOfLife.model.Map;
 import byui.cit260.treeOfLife.model.QuestionArray;
 import byui.cit260.treeOfLife.view.ErrorView;
 import byui.cit260.treeOfLife.view.GameMenuView;
-import byui.cit260.treeOfLife.view.TempleMenuView;
 import citbyui.cit260.treeOfLife.exceptions.QuestionControlException;
-import java.awt.Point;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import treeoflife.TreeOfLife;
 
 /**
